@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/summons-offence.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "offenceDetails": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/offence-details.json"
+    },
+    "statementOfFacts": {
+      "type": "string",
+      "description": "Statement of facts",
+      "maxLength": 4000
+    },
+    "statementOfFactsWelsh": {
+      "type": "string",
+      "description": "Statement of facts welsh",
+      "maxLength": 4000
+    }
+  },
+  "required": [
+    "offenceDetails"
+  ],
+  "additionalProperties" : false
+}

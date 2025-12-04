@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://uk.gov.moj.cpp/staging/prosecutors/json/schemas/submit-application.json",
+  "description": "submit application",
+  "type": "object",
+  "properties": {
+    "courtApplication": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/court-application.json"
+    },
+    "boxHearingRequest": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/box-hearing-request.json"
+    }
+  },
+  "required": [
+    "courtApplication",
+    "boxHearingRequest"
+  ],
+  "additionalProperties": false
+}

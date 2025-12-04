@@ -1,0 +1,94 @@
+{
+  "submissionId": "7e2f843e-d639-40b3-8611-8015f3a18958",
+  "submissionStatus": "PENDING",
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "The OU Code of the prosecuting authority"
+  },
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorOrganisationDefendantDetails": {
+          "prosecutorDefendantId": "prosecutorDefendantId",
+          "organisationName": "organisationName"
+        }
+      },
+      "principalCharges": "principal-charges"
+    }
+  ],
+  "tag": "O45110000120/1",
+  "ptphAdvocate": {
+    "name": "name",
+    "phone": "8778888343",
+    "email": "test@test.com"
+  },
+  "reviewingLawyer":{
+    "name": "name",
+    "phone": "8778888345",
+    "email": "test@test.com"
+  },
+  "prosecutionCaseProgressionOfficer":{
+    "name": "name",
+    "phone": "8778888345",
+    "email": "test@test.com"
+  },
+  "trialAdvocate": {
+    "name": "name",
+    "phone": "8778888341",
+    "email": "test@test.com"
+  },
+  "officerInTheCase": {
+    "name": "name",
+    "phone": "8778888342",
+    "email": "test@test.com"
+  },
+  "cpsOffice": "cps office",
+  "draftIndictment": "N",
+  "draftIndictmentNotes": "draftIndictmentNotes",
+  "summaryOfCircumstances": "Y",
+  "summaryOfCircumstancesNotes": "summaryOfCircumstancesNotes",
+  "statementsForPAndICm": "Y",
+  "statementsForPAndICmNotes": "statementsForPAndICmNotes",
+  "exhibitsForPAndICm": "N",
+  "exhibitsForPAndICmNotes": "exhibitsForPAndICmNotes",
+  "cctv": "Y",
+  "cctvNotes": "cctvNotes",
+  "streamlinedForensicReport": "Y",
+  "streamlinedForensicReportNotes": "streamlinedForensicReportNotes",
+  "medicalEvidence": "Y",
+  "medicalEvidenceNotes": "medicalEvidenceNotes",
+  "expertEvidence": "Y",
+  "ExpertEvidenceNotes": "ExpertEvidenceNotes",
+  "badCharacter": "Y",
+  "badCharacterNotes": "badCharacterNotes",
+  "hearsay": "Y",
+  "hearsayNotes": "hearsayNotes",
+  "specialMeasures": "Y",
+  "specialMeasuresNotes": "specialMeasuresNotes",
+  "criminalRecord": "Y",
+  "criminalRecordNotes": "criminalRecordNotes",
+  "victimPersonalStatement": "NA",
+  "victimPersonalStatementNotes": "victimPersonalStatementNotes",
+  "disclosureManagementDoc": "Y",
+  "disclosureManagementDocNotes": "disclosureManagementDocNotes",
+  "thirdParty": "Y",
+  "thirdPartyNotes": "thirdPartyNotes",
+  "reviewDisclosableMaterial": "RD",
+  "reviewDisclosableMaterialNotes": "reviewDisclosableMaterialNotes",
+  "particularsOfAnyRelatedCriminalProceedings": "particularsOfAnyRelatedCriminalProceedings",
+  "particularsOfAnyFamily": "particularsOfAnyFamily",
+  "Witnesses": [
+    {
+      "witnessFirstName": "forename",
+      "witnessLastName": "abc",
+      "relevantDisputedIssue": "relevantDisputedIssue",
+      "intermediaryForWitness": "Y",
+      "firstNameOfIntermediaryKnownAtPtph": "intermediaryForename",
+      "policeOfficerSubject": {
+        "officerInCharge": true,
+        "officeCollarNumber": "officeCollarNumber",
+        "OfficerRank": "OfficerRank"
+      }
+    }
+  ]
+}

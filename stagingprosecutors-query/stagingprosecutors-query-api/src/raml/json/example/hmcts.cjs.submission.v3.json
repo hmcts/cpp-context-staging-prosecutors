@@ -1,0 +1,16 @@
+{
+  "id": "cedb215e-9297-4799-9a4d-5c608eaa4131",
+  "status": "REJECTED",
+  "warnings": [],
+  "errors": [
+    {
+      "code": "DEFENDANT_DOB_IN_FUTURE",
+      "values": [
+        {
+          "key": "dateOfBirth",
+          "value": "2050-01-01"
+        }
+      ]
+    }
+  ]
+}

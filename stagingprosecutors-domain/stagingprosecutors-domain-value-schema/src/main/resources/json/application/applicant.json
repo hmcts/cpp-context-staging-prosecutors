@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/applicant.json",
+  "description": "The party applying to court to make a judicial decision on a matter",
+  "type": "object",
+  "properties": {
+    "organisation": {
+      "description": "Provided when the party is an organisation – required to be CPS for the Applicant",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/organisation.json"
+    },
+    "organisationPersons": {
+      "description": "Array of persons in the organisation where the party is an organisation – optional for CPS staff associated with the application",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/associated-person.json"
+      }
+    },
+    "isSubject": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "organisation",
+    "isSubject"
+  ],
+  "additionalProperties": false
+}

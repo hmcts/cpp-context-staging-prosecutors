@@ -1,0 +1,144 @@
+{
+  "caseDetails": {
+    "caseId": "f2a09be3-ff43-4474-bbed-f51d34fa6493",
+    "caseMarkers": [
+      {
+        "markerTypeCode": "HT"
+      }
+    ],
+    "initiationCode": "Q",
+    "dateReceived": "generated dynamically",
+    "originatingOrganisation": "B01BH00",
+    "prosecutor": {
+      "informant": "Adam",
+      "prosecutingAuthority": "B01BH00"
+    },
+    "prosecutorCaseReference": "TVL54321"
+  },
+  "channel": "CPPI",
+  "externalId": "generated dynamically",
+  "defendants": [
+    {
+      "address": {
+        "address1": "Address Line 1",
+        "address2": "Address Line 2",
+        "address3": "Address Line 3",
+        "address4": "Address Line 4",
+        "address5": "Address Line 5",
+        "postcode": "C7 1XX"
+      },
+      "asn": "SummonsNumber001",
+      "documentationLanguage": "E",
+      "appliedProsecutorCosts": 20.99,
+      "emailAddress1": "aer@af.com",
+      "emailAddress2": "aer@af.com",
+      "hearingLanguage": "E",
+      "id": "f47ca20a-d8b4-4f67-b40b-8eae1feef77c",
+      "individual": {
+        "driverNumber": "KER99861065SE9RM",
+        "nationalInsuranceNumber": "SN123456C",
+        "parentGuardianInformation": {
+          "dateOfBirth": "1979-05-23",
+          "gender": "MALE",
+          "observedEthnicity": "4",
+          "personalInformation": {
+            "address": {
+              "address1": "ParentGuardian Address Line 1",
+              "address2": "ParentGuardian Address Line 2",
+              "address3": "ParentGuardian Address Line 3",
+              "address4": "ParentGuardian Address Line 4",
+              "address5": "ParentGuardian Address Line 5",
+              "postcode": "PG0 1XX"
+            },
+            "contactDetails": {
+              "home": "9991231230",
+              "mobile": "9991231230",
+              "primaryEmail": "999aer@test.com",
+              "secondaryEmail": "999aer@test.com",
+              "work": "9991231230"
+            },
+            "firstName": "parentGuardianJack",
+            "givenName2": "parentGuardianAaron",
+            "givenName3": "Sr",
+            "lastName": "parentGuardianReaper",
+            "observedEthnicity": 4,
+            "title": "Mr"
+          },
+          "selfDefinedEthnicity": "W1"
+        },
+        "personalInformation": {
+          "address": {
+            "address1": "Address Line 1",
+            "address2": "Address Line 2",
+            "address3": "Address Line 3",
+            "address4": "Address Line 4",
+            "address5": "Address Line 5",
+            "postcode": "C7 1XX"
+          },
+          "contactDetails": {
+            "home": "1231231230",
+            "mobile": "1231231230",
+            "primaryEmail": "aer@af.com",
+            "secondaryEmail": "aer@af.com",
+            "work": "1231231230"
+          },
+          "firstName": "John",
+          "givenName2": "Adam",
+          "givenName3": "Theodore",
+          "lastName": "SMITH",
+          "occupation": "TA",
+          "occupationCode": 666
+        },
+        "selfDefinedInformation": {
+          "dateOfBirth": "1970-02-03",
+          "ethnicity": "W1",
+          "gender": "MALE"
+        }
+      },
+      "individualAliases": [
+        {
+          "firstName": "AliasJack",
+          "lastName": "AliasReaper",
+          "givenName2": "AliasAaron",
+          "givenName3": "Sr",
+          "title": "Mr"
+        }
+      ],
+      "initialHearing": {
+        "courtHearingLocation": "B01BH00",
+        "dateOfHearing": "2019-08-11",
+        "timeOfHearing": "09:01:01.001"
+      },
+      "languageRequirement": "no special language needs",
+      "numPreviousConvictions": 3,
+      "offences": [
+        {
+          "alcoholRelatedOffence": {
+            "alcoholLevelAmount": 3,
+            "alcoholLevelMethod": "1"
+          },
+          "backDutyDateFrom": "2018-04-09",
+          "backDutyDateTo": "2018-05-09",
+          "offenceCode": "CA03014",
+          "chargeDate": "2017-05-30",
+          "offenceCommittedDate": "2019-06-11",
+          "offenceCommittedEndDate": "2020-06-11",
+          "offenceDateCode": 4,
+          "offenceId": "42166020-e031-4704-b3e4-b3c1cd7f39d2",
+          "offenceLocation": "Croydon",
+          "offenceSequenceNumber": 1,
+          "offenceWording": "Test Prosecution charge wording",
+          "offenceWordingWelsh": "Test Prosecution charge wording in Welsh",
+          "statementOfFacts": "Test Prosecution statements of facts",
+          "statementOfFactsWelsh": "Welsh -Test Prosecution statements of facts",
+          "vehicleMake": "Ford",
+          "vehicleRegistrationMark": "AA11 ABC"
+        }
+      ],
+      "postingDate": "2015-04-04",
+      "prosecutorDefendantReference": "TFLDEF001",
+      "specificRequirements": "no special needs"
+    }
+  ],
+  "_metadata": {}
+}

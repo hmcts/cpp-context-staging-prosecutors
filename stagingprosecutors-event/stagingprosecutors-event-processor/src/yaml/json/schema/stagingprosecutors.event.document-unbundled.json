@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/document-unbundled.json",
+  "type": "object",
+  "properties": {
+    "caseId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "prosecutingAuthority": {
+      "type": "string",
+      "description": "Identifies the Prosecuting Organisation responsible for initiating the case. Valid CJS OU Code.",
+      "maxLength": 7
+    },
+    "prosecutorDefendantId": {
+      "type": "string",
+      "maxLength": 36
+    },
+    "material": {
+      "type": "object",
+      "properties": {
+        "fileStoreId": {
+          "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+        },
+        "documentType": {
+          "type": "string"
+        },
+        "fileType": {
+          "type": "string"
+        },
+        "isUnbundledDocument": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "fileStoreId",
+        "documentType",
+        "fileType"
+      ],
+      "additionalProperties": false
+    },
+    "receivedDateTime": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date-time"
+    }
+  },
+  "required": [
+    "caseId",
+    "prosecutorDefendantId",
+    "material",
+    "receivedDateTime"
+  ],
+  "additionalProperties": false
+}

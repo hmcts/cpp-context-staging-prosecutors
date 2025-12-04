@@ -1,0 +1,44 @@
+{
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigation": "Y",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigationDetails": "Details",
+  "courtToArrangeADiscussionOfGroundRulesForQuestioning": "Y",
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorDefendantId": "defendant Id"
+      },
+      "offences": [
+        {
+          "cjsOffenceCode": "offenceCode",
+          "offenceDate" : "2021-09-27",
+          "offenceWording": "offenceWording"
+        }
+      ]
+    }
+  ],
+  "doesTheProsecutorIntendToServeMoreEvidence": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFactDetails": "Details",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitation": "Y",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitationDetails": "Details",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith": "Y",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWithStateWhenThisWas": "detils",
+  "parentGuardianToAttend": true,
+  "prosecutionCaseSubject": {
+    "prosecutingAuthority": "The OU Code of the prosecuting authority",
+    "urn": "caseURN"
+  },
+  "prosecutionWillRelyOn": [
+    "Defendant admissions in interview",
+    "Defendant failure to mention facts in interviews",
+    "A summary of the defendant interview",
+    "A record of the defendants interview"
+  ],
+  "submissionId": "7e2f843e-d639-40b3-8611-8015f3a18958",
+  "submissionStatus": "PENDING",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirectionDetails": "Details",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom": "Y",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoomDetails": "Details",
+  "additionalInformation": "additional Information"
+}

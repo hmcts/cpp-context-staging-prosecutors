@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/rely-on.json",
+  "type": "string",
+  "enum": [
+    "admissions",
+    "failure",
+    "summary",
+    "record",
+    "expert",
+    "hearsay",
+    "bad",
+    "cctv",
+    "electronically",
+    "diagram",
+    "sketch",
+    "photos"
+  ]
+}

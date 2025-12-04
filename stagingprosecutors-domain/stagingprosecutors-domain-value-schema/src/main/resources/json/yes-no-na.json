@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no-na.json",
+  "type": "string",
+  "description": "Identifies YES or NO status",
+  "maxLength": 1,
+  "enum": [
+    "Y",
+    "N",
+    "NA"
+  ]
+}

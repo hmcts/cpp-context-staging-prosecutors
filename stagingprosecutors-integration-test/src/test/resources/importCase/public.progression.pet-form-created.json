@@ -1,0 +1,18 @@
+{
+  "submissionId": "SUBMISSION_ID",
+  "caseId": "7e2f843e-d639-40b3-8611-8015f3a18957",
+  "petId": "7e2f843e-d639-40b3-8611-8015f3a18959",
+  "formId": "7e2f843e-d639-40b3-8611-8015f3a18960",
+  "petDefendants": [
+    {
+      "defendantId": "7f8fe782-a287-11eb-bcbc-0242ac130002"
+    }
+  ],
+  "petFormData": "{ \"firstNameTxt\": \"John\",  \"middleNameTxt\": \"Fed\", \"lastNameTxt\": \"Smith\"}",
+  "updatedBy": {
+    "id": "7e2f843e-d639-40b3-8611-8015f3a18960",
+    "firstName": "firstName",
+    "lastName": "lastName"
+  },
+  "formType": "PET"
+}

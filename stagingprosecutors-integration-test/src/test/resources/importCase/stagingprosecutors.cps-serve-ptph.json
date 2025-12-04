@@ -1,0 +1,164 @@
+{
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "TheOUC"
+  },
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorDefendantId": "prosecutorDefendantIdOuter",
+        "cpsDefendantId": "cps-defendant-id-outer",
+        "asn" : "cps-asn",
+        "prosecutorPersonDefendantDetails": {
+          "prosecutorDefendantId": "prosecutorDefendantId",
+          "forename": "forename",
+          "forename2": "forename2",
+          "forename3": "forename3",
+          "surname": "surname",
+          "title": "Mr",
+          "dateOfBirth": "1990-12-12",
+          "localAuthorityDetailsForYouthDefendants": {
+            "address1": "address1",
+            "authority": "test",
+            "email": "test@test.com",
+            "forename": "forename",
+            "isLookedAfterChild": true,
+            "phone": "1234567890",
+            "postcode": "G5 0TN",
+            "reference": "test",
+            "surname": "surname",
+            "title": "Mr"
+          },
+          "parentGuardianForYouthDefendants": {
+            "address1": "address1",
+            "address2": "address2",
+            "email": "test@test.com",
+            "forename": "parentForename",
+            "phone": "1234567890",
+            "postcode": "G5 0TN",
+            "relationshipToDefendant": "test",
+            "surname": "weterw",
+            "title": "Mr"
+          }
+        },
+        "cpsPersonDefendantDetails": {
+          "cpsDefendantId": "cps-defendant-id",
+          "forename": "forename",
+          "forename2": "forename2",
+          "forename3": "forename3",
+          "surname": "surname",
+          "title": "Mr",
+          "dateOfBirth": "1990-12-12",
+          "localAuthorityDetailsForYouthDefendants": {
+            "address1": "address1",
+            "authority": "test",
+            "email": "test@test.com",
+            "forename": "forename",
+            "isLookedAfterChild": true,
+            "phone": "1234567890",
+            "postcode": "G5 0TN",
+            "reference": "test",
+            "surname": "surname",
+            "title": "Mr"
+          },
+          "parentGuardianForYouthDefendants": {
+            "address1": "address1",
+            "address2": "address2",
+            "email": "test@test.com",
+            "forename": "parentForename",
+            "phone": "1234567890",
+            "postcode": "G5 0TN",
+            "relationshipToDefendant": "test",
+            "surname": "weterw",
+            "title": "Mr"
+          }
+        },
+        "cpsOrganisationDefendantDetails": {
+          "cpsDefendantId": "cps-defendant-id",
+          "organisationName": "organisationName"
+        },
+        "prosecutorOrganisationDefendantDetails": {
+          "prosecutorDefendantId": "prosecutorDefendantId",
+          "organisationName": "organisationName"
+        }
+      },
+      "principalCharges": "principal-charges"
+    }
+  ],
+  "tag": "tag",
+  "ptphAdvocate": {
+    "name": "name",
+    "phone": "7778888345",
+    "email": "test@test.com"
+  },
+  "trialAdvocate": {
+    "name": "name",
+    "phone": "7778888345",
+    "email": "test@test.com"
+  },
+  "reviewingLawyer": {
+    "name": "name",
+    "phone": "7778888345",
+    "email": "test@test.com"
+  },
+  "prosecutionCaseProgressionOfficer": {
+    "name": "name",
+    "phone": "7778888345",
+    "email": "test@test.com"
+  },
+  "officerInTheCase": {
+    "name": "name",
+    "phone": "7778888345",
+    "email": "test@test.com"
+  },
+  "cpsOffice": "CpsOff1",
+  "draftIndictment": "Y",
+  "draftIndictmentNotes": "Draft Indictment Notes",
+  "summaryOfCircumstances": "Y",
+  "summaryOfCircumstancesNotes": "Summary Of Circumstances Notes",
+  "statementsForPAndICm": "Y",
+  "statementsForPAndICmNotes": "Statements For P And ICm Notes",
+  "exhibitsForPAndICm": "Y",
+  "exhibitsForPAndICmNotes": "Exhibits For P And ICm Notes",
+  "cctv": "Y",
+  "cctvNotes": "Cctv Notes",
+  "streamlinedForensicReport": "Y",
+  "streamlinedForensicReportNotes": "Streamlined Forensic Report Notes",
+  "medicalEvidence": "Y",
+  "medicalEvidenceNotes": "Medical Evidence Notes",
+  "expertEvidence": "Y",
+  "ExpertEvidenceNotes": "Expert Evidence Notes",
+  "badCharacter": "Y",
+  "badCharacterNotes": "Bad Character Notes",
+  "hearsay": "Y",
+  "hearsayNotes": "Hear say Notes",
+  "specialMeasures": "Y",
+  "specialMeasuresNotes": "Special Measures Notes",
+  "criminalRecord": "Y",
+  "criminalRecordNotes": "Criminal Record Notes",
+  "victimPersonalStatement": "Y",
+  "victimPersonalStatementNotes": "Victim Personal Statement Notes",
+  "disclosureManagementDoc": "Y",
+  "disclosureManagementDocNotes": "Disclosure Management Doc Notes",
+  "thirdParty": "Y",
+  "thirdPartyNotes": "Third Party Notes",
+  "reviewDisclosableMaterial": "Y",
+  "reviewDisclosableMaterialNotes": "Review Disclosable Material Notes",
+  "particularsOfAnyRelatedCriminalProceedings": "Particulars Of Any Related Criminal Proceedings",
+  "particularsOfAnyFamily": "Particulars Of Any Family",
+  "Witnesses": [
+    {
+      "witnessFirstName": "forename",
+      "witnessLastName": "abc",
+      "relevantDisputedIssue": "Issue 1",
+      "intermediaryForWitness": "Y",
+      "firstNameOfIntermediaryKnownAtPtph": "first name",
+      "lastNameOfIntermediaryKnownAtPtph": "last name",
+      "policeOfficerSubject": {
+        "officerInCharge": true,
+        "officeCollarNumber": "collar number",
+        "officerRank": "Rank1"
+      }
+    }
+  ]
+}

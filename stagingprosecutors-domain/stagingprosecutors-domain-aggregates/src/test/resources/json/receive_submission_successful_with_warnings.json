@@ -1,0 +1,24 @@
+{
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "warnings": [
+    {
+      "code": "DEFENDANT_UNDER_18_YEARS_AT_CHARGE_DATE",
+      "values": [
+        {
+          "key": "dateOfBirth",
+          "value": "2002-01-01"
+        }
+      ]
+    }
+  ],
+  "defendantWarnings": [{
+    "problems": [{
+      "code": "OFFENCE_OUT_OF_TIME",
+      "values": [{
+        "key": "daysOverdue",
+        "value": "61"
+      }]
+    }],
+    "prosecutorDefendantReference": "TFLDEF001"
+  }]
+}

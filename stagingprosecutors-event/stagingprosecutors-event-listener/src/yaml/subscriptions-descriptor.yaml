@@ -1,0 +1,60 @@
+subscriptions_descriptor:
+  spec_version: 1.0.0
+  service: stagingprosecutors
+  service_component: EVENT_LISTENER
+  subscriptions:
+    - name: event listener subscription
+      events:
+        - name: stagingprosecutors.event.prosecution-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/prosecution-received.json
+
+        - name: stagingprosecutors.event.sjp-prosecution-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/sjp-prosecution-received.json
+
+        - name: stagingprosecutors.event.submission-successful
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/submission-successful.json
+
+        - name: stagingprosecutors.event.submission-successful-with-warnings
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/submission-successful-with-warnings.json
+
+        - name: stagingprosecutors.event.material-submitted
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/material-submitted.json
+
+        - name: stagingprosecutors.event.cps-material-submitted
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-material-submitted.json
+
+        - name: stagingprosecutors.event.material-submission-successful
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/material-submission-successful.json
+
+        - name: stagingprosecutors.event.submission-rejected
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/submission-rejected.json
+
+        - name: stagingprosecutors.event.material-submission-rejected
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/material-submission-rejected.json
+
+        - name: stagingprosecutors.event.cps-serve-pet-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-serve-pet-received.json
+
+        - name: stagingprosecutors.event.cps-serve-bcm-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-serve-bcm-received.json
+
+        - name: stagingprosecutors.event.cps-serve-ptph-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-serve-ptph-received.json
+
+        - name: stagingprosecutors.event.cps-serve-cotr-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-serve-cotr-received.json
+
+        - name: stagingprosecutors.event.cps-update-cotr-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-update-cotr-received.json
+
+        - name: stagingprosecutors.event.submission-status-updated
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/submission-status-updated.json
+
+        - name: stagingprosecutors.event.material-submitted-v3
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/material-submitted-v3.json
+
+        - name: stagingprosecutors.event.submission-pending-with-warnings
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/submission-pending-with-warnings.json
+
+
+      event_source_name: stagingprosecutors

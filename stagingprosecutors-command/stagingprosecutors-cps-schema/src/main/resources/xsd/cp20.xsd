@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 sp1 (http://www.altova.com) by Altova XMLSpy 2016 Enterprise Edition, Installed for 10 users (CGI IT UK Limited) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cgi.com/CP/CP20/2020-03"
+           targetNamespace="http://www.cgi.com/CP/CP20/2020-03" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:import namespace="http://schemas.cps.gov.uk/TWIFTypes/2009-08" schemaLocation="TWIFTypes-v1-0.xsd"/>
+    <xs:element name="CP20">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TransactionID" type="xs:int">
+                    <xs:annotation>
+                        <xs:documentation>Unique ID for this transmission. If the same document is sent again this number will change. From a CMS point of view this will be the dispatch Event ID (EV_ID)</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="CompassCaseId" type="xs:int">
+                    <xs:annotation>
+                        <xs:documentation>Unique Case ID as held on Compass</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="URN">
+                    <xs:annotation>
+                        <xs:documentation>URN could include suffixes for split and merged cases e.g. 01AB1234514, 01AB1234514/2. 01AB1234514 (M), 01AB1234514(M)/2</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="ResponseEmail">
+                    <xs:annotation>
+                        <xs:documentation>Email address that errors should be sent to</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Documents">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Document" type="TDocument" nillable="true" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Defendants">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Defendant" type="TDefendant" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TDocument">
+        <xs:annotation>
+            <xs:documentation>Represents a document of any type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="DocumentId">
+                <xs:annotation>
+                    <xs:documentation>e.g. B12345 upto 13 characters in length</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="2"/>
+                        <xs:maxLength value="13"/>
+                        <xs:pattern value="\p{Lu}\d{1,12}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="MaterialType">
+                <xs:annotation>
+                    <xs:documentation>Numeric code that indicates the bundle type or that it is a document</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="22"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="FileName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Upto 255 characters in length includes extension</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DocumentContent" type="xs:base64Binary">
+                <xs:annotation>
+                    <xs:documentation>Base64 Encoded documents content </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TDefendant">
+        <xs:annotation>
+            <xs:documentation>Represents a Defendant</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CMSDefendantID">
+                <xs:annotation>
+                    <xs:documentation>Unique defendant ID. Integer Type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Surname">
+                <xs:annotation>
+                    <xs:documentation>Surname or Organisation name if forenames not present max 50 characters</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Forenames" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Multiple space seperated forenames upto a total of 50 characaters</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50"/>
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="DOB" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Only passed if present, never passed for Organisation. Date type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OUCode">
+                <xs:annotation>
+                    <xs:documentation>OUcode  of the court for the defendants next hearing or most recent hearing if there is no future hearing</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="7"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ASN" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="21"/>
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

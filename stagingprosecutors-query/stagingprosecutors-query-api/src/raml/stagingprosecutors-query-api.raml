@@ -1,0 +1,115 @@
+#%RAML 0.8
+title: Staging Prosecutor Query API
+baseUri: http://localhost:8080/stagingprosecutors-query-api/query/api/rest/stagingprosecutors
+protocols: [ HTTP, HTTPS ]
+
+
+/v1/submissions/{submissionId}:
+  get:
+    description: |
+      Gets the prosecution submission status by submission ID which was generated during the command submission.
+      ...
+      (mapping):
+        responseType: application/vnd.hmcts.cjs.submission+json
+        name: hmcts.cjs.submission
+      ...
+    responses:
+      200:
+        body:
+          application/vnd.hmcts.cjs.submission+json:
+            example:
+              !include json/example/hmcts.cjs.submission.json
+            schema:
+              !include json/schema/hmcts.cjs.submission.json
+
+/v2/submissions/{submissionId}/{oucode}:
+  get:
+    description: |
+      Gets the prosecution submission status by submission ID for non sjp cases which was generated during the command submission.
+      ...
+      (mapping):
+        responseType: application/vnd.hmcts.cjs.submission.v2+json
+        name: hmcts.cjs.submission.v2
+      (mapping):
+        responseType: application/vnd.hmcts.cjs.sjp.submission.v2+json
+        name: hmcts.cjs.sjp.submission.v2
+      (mapping):
+        responseType: application/vnd.hmcts.cjs.submission.v3+json
+        name: hmcts.cjs.submission.v3
+      (mapping):
+        responseType: application/vnd.hmcts.cjs.sjp.submission.v3+json
+        name: hmcts.cjs.sjp.submission.v3
+      ...
+    responses:
+      200:
+        body:
+          application/vnd.hmcts.cjs.submission.v2+json:
+            example:
+              !include json/example/hmcts.cjs.submission.v2.json
+            schema:
+              !include json/schema/hmcts.cjs.submission.v2.json
+          application/vnd.hmcts.cjs.sjp.submission.v2+json:
+            example:
+              !include json/example/hmcts.cjs.sjp.submission.v2.json
+            schema:
+              !include json/schema/hmcts.cjs.sjp.submission.v2.json
+
+          application/vnd.hmcts.cjs.submission.v3+json:
+            example:
+              !include json/example/hmcts.cjs.submission.v3.json
+            schema:
+              !include json/schema/hmcts.cjs.submission.v3.json
+          application/vnd.hmcts.cjs.sjp.submission.v3+json:
+            example:
+              !include json/example/hmcts.cjs.sjp.submission.v3.json
+            schema:
+              !include json/schema/hmcts.cjs.sjp.submission.v3.json
+
+
+/v1/submissions/cps/{submissionId}:
+  get:
+    description: |
+      Gets the prosecution submission status by submission ID for cps channel.
+      ...
+      (mapping):
+        responseType: application/vnd.hmcts.cps.submission.v1+json
+        name: hmcts.cps.submission.v1
+      ...
+    responses:
+      200:
+        body:
+          application/vnd.hmcts.cps.submission.v1+json:
+            example:
+              !include json/example/hmcts.cps.submission.v1.json
+            schema:
+              !include json/schema/hmcts.cps.submission.v1.json
+
+/v1/results/{ouCode}:
+  uriParameters:
+    ouCode:
+      description: Organisational Unit Code
+      type: string
+  get:
+    description: |
+      Gets the results for the given date range and organisational unit code.
+      ...
+      (mapping):
+        responseType: application/vnd.hmcts.results.v1+json
+        name: hmcts.results.v1
+      ...
+    queryParameters:
+      startDate:
+        description: Start date of the date range
+        type: string
+        required: true
+      endDate:
+        description: End date of the date range
+        type: string
+    responses:
+      200:
+        body:
+          application/vnd.hmcts.results.v1+json:
+            example:
+              !include json/example/hmcts.results.v1.json
+            schema:
+              !include json/schema/hmcts.results.v1.json

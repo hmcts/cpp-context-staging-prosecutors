@@ -1,0 +1,355 @@
+{"applicationReferredToNewHearing": false,
+  "boxHearing": {
+    "applicationDueDate": "2022-08-10",
+    "courtCentre": {
+      "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+      "name": "Lavender Hill Magistrates' Court"
+    },
+    "id": "e9091573-6597-4925-b42e-4cf86b1c00c6",
+    "jurisdictionType": "MAGISTRATES",
+    "sendAppointmentLetter": false
+  },
+  "courtApplication": {
+    "applicant": {
+      "id": "dc3cd293-a7f9-4738-ad13-42ee9ca7fcba",
+      "masterDefendant": {
+        "defendantCase": [
+          {
+            "caseId": "e348d696-5234-47e7-a9a1-a26bd06b618f",
+            "caseReference": "72GD9544122",
+            "defendantId": "c2e8dd1a-0f0c-4707-91a6-e6a6c400dca4"
+          }
+        ],
+        "masterDefendantId": "c2e8dd1a-0f0c-4707-91a6-e6a6c400dca4",
+        "personDefendant": {
+          "arrestSummonsNumber": "REF1",
+          "bailStatus": {
+            "code": "C",
+            "description": "Custody or remanded into custody",
+            "id": "12e69486-4d01-3403-a50a-7419ca040635"
+          },
+          "personDetails": {
+            "address": {
+              "address1": "780 MALLERTON WAY",
+              "address2": "DUNSTABLE",
+              "postcode": "LN5 5TT"
+            },
+            "contact": {
+              "home": "015324443756"
+            },
+            "dateOfBirth": "1972-10-09",
+            "documentationLanguageNeeds": "ENGLISH",
+            "ethnicity": {
+              "observedEthnicityCode": "1",
+              "observedEthnicityDescription": "White - North European",
+              "observedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+              "selfDefinedEthnicityCode": "W1",
+              "selfDefinedEthnicityDescription": "British",
+              "selfDefinedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b"
+            },
+            "firstName": "Robert",
+            "gender": "MALE",
+            "hearingLanguageNeeds": "ENGLISH",
+            "lastName": "Smith",
+            "occupation": "Accountant",
+            "occupationCode": "2201",
+            "title": "MR"
+          },
+          "policeBailStatus": {
+            "code": "C",
+            "description": "Custody or remanded into custody",
+            "id": "12e69486-4d01-3403-a50a-7419ca040635"
+          }
+        }
+      },
+      "notificationRequired": true,
+      "summonsRequired": false
+    },
+    "applicationReceivedDate": "2022-08-01",
+    "applicationReference": "72GD9544122",
+    "applicationStatus": "DRAFT",
+    "commissionerOfOath": false,
+    "courtApplicationCases": [
+      {
+        "caseStatus": "ACTIVE",
+        "isSJP": false,
+        "prosecutionCaseId": "e348d696-5234-47e7-a9a1-a26bd06b618f",
+        "prosecutionCaseIdentifier": {
+          "address": {
+            "address1": "Police HQ",
+            "address2": "No 1 Waterwells Drive",
+            "address3": "Quedgeley",
+            "address4": "Gloucester",
+            "postcode": "GL2 2AN"
+          },
+          "contact": {
+            "primaryEmail": "Resultingteam@gloucestershire.pnn.POLICE.UK"
+          },
+          "majorCreditorCode": "PO53",
+          "prosecutionAuthorityCode": "GLOSPF",
+          "prosecutionAuthorityId": "9d38428b-7f9d-3aab-8269-f1427dd15c57",
+          "prosecutionAuthorityName": "Gloucestershire Police",
+          "prosecutionAuthorityOUCode": "0530000",
+          "caseURN": "72GD9544122"
+        }
+      }
+    ],
+    "id": "4f63c60c-77a4-4c59-b518-061a7d4abd7f",
+    "respondents": [
+      {
+        "id": "05ae58ae-5cd6-4a2a-baa6-c3f0ca81a03a",
+        "notificationRequired": true,
+        "prosecutingAuthority": {
+          "address": {
+            "address1": "Police HQ",
+            "address2": "No 1 Waterwells Drive",
+            "address3": "Quedgeley",
+            "address4": "Gloucester",
+            "postcode": "GL2 2AN"
+          },
+          "contact": {
+            "primaryEmail": "Resultingteam@gloucestershire.pnn.POLICE.UK"
+          },
+          "majorCreditorCode": "PO53",
+          "name": "Gloucestershire Police",
+          "prosecutionAuthorityCode": "GLOSPF",
+          "prosecutionAuthorityId": "9d38428b-7f9d-3aab-8269-f1427dd15c57",
+          "prosecutionAuthorityOUCode": "0530000",
+          "welshName": "Heddlu Swydd Gaerloyw"
+        },
+        "summonsRequired": false
+      },
+      {
+        "id": "08c9ba1a-dbb8-4a3b-b685-186e9baaa967",
+        "notificationRequired": true,
+        "prosecutingAuthority": {
+          "address": {
+            "address1": "St Ann's Quay",
+            "address2": "122 Quayside",
+            "address3": "Newcastle Upon Tyne",
+            "postcode": "NE1 3BD"
+          },
+          "majorCreditorCode": "2070C",
+          "name": "CPS North East (Northumbria)",
+          "prosecutionAuthorityCode": "CPS-NE",
+          "prosecutionAuthorityId": "5f045b6a-241b-3a37-9776-bb584c9dd73d",
+          "welshName": "CPS Gogledd Ddwyrain Lloegr (Northumbria)"
+        },
+        "summonsRequired": false
+      }
+    ],
+    "thirdParties": [
+      {
+        "id": "5ed773dd-a0cd-4449-91d7-b9327615f0b4",
+        "notificationRequired": true,
+        "organisation": {
+          "address": {
+            "address1": "56saon",
+            "postcode": "TW14 9XD"
+          },
+          "contact": {
+            "mobile": "08898678578787",
+            "primaryEmail": "testOrg56@gmail.com"
+          },
+          "name": "TestOrg"
+        },
+        "organisationPersons": [
+          {
+            "person": {
+              "gender": "NOT_SPECIFIED",
+              "lastName": "PROTRACTOR-9895066697"
+            },
+            "role": "Director"
+          }
+        ],
+        "summonsRequired": false
+      }
+    ],
+    "subject": {
+      "id": "08c9ba1a-dbb8-4a3b-b685-186e9baaa967",
+      "notificationRequired": true,
+      "summonsRequired": false,
+      "masterDefendant": {
+        "defendantCase": [
+          {
+            "caseId": "e348d696-5234-47e7-a9a1-a26bd06b618f",
+            "caseReference": "72GD9544122",
+            "defendantId": "c2e8dd1a-0f0c-4707-91a6-e6a6c400dca4"
+          }
+        ],
+        "masterDefendantId": "c2e8dd1a-0f0c-4707-91a6-e6a6c400dca4",
+        "personDefendant": {
+          "arrestSummonsNumber": "REF1",
+          "bailStatus": {
+            "code": "C",
+            "description": "Custody or remanded into custody",
+            "id": "12e69486-4d01-3403-a50a-7419ca040635"
+          },
+          "personDetails": {
+            "address": {
+              "address1": "780 MALLERTON WAY",
+              "address2": "DUNSTABLE",
+              "postcode": "LN5 5TT"
+            },
+            "contact": {
+              "home": "015324443756"
+            },
+            "dateOfBirth": "1972-10-09",
+            "documentationLanguageNeeds": "ENGLISH",
+            "ethnicity": {
+              "observedEthnicityCode": "1",
+              "observedEthnicityDescription": "White - North European",
+              "observedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+              "selfDefinedEthnicityCode": "W1",
+              "selfDefinedEthnicityDescription": "British",
+              "selfDefinedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b"
+            },
+            "firstName": "Robert",
+            "gender": "MALE",
+            "hearingLanguageNeeds": "ENGLISH",
+            "lastName": "Smith",
+            "occupation": "Accountant",
+            "occupationCode": "2201",
+            "title": "MR"
+          },
+          "policeBailStatus": {
+            "code": "C",
+            "description": "Custody or remanded into custody",
+            "id": "12e69486-4d01-3403-a50a-7419ca040635"
+          }
+        }
+      }
+    },
+    "type": {
+      "appealFlag": false,
+      "applicantAppellantFlag": false,
+      "boxworkNotifTemplate": "NOT_APPLICABLE",
+      "breachType": "NOT_APPLICABLE",
+      "categoryCode": "CO",
+      "code": "MC80518",
+      "commrOfOathFlag": false,
+      "courtExtractAvlFlag": true,
+      "courtOfAppealFlag": false,
+      "hearingCode": "APN",
+      "id": "c84fa6c1-4ffd-316d-91f5-3167d3cd714e",
+      "jurisdiction": "EITHER",
+      "legislation": "In accordance with section 97 of the Magistrates' Courts Act 1980.",
+      "linkType": "LINKED",
+      "listingNotifTemplate": "POSTAL_NOTIFICATION",
+      "offenceActiveOrder": "NOT_APPLICABLE",
+      "pleaApplicableFlag": false,
+      "prosecutorThirdPartyFlag": false,
+      "spiOutApplicableFlag": true,
+      "summonsTemplateType": "NOT_APPLICABLE",
+      "type": "Application for a witness summons"
+    }
+  },
+  "prosecutionCases": [
+         {
+        "caseStatus": "ACTIVE",
+        "cpsOrganisation": "A30AB00",
+        "defendants": [
+          {
+            "courtProceedingsInitiated": "2022-08-03T15:58:32.733Z",
+            "id": "c2e8dd1a-0f0c-4707-91a6-e6a6c400dca4",
+            "masterDefendantId": "c2e8dd1a-0f0c-4707-91a6-e6a6c400dca4",
+            "offences": [
+              {
+                "arrestDate": "2017-12-12",
+                "chargeDate": "2017-12-12",
+                "count": 0,
+                "dvlaOffenceCode": "TS30",
+                "endorsableFlag": true,
+                "id": "10e96f05-c180-4777-8294-74fa6da9d3b3",
+                "listingNumber": 1,
+                "modeOfTrial": "Summary",
+                "offenceCode": "CA03012",
+                "offenceDateCode": 1,
+                "offenceDefinitionId": "3ebe41c9-666d-4964-aa80-a005d89927a3",
+                "offenceLegislation": "Contrary to section 363(3)(b) and (4) of the    Communications Act 2003.",
+                "offenceTitle": "Possess /    control TV set with intent another use install without a licence",
+                "orderIndex": 1,
+                "startDate": "2017-12-12",
+                "wording": "On TEST  at  TEST  used or threatened unlawful violence towards another and your conduct was such as would cause a person of reasonable firmness present at the scene to fear for his personal safety. Contrary to section 3(1) and (7) of the Public Order Act 1986."
+              }
+            ],
+            "personDefendant": {
+              "arrestSummonsNumber": "REF1",
+              "bailStatus": {
+                "code": "C",
+                "description": "Custody or remanded into custody",
+                "id": "12e69486-4d01-3403-a50a-7419ca040635"
+              },
+              "personDetails": {
+                "address": {
+                  "address1": "780 MALLERTON WAY",
+                  "address2": "DUNSTABLE",
+                  "postcode": "LN5 5TT"
+                },
+                "contact": {
+                  "home": "015324443756"
+                },
+                "dateOfBirth": "1972-10-09",
+                "documentationLanguageNeeds": "ENGLISH",
+                "ethnicity": {
+                  "observedEthnicityCode": "1",
+                  "observedEthnicityDescription": "White - North European",
+                  "observedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+                  "selfDefinedEthnicityCode": "W1",
+                  "selfDefinedEthnicityDescription": "British",
+                  "selfDefinedEthnicityId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b"
+                },
+                "firstName": "Robert",
+                "gender": "MALE",
+                "hearingLanguageNeeds": "ENGLISH",
+                "lastName": "Smith",
+                "occupation": "Accountant",
+                "occupationCode": "2201",
+                "title": "MR"
+              },
+              "policeBailStatus": {
+                "code": "C",
+                "description": "Custody or remanded into custody",
+                "id": "12e69486-4d01-3403-a50a-7419ca040635"
+              }
+            },
+            "prosecutionAuthorityReference": "REF1",
+            "prosecutionCaseId": "e348d696-5234-47e7-a9a1-a26bd06b618f"
+          }
+        ],
+        "id": "e348d696-5234-47e7-a9a1-a26bd06b618f",
+        "initiationCode": "C",
+        "isCpsOrgVerifyError": false,
+        "originatingOrganisation": "053NP",
+        "prosecutionCaseIdentifier": {
+          "address": {
+            "address1": "Police HQ",
+            "address2": "No 1 Waterwells Drive",
+            "address3": "Quedgeley",
+            "address4": "Gloucester",
+            "postcode": "GL2 2AN"
+          },
+          "contact": {
+            "primaryEmail": "Resultingteam@gloucestershire.pnn.POLICE.UK"
+          },
+          "majorCreditorCode": "PO53",
+          "prosecutionAuthorityCode": "GLOSPF",
+          "prosecutionAuthorityId": "9d38428b-7f9d-3aab-8269-f1427dd15c57",
+          "prosecutionAuthorityName": "Gloucestershire Police",
+          "prosecutionAuthorityOUCode": "0530000",
+          "caseURN": "72GD9544122"
+        },
+        "prosecutor": {
+          "isCps": true,
+          "prosecutorCode": "CPS-NE",
+          "prosecutorId": "5f045b6a-241b-3a37-9776-bb584c9dd73d",
+          "prosecutorName": "CPSNorth East (Northumbria)"
+        }
+      }
+    ],
+    "type": {
+      "description": "Application",
+      "id": "3449743b-95d6-4836-8941-57f588b52068"
+    },
+  "hearingListingStatus": "HEARING_INITIALISED"
+}

@@ -1,0 +1,59 @@
+{
+  "defendants": [{
+    "defendantDetails": {
+      "address": {
+        "address1": "Line 1",
+        "postcode": "CR0 1XG"
+      },
+      "documentationLanguage": "E",
+      "hearingLanguage": "E",
+      "numPreviousConvictions": 3,
+      "prosecutorDefendantId": "DVLADEF001"
+    },
+    "individual": {
+      "contactDetails": {
+        "homeTelephoneNumber": "01212364450",
+        "primaryEmail": "aer@gmail.com"
+      },
+      "custodyStatus": "C",
+      "dateOfBirth": "1970-02-03",
+      "ethnicity": "W1",
+      "gender": 1,
+      "nameDetails": {
+        "forename": "Alexis",
+        "surname": "Sanchez",
+        "title": "Mr"
+      },
+      "observedEthnicity": 1,
+      "specificRequirements": "no special needs"
+    },
+    "offences": [{
+      "arrestDate": "2018-07-17",
+      "chargeDate": "2018-08-12",
+      "offenceDetails": {
+        "cjsOffenceCode": "CA03010",
+        "offenceCommittedDate": "2018-04-01",
+        "offenceDateCode": 1,
+        "offenceSequenceNo": 1,
+        "offenceWording": "Prosecution charge wording",
+        "backDuty": "+340.99",
+        "backDutyDateFrom": "2018-04-09",
+        "backDutyDateTo": "2018-05-09",
+        "vehicleMake": "Ford",
+        "vehicleRegistrationMark": "AB11 ABC"
+      }
+    }]
+  }],
+  "prosecutionSubmissionDetails": {
+    "hearingDetails": {
+      "courtHearingLocation": "croydon",
+      "dateOfHearing": "2018-08-27",
+      "timeOfHearing": "09:05:01.001"
+    },
+    "initiationCode": "C",
+    "prosecutingAuthority": "GAAAA01",
+    "urn": "DVLA54321"
+  },
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "submissionStatus": "PENDING"
+}

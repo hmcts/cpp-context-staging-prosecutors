@@ -1,0 +1,17 @@
+{
+  "_metadata": {
+    "name": "stagingprosecutors.event.submission-rejected"
+  },
+  "caseErrors": [{
+    "code": "DEFENDANT_DOB_IN_FUTURE",
+    "values": [{
+      "key": "dateOfBirth",
+      "value": "2050-01-01"
+    }]
+  }],
+  "defendantErrors": [{
+    "prosecutorDefendantReference": "e191c165-e9e4-4fd7-ac6d-5bfd04690f78"
+  }],
+  "errors": [],
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77"
+}

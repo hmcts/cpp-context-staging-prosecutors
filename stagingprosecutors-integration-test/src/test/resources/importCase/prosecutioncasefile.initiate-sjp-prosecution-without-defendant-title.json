@@ -1,0 +1,79 @@
+{
+  "caseDetails": {
+    "caseId": "51cac7fb-387c-4d19-9c80-8963fa8cf222",
+    "prosecutorCaseReference": "TVL54321",
+    "initiationCode": "J",
+    "dateReceived": "generated dynamically",
+    "prosecutor": {
+      "informant": "Adam",
+      "prosecutingAuthority": "GAEAA01"
+    },
+    "originatingOrganisation": "GAEAA01"
+  },
+  "channel": "CPPI",
+  "externalId": "generated dynamically",
+  "defendants": [
+    {
+      "id": "0ef00a63-b148-4465-abff-2f02c17785b5",
+      "asn": "???",
+      "documentationLanguage": "E",
+      "appliedProsecutorCosts": 20.1,
+      "hearingLanguage": "E",
+      "individual": {
+        "driverNumber": "KER99861065SE9RM",
+        "nationalInsuranceNumber": "AA123456C",
+        "personalInformation": {
+          "address": {
+            "address1": "Line 1",
+            "address2": "Line 2",
+            "address3": "Line 3",
+            "address4": "Line 4",
+            "address5": "Line 5",
+            "postcode": "CR0 1XG"
+          },
+          "contactDetails": {
+            "home": "1231231230",
+            "mobile": "1231231230",
+            "primaryEmail": "aer@af.com",
+            "secondaryEmail": "aer@af.com",
+            "work": "1231231230"
+          },
+          "firstName": "John Adam Theodore",
+          "lastName": "SMITH",
+          "occupation": "TA",
+          "occupationCode": 666
+        },
+        "selfDefinedInformation": {
+          "dateOfBirth": "1970-02-03",
+          "ethnicity": "W1",
+          "gender": "MALE"
+        }
+      },
+      "languageRequirement": "no special language needs",
+      "numPreviousConvictions": 3,
+      "offences": [
+        {
+          "backDuty": 340.3,
+          "backDutyDateFrom": "2018-04-30",
+          "backDutyDateTo": "2018-05-30",
+          "chargeDate": "2018-06-21",
+          "appliedCompensation": 15.3,
+          "offenceCode": "CA03010",
+          "offenceCommittedDate": "2018-06-20",
+          "offenceDateCode": 1,
+          "offenceLocation": "Croydon",
+          "offenceSequenceNumber": 1,
+          "offenceWording": "Prosecution charge wording",
+          "offenceWordingWelsh": "Prosecution charge wording in Welsh",
+          "statementOfFacts": "Prosecution statements of facts",
+          "vehicleMake": "Ford",
+          "vehicleRegistrationMark": "AA11 ABC"
+        }
+      ],
+      "postingDate": "2018-03-20",
+      "prosecutorDefendantReference":"TFLDEF001",
+      "specificRequirements": "no special needs"
+    }
+  ],
+  "_metadata": {}
+}

@@ -1,0 +1,52 @@
+{
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigation": "Y",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigationDetails": "Details",
+  "courtToArrangeADiscussionOfGroundRulesForQuestioning": "Y",
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorDefendantId": "defendant Id"
+      },
+      "offence": [
+        {
+          "cjsOffenceCode": "offenceCode",
+          "offenceDate" : "2021-09-27",
+          "offenceWording": "offenceWording"
+        }
+      ]
+    }
+  ],
+  "doesTheProsecutorIntendToServeMoreEvidence": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFactDetails": "Details",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitation": "Y",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitationDetails": "Details",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith": "Y",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWithStateWhenThisWas": "detils",
+  "parentGuardianToAttend": true,
+  "prosecutionCaseSubject": {
+    "prosecutingAuthority": "The OU Code of the prosecuting authority",
+    "urn": "caseURN"
+  },
+  "prosecutionWillRelyOn": [
+    {
+      "badCharacterEvidence": "Bad character evidence",
+      "defendantAdmissionsInInterview": "Defendant admissions in interview",
+      "defendantFailureToMentionFactsInInterviews": "Defendant failure to mention facts in interviews",
+      "diagram": "Diagram",
+      "electronicallyRecordedEvidence": "Electronically recorded evidence",
+      "expertEvidence": "Expert evidence",
+      "hearsayEvidence": "Hearsay evidence",
+      "photos": "Photos",
+      "sketchMap": "Sketch map",
+      "arecordOfTheDefendantsInterview": "A record of the defendants interview",
+      "asummaryOfTheDefendantInterview": "A summary of the defendant interview"
+    }
+  ],
+  "submissionId": "7e2f843e-d639-40b3-8611-8015f3a18958",
+  "submissionStatus": "PENDING",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirectionDetails": "Details",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom": "Y",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoomDetails": "Details"
+}

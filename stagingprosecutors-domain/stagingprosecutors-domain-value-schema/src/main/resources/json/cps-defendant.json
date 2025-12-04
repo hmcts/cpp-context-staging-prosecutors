@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-defendant.json",
+  "type": "object",
+  "description": "Represents a Defendant for cps channel",
+  "properties": {
+    "defendantID": {
+      "type": "string",
+      "description": "Unique defendant ID. Integer Type"
+    },
+    "surname": {
+      "type": "string",
+      "description": "Surname or Organisation name if forenames not present max 50 characters",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "forenames": {
+      "type": "string",
+      "description": "Multiple space seperated forenames upto a total of 50 characaters",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "dob": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "Only passed if present, never passed for Organisation. Date type"
+    },
+    "ouCode": {
+      "type": "string",
+      "maxLength": 7,
+      "description": "OUcode  of the court for the defendants next hearing or most recent hearing if there is no future hearing"
+    },
+    "asn": {
+      "type": "string",
+      "description": "",
+      "minLength": 1,
+      "maxLength": 21
+    }
+  },
+  "required": [
+    "defendantID"
+  ],
+  "additionalProperties": false
+}

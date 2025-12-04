@@ -1,0 +1,22 @@
+{
+  "publicHolidays": [
+    {
+      "id": "436c8feb-a0b2-3c58-8cf1-6b9154142df1",
+      "division": "england-and-wales",
+      "title": "Summer bank holiday",
+      "date": "2022-08-29"
+    },
+    {
+      "id": "a73a96bb-daf7-3bcd-8bd1-f574fbf9430d",
+      "division": "england-and-wales",
+      "title": "Boxing Day",
+      "date": "2022-12-26"
+    },
+    {
+      "id": "d3e48c58-da59-3ec0-b91d-5253335c0ce6",
+      "division": "england-and-wales",
+      "title": "Christmas Day",
+      "date": "2022-12-27"
+    }
+  ]
+}

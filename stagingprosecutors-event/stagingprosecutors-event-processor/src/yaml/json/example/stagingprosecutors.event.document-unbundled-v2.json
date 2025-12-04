@@ -1,0 +1,11 @@
+{
+  "caseId": "8c74f505-d062-49bd-b2be-1f64e8da3233",
+  "prosecutorDefendantId": "TFL12345",
+  "prosecutingAuthority": "TFL",
+  "materials": [
+    {
+      "fileStoreId": "0020146e-e959-43bf-bf1e-bfebbdf55c26",
+      "documentType": "SJPN"
+    }
+  ]
+}

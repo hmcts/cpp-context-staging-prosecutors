@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/case-defendant-individual.json",
+  "type": "object",
+  "description": "Case defendant individual",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title by which a defendant is addressed"
+    },
+    "forename": {
+      "type": "string",
+      "description": "The first given name of a person"
+    },
+    "forename2": {
+      "type": "string",
+      "description": "The second given name of a person "
+    },
+    "forename3": {
+      "type": "string",
+      "description": "The third given name of a person"
+    },
+    "surname": {
+      "type": "string",
+      "description": "Surname or Family name"
+    },
+    "dateOfBirth": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The date when a person was born."
+    },
+    "asn": {
+      "type": "string",
+      "description": "A unique reference to a defendant within a prosecution. Provided by the police force and requested from the police"
+    },
+    "prosecutorDefendantId": {
+      "type": "string",
+      "description": "A unique reference to a defendant "
+    }
+  },
+  "additionalProperties": false
+}

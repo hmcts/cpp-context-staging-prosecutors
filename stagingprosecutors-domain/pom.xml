@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>stagingprosecutors</artifactId>
+        <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+        <version>17.103.56-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>stagingprosecutors-domain</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>stagingprosecutors-domain-aggregates</module>
+        <module>stagingprosecutors-domain-events</module>
+        <module>stagingprosecutors-domain-values</module>
+        <module>stagingprosecutors-domain-value-schema</module>
+        <module>stagingprosecutors-domain-event-processor</module>
+    </modules>
+
+</project>

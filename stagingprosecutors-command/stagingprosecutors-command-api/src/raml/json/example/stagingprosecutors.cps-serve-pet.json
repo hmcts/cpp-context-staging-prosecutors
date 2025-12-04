@@ -1,0 +1,95 @@
+{
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "The OU Code of the prosecuting authority"
+  },
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorDefendantId": "defendant Id"
+      },
+      "offences": [
+        {
+          "cjsOffenceCode": "offenceCode",
+          "offenceDate" : "2021-09-27",
+          "offenceWording": "offenceWording"
+        }
+      ]
+    }
+  ],
+  "tag": "45110000120/1",
+  "petAdvocate":{
+    "name": "Pet Advocate",
+    "phone": "7778888345",
+    "email": "test@test.com"
+  },
+  "trialAdvocate":{
+    "name": "Trial Advocate",
+    "phone": "8778888345",
+    "email": "test1@test.com"
+  },
+  "reviewingLawyer":{
+    "name": "Mr Tom",
+    "phone": "9778888345",
+    "email": "test2@test.com"
+  },
+  "prosecutionCaseProgressionOfficer":{
+    "name": "Mr James",
+    "phone": "6778888345",
+    "email": "test3@test.com"
+  },
+  "officerInTheCase":{
+    "name": "Mr Kim",
+    "phone": "5778888345",
+    "email": "test4@test.com"
+  },
+  "doesTheProsecutorIntendToServeMoreEvidence": "Y",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigation": "Y",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigationDetails": "Details",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith": "Y",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWithStateWhenThisWas": "detils",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitation": "Y",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitationDetails": "Details",
+  "prosecutionWillRelyOn": [
+    {
+      "defendantAdmissionsInInterview": "Defendant admissions in interview",
+      "defendantFailureToMentionFactsInInterviews": "Defendant failure to mention facts in interviews",
+      "aSummaryOfTheDefendantInterview": "A summary of the defendant interview",
+      "aRecordOfTheDefendantsInterview": "A record of the defendants interview",
+      "expertEvidence": "Expert evidence",
+      "hearsayEvidence": "Hearsay evidence",
+      "badCharacterEvidence": "Bad character evidence",
+      "CCTVEvidence": "CCTV evidence",
+      "electronicallyRecordedEvidence": "Electronically recorded evidence",
+      "diagram": "Diagram",
+      "sketchMap": "Sketch map",
+      "photos": "Photos"
+    }
+  ],
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom": "Y",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoomDetails": "Details",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFactDetails": "Details",
+  "courtToArrangeADiscussionOfGroundRulesForQuestioning": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirectionDetails": "Details",
+  "additionalInformation": "additional Information",
+  "parentGuardianToAttend": true,
+  "Witnesses": [
+    {
+      "title": "Mr",
+      "forename": "forename",
+      "forename2": "xyz",
+      "forename3": "abc",
+      "surname": "abc",
+      "ageIfUnder18": 14,
+      "dateOfBirth": "1980-01-24",
+      "interpreterRequired": true,
+      "interpreterLanguageDialect": "welsh",
+      "welshLanguage": false,
+      "prosecutionWitnessRequiringAssistanceSpecialMeasures": "Y",
+      "prosecutionWitnessRequiringAssistanceSpecialMeasuresDetails": "details",
+      "prosecutionRequireAttendance": true
+    }
+  ]
+}

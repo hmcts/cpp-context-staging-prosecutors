@@ -1,0 +1,157 @@
+package uk.gov.moj.cpp.staging.prosecutors.command.api.accesscontrol;
+
+import uk.gov.moj.cpp.accesscontrol.drools.Outcome;
+import uk.gov.moj.cpp.accesscontrol.drools.Action;
+
+import uk.gov.moj.cpp.staging.prosecutors.accesscontrol.RuleConstants
+
+
+global uk.gov.moj.cpp.accesscontrol.common.providers.UserAndGroupProvider userAndGroupProvider;
+
+rule "Command - Rule for submitting a summons prosecution v2"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.summons-prosecution.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a charge prosecution v2"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.charge-prosecution.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a requisition prosecution v2"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.requisition-prosecution.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting an sjp prosecution v2"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.sjp-prosecution.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a material v2"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.submit-material.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a cps material v1"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.submit-material-cps.v1");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a cps material with xml payload"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.cps-submit-material");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting an sjp prosecution"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.sjp-prosecution");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a material"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.submit-material");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a material with ptiurn"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.submit-material-with-ptiurn");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting a material (case defendant / application defendant)"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.submit-material-v3");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submit application"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.submit-application");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getInitiateProsecutionGroup()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting serve pet form"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.cps-serve-pet");
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting serve PTPH form"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.cps-serve-ptph");
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting serve BCM form"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.cps-serve-bcm");
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting serve COTR form"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.cps-serve-cotr");
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Command - Rule for submitting update COTR form"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "stagingprosecutors.cps-update-cotr");
+  then
+    $outcome.setSuccess(true);
+end

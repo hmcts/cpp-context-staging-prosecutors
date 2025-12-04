@@ -1,0 +1,2304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by tami (Logica UK Ltd) -->
+<xs:schema xmlns="http://schemas.cps.gov.uk/TWIFTypes/2009-08"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ds="http://schemas.cjse.gov.uk/datastandards/2006-10"
+           targetNamespace="http://schemas.cps.gov.uk/TWIFTypes/2009-08"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://schemas.cjse.gov.uk/datastandards/2006-10"
+               schemaLocation="CJSDataStandards-v4-3.xsd"/>
+    <xs:annotation>
+        <xs:appinfo>
+            <History>
+                <Issue>v0-9a 30th April 2004 Final draft version for checking prior to release at
+                    v1-0
+                </Issue>
+                <Issue>v1-0 5th May 2004 First formal definitive version of the schema</Issue>
+            </History>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:simpleType name="ActionType">
+        <xs:annotation>
+            <xs:documentation>Permitted action types</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pre-charge Split"/>
+            <xs:enumeration value="Post-charge Split"/>
+            <xs:enumeration value="Merge"/>
+            <xs:enumeration value="Action Plan"/>
+            <xs:enumeration value="Start File Build"/>
+            <xs:enumeration value="Stop File Build"/>
+            <xs:enumeration value="Modify File Build"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AppealType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing Appeal Type values</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Conviction"/>
+            <xs:enumeration value="Sentence"/>
+            <xs:enumeration value="Higher Court Appeals"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AppellantType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing Appellant values</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Defendant"/>
+            <xs:enumeration value="CPS"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ASNSequenceNumberType">
+        <xs:annotation>
+            <xs:documentation>Describes the ASN Sequence Number part of a Criminal Prosecution
+                Reference (CPR).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AssociationType">
+        <xs:annotation>
+            <xs:documentation>Types of case associations</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pre-charge Split"/>
+            <xs:enumeration value="Co-consideration"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CaseStatusType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing case statuses (FIN=Finalised, LIV=Live,
+                APP=Appeal)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FIN"/>
+            <xs:enumeration value="LIV"/>
+            <xs:enumeration value="APP"/>
+            <xs:enumeration value="MON"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ContactType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing values for types of contact</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Face-to-Face"/>
+            <xs:enumeration value="Written"/>
+            <xs:enumeration value="Telephone"/>
+            <xs:enumeration value="Electronic"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DocumentType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing document type values</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MG 1 - File Front Sheet"/>
+            <xs:enumeration value="MG 2 - Initial Witness Assessment"/>
+            <xs:enumeration value="MG 3 - Charging Decision Log and Plan"/>
+            <xs:enumeration value="MG 3A - Further Charging Decision Log and Plan"/>
+            <xs:enumeration value="MG 4 - Offence Sheet"/>
+            <xs:enumeration value="MG 4A - Conditional Bail Grant/Variation"/>
+            <xs:enumeration value="MG 4B - Request to Vary Conditional Bail"/>
+            <xs:enumeration value="MG 4C - Surety/Security"/>
+            <xs:enumeration value="MG 4(Post) - Written Charges"/>
+            <xs:enumeration value="MG 5 - Summary of Evidence"/>
+            <xs:enumeration value="MG 6 - Confidential Information"/>
+            <xs:enumeration value="MG 6B - Police Officer's Disciplinary Record"/>
+            <xs:enumeration value="MG 6C - Unused Material Disclosure Schedule"/>
+            <xs:enumeration value="MG 6D - Sensitive Material Schedule"/>
+            <xs:enumeration value="MG 6E - Primary/Secondary Disclosure Schedule"/>
+            <xs:enumeration value="MG 7 - Remand Application Form"/>
+            <xs:enumeration value="MG 8 - Breach of Court Bail"/>
+            <xs:enumeration value="MG 9 - Witness List"/>
+            <xs:enumeration value="MG 10 - Witness Non-Availability"/>
+            <xs:enumeration value="MG 11 - Witness Statement"/>
+            <xs:enumeration value="MG 12 - Exhibit List"/>
+            <xs:enumeration value="MG 13 - Application For Order on Conviction"/>
+            <xs:enumeration value="MG 14 - Conditional Caution"/>
+            <xs:enumeration value="MG 15 - Record of Tape Recorded Interview"/>
+            <xs:enumeration value="MG 18 - Offences Taken Into Consideration"/>
+            <xs:enumeration value="MG 19 - Compensation Claim Form"/>
+            <xs:enumeration value="MG 20 - Further Evidence Report"/>
+            <xs:enumeration value="MG FSP - Submission of Work for Scientific Examination"/>
+            <xs:enumeration value="Pre-charge Evidential : Witness Statement"/>
+            <xs:enumeration value="Pre-charge Evidential : Other"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FileOptionType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing values for the file options</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration
+                    value="All key witness statements (or copy of police notebooks in police charged cases) not provided with the initial file"/>
+            <xs:enumeration
+                    value="MG6 series (B;C;D;E) together with copies of FWIN, crime report, relevant pocket notebooks, identification procedure booklets and investigation progression record (where available)"/>
+            <xs:enumeration
+                    value="MG2 and supporting statement for any witness requiring special measures"/>
+            <xs:enumeration value="MG10 with availability for ALL witnesses"/>
+            <xs:enumeration value="Victim Personal Statement"/>
+            <xs:enumeration value="ROTI"/>
+            <xs:enumeration value="MG16 and MOs for relevant convictions"/>
+            <xs:enumeration
+                    value="Paper exhibits (3 copies plus 1 copy for each additional defendant)"/>
+            <xs:enumeration
+                    value="Visually recorded evidence (3 copies plus 1 copy for each additional defendant)"/>
+            <xs:enumeration value="Medical evidence"/>
+            <xs:enumeration value="Forensic evidence"/>
+            <xs:enumeration value="Previous convictions for all prosecution witnesses"/>
+            <xs:enumeration value="Other (specify)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ForceIdentifierType">
+        <xs:annotation>
+            <xs:documentation>Inidcates a unique Id for a force within England and Wales. Coding
+                scheme details are controlled by PITO.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="InitiatedByType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Charge"/>
+            <xs:enumeration value="Summons"/>
+            <xs:enumeration value="Postal Requisition"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="InputType">
+        <xs:annotation>
+            <xs:documentation>Methods of input for an electronic document</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Scanned"/>
+            <xs:enumeration value="Typed"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NationalityType">
+        <xs:annotation>
+            <xs:documentation>Describes the nationality of an individual.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="0"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OffenceCategoryType">
+        <xs:annotation>
+            <xs:documentation>The category of offence as one of Summary Only, Either Way or
+                Indictable Only.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Summary Only"/>
+            <xs:enumeration value="Either Way"/>
+            <xs:enumeration value="Indictable Only"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OrganisationIdentifierType">
+        <xs:annotation>
+            <xs:documentation>Indicates a unique Id for an organisation involved in Criminal Justice
+                in England or Wales. Possible values are:
+                0-9 : Reserved for police
+                A : Crown Prosecution Service
+                B : Magistrates' Courts
+                C : Crown Courts
+                D : Probation Service
+                E : Prison Service
+                F : Youth Justice
+                G : Other Organisations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9ABCDEFG]{1}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PersonType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing WitnessVictim person types</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Victim"/>
+            <xs:enumeration value="Witness"/>
+            <xs:enumeration value="VictimWitness"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PoliceRemandStatusType">
+        <xs:annotation>
+            <xs:documentation>Defines the possible values for police remand status. These values
+                apply to the time before the first hearing when the police remand a defendant. In
+                future they may become a restricted set of general remand status codes.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Custody"/>
+            <xs:enumeration value="Conditional bail"/>
+            <xs:enumeration value="Unconditional bail"/>
+            <xs:enumeration value="Part 4 bail"/>
+            <xs:enumeration value="Reported"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ReasonType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing types of reason</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Update Rejected"/>
+            <xs:enumeration value="Contact Info Update"/>
+            <xs:enumeration value="Deletion Rejected"/>
+            <xs:enumeration value="Deletion"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TelephoneNumberType">
+        <xs:annotation>
+            <xs:documentation>Enumeration containing valid telephone number types</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="home"/>
+            <xs:enumeration value="work"/>
+            <xs:enumeration value="mobile"/>
+            <xs:enumeration value="fax"/>
+            <xs:enumeration value="other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TransactionModeType">
+        <xs:annotation>
+            <xs:documentation>The transaction mode may be set to live for transactions that should
+                update the live database and test for transactions that are not to effect the live
+                database and are only being sent to test the interface.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="live"/>
+            <xs:enumeration value="test"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TwoDigitYearType">
+        <xs:annotation>
+            <xs:documentation>A representation of the year using the last two digits of the full
+                year number, for example 03 for 2003.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="UniqueIdType">
+        <xs:annotation>
+            <xs:documentation>Gives a unique Id to a number of elements. Note that the uniqueness
+                constraints are determined by the item. For instance a defendants unique Id must be
+                unique across all case material for this case, whereas the unique Id used for a
+                message item is only unique within the message. The maximum length of the unique Id
+                is set to 40 characters to allow a full GUID (36 chars) plus 4 guard characters.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="40"/>
+            <xs:pattern value="[^a-z]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="UsedStatusType">
+        <xs:annotation>
+            <xs:documentation>Whether a witness or witness statement is used or unused
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Used"/>
+            <xs:enumeration value="Unused"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="ActionPlanStructure">
+        <xs:annotation>
+            <xs:documentation>A container for the Action Plan information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ActionPlanItem" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>A container for individual actions</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ActionEntryDate" type="xs:date">
+                            <xs:annotation>
+                                <xs:documentation>The date the action was entered into CMS
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ActionType" type="ActionType">
+                            <xs:annotation>
+                                <xs:documentation>Permitted action types</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ActionPoint" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>An accompanying free text description for the type
+                                    of action to carry out. Used only for Stop File Build and
+                                    Contested Issues in Start/Modify File Build where it is
+                                    mandatory
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1"/>
+                                    <xs:maxLength value="8000"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="ActionDate" type="xs:date">
+                            <xs:annotation>
+                                <xs:documentation>The date the police need to complete the action
+                                    by
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DefendantID" type="UniqueIdType" minOccurs="0"
+                                    maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>ID of the defendant the action is relating to
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="FileOptions" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>The file options information</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="FileOptionClassification"
+                                                type="ClassificationStructure">
+                                        <xs:annotation>
+                                            <xs:documentation>Direction on information required from
+                                                the police through prescribed codes
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="FileOptionText" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Textual direction on information
+                                                required from the police
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:minLength value="0"/>
+                                                <xs:maxLength value="2000"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="SplitMergeInformation" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>A container for the split/merge information
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:choice>
+                                    <xs:element name="Split" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>Describes a split case
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:choice>
+                                                    <xs:element name="SplitCaseURN"
+                                                                type="PTIURNStructure"/>
+                                                    <xs:element name="NewCaseID"
+                                                                type="xs:positiveInteger">
+                                                        <xs:annotation>
+                                                            <xs:documentation>This indicates that
+                                                                one or more new case(s) are to be
+                                                                generated for pre-charge split. If
+                                                                more than one case is to be
+                                                                generated this provides a sequence
+                                                                number for each new case
+                                                            </xs:documentation>
+                                                        </xs:annotation>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:element name="DefChargeInformation"
+                                                            type="DefChargeInformationStructure"
+                                                            maxOccurs="unbounded">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Contains internal IDs of
+                                                            the defendant and charge(s) allocated to
+                                                            the case identified by SplitCaseURN or
+                                                            NewCaseID
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="URNToMerge" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>URN(s) to include in the merged case
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:complexContent>
+                                                <xs:extension base="PTIURNStructure"/>
+                                            </xs:complexContent>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ActionPlanFollowUpDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Action Plan follow up date</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AddressStructure">
+        <xs:annotation>
+            <xs:documentation>The address of the person coded in simple format.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="AddressLine" minOccurs="2" maxOccurs="8">
+                <xs:annotation>
+                    <xs:documentation>Eight address lines have been selected, together with the
+                        Country element, they allow for an international address to be entered. Use
+                        of five lines and the postcode would consititute a UK address.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Postcode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>This is entered only for UK addresses.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="8"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Country" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The country for the address.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AddressUpdateStructure">
+        <xs:annotation>
+            <xs:documentation>The address of the person coded in simple format with all fields
+                optional to allow an address update to be described.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="AddressLine" minOccurs="0" maxOccurs="8">
+                <xs:annotation>
+                    <xs:documentation>Eight address lines have been selected, together with the
+                        Postcode and Country element, they allow for an international address to be
+                        entered.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Postcode" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>This is entered only for UK addresses.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="8"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Country" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The country for the address.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AlternateContactStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for an alternate contact</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BasePersonStructure">
+                <xs:sequence>
+                    <xs:element name="AppropriateContact" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether this contact should be used in
+                                preference to any other contact for the person to whom the alternate
+                                contacts apply.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RelationshipTo" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>A textual description of the relationship of the
+                                alternate contact to the person for whom they are an alternate
+                                contact.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="255"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ASNStructure">
+        <xs:sequence>
+            <xs:element name="Year" type="TwoDigitYearType">
+                <xs:annotation>
+                    <xs:documentation>The two digit year.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Organisation" type="OrganisationIdentifierType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>An optional character representing the organisation producing
+                        the ASN. This is included to cater for the future, when forces start using
+                        the third force Id number defined in the CJS Standard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Force" type="ForceIdentifierType">
+                <xs:annotation>
+                    <xs:documentation>The two digit force identifier.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Unit">
+                <xs:annotation>
+                    <xs:documentation>Also known as station and often considered with the Force to
+                        construct the force station code. This two character code is normally an
+                        alphabetic code but has been extended with numeric characters to permit unit
+                        codes of 00 which represent PHOENIX.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9A-Z]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="System">
+                <xs:annotation>
+                    <xs:documentation>The force system number (00 for the PHOENIX system).
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9A-Z]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Number">
+                <xs:annotation>
+                    <xs:documentation>A leading zero padded eleven digit numeric identifier for this
+                        ASN.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{11}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="CheckCharacter" type="ds:CheckDigitType">
+                <xs:annotation>
+                    <xs:documentation>A single check character generated from a modulo 23 operation
+                        on parts of the ASN. The algorithm is defined by PITO. The resultant
+                        character is taken from the alphabet, exclusing I, O and S
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BaseChargeStructure">
+        <xs:annotation>
+            <xs:documentation>Holds information relating to a charge specified in a pre-charge
+                decision
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UniqueID" type="UniqueIdType"/>
+            <xs:element name="CJSCode" type="OffenceCodeStructure">
+                <xs:annotation>
+                    <xs:documentation>The CJS Offence code for this offence.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description">
+                <xs:annotation>
+                    <xs:documentation>A description of the offence identified by the CJS Code. This
+                        contains no details of the particulars of an offence, it is a generic
+                        description of the offence for the given CJS code.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="600"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Category" type="OffenceCategoryType">
+                <xs:annotation>
+                    <xs:documentation>The specific category of this offence</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="FromDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>First date of offence</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ToDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Last date of offence</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BaseDefendantPersonStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for a defendant who is a person
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BasePersonStructure">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
+                    <xs:element name="Nationality" type="NationalityType" minOccurs="0"/>
+                    <xs:element name="Occupation" type="ds:OccupationDescriptionType"
+                                minOccurs="0"/>
+                    <xs:element name="ParentGuardian" type="BasePersonStructure" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="BaseItemStructure" abstract="true">
+        <xs:annotation>
+            <xs:documentation>The base item from which all others are derived. This item is abstract
+                and cannot be used within an instance document.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ItemId" type="UniqueIdType">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of the item within the business transaction
+                        request message.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PTIURN" type="PTIURNStructure">
+                <xs:annotation>
+                    <xs:documentation>The Manual of Guidance PTI-URN. This is the case identifier.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BasePersonStructure">
+        <xs:annotation>
+            <xs:documentation>The base person type from which all other are inherited
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UniqueId" type="UniqueIdType">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of the person. All person Id's must be unique
+                        across the entire case.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="ds:PersonNameStructure">
+                <xs:annotation>
+                    <xs:documentation>The name of the person.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ContactDetails" type="ContactDetailsStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The contact details of the person.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PersonClassification" type="ClassificationStructure" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Person classifications such as Equality Diversity, Languages,
+                        Type of Witness, Defendant Status Information
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BasePersonUpdateStructure">
+        <xs:annotation>
+            <xs:documentation>The base person update type from which all other are inherited
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UniqueId" type="UniqueIdType">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of the person. All person Id's must be unique
+                        across the entire case.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="ds:PersonNameStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The name of the person.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ContactDetails" type="ContactDetailsStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The contact details of the person.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PersonClassification" type="ClassificationStructure" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Person classifications such as Equality Diversity, Languages,
+                        Type of Witness, Defendant Status Information
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BaseWitnessVictimStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for a victim/witness</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BasePersonStructure">
+                <xs:sequence>
+                    <xs:element name="TypeOfPerson" type="PersonType">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether this person is a victim or a witness
+                                or a victim and a witness
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
+                    <xs:element name="AlternateContact" type="AlternateContactStructure"
+                                minOccurs="0" maxOccurs="2">
+                        <xs:annotation>
+                            <xs:documentation>Up to two possible alternate contacts for the
+                                witness/victim
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:choice minOccurs="0">
+                        <xs:element name="Witness" type="WitnessStructure">
+                            <xs:annotation>
+                                <xs:documentation>Contains witness-specific data items
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Victim" type="VictimStructure">
+                            <xs:annotation>
+                                <xs:documentation>Contains victim-specific data items
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="WitnessAndVictim">
+                            <xs:annotation>
+                                <xs:documentation>Witness is also a Victim</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Witness" type="WitnessStructure">
+                                        <xs:annotation>
+                                            <xs:documentation>Contains witness-specific data items
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="Victim" type="VictimStructure">
+                                        <xs:annotation>
+                                            <xs:documentation>Contains victim-specific data items
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="BaseWitnessVictimUpdateStructure">
+        <xs:annotation>
+            <xs:documentation>The base update information for a victim/witness</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BasePersonUpdateStructure">
+                <xs:sequence>
+                    <xs:element name="VersionNumber" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>The version of the witness or victim
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TypeOfPerson" type="PersonType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether this person is a victim or a witness
+                                or a victim and a witness
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:choice minOccurs="0">
+                        <xs:element name="Witness" type="WitnessStructure" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Contains witness-specific data items
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Victim" type="VictimStructure" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Contains victim-specific data items
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="WitnessAndVictim" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Witness is also a Victim</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Witness" type="WitnessStructure">
+                                        <xs:annotation>
+                                            <xs:documentation>Contains witness-specific data items
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="Victim" type="VictimStructure">
+                                        <xs:annotation>
+                                            <xs:documentation>Contains victim-specific data items
+                                            </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:element name="DateOfBirth" type="xs:date" minOccurs="0"/>
+                    <xs:element name="AlternateContact" type="AlternateContactStructure"
+                                minOccurs="0" maxOccurs="2">
+                        <xs:annotation>
+                            <xs:documentation>Up to two possible alternate contacts for the
+                                witness/victim
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Reason" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the reason for:- a deletion, rejection of a
+                                deletion, the update of contact information or rejection of a
+                                contact information
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="TypeOfReason" type="ReasonType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the reason type</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CaseAssociationsStructure">
+        <xs:annotation>
+            <xs:documentation>Holds information about associated cases</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="AssociatedPTI-URN" type="PTIURNStructure"/>
+            <xs:element name="AssociationType" type="AssociationType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ClassificationStructure">
+        <xs:annotation>
+            <xs:documentation>Generic Classification structure to support all classification
+                schemes.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ClassificationType">
+                <xs:annotation>
+                    <xs:documentation>Type of Classification, e.g. Case Monitoring Code, Witness
+                        Category etc
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ClassificationCode">
+                <xs:annotation>
+                    <xs:documentation>Code being updated, e.g. Hate Crime Monitoring Code or
+                        Vulnerable Witness
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ClassificationValue">
+                <xs:annotation>
+                    <xs:documentation>Classification value, can be either a boolean, integer or text
+                        value
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="ClassificationValueFlag" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:documentation>True false value represenation</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ClassificationValueText">
+                            <xs:annotation>
+                                <xs:documentation>Text value representaion</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="500"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="ClassificationValueInteger" type="xs:int">
+                            <xs:annotation>
+                                <xs:documentation>Integer Representaion</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContactDetailsStructure">
+        <xs:annotation>
+            <xs:documentation>The base contact information for a party.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Address" type="AddressStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The address of the person coded in simple format. The address
+                        complies with the CJS Data Standard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ContactNumber" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Number" type="TelephoneNumberStructure"/>
+                        <xs:element name="TypeOfNumber" type="TelephoneNumberType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Email" type="ds:EmailAddressType" minOccurs="0"/>
+            <xs:element name="DXAddress" type="TwifDXAddressStructure" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContactDetailsUpdateStructure">
+        <xs:annotation>
+            <xs:documentation>Holds updated contact information for a party.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Address" type="AddressUpdateStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The address of the person coded in simple format. The address
+                        complies with the CJS Data Standard.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ContactNumber" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Number" type="TelephoneNumberStructure"/>
+                        <xs:element name="TypeOfNumber">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="home"/>
+                                    <xs:enumeration value="work"/>
+                                    <xs:enumeration value="mobile"/>
+                                    <xs:enumeration value="fax"/>
+                                    <xs:enumeration value="other"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Email" type="ds:EmailAddressType" minOccurs="0"/>
+            <xs:element name="DXAddress" type="TwifDXAddressStructure" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CPRStructure">
+        <xs:annotation>
+            <xs:documentation>Describes the CPR, Criminal Prosecution Reference.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="DefendantOffender">
+                <xs:annotation>
+                    <xs:documentation>Note that this is very similar to ASN and indeed an ASN would
+                        be permissible. However this structure has been extended to cater for other
+                        prosecutors.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Year" type="TwoDigitYearType">
+                            <xs:annotation>
+                                <xs:documentation/>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OrganisationUnit"
+                                    type="OrganisationLocationCodeStructure"/>
+                        <xs:element name="Number">
+                            <xs:annotation>
+                                <xs:documentation>This number is padded with leading zeros to ensure
+                                    a length of 11 digits.
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="[0-9]{11}"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="CheckDigit" type="ds:CheckDigitType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="OffenceCode" type="OffenceCodeStructure"/>
+            <xs:element name="OffenceSequence" type="ASNSequenceNumberType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DecisionStructure">
+        <xs:annotation>
+            <xs:documentation>Holds information about a decision</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="SuspectId" type="UniqueIdType">
+                <xs:annotation>
+                    <xs:documentation>The unique identifier for a suspect. If this suspect is
+                        subsequently charged this id should become the defendant id (as defined in
+                        the ExISS interface)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="GeneralDecision" type="ClassificationStructure">
+                <xs:annotation>
+                    <xs:documentation>The general nature of the decision supplied by the prosecutor
+                        for the suspect as prescribed by the MG3
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ReasonCode" type="ClassificationStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The reason code for the general decision. This may only be
+                        supplied if the general decision is either ‘K’, ‘C’, ‘D’, ‘E’, ‘F’, or ‘L’.
+                        If the general decision is ‘K’ then it must be an evidential code otherwise
+                        it must be a public interest code
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ConditionalCaution" type="PCDConditionalCautionStructure"
+                        minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Conditional Caution Details for a Conditional General
+                        Decision
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OffenceDecision" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Contains details for a charge decision made by the CPS
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="BaseChargeStructure">
+                            <xs:sequence>
+                                <xs:element name="OffenceWording" minOccurs="0">
+                                    <xs:annotation>
+                                        <xs:documentation>The full wording of the offence, including
+                                            particulars. This will be unique to this instance of the
+                                            offence
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:minLength value="1"/>
+                                            <xs:maxLength value="2000"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Particulars" type="OffenceParticularsStructure"
+                                            minOccurs="0">
+                                    <xs:annotation>
+                                        <xs:documentation>Qualifying data for the offence, e.g.
+                                            location
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="AdjudicationDecision" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ProposedUniqueId" type="UniqueIdType"/>
+                        <xs:element name="AdjudicationClassification"
+                                    type="ClassificationStructure"/>
+                        <xs:element name="ReplacementUniqueId" type="UniqueIdType" minOccurs="0"/>
+                        <xs:element name="ReplacementCJSCode" type="OffenceCodeStructure"
+                                    minOccurs="0"/>
+                        <xs:element name="ReplacementParticulars" type="OffenceParticularsStructure"
+                                    minOccurs="0"/>
+                        <xs:element name="ReplacementFromDate" type="xs:date" minOccurs="0"/>
+                        <xs:element name="ReplacementToDate" type="xs:date" minOccurs="0"/>
+                        <xs:element name="RejectionReason" minOccurs="0">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:maxLength value="100"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DefChargeInformationStructure">
+        <xs:annotation>
+            <xs:documentation>Holds a Defendant Id and their corresponding Charge Id(s)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="DefendantID" type="UniqueIdType"/>
+            <xs:element name="ChargeID" type="UniqueIdType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DefendantOrganisationStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for a defendant, where the defendant is an
+                organisation.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UniqueId" type="UniqueIdType"/>
+            <xs:element name="OrganisationName">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ContactDetails" type="ContactDetailsStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The contact details of the organisation</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="OrganisationClassification" type="ClassificationStructure"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DefendantPersonStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for a defendant who is a person
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BaseDefendantPersonStructure">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="Alias" type="ds:PersonNameStructure" minOccurs="0"
+                                maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Other names used by the defendant. In particular this
+                                means "also known as" names, not just different spellings of the
+                                same name.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="PNCId" type="PNCIdStructure" minOccurs="0"/>
+                    <xs:element name="PoliceRemandStatus" type="PoliceRemandStatusType"
+                                minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Indicates the remand status of the defendant while
+                                they are the responsibility of the police i.e. prior to first
+                                hearing. The field will not normally be applicable when the
+                                defendant is summonsed.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="BailConditions" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="2000"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DefendantStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for a generic defendant. This can be an
+                organisation or a person.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="PersonDefendant">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="DefendantPersonStructure">
+                                <xs:sequence>
+                                    <xs:element name="InitiatedBy" type="InitiatedByType"
+                                                minOccurs="0"/>
+                                </xs:sequence>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="OrganisationDefendant" type="DefendantOrganisationStructure"/>
+            </xs:choice>
+            <xs:element name="ASN" type="ASNStructure"/>
+            <xs:element name="Offence" type="OffenceStructure" maxOccurs="unbounded"/>
+            <xs:element name="DefenceSolicitor" type="DefenseSolicitorStructure" minOccurs="0"/>
+            <xs:element name="NextHearing" type="HearingStructure"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DefenseSolicitorStructure">
+        <xs:annotation>
+            <xs:documentation>Holds information relating to a defense solicitor</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BasePersonStructure">
+                <xs:sequence>
+                    <xs:element name="Firm">
+                        <xs:annotation>
+                            <xs:documentation>The name of the firm acting as defence solicitors.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="50"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="CaseReference" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>The case reference used by the firm to refer to the
+                                case.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DeletedPersonStructure">
+        <xs:annotation>
+            <xs:documentation>Identifies the person to be deleted</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UniqueId" type="UniqueIdType">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of the person. All person Id's must be unique
+                        across the entire case.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DeletionReason">
+                <xs:annotation>
+                    <xs:documentation>The reason for the deletion</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="500"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DocumentInformationStructure">
+        <xs:annotation>
+            <xs:documentation>Holds the information related to an attached document or the location
+                of an electronic document.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UniqueId" type="UniqueIdType">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of this document within the case.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The name given to the document by the police, for example "RV
+                        Smith Case Summary"
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="FileName">
+                <xs:annotation>
+                    <xs:documentation>The original filename of the document. This should exclude the
+                        path and include the extension of the file, for example "MG11 Smith.doc".
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:choice>
+                <xs:element name="Document" type="xs:base64Binary">
+                    <xs:annotation>
+                        <xs:documentation>A binary representation of the actual document.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="ExternalFileLocation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ExternalFileURL">
+                                <xs:annotation>
+                                    <xs:documentation>A URL to a secure location where the file is
+                                        stored
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="2083"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Username" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Username to supply in order to access the
+                                        document (if it is in a secure location)
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="256"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Password" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Password to supply in order to access the
+                                        document (if it is in a secure location)
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                        <xs:maxLength value="256"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="DocumentClassification" type="ClassificationStructure" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Document classification such as 'Original Document'
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TwifDXAddressStructure">
+        <xs:annotation>
+            <xs:documentation>Describes a Hayes DX address.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="DXNumber">
+                <xs:annotation>
+                    <xs:documentation>The DX number. This should not include the prefix "DX".
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Exchange">
+                <xs:annotation>
+                    <xs:documentation>The Exchange servicing the given DX number.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="20"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="MemberName" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The descriptive name of the DX delivery point.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="255"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="HearingStructure">
+        <xs:annotation>
+            <xs:documentation>Base Hearing Structure</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CourtID" type="OrganisationLocationCodeStructure">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of the court and court room. IH indicates may
+                        have to add court Room as optional extra incase this code does not go to
+                        room.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CourtRoom" type="xs:nonNegativeInteger" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>If CourtId does not include the definition of Court Room then
+                        this element should be used to defined the room within the court house for
+                        the hearing.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TypeOfCourt" type="ds:TargetCourtTypeList">
+                <xs:annotation>
+                    <xs:documentation>The type of court, either an adult court or a youth court.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DateAndTime" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation>The date and time of the hearing. The time must be given in
+                        local time.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MaterialStructure">
+        <xs:annotation>
+            <xs:documentation>Holds information about materials that may be attached to a case
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="MaterialClassification" type="ClassificationStructure">
+                <xs:annotation>
+                    <xs:documentation>An enumerated list of the types of material that may be sent
+                        in as prescribed by the MG3.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="MaterialSubject" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The person or thing that is the subject of the material.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="500"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="MaterialDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The date the material was created.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SentElectronically" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Indicates whether the material has been sent electronically
+                        (e.g. as LM05 for statement)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OffenceCodeStructure">
+        <xs:annotation>
+            <xs:documentation>Describes the offence code. An optional LiteralValue attribute allow
+                the English short Title of the offence to be given.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Code">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:choice>
+                            <xs:element name="Alternative">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="ActOrSource">
+                                            <xs:annotation>
+                                                <xs:documentation>This may be set to XX for count
+                                                    representations of offences.
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="[A-Z]{2}"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Year" type="TwoDigitYearType"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="CommonLawOffence">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="COML"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:element name="Reason">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="[0-9]{3}"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Qualifier" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>May be one of A for attempting, B for aid and abetting, C for
+                        conspiracy or I for inciting.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[ABCI]{1}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="LiteralValue" type="xs:string" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="OffenceParticularsStructure">
+        <xs:annotation>
+            <xs:documentation>Qualifying data for the offence, e.g. location</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Address" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="AddressStructure"/>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ParticularsClassification" type="ClassificationStructure"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OffenceStructure">
+        <xs:annotation>
+            <xs:documentation>Holds all information relating to an offence for a specific
+                defendant.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="UniqueId" type="UniqueIdType">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of this offence instance within the case.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CPR" type="CPRStructure">
+                <xs:annotation>
+                    <xs:documentation>The Criminal Prosecution Reference as defined in the CJS Data
+                        Standards.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ASNSequenceNumber" type="ASNSequenceNumberType">
+                <xs:annotation>
+                    <xs:documentation>The sequence number of this offence within the defendants ASN
+                        instance.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CJSCode" type="OffenceCodeStructure">
+                <xs:annotation>
+                    <xs:documentation>The CJS Offence code for this offence.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description">
+                <xs:annotation>
+                    <xs:documentation>A description of the offence identified by the CJS Code. This
+                        contains no details of the particulars of an offence, it is a generic
+                        description of the offence for the given CJS code.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="120"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="OffenceWording">
+                <xs:annotation>
+                    <xs:documentation>The full wording of the offence including the particulars of
+                        the offence. This will be unique to this instance of the offence.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="2500"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Category" type="OffenceCategoryType">
+                <xs:annotation>
+                    <xs:documentation>The specific category of this offence as defined in the CJS
+                        Data Standards.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ArrestDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The date on which the arrest, if any, was made.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="StartDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>The first date on which this instance of the offence was
+                        comitted.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EndDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Should this instance of the offence extend over more than one
+                        day, then the last day on which the offence took place.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ChargeDate" type="xs:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Date on which the defendant was charged with this offence
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OrganisationLocationCodeStructure">
+        <xs:annotation>
+            <xs:documentation>Describes the organisation and location code. An optional LiteralValue
+                attribute allows the display of the English name of the Organisation/Location.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="TopLevel" type="OrganisationIdentifierType" minOccurs="0"/>
+            <xs:element name="SecondLevel">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9A-Z]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ThirdLevel">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9A-Z]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="BottomLevel">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9A-Z]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="LiteralValue" type="xs:string" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="PCDConditionalCautionStructure">
+        <xs:annotation>
+            <xs:documentation>Holds information about a conditional caution decision
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="SpecificCondition">
+                <xs:annotation>
+                    <xs:documentation>Specific Conditions of caution</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ConditionEndDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Condition end date</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ComplianceConfirmation" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Comliance confirmation text</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="2000"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Variation" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ReasonForVarying" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Text description of why the condition has been
+                                    varied
+                                </xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:minLength value="1"/>
+                                    <xs:maxLength value="2000"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="EndDateVaried" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:documentation>Flag indicating that end date has varied
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ConditionVaried" type="xs:boolean">
+                            <xs:annotation>
+                                <xs:documentation>Flag indicating that condition has varied
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PersonNameUpdateStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for a persons name to be updated
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Title" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The title of the person as defined in the CJS Data Standards.
+                        Note that a number of preferred entries are listed in the data standards.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="35"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="GivenName" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>The given names of the person (equivalent to the forenames in
+                        the English culture).
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="35"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="FamilyName" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The family name of the person (equivalent to the surname in
+                        English culture).
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="35"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PNCIdStructure">
+        <xs:annotation>
+            <xs:documentation>Describes PNC (Police National Computer) Identifiers. These are
+                normally Ids that are unique to a defendant and the same between different cases.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Year">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{4}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="SerialNumber">
+                <xs:annotation>
+                    <xs:documentation>The serial number for this PNC Id. Leading zeros are added to
+                        this number to ensure it us seven characters long. Although not strictly
+                        required in the standard, they are needed for calculation of the check
+                        character.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{7}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="CheckCharacter" type="ds:CheckDigitType">
+                <xs:annotation>
+                    <xs:documentation>A single check character generated from a modulo 23 operation
+                        on parts of the PNC Id. The algorithm is defined by PITO. The resultant
+                        character is taken from the alphabet, exclusing I, O and S
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PoliceOfficerStructure">
+        <xs:annotation>
+            <xs:documentation>The base information for a police officer</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BasePersonStructure">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="Rank" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>The free text rank of the police officer.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string"/>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Station" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>The free text station name at which the police officer
+                                is based.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="50"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="ShoulderNumber" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Police Officer's shoulder number</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="10"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="PreChargeCaseAnalysisStructure">
+        <xs:annotation>
+            <xs:documentation>Holds details of pre-charge case analysis</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CaseAnalysisHeading" type="ClassificationStructure">
+                <xs:annotation>
+                    <xs:documentation>Case analysis Heading such as: Evidential Issues, Evidential
+                        Criteria, Public Interest, MOT etc
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="CaseAnalysisText">
+                <xs:annotation>
+                    <xs:documentation>Text for case analysis entry</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="32767"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PreChargeDecisionStructure">
+        <xs:annotation>
+            <xs:documentation>Describes a complete pre-charge decision</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="PCDConsultationID" type="UniqueIdType"/>
+            <xs:element name="EvidentialTest">
+                <xs:annotation>
+                    <xs:documentation>Evidential test applied, i.e. Early Consultation,
+                        Investigative Advice, Full Code Test or Threshold Test
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Early Consultation"/>
+                        <xs:enumeration value="Full Code Test"/>
+                        <xs:enumeration value="Investigative Advice"/>
+                        <xs:enumeration value="Threshold Test"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="CaseAnalysisItem" type="PreChargeCaseAnalysisStructure" minOccurs="0"
+                        maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Includes the analysis details recorded by the CPS in reaching
+                        their charge decision
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="InvestigationStage">
+                <xs:annotation>
+                    <xs:documentation>The stage of the investigation at which the pre-charge
+                        decision took place. This list is prescribed by the MG3
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Bail for Charging Decision"/>
+                        <xs:enumeration value="Post Arrest"/>
+                        <xs:enumeration value="Post Bail for Further Enquiries"/>
+                        <xs:enumeration value="Post Interview"/>
+                        <xs:enumeration value="Pre Arrest"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="AdviceMethod">
+                <xs:annotation>
+                    <xs:documentation>The method by which the CPS delivered the pre-charge decision
+                        to the police. This list is prescribed by the MG3
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Face to Face"/>
+                        <xs:enumeration value="Telephone (CPS Direct)"/>
+                        <xs:enumeration value="Telephone (Daytime Direct)"/>
+                        <xs:enumeration value="Written"/>
+                        <xs:enumeration value="Electronic"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="SuspectDecision" type="DecisionStructure" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Contains the CPS charging decision for each suspect
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ActionPlan" type="ActionPlanStructure" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>A container for a set actions making up an action plan
+                        specified by the Duty Prosecutor
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="DutyProsecutor" type="ds:PersonNameStructure">
+                <xs:annotation>
+                    <xs:documentation>The container holding the details for the Duty Prosecutor
+                        issuing the pre-charge decision
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PCDResponseDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>The date that the Duty Prosecutor responded to the police
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PTIURNStructure">
+        <xs:annotation>
+            <xs:documentation>Describes the PTI-URN (Pre Trials Issues group - Unique Reference
+                Number). This number is used as an identifier for cases within the police and CPS.
+                The PTI-URN format is defined within the Manual of Guidance. This description
+                extends that definition. Where extensions are made they are described in the
+                comments for the element.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Force" type="ForceIdentifierType">
+                <xs:annotation>
+                    <xs:documentation>The two digit identifier for the force who created/submitted
+                        the case.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Unit">
+                <xs:annotation>
+                    <xs:documentation>The identifier of the unit who created/submitted the case. As
+                        defined in the Manual Of Guidance this field is 2 alphanumeric characters.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9A-Z]{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Number">
+                <xs:annotation>
+                    <xs:documentation>The unique Id of this case for the force, unit and year given.
+                        The Manual of Guidance defines this field as a 5 digit number.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{5}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Year" type="TwoDigitYearType">
+                <xs:annotation>
+                    <xs:documentation>The last two digits of the year.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Split" type="xs:positiveInteger" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>After receipt of a case from the police the CPS may split the
+                        case. A CPS split case will have a number appended to the URN that indicates
+                        the number of the new case within the split e.g. /1, /2 etc.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SuspectStructure">
+        <xs:annotation>
+            <xs:documentation>Holds information relating to a suspect on a pre-charge decision
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="AccusedPerson">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="DefendantPersonStructure">
+                                <xs:sequence>
+                                    <xs:element name="BailDate" type="xs:date" minOccurs="0"/>
+                                </xs:sequence>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AccusedOrganisation" type="DefendantOrganisationStructure"/>
+            </xs:choice>
+            <xs:element name="DefenceSolicitor" type="DefenseSolicitorStructure" minOccurs="0"/>
+            <xs:element name="ASN" type="ASNStructure"/>
+            <xs:element name="ProposedCharge" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Describes the charges the police suggest the suspect could be
+                        charged with
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="BaseChargeStructure">
+                            <xs:sequence>
+                                <xs:element name="Particulars" type="OffenceParticularsStructure">
+                                    <xs:annotation>
+                                        <xs:documentation>Qualifying data for the offence, e.g.
+                                            location
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TelephoneNumberStructure">
+        <xs:annotation>
+            <xs:documentation>Describes an international telephone number. This is as described in
+                the OeE UK Telephone Number type from the GDSC.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="TelCountryCode" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{1,3}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="TelNationalNumber">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="TelExtensionNumber" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{1,6}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VictimStructure">
+        <xs:annotation>
+            <xs:documentation>Holds victim specific values to update</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="OffenceId" type="UniqueIdType" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>Id of the offence that this person is associated with
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dummy" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Dummy field present to prevent .Net deserialisation bug. If
+                        another field is added to this structure this can be removed.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="WitnessStructure">
+        <xs:annotation>
+            <xs:documentation>Holds witness specific values to update</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Occupation" type="ds:OccupationDescriptionType" minOccurs="0"/>
+            <xs:element name="Rank" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The free text rank of the police officer.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ShoulderNumber" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Police Officer's shoulder number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="WarrantCardID" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Police Officer's Warrant Card Id</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="30"/>
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

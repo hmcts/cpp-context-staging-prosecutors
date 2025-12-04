@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/cps-update-cotr.json",
+  "type": "object",
+  "properties": {
+    "cotrSubmissionId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid",
+      "description": "Identifier for the CoTR which was returned as part of the creation process"
+    },
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+      "description": "Identifies the case to which the form is associated to"
+    },
+    "defendantSubject": {
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-subject.json"
+      },
+      "minItems": 1
+    },
+    "tag": {
+      "type": "string",
+      "maxLength": 36
+    },
+    "furtherProsecutionInformationProvidedAfterCertification": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "trialDate": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The date of the trial"
+    },
+    "certifyThatTheProsecutionIsTrialReady": {
+      "type": "string",
+      "enum": [
+        "Y",
+        "N"
+      ]
+    },
+    "formCompletedOnBehalfOfProsecutionBy": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "date": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The certification date"
+    }
+  },
+  "required": [
+    "cotrSubmissionId",
+    "prosecutionCaseSubject",
+    "defendantSubject",
+    "furtherProsecutionInformationProvidedAfterCertification",
+    "trialDate",
+    "certifyThatTheProsecutionIsTrialReady",
+    "formCompletedOnBehalfOfProsecutionBy",
+    "date"
+  ],
+  "additionalProperties": true
+}

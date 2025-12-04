@@ -1,0 +1,71 @@
+package uk.gov.moj.cpp.staging.prosecutors.queryapi.accesscontrol;
+
+import uk.gov.moj.cpp.accesscontrol.drools.Outcome;
+import uk.gov.moj.cpp.accesscontrol.drools.Action;
+
+import uk.gov.moj.cpp.staging.prosecutorapi.query.api.accesscontrol.RuleConstants
+
+global uk.gov.moj.cpp.accesscontrol.common.providers.UserAndGroupProvider userAndGroupProvider;
+
+rule "Query - Rule for getting submission"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.submission");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Query - Rule for getting submission for nonsjp v2 endpoint"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.submission.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Query - Rule for getting submission for sjp v2 endpoint"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.sjp.submission.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Query - Rule for getting submission from cps channel for nonsjp v1 endpoint"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cps.submission.v1");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Query - Rule for for the API: Gets the results for the given date range and organisational unit code"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.results.v1");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Query - Rule for getting submission for sjp v2 endpoint and v3 response type"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.sjp.submission.v3");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end
+
+rule "Query - Rule for getting submission for non sjp v2 endpoint and v3 response type"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.cjs.submission.v3");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end

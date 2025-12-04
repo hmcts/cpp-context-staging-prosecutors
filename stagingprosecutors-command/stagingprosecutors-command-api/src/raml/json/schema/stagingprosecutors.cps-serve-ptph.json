@@ -1,0 +1,226 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/cps-serve-ptph.json",
+  "type": "object",
+  "properties": {
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject-ptph.json",
+      "description": "Identifies the case to which the form is associated to"
+    },
+    "defendantOffencesSubjects": {
+      "description": "Identifies the defendants to which the PTPH form is associated to with their respective principal charges",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-offences-subjects-ptph.json"
+      }
+    },
+    "tag": {
+      "type": "string",
+      "maxLength": 36
+    },
+    "ptphAdvocate": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "trialAdvocate": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "reviewingLawyer": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "prosecutionCaseProgressionOfficer": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "officerInTheCase": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "cpsOffice": {
+      "type": "string",
+      "maxLength": 7
+    },
+    "draftIndictment": {
+      "type": "string",
+      "pattern": "^[YNyn]$",
+      "maxLength": 1
+    },
+    "draftIndictmentNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "summaryOfCircumstances": {
+      "type": "string",
+      "pattern": "^[YNyn]$",
+      "maxLength": 1
+    },
+    "summaryOfCircumstancesNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "statementsForPAndICm": {
+      "type": "string",
+      "pattern": "^[YNyn]$",
+      "maxLength": 1
+    },
+    "statementsForPAndICmNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "exhibitsForPAndICm": {
+      "type": "string",
+      "pattern": "^[YNyn]$",
+      "maxLength": 1
+    },
+    "exhibitsForPAndICmNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "cctv": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "cctvNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "streamlinedForensicReport": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "streamlinedForensicReportNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "medicalEvidence": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "medicalEvidenceNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "expertEvidence": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "ExpertEvidenceNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "badCharacter": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "badCharacterNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "hearsay": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "hearsayNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "specialMeasures": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "specialMeasuresNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "criminalRecord": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "criminalRecordNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "victimPersonalStatement": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "victimPersonalStatementNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "disclosureManagementDoc": {
+      "type": "string",
+      "pattern": "^[YNyn]$",
+      "maxLength": 1
+    },
+    "disclosureManagementDocNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "thirdParty": {
+      "type": "string",
+      "pattern": "^[YNyn]$",
+      "maxLength": 1
+    },
+    "thirdPartyNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "reviewDisclosableMaterial": {
+      "type": "string",
+      "pattern": "^(?:Y|N|NA|y|n|na|Na|nA)$",
+      "maxLength": 2
+    },
+    "reviewDisclosableMaterialNotes": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "particularsOfAnyRelatedCriminalProceedings": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "particularsOfAnyFamily": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "Witnesses": {
+      "description": "To provide prosecution witnesses",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/witness-ptph.json"
+      }
+    }
+  },
+  "required": [
+    "prosecutionCaseSubject",
+    "defendantOffencesSubjects",
+    "ptphAdvocate",
+    "reviewingLawyer",
+    "prosecutionCaseProgressionOfficer",
+    "officerInTheCase",
+    "cpsOffice",
+    "draftIndictment",
+    "summaryOfCircumstances",
+    "statementsForPAndICm",
+    "exhibitsForPAndICm",
+    "cctv",
+    "streamlinedForensicReport",
+    "medicalEvidence",
+    "expertEvidence",
+    "badCharacter",
+    "hearsay",
+    "specialMeasures",
+    "criminalRecord",
+    "victimPersonalStatement",
+    "disclosureManagementDoc",
+    "thirdParty",
+    "reviewDisclosableMaterial"
+  ],
+  "additionalProperties": true
+}

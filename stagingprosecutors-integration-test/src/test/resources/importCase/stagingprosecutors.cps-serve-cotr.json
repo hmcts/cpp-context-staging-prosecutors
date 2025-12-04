@@ -1,0 +1,109 @@
+{
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "OU CODE"
+  },
+  "defendantSubject": [
+    {
+      "prosecutorDefendantId": "defendant Id",
+      "cpsOrganisationDefendantDetails": {
+        "organisationName": "orgName",
+        "cpsDefendantId": "123"
+      },
+      "cpsPersonDefendantDetails": {
+        "title": "Mr",
+        "forename": "foreName",
+        "forename2": "TEST",
+        "surname": "surname",
+        "dateOfBirth": "1990-01-01",
+        "localAuthorityDetailsForYouthDefendants": {
+          "address1": "address1",
+          "authority": "test",
+          "email": "test@test.com",
+          "forename": "forename",
+          "isLookedAfterChild": true,
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "reference": "test",
+          "surname": "surname",
+          "title": "Mr"
+        },
+        "parentGuardianForYouthDefendants": {
+          "address1": "address1",
+          "address2": "address2",
+          "email": "test@test.com",
+          "forename": "parentForename",
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "relationshipToDefendant": "test",
+          "surname": "surname",
+          "title": "Mr"
+        },
+        "cpsDefendantId": "7777"
+      },
+      "prosecutorPersonDefendantDetails": {
+        "title": "Mr",
+        "forename": "prosecutorPersonDefendantDetails",
+        "forename2": "TEST",
+        "forename3": "Test",
+        "surname": "test",
+        "dateOfBirth": "1990-01-01",
+        "localAuthorityDetailsForYouthDefendants": {
+          "address1": "address1",
+          "authority": "test",
+          "email": "test@test.com",
+          "forename": "forename",
+          "isLookedAfterChild": true,
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "reference": "test",
+          "surname": "surname",
+          "title": "Mr"
+        },
+        "parentGuardianForYouthDefendants": {
+          "address1": "address1",
+          "address2": "address2",
+          "email": "test@test.com",
+          "forename": "parentForename",
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "relationshipToDefendant": "test",
+          "surname": "weterw",
+          "title": "Mr"
+        },
+        "prosecutorDefendantId": "test"
+      }
+    }
+  ],
+  "trialDate": "1980-01-24",
+  "lastRecordedTimeEstimate": 14,
+  "hasAllEvidenceToBeReliedOnBeenServed": "Y",
+  "hasAllEvidenceToBeReliedOnBeenServedDetails": "Details",
+  "hasAllDisclosureBeenProvided": "Y",
+  "hasAllDisclosureBeenProvidedDetails": "Details",
+  "haveOtherDirectionsBeenCompliedWith": "Y",
+  "haveOtherDirectionsBeenCompliedWithDetails": "Details",
+  "haveTheProsecutionWitnessesRequiredToAttendAcknowledgedThatTheyWillAttend": "Y",
+  "haveTheProsecutionWitnessesRequiredToAttendAcknowledgedThatTheyWillAttendDetails": "Details",
+  "haveAnyWitnessSummonsesRequiredBeenReceivedAndServed": "Y",
+  "haveAnyWitnessSummonsesRequiredBeenReceivedAndServedDetails": "Details",
+  "haveSpecialMeasuresOrRemoteAttendanceIssuesForWitnessesBeenResolved": "Y",
+  "haveSpecialMeasuresOrRemoteAttendanceIssuesForWitnessesBeenResolvedDetails": "Details",
+  "haveInterpretersForWitnessesBeenArranged": "Y",
+  "haveInterpretersForWitnessesBeenArrangedDetails": "Details",
+  "haveEditedAbeInterviewsBeenPreparedAndAgreed": "Y",
+  "haveEditedAbeInterviewsBeenPreparedAndAgreedDetails": "Details",
+  "haveArrangementsBeenMadeForStatementOfPointsOfAgreementAndDisagreement": "Y",
+  "haveArrangementsBeenMadeForStatementOfPointsOfAgreementAndDisagreementDetails": "Details",
+  "isTheCaseReadyToProceedWithoutDelayBeforeTheJury": "Y",
+  "isTheCaseReadyToProceedWithoutDelayBeforeTheJuryDetails": "Details",
+  "isTheTimeEstimateCorrect": "Y",
+  "isTheTimeEstimateCorrectDetails": "Details",
+  "furtherInformationToAssistTheCourt": "FurtherInformation",
+  "certifyThatTheProsecutionIsTrialReady": "Y",
+  "certifyThatTheProsecutionIsTrialReadyDetails": "Details",
+  "applyForThePtrToBeVacated": "Y",
+  "applyForThePtrToBeVacatedDetails": "Details",
+  "formCompletedOnBehalfOfTheProsecutionBy": "FormCompletedBySomeone",
+  "certificationDate": "1980-01-24"
+}

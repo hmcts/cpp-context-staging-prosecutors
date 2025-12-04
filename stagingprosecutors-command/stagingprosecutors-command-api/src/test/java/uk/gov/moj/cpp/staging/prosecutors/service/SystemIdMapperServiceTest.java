@@ -1,0 +1,124 @@
+package uk.gov.moj.cpp.staging.prosecutors.service;
+
+import static java.lang.Boolean.FALSE;
+import static java.time.ZonedDateTime.now;
+import static java.util.Optional.empty;
+import static java.util.UUID.randomUUID;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static uk.gov.moj.cpp.systemidmapper.client.ResultCode.OK;
+
+import uk.gov.justice.services.core.dispatcher.SystemUserProvider;
+import uk.gov.moj.cpp.systemidmapper.client.AdditionResponse;
+import uk.gov.moj.cpp.systemidmapper.client.SystemIdMap;
+import uk.gov.moj.cpp.systemidmapper.client.SystemIdMapperClient;
+import uk.gov.moj.cpp.systemidmapper.client.SystemIdMapping;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import org.apache.commons.lang3.tuple.Pair;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+public class SystemIdMapperServiceTest {
+    @Mock
+    private SystemUserProvider systemUserProvider;
+
+    @Mock
+    private SystemIdMapperClient systemIdMapperClient;
+
+    @InjectMocks
+    private SystemIdMapperService systemIdMapperService;
+
+
+    @Test
+    public void shouldReturnCaseIdWhenCaseIdMappingExistsForSPI() {
+
+        final String caseURN = "11AAACD9999";
+        final UUID userId = randomUUID();
+        final UUID mappedCppCaseId = randomUUID();
+
+        final SystemIdMapping systemIdMapping = new SystemIdMapping(randomUUID(), caseURN, "", mappedCppCaseId, "", now());
+
+        when(systemUserProvider.getContextSystemUserId()).thenReturn(Optional.of(userId));
+        when(systemIdMapperClient.findBy(caseURN, "OU_URN", "CASE_FILE_ID", userId)).thenReturn(Optional.of(systemIdMapping));
+
+        final UUID cppCaseId = systemIdMapperService.getCppCaseIdForPtiUrn(caseURN);
+
+        assertThat(cppCaseId, is(mappedCppCaseId));
+    }
+
+
+    @Test
+    public void shouldReturnCaseIdWhenNoMappingExists() {
+        final UUID userId = randomUUID();
+        final String caseURN = "11AAACD3457";
+        ArgumentCaptor<SystemIdMap> systemIdMapArgumentCaptor = ArgumentCaptor.forClass(SystemIdMap.class);
+
+        when(systemUserProvider.getContextSystemUserId()).thenReturn(Optional.of(userId));
+        when(systemIdMapperClient.findBy(caseURN, "OU_URN", "CASE_FILE_ID", userId)).thenReturn(Optional.empty());
+        when(systemIdMapperClient.add(systemIdMapArgumentCaptor.capture(), any())).thenReturn(new AdditionResponse(randomUUID(), OK, empty()));
+
+        final UUID cppCaseId = systemIdMapperService.getCppCaseIdForPtiUrn(caseURN);
+
+        assertThat("cppCaseId should match", cppCaseId, is(systemIdMapArgumentCaptor.getValue().getTargetId()));
+    }
+
+    @Test
+    public void shouldReturnSubmissionIdWhenCaseIdMappingExistsForSPI() {
+
+        final String caseURN = "11AAACD9999";
+        final UUID userId = randomUUID();
+        final UUID mappedSubmissionId = randomUUID();
+
+        final SystemIdMapping systemIdMapping = new SystemIdMapping(randomUUID(), caseURN, "", mappedSubmissionId, "", now());
+
+        when(systemUserProvider.getContextSystemUserId()).thenReturn(Optional.of(userId));
+        when(systemIdMapperClient.findBy(caseURN, "CASE_CREATION_URN", "CASE_CREATION_SUBMISSION_ID", userId)).thenReturn(Optional.of(systemIdMapping));
+
+        final Pair<UUID, Boolean> submissionIdPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(caseURN);
+
+        assertThat(submissionIdPair.getLeft().toString(), is(mappedSubmissionId.toString()));
+    }
+
+    @Test
+    public void shouldReturnNewSubmissionIdWhenCaseIdMappingNotExistsForSPI() {
+        final String caseURN = "11AAACD9999";
+        final AdditionResponse response = new AdditionResponse(randomUUID(), OK, Optional.empty());
+
+        final Pair<UUID, Boolean> submissionIdPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(caseURN);
+
+        assertThat(submissionIdPair.getLeft(), notNullValue());
+        assertThat(submissionIdPair.getRight(), is(FALSE));
+    }
+
+    @Test
+    public void shouldAddMappingForSrcDocumentReference() {
+
+        final String srcDocumentReference = "11AAACD9999";
+        final UUID userId = randomUUID();
+        final UUID submissionId = randomUUID();
+
+        final AdditionResponse response = new AdditionResponse(randomUUID(), OK, Optional.empty());
+
+        when(systemUserProvider.getContextSystemUserId()).thenReturn(Optional.of(userId));
+        when(systemIdMapperClient.add(any(), any())).thenReturn(response);
+
+        final AdditionResponse additionResponse = systemIdMapperService.attemptAddMappingForSrcDocumentReference(srcDocumentReference, submissionId);
+
+        assertThat(additionResponse.mappingId(), is(response.mappingId()));
+        assertThat(additionResponse.code(), is(response.code()));
+        assertThat(additionResponse.errorMessage(), is(empty()));
+    }
+
+
+}

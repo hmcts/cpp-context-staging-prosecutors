@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-serve-ptph-received.json",
+  "type": "object",
+  "properties": {
+    "submissionId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "submissionStatus": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/definitions.json#/definitions/submissionStatus"
+    },
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+      "description": "Identifies the case to which the form is associated to"
+    },
+    "defendantOffencesSubjects": {
+      "description": "PTPH Defendant with Offences information",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-offences-subjects-ptph.json"
+      }
+    },
+    "tag": {
+      "type": "string"
+    },
+    "ptphAdvocate": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "trialAdvocate": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "reviewingLawyer": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "prosecutionCaseProgressionOfficer": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "officerInTheCase": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "cpsOffice": {
+      "type": "string"
+    },
+    "draftIndictment": {
+      "type": "string"
+    },
+    "draftIndictmentNotes": {
+      "type": "string"
+    },
+    "summaryOfCircumstances": {
+      "type": "string"
+    },
+    "summaryOfCircumstancesNotes": {
+      "type": "string"
+    },
+    "statementsForPAndICm": {
+      "type": "string"
+    },
+    "statementsForPAndICmNotes": {
+      "type": "string"
+    },
+    "exhibitsForPAndICm": {
+      "type": "string"
+    },
+    "exhibitsForPAndICmNotes": {
+      "type": "string"
+    },
+    "cctv": {
+      "type": "string"
+    },
+    "cctvNotes": {
+      "type": "string"
+    },
+    "streamlinedForensicReport": {
+      "type": "string"
+    },
+    "streamlinedForensicReportNotes": {
+      "type": "string"
+    },
+    "medicalEvidence": {
+      "type": "string"
+    },
+    "medicalEvidenceNotes": {
+      "type": "string"
+    },
+    "expertEvidence": {
+      "type": "string"
+    },
+    "expertEvidenceNotes": {
+      "type": "string"
+    },
+    "badCharacter": {
+      "type": "string"
+    },
+    "badCharacterNotes": {
+      "type": "string"
+    },
+    "hearsay": {
+      "type": "string"
+    },
+    "hearsayNotes": {
+      "type": "string"
+    },
+    "specialMeasures": {
+      "type": "string"
+    },
+    "specialMeasuresNotes": {
+      "type": "string"
+    },
+    "criminalRecord": {
+      "type": "string"
+    },
+    "criminalRecordNotes": {
+      "type": "string"
+    },
+    "victimPersonalStatement": {
+      "type": "string"
+    },
+    "victimPersonalStatementNotes": {
+      "type": "string"
+    },
+    "disclosureManagementDoc": {
+      "type": "string"
+    },
+    "disclosureManagementDocNotes": {
+      "type": "string"
+    },
+    "thirdParty": {
+      "type": "string"
+    },
+    "thirdPartyNotes": {
+      "type": "string"
+    },
+    "reviewDisclosableMaterial": {
+      "type": "string"
+    },
+    "reviewDisclosableMaterialNotes": {
+      "type": "string"
+    },
+    "particularsOfAnyRelatedCriminalProceedings": {
+      "type": "string"
+    },
+    "particularsOfAnyFamily": {
+      "type": "string"
+    },
+    "witnesses": {
+      "description": "To provide prosecution witnesses",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/witness-ptph.json"
+      }
+    }
+  },
+  "required": [
+    "submissionId",
+    "submissionStatus",
+    "prosecutionCaseSubject",
+    "defendantOffencesSubjects",
+    "ptphAdvocate",
+    "reviewingLawyer",
+    "prosecutionCaseProgressionOfficer",
+    "officerInTheCase",
+    "cpsOffice",
+    "draftIndictment",
+    "summaryOfCircumstances",
+    "statementsForPAndICm",
+    "exhibitsForPAndICm",
+    "cctv",
+    "streamlinedForensicReport",
+    "medicalEvidence",
+    "expertEvidence",
+    "badCharacter",
+    "hearsay",
+    "specialMeasures",
+    "criminalRecord",
+    "victimPersonalStatement",
+    "disclosureManagementDoc",
+    "thirdParty",
+    "reviewDisclosableMaterial"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>stagingprosecutors-domain</artifactId>
+        <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+        <version>17.103.56-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>stagingprosecutors-domain-value-schema</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>uk.gov.moj.cpp.core.domain</groupId>
+            <artifactId>common-core-domain</artifactId>
+        </dependency>
+
+        <!--Test dependencies-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.everit-org.json-schema</groupId>
+            <artifactId>org.everit.json.schema</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.gov.moj.cpp.core.domain</groupId>
+            <artifactId>criminal-court-public-model</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>uk.gov.justice.schema</groupId>
+                <artifactId>catalog-generation-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>schema-catalog-generation</id>
+                        <configuration>
+                            <generatorName>
+                                uk.gov.justice.schema.catalog.generation.maven.MavenCatalogGeneratorFactory
+                            </generatorName>
+                            <parserName>
+                                uk.gov.justice.schema.catalog.generation.io.parser.ListOfUriParser
+                            </parserName>
+                            <sourceDirectory>src/main/resources/json</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/generated-resources
+                            </outputDirectory>
+                            <includes>
+                                <include>**/*.json</include>
+                            </includes>
+                            <generatorProperties implementation="uk.gov.justice.schema.catalog.generation.maven.CatalogGeneratorProperties">
+                                <catalogName>${project.artifactId}</catalogName>
+                                <jsonSchemaPath>json/</jsonSchemaPath>
+                            </generatorProperties>
+                        </configuration>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

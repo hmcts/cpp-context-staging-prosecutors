@@ -1,0 +1,27 @@
+{
+  "transactionID":"230189",
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "compassCaseId":"46001",
+  "urn":"45MD0000220",
+  "responseEmail":"gvcpsdirect.cms@cps.gov.uk",
+  "documents":[
+    {
+      "document":{
+        "documentId":"B33622",
+        "materialType":"12",
+        "fileName":"FISH, JONES and PACKET 45MD0000220 Temp Bundle for Dispatch test.pdf",
+        "documentContent":"aa"
+      }
+    }
+  ],
+  "defendants":[
+    {
+      "defendantID":"10016016",
+      "surname":"PACKET",
+      "forenames":"Chris",
+      "dob":"1990-03-15",
+      "ouCode":"B45GC00",
+      "asn":"1900NP0004361000203N"
+    }
+  ]
+}

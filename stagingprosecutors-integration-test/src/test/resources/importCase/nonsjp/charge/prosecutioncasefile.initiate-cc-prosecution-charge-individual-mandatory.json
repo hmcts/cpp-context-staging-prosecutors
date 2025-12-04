@@ -1,0 +1,59 @@
+{
+  "caseDetails": {
+    "caseId": "3c5fa1b5-453c-4151-a7ec-2075b1c8b341",
+    "caseMarkers": [],
+    "initiationCode": "C",
+    "dateReceived": "generated dynamically",
+    "originatingOrganisation": "B01BH00",
+    "prosecutor": {
+      "prosecutingAuthority": "B01BH00"
+    },
+    "prosecutorCaseReference": "TVL54321"
+  },
+  "channel": "CPPI",
+  "externalId": "generated dynamically",
+  "defendants": [{
+    "address": {
+      "address1": "Address Line 1",
+      "postcode": "CR0 1XX"
+    },
+    "custodyStatus": "B",
+    "documentationLanguage": "E",
+    "hearingLanguage": "E",
+    "id": "ea3e2fca-48db-4f1e-bd26-3f42f6bb823d",
+    "individual": {
+      "custodyStatus": "B",
+      "personalInformation": {
+        "address": {
+          "address1": "Address Line 1",
+          "postcode": "CR0 1XX"
+        },
+        "firstName": "John",
+        "lastName": "SMITH",
+        "observedEthnicity": 1
+      },
+      "selfDefinedInformation": {
+        "dateOfBirth": "1970-02-03",
+        "ethnicity": "W1",
+        "gender": "MALE"
+      }
+    },
+    "initialHearing": {
+      "courtHearingLocation": "B01BH00",
+      "dateOfHearing": "2019-08-11",
+      "timeOfHearing": "09:01:01.001"
+    },
+    "offences": [{
+      "chargeDate": "2017-05-30",
+      "arrestDate": "2017-05-30",
+      "offenceCode": "CA03010",
+      "offenceCommittedDate": "2019-06-11",
+      "offenceDateCode": 4,
+      "offenceId": "bb8a1b8b-b22e-4d17-923f-2cdc104af35d",
+      "offenceSequenceNumber": 1,
+      "offenceWording": "Test Prosecution charge wording"
+    }],
+    "prosecutorDefendantReference": "TFLDEF001"
+  }],
+  "_metadata": {}
+}

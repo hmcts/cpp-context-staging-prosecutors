@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/respondent.json",
+  "type": "object",
+  "properties": {
+    "asn": {
+      "description": "Arrest Summons Number",
+      "type": "string"
+    },
+    "cpsDefendantId": {
+      "description": "The CPS Identifier",
+      "type": "string"
+    },
+    "personDetails": {
+      "description": "Provided when the party is a person",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/person.json"
+    },
+    "organisation": {
+      "description": "Provided when the party is an organisation ",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/organisation.json"
+    },
+    "organisationPersons": {
+      "description": "Array of persons in the organisation where the party is an organisation",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/associated-person.json"
+      }
+    },
+    "representedOrganisation": {
+      "description": "The organisation details of the appointed representation",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/organisation.json"
+    },
+    "isSubject": {
+      "description": "Flag to indicate if the party is the subject of the application",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "isSubject"
+  ],
+  "additionalProperties": false
+}

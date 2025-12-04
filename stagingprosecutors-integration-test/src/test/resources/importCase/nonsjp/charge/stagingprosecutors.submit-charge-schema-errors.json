@@ -1,0 +1,154 @@
+{
+  "prosecutionSubmissionDetails": {
+    "urn": "TVL54321",
+    "prosecutingAuthority": "PROSECUTING_AUTHORITY",
+    "hearingDetails": {
+      "courtHearingLocation": "B01BH00",
+      "dateOfHearing": "2019-08-11",
+      "timeOfHearing": "09:01:01.001"
+    }
+  },
+  "defendants": [
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1",
+          "postcode": "PG0 1XXXX"
+        },
+        "pncIdentifier": "2099A1234567",
+        "croNumber": "123456A20L"
+      },
+      "individual": {
+        "custodyStatus": "B",
+        "nameDetails": {
+          "title": "Mr",
+          "forename": "John",
+          "surname": "SMITH"
+        },
+        "parentGuardian": {
+          "organisation": {
+            "organisationName": "Parent guardian organisation",
+            "companyTelephoneNumber": "12312312302345a23"
+          },
+          "address": {
+            "address1": "ParentGuardian Address Line 1",
+            "postcode": "abcdef"
+          }
+        },
+        "contactDetails": {
+          "workTelephoneNumber": "12312312302345a23",
+          "homeTelephoneNumber": "abcdef",
+          "mobileTelephoneNumber": "hekf@fgg.com",
+          "primaryEmail": "notgoodprimaryemail",
+          "secondaryEmail": "notgoodsecondaryemail"
+        },
+        "dateOfBirth": "1970-02-03",
+        "gender": 6,
+        "observedEthnicity": 1,
+        "ethnicity": "W1",
+        "nationality": "W1",
+        "nationalInsuranceNumber": "SN123456123"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03010",
+            "offenceSequenceNo": 0,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 7,
+            "offenceWording": "Test Prosecution charge wording"
+          },
+          "arrestDate": "2017-05-30",
+          "chargeDate": "2017-05-30"
+        }
+      ]
+    },
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1",
+          "postcode": "CR0 1XX"
+        }
+      },
+      "individual": {
+        "custodyStatus": "B",
+        "nameDetails": {
+          "title": "Mr",
+          "forename": "John",
+          "surname": "SMITH"
+        },
+        "parentGuardian": {
+          "individual": {
+            "nameDetails": {
+              "surname": "parentGuardianReaper"
+            },
+            "contactDetails": {
+              "workTelephoneNumber": "12312312302345a23",
+              "homeTelephoneNumber": "abcdef",
+              "mobileTelephoneNumber": "hekf@fgg.com",
+              "primaryEmail": "notgoodprimaryemail",
+              "secondaryEmail": "notgoodsecondaryemail"
+            },
+            "gender": 8
+          },
+          "address": {
+            "address1": "ParentGuardian Address Line 1"
+          }
+        },
+        "dateOfBirth": "1970-02-03",
+        "gender": 9,
+        "observedEthnicity": 1,
+        "ethnicity": "W1",
+        "nationality": "W1",
+        "nationalInsuranceNumber": "SN12345C"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03010",
+            "offenceSequenceNo": 2,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 0,
+            "offenceWording": "Test Prosecution charge wording"
+          },
+          "arrestDate": "2017-05-30",
+          "chargeDate": "2017-05-30"
+        }
+      ]
+    },
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1",
+          "postcode": "CR0 1XX"
+        }
+      },
+      "organisation": {
+        "organisationName": "Organisation Defendant",
+        "companyTelephoneNumber": "abcdef"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03010",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 4,
+            "offenceWording": "Test Prosecution charge wording"
+          },
+          "arrestDate": "2017-05-30",
+          "chargeDate": "2017-05-30"
+        }
+      ]
+    }
+  ]
+}

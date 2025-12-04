@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject-ptph.json",
+  "type": "object",
+  "description": "Identifies the case to which the PTPH form is associated to.",
+  "properties": {
+    "urn": {
+      "description": "The prosecuting authorities’ unique reference for a prosecution case  ",
+      "type": "string",
+      "maxLength": 36
+    },
+    "prosecutingAuthority": {
+      "description": "The OU Code of the prosecuting authority that has initiated court proceedings for the case",
+      "type": "string",
+      "maxLength": 7
+    }
+  },
+  "required": [
+    "urn",
+    "prosecutingAuthority"
+  ],
+  "additionalProperties": false
+}

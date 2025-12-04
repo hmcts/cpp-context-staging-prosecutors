@@ -1,0 +1,226 @@
+{
+  "prosecutionSubmissionDetails": {
+    "urn": "TVL54321",
+    "prosecutingAuthority": "PROSECUTING_AUTHORITY",
+    "informant": "Adam",
+    "caseMarker": "HT",
+    "hearingDetails": {
+      "courtHearingLocation": "B01BH00",
+      "dateOfHearing": "2019-08-11",
+      "timeOfHearing": "09:01:01.001"
+    },
+    "writtenChargePostingDate": "2015-04-04"
+  },
+  "defendants": [
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "asn": "SummonsNumber001",
+        "prosecutorCosts": "20.99",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "numPreviousConvictions": 3,
+        "address": {
+          "address1": "Address Line 1",
+          "address2": "Address Line 2",
+          "address3": "Address Line 3",
+          "address4": "Address Line 4",
+          "address5": "Address Line 5",
+          "postcode": "PG0 1XXXX"
+        },
+        "pncIdentifier": "2099A1234567",
+        "croNumber": "123456A20L"
+      },
+      "individual": {
+        "languageRequirement": "no special language needs",
+        "specificRequirements": "no special needs",
+        "nameDetails": {
+          "title": "Mr",
+          "forename": "John",
+          "forename2": "Adam",
+          "forename3": "Theodore",
+          "surname": "SMITH"
+        },
+        "contactDetails": {
+          "workTelephoneNumber": "12312312302345a23",
+          "homeTelephoneNumber": "abcdef",
+          "mobileTelephoneNumber": "hekf@fgg.com",
+          "primaryEmail": "notgoodprimaryemail",
+          "secondaryEmail": "notgoodsecondaryemail"
+        },
+        "parentGuardian": {
+          "organisation": {
+            "organisationName": "Parent guardian organisation",
+            "companyTelephoneNumber": "12312312302345a23"
+          },
+          "address": {
+            "address1": "ParentGuardian Address Line 1",
+            "postcode": "abcdef"
+          }
+        },
+        "aliases": [
+          {
+            "title": "Mr",
+            "forename": "AliasJack",
+            "forename2": "AliasAaron",
+            "forename3": "Sr",
+            "surname": "AliasReaper"
+          }
+        ],
+        "dateOfBirth": "1970-02-03",
+        "ethnicity": "W1",
+        "nationality": "GBR",
+        "additionalNationality": "POL",
+        "gender": 6,
+        "occupation": "TA",
+        "occupationCode": 666,
+        "driverNumber": "KER99861065SE9RM",
+        "nationalInsuranceNumber": "SN123456123"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03014",
+            "offenceSequenceNo": 0,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceCommittedEndDate": "2020-06-11",
+            "alcoholRelatedOffence": {
+              "alcoholOrDrugLevelMethod": "1",
+              "alcoholOrDrugLevelAmount": 3
+            },
+            "offenceDateCode": 7,
+            "offenceLocation": "Croydon",
+            "offenceWording": "Test Prosecution charge wording",
+            "offenceWordingWelsh": "Test Prosecution charge wording in Welsh",
+            "backDutyDateFrom": "2018-04-09",
+            "backDutyDateTo": "2018-05-09"
+          },
+          "chargeDate": "2017-05-30",
+          "statementOfFacts": "Test Prosecution statements of facts",
+          "statementOfFactsWelsh": "Welsh -Test Prosecution statements of facts"
+        }
+      ]
+    },
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "asn": "SummonsNumber001",
+        "prosecutorCosts": "20.99",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "numPreviousConvictions": 3,
+        "address": {
+          "address1": "Address Line 1",
+          "address2": "Address Line 2",
+          "address3": "Address Line 3",
+          "address4": "Address Line 4",
+          "address5": "Address Line 5",
+          "postcode": "CR0 1XX"
+        }
+      },
+      "individual": {
+        "languageRequirement": "no special language needs",
+        "specificRequirements": "no special needs",
+        "nameDetails": {
+          "title": "Mr",
+          "forename": "John",
+          "forename2": "Adam",
+          "forename3": "Theodore",
+          "surname": "SMITH"
+        },
+        "contactDetails": {
+          "workTelephoneNumber": "1231231230",
+          "homeTelephoneNumber": "1231231230",
+          "mobileTelephoneNumber": "1231231230",
+          "primaryEmail": "aer@af.com",
+          "secondaryEmail": "aer@af.com"
+        },
+        "parentGuardian": {
+          "individual": {
+            "nameDetails": {
+              "surname": "parentGuardianReaper"
+            },
+            "contactDetails": {
+              "workTelephoneNumber": "12312312302345a23",
+              "homeTelephoneNumber": "abcdef",
+              "mobileTelephoneNumber": "hekf@fgg.com",
+              "primaryEmail": "notgoodprimaryemail",
+              "secondaryEmail": "notgoodsecondaryemail"
+            },
+            "gender": 8
+          },
+          "address": {
+            "address1": "ParentGuardian Address Line 1"
+          }
+        },
+        "aliases": [
+          {
+            "title": "Mr",
+            "forename": "AliasJack",
+            "forename2": "AliasAaron",
+            "forename3": "Sr",
+            "surname": "AliasReaper"
+          }
+        ],
+        "dateOfBirth": "1970-02-03",
+        "ethnicity": "W1",
+        "nationality": "GBR",
+        "additionalNationality": "POL",
+        "gender": 1,
+        "occupation": "TA",
+        "occupationCode": 666,
+        "driverNumber": "KER99861065SE9RM",
+        "nationalInsuranceNumber": "SN12345C"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03014",
+            "offenceSequenceNo": 2,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceCommittedEndDate": "2020-06-11",
+            "alcoholRelatedOffence": {
+              "alcoholOrDrugLevelMethod": "1",
+              "alcoholOrDrugLevelAmount": 3
+            },
+            "offenceDateCode": 0,
+            "offenceLocation": "Croydon",
+            "offenceWording": "Test Prosecution charge wording",
+            "offenceWordingWelsh": "Test Prosecution charge wording in Welsh",
+            "backDutyDateFrom": "2018-04-09",
+            "backDutyDateTo": "2018-05-09"
+          },
+          "chargeDate": "2017-05-30",
+          "statementOfFacts": "Test Prosecution statements of facts",
+          "statementOfFactsWelsh": "Welsh -Test Prosecution statements of facts"
+        }
+      ]
+    },
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1"
+        }
+      },
+      "organisation": {
+        "organisationName": "Organisation Defendant",
+        "companyTelephoneNumber": "abcdef"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03014",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 4,
+            "offenceWording": "Test Prosecution charge wording"
+          },
+          "chargeDate": "2017-05-30"
+        }
+      ]
+    }
+  ]
+}

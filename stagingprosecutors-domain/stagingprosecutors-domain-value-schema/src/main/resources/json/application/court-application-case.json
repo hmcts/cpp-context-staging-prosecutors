@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/court-application-case.json",
+  "type": "object",
+  "properties": {
+    "caseURN": {
+      "description": "The SPI-IN URN for the associated Case",
+      "type": "string"
+    },
+    "prosecutorOuCode": {
+      "description": "The OU Code for the Prosecuting Authority of the Case",
+      "type": "string"
+    }
+  },
+  "required": [
+    "caseURN",
+    "prosecutorOuCode"
+  ],
+  "additionalProperties": false
+}

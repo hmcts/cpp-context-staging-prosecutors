@@ -1,0 +1,41 @@
+{
+  "caseDetails": {
+    "caseId": "65a6e015-c593-487e-9845-8c557f60afa9",
+    "caseMarkers": [],
+    "initiationCode": "C",
+    "dateReceived": "generated dynamically",
+    "originatingOrganisation": "B01BH00",
+    "prosecutor": {
+      "prosecutingAuthority": "B01BH00"
+    },
+    "prosecutorCaseReference": "TVL54321"
+  },
+  "channel": "CPPI",
+  "externalId": "generated dynamically",
+  "defendants": [{
+    "address": {
+      "address1": "Address Line 1"
+    },
+    "documentationLanguage": "E",
+    "hearingLanguage": "E",
+    "id": "f6748ba5-bd7c-4ec5-943e-721988d9f6e1",
+    "initialHearing": {
+      "courtHearingLocation": "B01BH00",
+      "dateOfHearing": "2019-08-11",
+      "timeOfHearing": "09:01:01.001"
+    },
+    "offences": [{
+      "chargeDate": "2017-05-30",
+      "arrestDate": "2017-05-30",
+      "offenceCode": "CA03014",
+      "offenceCommittedDate": "2019-06-11",
+      "offenceDateCode": 4,
+      "offenceId": "33578505-dbee-4b00-87b0-8095acb0dc67",
+      "offenceSequenceNumber": 1,
+      "offenceWording": "Test Prosecution charge wording"
+    }],
+    "organisationName": "HMCTS",
+    "prosecutorDefendantReference": "TFLDEF001"
+  }],
+  "_metadata": {}
+}
