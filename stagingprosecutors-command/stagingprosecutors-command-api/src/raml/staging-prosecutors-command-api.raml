@@ -1,0 +1,366 @@
+#%RAML 0.8
+title: Staging Prosecutors Command API
+baseUri: http://localhost:8080/stagingprosecutors-command-api/command/api/rest/stagingprosecutors
+
+/v1/prosecutions:
+  description: |
+      Submit sjp prosecution
+  post:
+    description: |
+      ...
+      (mapping):
+          requestType: application/vnd.hmcts.cjs.sjp-prosecution+json
+          name: hmcts.cjs.sjp-prosecution
+      ...
+    body:
+      application/vnd.hmcts.cjs.sjp-prosecution+json:
+        schema: !include json/schema/sjp-v1/hmcts.cjs.sjp-prosecution-v1.json
+        example: !include json/example/hmcts.cjs.sjp-prosecution-v1.json
+    responses:
+      500:
+        description: Internal Server Error
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+
+/v2/prosecutions/{oucode}:
+  description: |
+      Submit prosecution
+  post:
+    description: |
+      ...
+      (mapping):
+          requestType: application/vnd.hmcts.cjs.sjp-prosecution.v2+json
+          name: hmcts.cjs.sjp-prosecution.v2
+      (mapping):
+          requestType: application/vnd.hmcts.cjs.summons-prosecution.v2+json
+          name: hmcts.cjs.summons-prosecution.v2
+      (mapping):
+          requestType: application/vnd.hmcts.cjs.charge-prosecution.v2+json
+          name: hmcts.cjs.charge-prosecution.v2
+      (mapping):
+          requestType: application/vnd.hmcts.cjs.requisition-prosecution.v2+json
+          name: hmcts.cjs.requisition-prosecution.v2
+      ...
+    body:
+      application/vnd.hmcts.cjs.sjp-prosecution.v2+json:
+        schema: !include json/schema/hmcts.cjs.sjp-prosecution.json
+        example: !include json/example/hmcts.cjs.sjp-prosecution.json
+      application/vnd.hmcts.cjs.summons-prosecution.v2+json:
+        schema: !include json/schema/summons/hmcts.cjs.summons-prosecution.json
+        example: !include json/example/hmcts.cjs.summons-prosecution.json
+      application/vnd.hmcts.cjs.charge-prosecution.v2+json:
+        schema: !include json/schema/charge/hmcts.cjs.charge-prosecution.json
+        example: !include json/example/hmcts.cjs.charge-prosecution.json
+      application/vnd.hmcts.cjs.requisition-prosecution.v2+json:
+        schema: !include json/schema/requisition/hmcts.cjs.requisition-prosecution.json
+        example: !include json/example/hmcts.cjs.requisition-prosecution.json
+    responses:
+      500:
+        description: Internal Server Error
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+
+/v1/prosecutions/{caseUrn}/materials:
+  post:
+    description: |
+      Upload a case document
+      ...
+      (mapping):
+        requestType: multipart/form-data
+        name: stagingprosecutors.submit-material
+      ...
+    body:
+      multipart/form-data:
+        formParameters:
+          material:
+            description: The uploaded material in binary format
+            type: file
+    responses:
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+      400:
+        description: Bad Request
+      500:
+        description: Internal Server Error
+
+/v2/prosecutions/{caseUrn}/materials/{oucode}:
+  post:
+    description: |
+      Upload a case document
+      ...
+      (mapping):
+        requestType: multipart/form-data
+        name: stagingprosecutors.submit-material.v2
+      ...
+    body:
+      multipart/form-data:
+        formParameters:
+          material:
+            description: The uploaded material in binary format
+            type: file
+    responses:
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+      400:
+        description: Bad Request
+      500:
+        description: Internal Server Error
+
+/v2/prosecutions/{ptiUrn}/materials:
+   post:
+     description: |
+       Upload a case document
+       ...
+       (mapping):
+         requestType: multipart/form-data
+         name: stagingprosecutors.submit-material-with-ptiurn
+       ...
+     body:
+       multipart/form-data:
+         formParameters:
+           material:
+             description: The uploaded material in binary format
+             type: file
+     responses:
+       202:
+         description: Accepted
+         body:
+           application/json:
+             schema: !include json/schema/stagingprosecutors.submit-material-with-ptiurn.json
+             example: !include json/example/stagingprosecutors.submit-prosecution-with-ptiurn.json
+       400:
+         description: Bad Request
+       500:
+         description: Internal Server Error
+
+/v3/prosecutions/materials/{ouCode}:
+  post:
+    description: |
+      Upload a case document
+      ...
+      (mapping):
+        requestType: multipart/form-data
+        name: stagingprosecutors.submit-material-v3
+      ...
+    body:
+      multipart/form-data:
+        formParameters:
+          material:
+            description: The uploaded material in binary format
+            type: file
+    responses:
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+      400:
+        description: Bad Request
+      500:
+        description: Internal Server Error
+
+/v1/prosecutions/cps/{caseUrn}/materials:
+  post:
+    description: |
+      Upload a case document
+      ...
+      (mapping):
+        requestType: multipart/form-data
+        name: stagingprosecutors.submit-material-cps.v1
+      ...
+    body:
+      multipart/form-data:
+        formParameters:
+          material:
+            description: The uploaded material in binary format
+            type: file
+    responses:
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/cps-material-response.json
+            example: !include json/example/cps-material-response.json
+      400:
+        description: Bad Request
+      500:
+        description: Internal Server Error
+
+/v1/prosecutions/cps-xml/materials:
+  post:
+    description: |
+      Upload a case document
+      ...
+      (mapping):
+        requestType: application/xml
+        name: hmcts.cjs.cps-submit-material
+      ...
+    body:
+      application/xml:
+    responses:
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+      400:
+        description: Bad Request
+      500:
+        description: Internal Server Error
+
+/SubmitApplication:
+  post:
+      description: |
+        Intitiate court application.
+        ...
+        (mapping):
+            requestType: application/vnd.stagingprosecutors.submit-application+json
+            name: stagingprosecutors.submit-application
+        ...
+      body:
+        application/vnd.stagingprosecutors.submit-application+json:
+            example: !include json/example/stagingprosecutors.submit-application.json
+            schema: !include json/schema/stagingprosecutors.submit-application.json
+      responses:
+            202:
+                description: OK
+
+/v1/servePet:
+  description: |
+      CPS Serve PET
+  post:
+    description: |
+      ...
+      (mapping):
+        requestType: application/vnd.stagingprosecutors.cps-serve-pet+json
+        name: stagingprosecutors.cps-serve-pet
+      ...
+    body:
+      application/vnd.stagingprosecutors.cps-serve-pet+json:
+        schema: !include json/schema/stagingprosecutors.cps-serve-pet.json
+        example: !include json/example/stagingprosecutors.cps-serve-pet.json
+    responses:
+      500:
+        description: Internal Server Error
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+
+/v1/serveBcm:
+  description: |
+      CPS Serve Bcm
+  post:
+    description: |
+      ...
+      (mapping):
+        requestType: application/vnd.stagingprosecutors.cps-serve-bcm+json
+        name: stagingprosecutors.cps-serve-bcm
+      ...
+    body:
+      application/vnd.stagingprosecutors.cps-serve-bcm+json:
+        schema: !include json/schema/stagingprosecutors.cps-serve-bcm.json
+        example: !include json/example/stagingprosecutors.cps-serve-bcm.json
+    responses:
+      500:
+        description: Internal Server Error
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+
+/v1/servePtph:
+  description: |
+      CPS Serve PTPH
+  post:
+    description: |
+      ...
+      (mapping):
+        requestType: application/vnd.stagingprosecutors.cps-serve-ptph+json
+        name: stagingprosecutors.cps-serve-ptph
+      ...
+    body:
+      application/vnd.stagingprosecutors.cps-serve-ptph+json:
+        schema: !include json/schema/stagingprosecutors.cps-serve-ptph.json
+        example: !include json/example/stagingprosecutors.cps-serve-ptph.json
+    responses:
+      500:
+        description: Internal Server Error
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+
+
+/v1/serveCotr:
+  description: |
+      CPS Serve COTR
+  post:
+    description: |
+      ...
+      (mapping):
+        requestType: application/vnd.stagingprosecutors.cps-serve-cotr+json
+        name: stagingprosecutors.cps-serve-cotr
+      ...
+    body:
+      application/vnd.stagingprosecutors.cps-serve-cotr+json:
+        schema: !include json/schema/stagingprosecutors.cps-serve-cotr.json
+        example: !include json/example/stagingprosecutors.cps-serve-cotr.json
+    responses:
+      500:
+        description: Internal Server Error
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json
+
+
+/v1/updateCotr/{cotrSubmissionId}:
+  description: |
+      CPS Update COTR
+  post:
+    description: |
+      ...
+      (mapping):
+        requestType: application/vnd.stagingprosecutors.cps-update-cotr+json
+        name: stagingprosecutors.cps-update-cotr
+      ...
+    body:
+      application/vnd.stagingprosecutors.cps-update-cotr+json:
+        schema: !include json/schema/stagingprosecutors.cps-update-cotr.json
+        example: !include json/example/stagingprosecutors.cps-update-cotr.json
+    responses:
+      500:
+        description: Internal Server Error
+      202:
+        description: Accepted
+        body:
+          application/json:
+            schema: !include json/schema/stagingprosecutors.url-response.json
+            example: !include json/example/stagingprosecutors.url-response.json

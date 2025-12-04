@@ -1,0 +1,629 @@
+{
+  "applicationSubmitted": {
+    "boxHearingRequest": {
+      "applicationDueDate": "2022-04-04",
+      "courtCentre": {
+        "code": "B01LY00",
+        "name": "Lavender Hill Magistrates' Court"
+      },
+      "jurisdictionType": "MAGISTRATES",
+      "sendAppointmentLetter": true
+    },
+    "courtApplication": {
+      "applicant": {
+        "id": "2424a89e-29d0-409a-b89c-abdf4651e151",
+        "isSubject": false,
+        "organisation": {
+          "address": {
+            "address1": "oYf9BVgFGy",
+            "address2": "StreetDescription",
+            "address3": "Locality2O",
+            "address4": "Locality22",
+            "address5": "Locality24",
+            "postcode": "CR0 5QT"
+          },
+          "contact": {
+            "fax": "02011111111",
+            "home": "02012345678",
+            "mobile": "07777777777",
+            "primaryEmail": "Police@email.com",
+            "secondaryEmail": "Police@email.com",
+            "work": "02012345679"
+          },
+          "incorporationNumber": "Police",
+          "name": "Police",
+          "registeredCharityNumber": "Police"
+        },
+        "organisationPersons": [
+          {
+            "person": {
+              "address": {
+                "address1": "oYf9BVgFGy",
+                "address2": "StreetDescription",
+                "address3": "Locality2O",
+                "address4": "Locality22",
+                "address5": "Locality24",
+                "postcode": "CR0 5QT"
+              },
+              "contact": {
+                "fax": "02011111111",
+                "home": "02012345678",
+                "mobile": "07777777777",
+                "primaryEmail": "Police@email.com",
+                "secondaryEmail": "Police@email.com",
+                "work": "02012345679"
+              },
+              "dateOfBirth": "1944-03-04",
+              "documentationLanguageNeeds": "ENGLISH",
+              "firstName": "Robert",
+              "gender": "MALE",
+              "interpreterLanguageNeeds": "ENGLISH",
+              "lastName": "Ormsby",
+              "middleName": "Jr",
+              "nationalInsuranceNumber": "NH222222B",
+              "specificRequirements": "wheelchair access",
+              "title": "Mr"
+            },
+            "role": "role"
+          }
+        ]
+      },
+      "applicationDecisionSoughtByDate": "2022-04-04",
+      "applicationParticulars": "Application within Criminal Proceedings",
+      "courtApplicationCases": [
+        {
+          "caseURN": "17GD4810422",
+          "prosecutorOuCode": "0300000"
+        }
+      ],
+      "courtApplicationPayment": {
+        "isFeeExempt": true,
+        "isFeePaid": true,
+        "isFeeUndertakingAttached": false,
+        "paymentReference": "53156fa4-0588-41aa-994d-7ffee1d408e5"
+      },
+      "courtApplicationType": {
+        "categoryCode": "CO",
+        "code": "CJ03521",
+        "jurisdiction": "MAGISTRATES"
+      },
+      "id": "0cb97ff0-6fdb-42e6-9641-80425df8c2d9",
+      "outOfTimeReason": "Required if the application is out of time",
+      "respondents": [
+        {
+          "asn": "DTFL",
+          "cpsDefendantId": "78aa0030-05f1-441d-a753-6e230c426dd8",
+          "id": "e02cad75-992d-4550-93c7-1d86fd4a0166",
+          "isDefendantMatched": false,
+          "isSubject": true,
+          "organisation": {
+            "address": {
+              "address1": "oYf9BVgFGy",
+              "address2": "StreetDescription",
+              "address3": "Locality2O",
+              "address4": "Locality22",
+              "address5": "Locality24",
+              "postcode": "CR0 5QT"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "incorporationNumber": "Police",
+            "name": "Police",
+            "registeredCharityNumber": "Police"
+          },
+          "organisationPersons": [
+            {
+              "person": {
+                "address": {
+                  "address1": "oYf9BVgFGy",
+                  "address2": "StreetDescription",
+                  "address3": "Locality2O",
+                  "address4": "Locality22",
+                  "address5": "Locality24",
+                  "postcode": "CR0 5QT"
+                },
+                "contact": {
+                  "fax": "02011111111",
+                  "home": "02012345678",
+                  "mobile": "07777777777",
+                  "primaryEmail": "Police@email.com",
+                  "secondaryEmail": "Police@email.com",
+                  "work": "02012345679"
+                },
+                "dateOfBirth": "1944-03-04",
+                "documentationLanguageNeeds": "ENGLISH",
+                "firstName": "Robert",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "ENGLISH",
+                "lastName": "Ormsby",
+                "nationalInsuranceNumber": "NH222222B",
+                "specificRequirements": "wheelchair access",
+                "title": "Mr"
+              },
+              "role": "role"
+            }
+          ],
+          "personDetails": {
+            "address": {
+              "address1": "oYf9BVgFGy",
+              "address2": "StreetDescription",
+              "address3": "Locality2O",
+              "address4": "Locality22",
+              "address5": "Locality24",
+              "postcode": "CR0 5QT"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "dateOfBirth": "1944-03-04",
+            "documentationLanguageNeeds": "ENGLISH",
+            "firstName": "Robert",
+            "gender": "MALE",
+            "interpreterLanguageNeeds": "ENGLISH",
+            "lastName": "Ormsby",
+            "middleName": "Jr",
+            "nationalInsuranceNumber": "NH222222B",
+            "specificRequirements": "wheelchair access",
+            "title": "Mr"
+          },
+          "representedOrganisation": {
+            "address": {
+              "address1": "Flat 4, Armageddon House",
+              "address2": "13 Old Road",
+              "address3": "Giggleswick",
+              "address4": "Merton",
+              "address5": "London",
+              "postcode": "TA23 1AB"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "incorporationNumber": "Police",
+            "name": "Police",
+            "registeredCharityNumber": "Police"
+          }
+        },
+        {
+          "asn": "DTFL",
+          "cpsDefendantId": "152d4252-3a65-4e9c-b126-0e4e20b00092",
+          "id": "d884555b-a41d-42ed-a649-4fc328005261",
+          "isDefendantMatched": false,
+          "isSubject": false,
+          "organisation": {
+            "address": {
+              "address1": "oYf9BVgFGy",
+              "address2": "StreetDescription",
+              "address3": "Locality2O",
+              "address4": "Locality22",
+              "address5": "Locality24",
+              "postcode": "CR0 5QT"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "incorporationNumber": "Police",
+            "name": "Police",
+            "registeredCharityNumber": "Police"
+          },
+          "organisationPersons": [
+            {
+              "person": {
+                "address": {
+                  "address1": "oYf9BVgFGy",
+                  "address2": "StreetDescription",
+                  "address3": "Locality2O",
+                  "address4": "Locality22",
+                  "address5": "Locality24",
+                  "postcode": "CR0 5QT"
+                },
+                "contact": {
+                  "fax": "02011111111",
+                  "home": "02012345678",
+                  "mobile": "07777777777",
+                  "primaryEmail": "Police@email.com",
+                  "secondaryEmail": "Police@email.com",
+                  "work": "02012345679"
+                },
+                "dateOfBirth": "1944-03-04",
+                "documentationLanguageNeeds": "ENGLISH",
+                "firstName": "Robert",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "ENGLISH",
+                "lastName": "Ormsby",
+                "nationalInsuranceNumber": "NH222222B",
+                "specificRequirements": "wheelchair access",
+                "title": "Mr"
+              },
+              "role": "role"
+            }
+          ],
+          "personDetails": {
+            "address": {
+              "address1": "oYf9BVgFGy",
+              "address2": "StreetDescription",
+              "address3": "Locality2O",
+              "address4": "Locality22",
+              "address5": "Locality24",
+              "postcode": "CR0 5QT"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "dateOfBirth": "1944-03-04",
+            "documentationLanguageNeeds": "ENGLISH",
+            "firstName": "Robert",
+            "gender": "MALE",
+            "interpreterLanguageNeeds": "ENGLISH",
+            "lastName": "Ormsby",
+            "nationalInsuranceNumber": "NH222222B",
+            "specificRequirements": "wheelchair access",
+            "title": "Mr"
+          },
+          "representedOrganisation": {
+            "address": {
+              "address1": "Flat 4, Armageddon House",
+              "address2": "13 Old Road",
+              "address3": "Giggleswick",
+              "address4": "Merton",
+              "address5": "London",
+              "postcode": "TA23 1AB"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "incorporationNumber": "Police",
+            "name": "Police",
+            "registeredCharityNumber": "Police"
+          }
+        }
+      ],
+      "thirdParties": [
+        {
+          "appointmentNotificationRequired": true,
+          "notificationRequired": true,
+          "organisation": {
+            "address": {
+              "address1": "oYf9BVgFGy",
+              "address2": "StreetDescription",
+              "address3": "Locality2O",
+              "address4": "Locality22",
+              "address5": "Locality24",
+              "postcode": "CR0 5QT"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "incorporationNumber": "Police",
+            "name": "Police",
+            "registeredCharityNumber": "Police"
+          },
+          "organisationPersons": [
+            {
+              "person": {
+                "address": {
+                  "address1": "oYf9BVgFGy",
+                  "address2": "StreetDescription",
+                  "address3": "Locality2O",
+                  "address4": "Locality22",
+                  "address5": "Locality24",
+                  "postcode": "CR0 5QT"
+                },
+                "contact": {
+                  "fax": "02011111111",
+                  "home": "02012345678",
+                  "mobile": "07777777777",
+                  "primaryEmail": "Police@email.com",
+                  "secondaryEmail": "Police@email.com",
+                  "work": "02012345679"
+                },
+                "dateOfBirth": "1944-03-04",
+                "documentationLanguageNeeds": "ENGLISH",
+                "firstName": "Robert",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "ENGLISH",
+                "lastName": "Ormsby",
+                "middleName": "Jr",
+                "nationalInsuranceNumber": "NH222222B",
+                "specificRequirements": "wheelchair access",
+                "title": "Mr"
+              },
+              "role": "role"
+            }
+          ],
+          "personDetails": {
+            "address": {
+              "address1": "oYf9BVgFGy",
+              "address2": "StreetDescription",
+              "address3": "Locality2O",
+              "address4": "Locality22",
+              "address5": "Locality24",
+              "postcode": "CR0 5QT"
+            },
+            "contact": {
+              "fax": "02011111111",
+              "home": "02012345678",
+              "mobile": "07777777777",
+              "primaryEmail": "Police@email.com",
+              "secondaryEmail": "Police@email.com",
+              "work": "02012345679"
+            },
+            "dateOfBirth": "1944-03-04",
+            "documentationLanguageNeeds": "ENGLISH",
+            "firstName": "Robert",
+            "gender": "MALE",
+            "interpreterLanguageNeeds": "ENGLISH",
+            "lastName": "Ormsby",
+            "middleName": "Jr",
+            "nationalInsuranceNumber": "NH222222B",
+            "specificRequirements": "wheelchair access",
+            "title": "Mr"
+          },
+          "summonsRequired": false
+        }
+      ]
+    },
+    "prosecutionCases":[
+      {
+        "defendants": [
+          {
+            "associatedPersons": [
+              {
+                "person": {
+                  "additionalNationalityCode": "GBR",
+                  "additionalNationalityDescription": "British",
+                  "additionalNationalityId": "2daefec3-2f76-8109-82d9-2e60544a6c02",
+                  "address": {
+                    "address1": "22",
+                    "address2": "Acacia Avenue",
+                    "address3": "Acacia Town",
+                    "address4": "Acacia City",
+                    "address5": "Acacia Country",
+                    "postcode": "CR7 0AA"
+                  },
+                  "contact": {
+                    "fax": "3425678",
+                    "home": "123456",
+                    "mobile": "+45678910",
+                    "primaryEmail": "harry.kane@spurs.co.uk",
+                    "secondaryEmail": "harry.kane@hotmail.com",
+                    "work": "7891011"
+                  },
+                  "dateOfBirth": "1995-01-01",
+                  "disabilityStatus": "a",
+                  "documentationLanguageNeeds": "WELSH",
+                  "firstName": "Harry",
+                  "gender": "MALE",
+                  "interpreterLanguageNeeds": "Hindi",
+                  "lastName": "Kane",
+                  "middleName": "Jack",
+                  "nationalInsuranceNumber": "NH222222B",
+                  "nationalityCode": "GBR",
+                  "nationalityDescription": "British",
+                  "nationalityId": "2daefec3-2f76-8109-82d9-2e60544a6c02",
+                  "occupation": "Footballer",
+                  "occupationCode": "F",
+                  "title": "DR"
+                },
+                "role": "parent"
+              }
+            ],
+            "courtProceedingsInitiated": "2022-07-18T15:59:59.191Z",
+            "defenceOrganisation": {
+              "name": "defence Organisation abc"
+            },
+            "id": "ce8681c6-dd56-4767-84d1-d39d2231313c",
+            "masterDefendantId": "ce8681c6-dd56-4767-84d1-d39d2231313c",
+            "mitigation": "I was not there",
+            "mitigationWelsh": "I was not there in Welsh",
+            "numberOfPreviousConvictionsCited": 5,
+            "offences": [
+              {
+                "arrestDate": "2018-01-01",
+                "chargeDate": "2018-01-01",
+                "count": 0,
+                "dvlaOffenceCode": "ABC123",
+                "endDate": "2018-01-01",
+                "endorsableFlag": true,
+                "id": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1",
+                "maxPenalty": "Max Penalty",
+                "modeOfTrial": "Summary",
+                "notifiedPlea": {
+                  "notifiedPleaDate": "2018-04-01",
+                  "notifiedPleaValue": "NOTIFIED_GUILTY",
+                  "offenceId": "3789ab16-0bb7-4ef1-87ef-c936bf0364f1"
+                },
+                "offenceCode": "TTH105HY",
+                "offenceDateCode": 4,
+                "offenceDefinitionId": "490dce00-8591-49af-b2d0-1e161e7d0c36",
+                "offenceFacts": {
+                  "alcoholReadingAmount": 111,
+                  "alcoholReadingMethodCode": "2222",
+                  "vehicleRegistration": "AA12345"
+                },
+                "offenceLegislation": "ABCDE",
+                "offenceLegislationWelsh": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+                "offenceTitle": "ABCDE",
+                "offenceTitleWelsh": "ABCDEFGHIJKLMNOP",
+                "orderIndex": 1,
+                "reportingRestrictions": [
+                  {
+                    "id": "3789ab16-e588-4b7f-806a-44dc0eb0e75e",
+                    "label": "Complainant's anonymity protected by virtue of Section 1 of the Sexual Offences Amendment Act 1992",
+                    "orderedDate": "2021-08-28"
+                  },
+                  {
+                    "id": "6fdc9e9d-6f0a-4d02-92e9-bc5765475182",
+                    "label": "Complainant's anonymity protected by virtue of Section 1 of the Sexual Offences Amendment Act 1992",
+                    "orderedDate": "2021-08-28"
+                  }
+                ],
+                "startDate": "2018-01-01",
+                "wording": "No Travel Card",
+                "wordingWelsh": "No Travel Card In Welsh"
+              }
+            ],
+            "personDefendant": {
+              "arrestSummonsNumber": "arrest123",
+              "bailStatus": {
+                "code": "C",
+                "description": "Remanded into Custody",
+                "id": "2593cf09-ace0-4b7d-a746-0703a29f33b5"
+              },
+              "custodyTimeLimit": "2018-01-01",
+              "driverNumber": "AACC12345",
+              "employerOrganisation": {
+                "address": {
+                  "address1": "Disney Road",
+                  "address2": "Disney Town",
+                  "address3": "Disney District",
+                  "address4": "Paris",
+                  "address5": "France",
+                  "postcode": "CR7 0AA"
+                },
+                "contact": {
+                  "fax": "a",
+                  "primaryEmail": "person@hotmail.com",
+                  "secondaryEmail": "associate@hotmail.com",
+                  "work": "0207 654 3246 extn 1234"
+                },
+                "incorporationNumber": "Mickeymouse1",
+                "name": "Disneyland Paris"
+              },
+              "employerPayrollReference": "payyou1234",
+              "perceivedBirthYear": 2015,
+              "personDetails": {
+                "additionalNationalityCode": "GBR",
+                "additionalNationalityDescription": "British",
+                "additionalNationalityId": "2daefec3-2f76-8109-82d9-2e60544a6c02",
+                "address": {
+                  "address1": "22",
+                  "address2": "Acacia Avenue",
+                  "address3": "Acacia Town",
+                  "address4": "Acacia City",
+                  "address5": "Acacia Country",
+                  "postcode": "CR7 0AA"
+                },
+                "contact": {
+                  "fax": "3425678",
+                  "home": "123456",
+                  "mobile": "45678910",
+                  "primaryEmail": "harry.kanejunior@spurs.co.uk",
+                  "secondaryEmail": "harry.kanejunior@hotmail.com",
+                  "work": "7891011"
+                },
+                "dateOfBirth": "2010-01-01",
+                "disabilityStatus": "a",
+                "documentationLanguageNeeds": "WELSH",
+                "ethnicity": {
+                  "observedEthnicityCode": "W2",
+                  "observedEthnicityDescription": "Irish",
+                  "observedEthnicityId": "2daefec3-2f76-8109-82d9-2e60544a6c02",
+                  "selfDefinedEthnicityCode": "W2",
+                  "selfDefinedEthnicityDescription": "Irish",
+                  "selfDefinedEthnicityId": "2daefec3-2f76-8109-82d9-2e60544a6c02"
+                },
+                "firstName": "Harry",
+                "gender": "MALE",
+                "interpreterLanguageNeeds": "Welsh",
+                "lastName": "Kane Junior",
+                "middleName": "Jack",
+                "nationalInsuranceNumber": "NH323232B",
+                "nationalityCode": "GBR",
+                "nationalityDescription": "British",
+                "nationalityId": "2daefec3-2f76-8109-82d9-2e60544a6c02",
+                "occupation": "Kid",
+                "occupationCode": "F",
+                "specificRequirements": "Screen",
+                "title": "DR"
+              }
+            },
+            "pncId": "1234567",
+            "prosecutionAuthorityReference": "TFL12345-ABC",
+            "prosecutionCaseId": "184c2491-1d4b-41d0-ac3b-7ce41ce69fde",
+            "witnessStatement": "he did not do it",
+            "witnessStatementWelsh": "he did not do it in Welsh"
+          }
+        ],
+        "id": "184c2491-1d4b-41d0-ac3b-7ce41ce69fde",
+        "initiationCode": "J",
+        "originatingOrganisation": "G01FT01AB",
+        "prosecutionCaseIdentifier": {
+          "address": {
+            "address1": "6th Floor Windsor House",
+            "address2": "42-50 Victoria Street",
+            "address3": "London",
+            "postcode": "SW1H 0TL"
+          },
+          "contact": {
+            "primaryEmail": "test@test.com"
+          },
+          "majorCreditorCode": "TFL2",
+          "prosecutionAuthorityCode": "TFL",
+          "prosecutionAuthorityId": "cf73207f-3ced-488a-82a0-3fba79c2ce85",
+          "prosecutionAuthorityName": "Transport for London",
+          "prosecutionAuthorityOUCode": "GB10056",
+          "prosecutionAuthorityReference": "d4d75c4c"
+        },
+        "statementOfFacts": "You did it",
+        "statementOfFactsWelsh": "You did it in Welsh"
+      }
+    ]
+
+  },
+  "errorDetails": {
+    "errorDetails": [
+      {
+        "errorCode": "APPLICATION_DUE_DATE_INVALID",
+        "errorDescription": "Application due date is invalid."
+      },
+      {
+        "errorCode": "CASE_NOT_FOUND",
+        "errorDescription": "Case URN is invalid or unknown."
+      },
+      {
+        "errorCode": "DEFENDANT_ASN_NOT_FOUND",
+        "errorDescription": "Defendant ASN is invalid or not found"
+      },
+      {
+        "errorCode": "DEFENDANT_DETAILS_NOT_FOUND",
+        "errorDescription": "Defendant details not found."
+      }
+    ]
+  }
+}

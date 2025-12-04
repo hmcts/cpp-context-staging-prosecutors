@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://moj.gov.uk/cps/progression/domain/event/public.progression.cotr-created.json",
+  "type": "object",
+  "properties": {
+    "submissionId": {
+      "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/uuid"
+    },
+    "cotrId": {
+      "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/uuid"
+    }
+  },
+  "required": [
+    "submissionId",
+    "cotrId"
+  ],
+  "additionalProperties": false
+}

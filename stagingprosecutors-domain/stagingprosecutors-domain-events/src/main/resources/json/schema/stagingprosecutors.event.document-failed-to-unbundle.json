@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/document-failed-to-unbundle.json",
+  "type": "object",
+  "properties": {
+    "caseId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "prosecutorDefendantId": {
+      "type": "string",
+      "maxLength": 36
+    },
+    "prosecutingAuthority": {
+      "type": "string",
+      "description": "Identifies the Prosecuting Organisation responsible for initiating the case.",
+      "maxLength": 36
+    },
+    "errorMessage": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "caseId",
+    "prosecutorDefendantId",
+    "errorMessage"
+  ],
+  "additionalProperties": false
+}

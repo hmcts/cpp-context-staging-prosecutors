@@ -1,0 +1,27 @@
+{
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "material": "2191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "materialContentType": "text/plain",
+  "materialName": "defendant document",
+  "submissionStatus": "PENDING",
+  "materialType": "SJPN",
+  "fileName": "Material-File",
+  "sectionOrderSequence": 1,
+  "caseSubFolderName": "Defendant-Material",
+  "exhibit": {
+    "reference": "test-reference"
+  },
+  "witnessStatement": {
+    "statementNumber": 2,
+    "dateTaken": "2021-03-09T14:30:04.881Z"
+  },
+  "tag": [
+    {
+      "code": "M35"
+    }
+  ],
+  "courtApplicationSubject": {
+    "courtApplicationId" : "39744949-7a63-4b8a-a564-b94cddda0771"
+  }
+}
+

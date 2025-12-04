@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/public.stagingprosecutors.cps-serve-bcm-received.json",
+  "type": "object",
+  "properties": {
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+      "description": "Identifies the case to which the form is associated to"
+    },
+    "defendantOffencesSubjects": {
+      "description": "Identifies the defendant and offences to which the form is associated to",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-offences-subjects.json"
+      }
+    },
+    "tag": {
+      "type": "string"
+    },
+    "evidencePrePTPH": {
+      "type": "string"
+    },
+    "evidencePostPTPH": {
+      "type": "string"
+    },
+    "otherInformation": {
+      "type": "string"
+    },
+    "submissionId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "submissionStatus": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/definitions.json#/definitions/submissionStatus"
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "prosecutionCaseSubject",
+        "defendantOffencesSubjects",
+        "evidencePrePTPH",
+        "submissionId"
+      ]
+    },
+    {
+      "required": [
+        "prosecutionCaseSubject",
+        "defendantOffencesSubjects",
+        "evidencePostPTPH",
+        "submissionId"
+      ]
+    },
+    {
+      "required": [
+        "prosecutionCaseSubject",
+        "defendantOffencesSubjects",
+        "otherInformation",
+        "submissionId"
+      ]
+    }
+  ],
+  "additionalProperties": true
+}

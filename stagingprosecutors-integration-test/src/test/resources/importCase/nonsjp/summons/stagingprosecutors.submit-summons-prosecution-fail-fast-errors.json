@@ -1,0 +1,87 @@
+{
+  "prosecutionSubmissionDetails": {
+    "summonsCode": "A",
+    "urn": "TVL54321",
+    "prosecutingAuthority": "PROSECUTING_AUTHORITY",
+    "informant": "Adam",
+    "hearingDetails": {
+      "courtHearingLocation": "B01BH00",
+      "dateOfHearing": "2019-08-11",
+      "timeOfHearing": "09:01:01.001"
+    }
+  },
+  "defendants": [
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "PROSECUTORDEFENDANTID1",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1"
+        }
+      },
+      "individual": {
+        "nameDetails": {
+          "title": "Mr",
+          "forename": "John",
+          "surname": "SMITH"
+        },
+        "dateOfBirth": "1970-02-03",
+        "gender": 1
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03010",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 4,
+            "offenceWording": "Test Prosecution charge wording"
+          }
+        },
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03014",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 4,
+            "offenceWording": "Test Prosecution charge wording"
+          }
+        }
+      ]
+    },
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "PROSECUTORDEFENDANTID1",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1"
+        }
+      },
+      "organisation": {
+        "organisationName": "HMCTS"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03015",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 4,
+            "offenceWording": "Test Prosecution charge wording"
+          }
+        },
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03015",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 4,
+            "offenceWording": "Test Prosecution charge wording"
+          }
+        }
+      ]
+    }
+  ]
+}

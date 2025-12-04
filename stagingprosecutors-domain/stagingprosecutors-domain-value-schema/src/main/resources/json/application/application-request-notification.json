@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/application-request-notification.json",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "description": "Unique identifier for the application",
+      "type": "string"
+    },
+    "applicationStatus": {
+      "description": "The status of the application requesting Common Platform",
+      "type": "string"
+    },
+    "validationErrorType": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/validation-error-type.json"
+    },
+    "caseDefendantIndividuals": {
+      "description": "Details of the defendants listed against the linked Case who are individuals",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/case-defendant-individual.json"
+      }
+    },
+    "caseDefendantOrganisations": {
+      "description": "Details of the defendants listed against the linked Case who are organisations",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/case-defendant-organisation.json"
+      }
+    }
+  },
+  "required": [
+    "applicationId",
+    "applicationStatus"
+  ],
+  "additionalProperties": false
+}

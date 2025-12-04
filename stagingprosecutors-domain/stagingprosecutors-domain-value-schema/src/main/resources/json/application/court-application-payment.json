@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/court-application-payment.json",
+  "type": "object",
+  "properties": {
+    "isFeePaid": {
+      "description": "Indicates if a fee has been paid",
+      "type": "boolean"
+    },
+    "isFeeExempt": {
+      "description": "Indicates if a fee has not been paid due to exemption",
+      "type": "boolean"
+    },
+    "isFeeUndertakingAttached": {
+      "description": "Indicates if a fee undertaking document will be provided",
+      "type": "boolean"
+    },
+    "paymentReference": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "isFeePaid",
+    "isFeeExempt",
+    "isFeeUndertakingAttached"
+  ],
+  "additionalProperties": false
+}

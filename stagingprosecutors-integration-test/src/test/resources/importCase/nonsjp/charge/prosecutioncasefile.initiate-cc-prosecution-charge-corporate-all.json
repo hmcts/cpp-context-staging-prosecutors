@@ -1,0 +1,97 @@
+{
+  "caseDetails": {
+    "caseId": "02886906-b862-4a86-a1ac-0dfa11ccb5a8",
+    "caseMarkers": [
+      {
+        "markerTypeCode": "HT"
+      }
+    ],
+    "initiationCode": "C",
+    "dateReceived": "generated dynamically",
+    "originatingOrganisation": "B01BH00",
+    "prosecutor": {
+      "informant": "Adam",
+      "prosecutingAuthority": "B01BH00"
+    },
+    "prosecutorCaseReference": "TVL54321"
+  },
+  "channel": "CPPI",
+  "externalId": "generated dynamically",
+  "defendants": [
+    {
+      "address": {
+        "address1": "Address Line 1",
+        "address2": "Address Line 2",
+        "address3": "Address Line 3",
+        "address4": "Address Line 4",
+        "address5": "Address Line 5",
+        "postcode": "CR0 1XX"
+      },
+      "aliasForCorporate":[
+        "MOJ",
+        "MINSTRY"
+      ],
+      "appliedProsecutorCosts":20.99,
+      "asn": "SummonsNumber001",
+      "croNumber": "SF20/123456M",
+      "documentationLanguage": "E",
+      "hearingLanguage": "E",
+      "id": "86c92c90-e765-4d4d-a3eb-3bb618775141",
+      "initialHearing": {
+        "courtHearingLocation": "B01BH00",
+        "dateOfHearing": "2019-08-11",
+        "timeOfHearing": "09:01:01.001"
+      },
+      "numPreviousConvictions": 3,
+      "offences": [
+        {
+          "alcoholRelatedOffence":{
+            "alcoholLevelAmount":3,
+            "alcoholLevelMethod":"B"
+          },
+          "backDutyDateFrom": "2018-04-09",
+          "backDutyDateTo": "2018-05-09",
+          "chargeDate": "2017-05-30",
+          "arrestDate": "2017-05-30",
+          "offenceCode": "CA03012",
+          "offenceCommittedDate": "2019-06-11",
+          "offenceCommittedEndDate": "2020-06-11",
+          "offenceDateCode": 4,
+          "offenceId": "c366599c-d17c-4518-bed4-7d071eb4917c",
+          "offenceLocation": "Croydon",
+          "offenceSequenceNumber": 1,
+          "offenceWording": "Test Prosecution charge wording",
+          "offenceWordingWelsh": "Test Prosecution charge wording in Welsh",
+          "vehicleMake": "Ford",
+          "vehicleRegistrationMark": "AA11 ABC"
+        },
+        {
+          "alcoholRelatedOffence":{
+            "alcoholLevelAmount":3,
+            "alcoholLevelMethod":"A"
+          },
+          "backDutyDateFrom": "2018-04-09",
+          "backDutyDateTo": "2018-05-09",
+          "chargeDate": "2017-05-30",
+          "arrestDate": "2017-05-30",
+          "offenceCode": "CA03013",
+          "offenceCommittedDate": "2019-06-12",
+          "offenceCommittedEndDate": "2020-06-12",
+          "offenceDateCode": 4,
+          "offenceId": "aa2b6b93-9cbd-4cc1-8205-ff1928417885",
+          "offenceLocation": "Croydon",
+          "offenceSequenceNumber": 2,
+          "offenceWording": "Test Prosecution charge wording",
+          "offenceWordingWelsh": "Test Prosecution charge wording in Welsh",
+          "vehicleMake": "Toyota",
+          "vehicleRegistrationMark": "BB11 ABC"
+        }
+      ],
+      "organisationName": "HMCTS",
+      "pncIdentifier": "1981/98765432",
+      "prosecutorDefendantReference": "DEFENDANTID1",
+      "telephoneNumberBusiness": "07894278021"
+    }
+  ],
+  "_metadata": {}
+}

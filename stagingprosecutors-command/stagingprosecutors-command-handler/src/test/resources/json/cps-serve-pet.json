@@ -1,0 +1,60 @@
+{
+  "submissionId": "7e2f843e-d639-40b3-8611-8015f3a18958",
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "The OU Code of the prosecuting authority"
+  },
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorDefendantId": "defendant Id"
+      },
+      "offences": [
+        {
+          "cjsOffenceCode": "offenceCode",
+          "offenceDate" : "2021-09-27",
+          "offenceWording": "offenceWording"
+        }
+      ]
+    }
+  ],
+  "doesTheProsecutorIntendToServeMoreEvidence": "Y",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigation": "Y",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigationDetails": "Details",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith": "Y",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWithStateWhenThisWas": "detils",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitation": "Y",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitationDetails": "Details",
+  "prosecutionWillRelyOn": [
+    "Defendant admissions in interview",
+    "Defendant failure to mention facts in interviews",
+    "A summary of the defendant interview",
+    "A record of the defendants interview"
+  ],
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom": "Y",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoomDetails": "Details",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFactDetails": "Details",
+  "courtToArrangeADiscussionOfGroundRulesForQuestioning": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirectionDetails": "Details",
+  "additionalInformation": "additional Information",
+  "parentGuardianToAttend": true,
+  "Witnesses": [
+    {
+      "title": "Mr",
+      "forename": "forename",
+      "forename2": "xyz",
+      "forename3": "abc",
+      "surname": "abc",
+      "ageIfUnder18": 14,
+      "dateOfBirth": "1980-01-24",
+      "interpreterRequired": true,
+      "interpreterLanguageDialect": "welsh",
+      "welshLanguage": false,
+      "prosecutionWitnessRequiringAssistanceSpecialMeasures": "Y",
+      "prosecutionWitnessRequiringAssistanceSpecialMeasuresDetails": "details",
+      "prosecutionRequireAttendance": true
+    }
+  ]
+}

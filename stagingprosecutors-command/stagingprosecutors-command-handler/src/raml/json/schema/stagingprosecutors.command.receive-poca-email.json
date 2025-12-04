@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://uk.gov.moj.cpp/staging/prosecutors/json/schemas/receive-poca-email.json",
+  "description": "Receive Poca Emails",
+  "type": "object",
+  "properties": {
+    "pocaFileId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "pocaMailId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "pocaEmail": {
+      "type": "string"
+    },
+    "emailSubject": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "pocaFileId",
+    "pocaMailId",
+    "pocaEmail"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-serve-pet-received.json",
+  "type": "object",
+  "properties": {
+    "submissionId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "submissionStatus": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/definitions.json#/definitions/submissionStatus"
+    },
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+      "description":"Identifies the case to which the form is associated to"
+    },
+    "defendantOffencesSubjects": {
+      "description":"Identifies the defendant and offences to which the form is associated to",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-offences-subjects.json"
+      }
+    },
+    "tag": {
+      "description": "A unique reference to a defendant within a prosecution. Provided by cps when CPS are prosecuting the case",
+      "type": "string",
+      "maxLength": 36
+    },
+    "petAdvocate": {
+      "description": "Prosecution contact - Advocate at PET",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "trialAdvocate": {
+      "description": "Prosecution contact - Advocate for trial",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "reviewingLawyer": {
+      "description": "Prosecution contact - Reviewing lawyer",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "prosecutionCaseProgressionOfficer": {
+      "description": "Prosecution contact - Case Progression officer (usually paralegal)",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "officerInTheCase": {
+      "description": "Officer in the case",
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json"
+    },
+    "doesTheProsecutorIntendToServeMoreEvidence": {
+      "type": "string"
+    },
+    "doesTheProsecutorIntendToServeMoreEvidenceDetails": {
+      "type": "string"
+    },
+    "areThereAnyPendingEnquiriesOrLinesOfInvestigation": {
+      "type": "string"
+    },
+    "areThereAnyPendingEnquiriesOrLinesOfInvestigationDetails": {
+      "type": "string"
+    },
+    "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith": {
+      "type": "string"
+    },
+    "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWithStateWhenThisWas": {
+      "type": "string"
+    },
+    "hasDefendantHasBeenAVictimOfSlaveryOrExploitation": {
+      "type": "string"
+    },
+    "hasDefendantHasBeenAVictimOfSlaveryOrExploitationDetails": {
+      "type": "string"
+    },
+    "prosecutionWillRelyOn": {
+      "description":"PET prosecution form field details",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/prosecution-will-rely-on.json"
+      }
+    },
+    "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom": {
+      "type": "string"
+    },
+    "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoomDetails": {
+      "type": "string"
+    },
+    "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact": {
+      "type": "string"
+    },
+    "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFactDetails": {
+      "type": "string"
+    },
+    "courtToArrangeADiscussionOfGroundRulesForQuestioning": {
+      "type": "string"
+    },
+    "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection": {
+      "type": "string"
+    },
+    "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirectionDetails": {
+      "type": "string"
+    },
+    "additionalInformation": {
+      "type": "string"
+    },
+    "parentGuardianToAttend": {
+      "type": "boolean"
+    },
+    "witnesses": {
+      "description":"To provide prosecution witnesses",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/witnesses.json"
+      }
+    },
+    "isYouth": {
+      "description": "Is Youth",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "submissionId",
+    "submissionStatus",
+    "prosecutionCaseSubject",
+    "defendantOffencesSubjects",
+    "doesTheProsecutorIntendToServeMoreEvidence",
+    "areThereAnyPendingEnquiriesOrLinesOfInvestigation",
+    "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith",
+    "hasDefendantHasBeenAVictimOfSlaveryOrExploitation",
+    "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom",
+    "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact",
+    "courtToArrangeADiscussionOfGroundRulesForQuestioning",
+    "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection",
+    "isYouth"
+  ],
+  "additionalProperties": false
+}

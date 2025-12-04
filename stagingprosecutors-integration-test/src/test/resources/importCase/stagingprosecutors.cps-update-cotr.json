@@ -1,0 +1,84 @@
+{
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "OU CODE"
+  },
+  "defendantSubject": [
+    {
+      "prosecutorDefendantId": "defendant Id",
+      "cpsOrganisationDefendantDetails": {
+        "organisationName": "orgName",
+        "cpsDefendantId": "123"
+      },
+      "cpsPersonDefendantDetails": {
+        "title": "Mr",
+        "forename": "foreName",
+        "forename2": "TEST",
+        "surname": "surname",
+        "dateOfBirth": "1990-01-01",
+        "localAuthorityDetailsForYouthDefendants": {
+          "address1": "address1",
+          "authority": "test",
+          "email": "test@test.com",
+          "forename": "forename",
+          "isLookedAfterChild": true,
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "reference": "test",
+          "surname": "surname",
+          "title": "Mr"
+        },
+        "parentGuardianForYouthDefendants": {
+          "address1": "address1",
+          "address2": "address2",
+          "email": "test@test.com",
+          "forename": "parentForename",
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "relationshipToDefendant": "test",
+          "surname": "surname",
+          "title": "Mr"
+        },
+        "cpsDefendantId": "7777"
+      },
+      "prosecutorPersonDefendantDetails": {
+        "title": "Mr",
+        "forename": "prosecutorPersonDefendantDetails",
+        "forename2": "TEST",
+        "forename3": "Test",
+        "surname": "test",
+        "dateOfBirth": "1990-01-01",
+        "localAuthorityDetailsForYouthDefendants": {
+          "address1": "address1",
+          "authority": "test",
+          "email": "test@test.com",
+          "forename": "forename",
+          "isLookedAfterChild": true,
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "reference": "test",
+          "surname": "surname",
+          "title": "Mr"
+        },
+        "parentGuardianForYouthDefendants": {
+          "address1": "address1",
+          "address2": "address2",
+          "email": "test@test.com",
+          "forename": "parentForename",
+          "phone": "1234567890",
+          "postcode": "G5 0TN",
+          "relationshipToDefendant": "test",
+          "surname": "weterw",
+          "title": "Mr"
+        },
+        "prosecutorDefendantId": "test"
+      }
+    }
+  ],
+  "furtherProsecutionInformationProvidedAfterCertification": "Further Prosecution Information Provided After Certification",
+  "trialDate": "1980-01-24",
+  "certifyThatTheProsecutionIsTrialReady": "Y",
+  "formCompletedOnBehalfOfProsecutionBy": "Form Completed On Behalf Of Prosecution By",
+  "date": "2022-03-03",
+  "cotrSubmissionId": "7e2f843e-d639-40b3-8611-8015f3a18958"
+}

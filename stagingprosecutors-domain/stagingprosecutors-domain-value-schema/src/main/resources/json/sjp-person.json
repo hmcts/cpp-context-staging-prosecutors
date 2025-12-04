@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/sjp-person.json",
+  "type": "object",
+  "description": "Person details",
+  "properties": {
+    "title": {
+      "type": "string",
+      "maxLength": 35,
+      "description": "Title by which a person is addressed"
+    },
+    "forename": {
+      "type": "string",
+      "description": "Given Name (CJS DSC v5 3.50)",
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "forename2": {
+      "type": "string",
+      "description": "The second given name of a person, e.g. Ian",
+      "maxLength": 35
+    },
+    "forename3": {
+      "type": "string",
+      "description": "The third given name of a person, e.g. Barry",
+      "maxLength": 35
+    },
+    "surname": {
+      "type": "string",
+      "description": "Surname or Family name, e.g. Brown (CJS DSC v5 3.39 Family Name)",
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "dateOfBirth": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The date when a person was born."
+    },
+    "occupation": {
+      "type": "string",
+      "description": "The description of an occupation.",
+      "maxLength": 54
+    },
+    "occupationCode": {
+      "type": "integer",
+      "description": "An occupation code"
+    },
+    "driverNumber": {
+      "description": "Driver number for DVLA case",
+      "type": "string",
+      "pattern": "(^$)|^([A-Z0-9]{5}\\d[0156]\\d([0][1-9]|[12]\\d|3[01])\\d[A-Z0-9]{3}[A-Z]{2}$)",
+      "maxLength": 16
+    },
+    "address": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/address.json"
+    },
+    "nationalInsuranceNumber": {
+      "type": "string",
+      "description": "National Insurance Number (CGS DSC 5.15)",
+      "minLength": 9,
+      "maxLength": 9,
+      "pattern": "^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-D]$"
+    },
+    "contactDetails": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/contact-details.json"
+    },
+    "selfDefinedInformation": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/self-defined-information.json"
+    }
+  },
+  "required": [
+    "forename",
+    "surname",
+    "address",
+    "selfDefinedInformation"
+  ],
+  "additionalProperties": true
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/submit-sjp-prosecution-http-v2.json",
+  "type": "object",
+  "properties": {
+    "prosecutionSubmissionDetails": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/sjp-prosecution-submission-details.json"
+    },
+    "defendant": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/sjp-defendant.json"
+    }
+  },
+  "required": [
+    "prosecutionSubmissionDetails",
+    "defendant"
+  ],
+  "additionalProperties": true
+}

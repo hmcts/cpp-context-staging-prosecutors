@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/poca-document-not-validated.json",
+  "type": "object",
+  "properties": {
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string"
+          },
+          "emailTemplateId": {
+            "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+          }
+        }
+      }
+    },
+    "emailSubject": {
+      "type": "string"
+    },
+    "senderEmail": {
+      "type": "string"
+    },
+    "pocaFileId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    }
+  },
+  "required": [
+    "errors",
+    "senderEmail"
+  ],
+  "additionalProperties": true
+}

@@ -1,0 +1,55 @@
+{
+  "_metadata": {
+    "name": "stagingprosecutors.event.prosecution-received"
+  },
+  "defendants": [{
+    "defendantDetails": {
+      "address": {
+        "address1": "Line 1",
+        "postcode": "CR0 1XG"
+      },
+      "hearingLanguage": "E",
+      "documentationLanguage": "E",
+      "numPreviousConvictions": 3,
+      "prosecutorDefendantId": "TFLDEF001"
+    },
+    "individual": {
+      "contactDetails": {
+        "homeTelephoneNumber": "01212364450",
+        "primaryEmail": "aer@gmail.com"
+      },
+      "dateOfBirth": "1970-02-03",
+      "ethnicity": "W1",
+      "gender": 1,
+      "nameDetails": {
+        "forename": "Alexis",
+        "surname": "Sanchez",
+        "title": "Mr"
+      },
+      "nationality": "English",
+      "observedEthnicity": 1
+    },
+    "offences": [{
+      "arrestDate": "2018-07-17",
+      "chargeDate": "2018-08-12",
+      "offenceDetails": {
+        "cjsOffenceCode": "CA03010",
+        "offenceCommittedDate": "2018-04-01",
+        "offenceDateCode": 1,
+        "offenceSequenceNo": 1,
+        "offenceWording": "Prosecution charge wording"
+      }
+    }]
+  }],
+  "prosecutionSubmissionDetails": {
+    "hearingDetails": {
+      "courtHearingLocation": "croydon",
+      "dateOfHearing": "2018-08-27",
+      "timeOfHearing": "09:05:01.001"
+    },
+    "prosecutingAuthority": "GAEAA01",
+    "urn": "TVL54321"
+  },
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "submissionStatus": "PENDING"
+}

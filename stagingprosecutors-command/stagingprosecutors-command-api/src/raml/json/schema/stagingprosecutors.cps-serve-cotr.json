@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/cps-serve-cotr.json",
+  "type": "object",
+  "properties": {
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+      "description": "Identifies the case to which the form is associated to"
+    },
+    "defendantSubject": {
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-subject.json"
+      },
+      "minItems": 1
+    },
+    "tag": {
+      "type": "string",
+      "maxLength": 36
+    },
+    "trialDate": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The date of the trial"
+    },
+    "lastRecordedTimeEstimate": {
+      "type": "integer",
+      "description": "The latest time estimate for the Trial in days (for Crown) or hours (for Mags)"
+    },
+    "hasAllEvidenceToBeReliedOnBeenServed": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no.json",
+      "description": "Has all evidence to be relied on been served?"
+    },
+    "hasAllEvidenceToBeReliedOnBeenServedDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "hasAllDisclosureBeenProvided": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no.json",
+      "description": "Has all disclosure been provided?"
+    },
+    "hasAllDisclosureBeenProvidedDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "haveOtherDirectionsBeenCompliedWith": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no.json",
+      "description": "Have other directions been complied with?"
+    },
+    "haveOtherDirectionsBeenCompliedWithDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "haveTheProsecutionWitnessesRequiredToAttendAcknowledgedThatTheyWillAttend": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no.json",
+      "description": "Have the prosecution witnesses required to attend acknowledged that they will attend?"
+    },
+    "haveTheProsecutionWitnessesRequiredToAttendAcknowledgedThatTheyWillAttendDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "haveAnyWitnessSummonsesRequiredBeenReceivedAndServed": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no-na.json",
+      "description": "Have any witness summonses required for prosecution witnesses been received and served?"
+    },
+    "haveAnyWitnessSummonsesRequiredBeenReceivedAndServedDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "haveSpecialMeasuresOrRemoteAttendanceIssuesForWitnessesBeenResolved": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no-na.json",
+      "description": "Have any special measures or remote attendance issues for prosecution witnesses been resolved?"
+    },
+    "haveSpecialMeasuresOrRemoteAttendanceIssuesForWitnessesBeenResolvedDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "haveInterpretersForWitnessesBeenArranged": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no-na.json",
+      "description": "Have any necessary interpreters for prosecution witnesses been arranged?"
+    },
+    "haveInterpretersForWitnessesBeenArrangedDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "haveEditedAbeInterviewsBeenPreparedAndAgreed": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no-na.json",
+      "description": "Have edited ABE interviews been prepared and agreed?"
+    },
+    "haveEditedAbeInterviewsBeenPreparedAndAgreedDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "haveArrangementsBeenMadeForStatementOfPointsOfAgreementAndDisagreement": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no-na.json",
+      "description": "Have arrangements been made for statement of points of agreement and disagreement by experts of comparable disciplines?"
+    },
+    "haveArrangementsBeenMadeForStatementOfPointsOfAgreementAndDisagreementDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "isTheCaseReadyToProceedWithoutDelayBeforeTheJury": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no.json",
+      "description": "Is the case ready to proceed without delay before the jury? "
+    },
+    "isTheCaseReadyToProceedWithoutDelayBeforeTheJuryDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "isTheTimeEstimateCorrect": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no.json",
+      "description": "The time estimate is correct (and if not correct give new estimate)"
+    },
+    "isTheTimeEstimateCorrectDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "furtherInformationToAssistTheCourt": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "certifyThatTheProsecutionIsTrialReady": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no.json",
+      "description": ""
+    },
+    "certifyThatTheProsecutionIsTrialReadyDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "applyForThePtrToBeVacated": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/yes-no-na.json",
+      "description": ""
+    },
+    "applyForThePtrToBeVacatedDetails": {
+      "type": "string",
+      "maxLength": 8100
+    },
+    "formCompletedOnBehalfOfTheProsecutionBy": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "certificationDate": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The certification date"
+    }
+  },
+  "required": [
+    "prosecutionCaseSubject",
+    "defendantSubject",
+    "trialDate",
+    "hasAllEvidenceToBeReliedOnBeenServed",
+    "hasAllDisclosureBeenProvided",
+    "haveOtherDirectionsBeenCompliedWith",
+    "haveTheProsecutionWitnessesRequiredToAttendAcknowledgedThatTheyWillAttend",
+    "haveAnyWitnessSummonsesRequiredBeenReceivedAndServed",
+    "haveSpecialMeasuresOrRemoteAttendanceIssuesForWitnessesBeenResolved",
+    "haveInterpretersForWitnessesBeenArranged",
+    "haveEditedAbeInterviewsBeenPreparedAndAgreed",
+    "haveArrangementsBeenMadeForStatementOfPointsOfAgreementAndDisagreement",
+    "isTheCaseReadyToProceedWithoutDelayBeforeTheJury",
+    "isTheTimeEstimateCorrect",
+    "certifyThatTheProsecutionIsTrialReady",
+    "applyForThePtrToBeVacated",
+    "formCompletedOnBehalfOfTheProsecutionBy",
+    "certificationDate"
+  ],
+  "additionalProperties": true
+}

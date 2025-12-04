@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "code": "DEFENDANT_DOB_IN_FUTURE",
+      "values": [
+        {
+          "key": "dateOfBirth",
+          "value": "2050-01-01"
+        }
+      ]
+    }
+  ]
+}

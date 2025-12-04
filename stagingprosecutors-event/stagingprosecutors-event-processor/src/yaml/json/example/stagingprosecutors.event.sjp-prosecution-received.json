@@ -1,0 +1,37 @@
+{
+  "defendant": {
+    "defendantPerson": {
+      "forename": "Joe",
+      "gender": 1,
+      "surname": "Bloggs",
+      "title": "Mr"
+    },
+    "documentationLanguage": "E",
+    "hearingLanguage": "E",
+    "numPreviousConvictions": 22,
+    "offences": [
+      {
+        "offenceCode": "OFCODE12",
+        "offenceCommittedDate": "2015-04-04",
+        "offenceDateCode": 1,
+        "offenceSequenceNo": 1,
+        "offenceWording": "Offence committed",
+        "prosecutorCompensation": 1.5,
+        "backDuty": "+340.99",
+        "backDutyDateFrom": "2018-04-09",
+        "backDutyDateTo": "2018-05-09",
+        "vehicleMake": "Ford",
+        "vehicleRegistrationMark": "AB11 ABC"
+      }
+    ]
+  },
+  "initiationCode": "J",
+  "prosecutionSubmissionDetails": {
+    "informant": "Fred",
+    "writtenChargePostingDate": "2015-04-04",
+    "prosecutingAuthority": "GAAAA01",
+    "urn": "URN500"
+  },
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "submissionStatus": "PENDING"
+}

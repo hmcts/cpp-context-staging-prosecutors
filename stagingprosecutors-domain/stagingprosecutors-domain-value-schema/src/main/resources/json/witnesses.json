@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/witnesses.json",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "Title by which a defendant is addressed",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 35
+    },
+    "forename": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "forename2": {
+      "type": "string",
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "forename3": {
+      "type": "string",
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "surname": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "ageIfUnder18": {
+      "type": "integer"
+    },
+    "dateOfBirth": {
+      "$ref": "http://justice.gov.uk/core/courts/courtsDefinitions.json#/definitions/datePattern"
+    },
+    "interpreterRequired": {
+      "type": "boolean"
+    },
+    "interpreterLanguageDialect": {
+      "type": "string",
+      "maxLength": 360
+    },
+    "welshLanguage": {
+      "type": "boolean"
+    },
+    "prosecutionWitnessRequiringAssistanceSpecialMeasures": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "prosecutionWitnessRequiringAssistanceSpecialMeasuresDetails": {
+      "type": "string",
+      "maxLength": 6000
+    },
+    "prosecutionRequireAttendance": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "forename",
+    "surname",
+    "interpreterRequired",
+    "welshLanguage",
+    "prosecutionWitnessRequiringAssistanceSpecialMeasures",
+    "prosecutionRequireAttendance"
+  ],
+  "additionalProperties": false
+}

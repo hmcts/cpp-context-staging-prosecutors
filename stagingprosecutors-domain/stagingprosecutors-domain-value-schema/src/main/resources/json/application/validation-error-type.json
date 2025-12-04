@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/application/json/schemas/validation-error-type.json",
+  "description": "Coded value indicating the type of validation failure",
+  "type": "string",
+  "enum": [
+    "DEFENDANT_DETAILS_NOT_FOUND",
+    "DEFENDANT_DETAILS_REQUIRED",
+    "DEFENDANT_ASN_NOT_FOUND",
+    "DEFENDANT_ASN_REQUIRED",
+    "CASE_NOT_FOUND",
+    "OUT_OF_TIME_REASON_NOT_FOUND",
+    "FEE_DETAILS_NOT_FOUND",
+    "APPLICATION_TYPE_NOT_FOUND",
+    "RESPONDENT_DETAILS_REQUIRED",
+    "THIRD_PARTY_DETAILS_REQUIRED",
+    "SUBJECT_REQUIRED",
+    "DUE_DATE_REQUIRED",
+    "COURT_LOCATION_REQUIRED"
+  ]
+}

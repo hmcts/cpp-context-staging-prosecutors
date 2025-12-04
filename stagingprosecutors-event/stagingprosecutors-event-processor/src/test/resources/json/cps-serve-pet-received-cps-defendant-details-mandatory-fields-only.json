@@ -1,0 +1,82 @@
+{
+  "submissionId": "7e2f843e-d639-40b3-8611-8015f3a18958",
+  "submissionStatus": "PENDING",
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "The OU Code of the prosecuting authority"
+  },
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "cpsPersonDefendantDetails": {
+          "cpsDefendantId": "cpsDefendantId",
+          "surname": "surname"
+        }
+      },
+      "offences": [
+        {
+          "cjsOffenceCode": "offenceCode",
+          "offenceDate": "2021-09-27",
+          "offenceWording": "offenceWording"
+        }
+      ]
+    }
+  ],
+  "reviewingLawyer": {
+    "name": "name",
+    "phone": "8778888345",
+    "email": "test@test.com"
+  },
+  "prosecutionCaseProgressionOfficer": {
+    "name": "name",
+    "phone": "8778888345",
+    "email": "test@test.com"
+  },
+  "doesTheProsecutorIntendToServeMoreEvidence": "N",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigation": "N",
+  "areThereAnyPendingEnquiriesOrLinesOfInvestigationDetails": "Details",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith": "N",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWithStateWhenThisWas": "noComplianceDetails",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitation": "N",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitationDetails": "SlaveryDetails",
+  "prosecutionWillRelyOn": [
+    "Defendant admissions in interview",
+    "Defendant failure to mention facts in interviews",
+    "A summary of the defendant interview",
+    "A record of the defendants interview",
+    "Expert evidence",
+    "Hearsay evidence",
+    "Bad character evidence",
+    "CCTV evidence",
+    "Electronically recorded evidence",
+    "Diagram",
+    "Sketch map",
+    "Photos"
+  ],
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom": "Y",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoomDetails": "EquipmentDetails",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFactDetails": "LawDetails",
+  "courtToArrangeADiscussionOfGroundRulesForQuestioning": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirectionDetails": "directionDetails",
+  "additionalInformation": "additional Information",
+  "parentGuardianToAttend": true,
+  "witnesses": [
+    {
+      "title": "Mr",
+      "forename": "forename",
+      "forename2": "xyz",
+      "forename3": "abc",
+      "surname": "abc",
+      "ageIfUnder18": 14,
+      "dateOfBirth": "1980-01-24",
+      "interpreterRequired": true,
+      "interpreterLanguageDialect": "welsh",
+      "welshLanguage": false,
+      "prosecutionWitnessRequiringAssistanceSpecialMeasures": "Y",
+      "prosecutionWitnessRequiringAssistanceSpecialMeasuresDetails": "measureDetails",
+      "prosecutionRequireAttendance": true
+    }
+  ]
+}

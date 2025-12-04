@@ -1,0 +1,13 @@
+package uk.gov.moj.cpp.staging.prosecutors.test.util;
+
+public enum DocumentType {
+    SIMPLE_BOOKMARK_PDF,
+    MULTI_LEVEL_BOOKMARK_PDF,
+    IDPC_CLARK_KENT_PDF,
+    IDPC_LOIS_LANE_PDF,
+    IDPC_CHARGES_AND_PRECON_ONLY,
+    IDPC_SINGLE_SUB_SECTION,
+    IDPC_MULTIPLE_SUB_SECTION,
+    MAGISTRATE_COURT_EVIDENCE_PDF,
+    INVALID_BOOKMARK_PDF
+}

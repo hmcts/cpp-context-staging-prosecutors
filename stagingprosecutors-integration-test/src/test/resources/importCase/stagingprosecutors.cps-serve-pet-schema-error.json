@@ -1,0 +1,76 @@
+{
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": ""
+  },
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorDefendantId": "defendant Id"
+      },
+      "offences": [
+        {
+          "cjsOffenceCode": "code123",
+          "offenceDate" : "2021-09-27",
+          "offenceWording": "offenceWording"
+        }
+      ]
+    }
+  ],
+  "reviewingLawyer":{
+    "name": "name",
+    "phone": "8778888345",
+    "email": "test@test.com"
+  },
+  "prosecutionCaseProgressionOfficer":{
+    "name": "name",
+    "phone": "8778888345",
+    "email": "test@test.com"
+  },
+  "doesTheProsecutorIntendToServeMoreEvidence": "N",
+  "areThereanypendingEnquiriesorLinesOfInvestigation": "N",
+  "areThereanypendingEnquiriesorLinesOfInvestigationDetais": "Details",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWith": "N",
+  "hasTheInitialDutyOfDisclosureOfUnusedMaterialBeenCompliedWithStateWhenThisWas": "noComplianceDetails",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitation": "N",
+  "hasDefendantHasBeenAVictimOfSlaveryOrExploitationDetails": "SlaveryDetails",
+  "prosecutionWillRelyOn": [
+    "Defendant admissions in interview",
+    "Defendant failure to mention facts in interviews",
+    "A summary of the defendant interview",
+    "A record of the defendants interview",
+    "Expert evidence",
+    "Hearsay evidence",
+    "Bad character evidence",
+    "CCTV evidence",
+    "Electronically recorded evidence",
+    "Diagram",
+    "Sketch map",
+    "Photos"
+  ],
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoom": "Y",
+  "willTheProsecutorNeedAnyEquipmentInTheTrialCourtRoomDetails": "EquipmentDetails",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFact": "Y",
+  "expectTheCaseToInvolveAComplexNovelOrUnusualPointOfLawAndOrFactDetails": "LawDetails",
+  "courtToArrangeADiscussionOfGroundRulesForQuestioning": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirection": "Y",
+  "varyAStandardTrialPreparationTimeLimitOrMakeAnyOtherDirectionDetails": "directionDetails",
+  "additionalInformation": "additional Information",
+  "Witnesses": [
+    {
+      "title": "Mr",
+      "forename": "forename",
+      "forename2": "xyz",
+      "forename3": "abc",
+      "surname": "abc",
+      "ageIfUnder18": 14,
+      "dateOfBirth": "1980-01-24",
+      "interpreterRequired": true,
+      "interpreterLanguageDialect": "welsh",
+      "welshLanguage": false,
+      "prosecutionWitnessRequiringAssistanceSpecialMeasures": "Y",
+      "prosecutionWitnessRequiringAssistanceSpecialMeasuresDetails": "measureDetails",
+      "prosecutionRequireAttendance": true
+    }
+  ]
+}

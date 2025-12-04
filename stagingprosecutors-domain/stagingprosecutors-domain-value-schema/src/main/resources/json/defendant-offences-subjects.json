@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-offences-subjects.json",
+  "description": "Identifies the defendant and offences to which the form is associated to",
+  "properties": {
+    "defendant": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-subject.json"
+    },
+    "offences": {
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/offence-subject.json"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "defendant",
+    "offences"
+  ],
+  "additionalProperties": false
+}

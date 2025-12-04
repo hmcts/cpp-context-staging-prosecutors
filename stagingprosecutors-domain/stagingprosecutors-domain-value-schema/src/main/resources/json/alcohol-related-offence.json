@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/alcohol-related-offence.json",
+  "type": "object",
+  "properties": {
+    "alcoholOrDrugLevelMethod": {
+      "type": "string",
+      "description": "",
+      "minLength": 1,
+      "maxLength": 1
+    },
+    "alcoholOrDrugLevelAmount": {
+      "type": "integer",
+      "description": "",
+      "minimum": 0,
+      "maximum": 999
+    }
+  },
+  "required": [
+    "alcoholOrDrugLevelMethod",
+    "alcoholOrDrugLevelAmount"
+  ],
+  "additionalProperties": false
+}

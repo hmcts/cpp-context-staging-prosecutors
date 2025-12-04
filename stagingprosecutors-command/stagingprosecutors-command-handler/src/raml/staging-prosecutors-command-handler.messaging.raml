@@ -1,0 +1,78 @@
+#%RAML 0.8
+title: Prosecutors Command handler
+version: 1.0
+baseUri: message://command/handler/message/stagingprosecutors
+
+/stagingprosecutors.handler.command:
+    post:
+        body:
+            application/vnd.stagingprosecutors.command.summons-prosecution+json:
+                schema: !include json/schema/summons/stagingprosecutors.command.summons-prosecution.json
+                example: !include json/example/stagingprosecutors.command.summons-prosecution.json
+            application/vnd.stagingprosecutors.command.charge-prosecution+json:
+                schema: !include json/schema/charge/stagingprosecutors.command.charge-prosecution.json
+                example: !include json/example/stagingprosecutors.command.charge-prosecution.json
+            application/vnd.stagingprosecutors.command.requisition-prosecution+json:
+                schema: !include json/schema/requisition/stagingprosecutors.command.requisition-prosecution.json
+                example: !include json/example/stagingprosecutors.command.requisition-prosecution.json
+            application/vnd.stagingprosecutors.command.sjp-prosecution+json:
+                schema: !include json/schema/stagingprosecutors.command.sjp-prosecution.json
+                example: !include json/example/stagingprosecutors.command.sjp-prosecution.json
+            application/vnd.stagingprosecutors.command.reject-material+json:
+                schema: !include json/schema/stagingprosecutors.command.reject-material.json
+                example: !include json/example/stagingprosecutors.command.reject-material.json
+            application/vnd.stagingprosecutors.command.receive-submission-successful+json:
+                schema: !include json/schema/stagingprosecutors.command.receive-submission-successful.json
+                example: !include json/example/stagingprosecutors.command.receive-submission-successful.json
+            application/vnd.stagingprosecutors.command.receive-submission-successful-with-warnings+json:
+                schema: !include json/schema/stagingprosecutors.command.receive-submission-successful-with-warnings.json
+                example: !include json/example/stagingprosecutors.command.receive-submission-successful-with-warnings.json
+            application/vnd.stagingprosecutors.command.submit-material+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-material.json
+                example: !include json/example/stagingprosecutors.command.submit-material.json
+            application/vnd.stagingprosecutors.command.submit-cps-material+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-cps-material.json
+                example: !include json/example/stagingprosecutors.command.submit-cps-material.json
+            application/vnd.stagingprosecutors.command.receive-material-submission-successful+json:
+                schema: !include json/schema/stagingprosecutors.command.receive-submission-successful.json
+                example: !include json/example/stagingprosecutors.command.receive-submission-successful.json
+            application/vnd.stagingprosecutors.command.reject-submission+json:
+                schema: !include json/schema/stagingprosecutors.command.reject-submission.json
+                example: !include json/example/stagingprosecutors.command.reject-submission.json
+            application/vnd.stagingprosecutors.command.record-document-unbundle-result+json:
+                schema: !include json/schema/stagingprosecutors.command.record-document-unbundle-result.json
+                example: !include json/example/stagingprosecutors.command.record-document-unbundle-result.json
+            application/vnd.stagingprosecutors.command.submit-material-v3+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-material-v3.json
+                example: !include json/example/stagingprosecutors.command.submit-material-v3.json
+            application/vnd.stagingprosecutors.command.material-pending-with-warnings+json:
+                schema: !include json/schema/stagingprosecutors.command.material-pending-with-warnings.json
+                example: !include json/example/stagingprosecutors.command.material-pending-with-warnings.json
+            application/vnd.stagingprosecutors.command.submit-application+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-application.json
+                example: !include json/example/stagingprosecutors.command.submit-application.json
+            application/vnd.stagingprosecutors.command.submit-cps-serve-pet+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-cps-serve-pet.json
+                example: !include json/example/stagingprosecutors.command.submit-cps-serve-pet.json
+            application/vnd.stagingprosecutors.command.submit-cps-serve-bcm+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-cps-serve-bcm.json
+                example: !include json/example/stagingprosecutors.command.submit-cps-serve-bcm.json
+            application/vnd.stagingprosecutors.command.submit-cps-serve-ptph+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-cps-serve-ptph.json
+                example: !include json/example/stagingprosecutors.command.submit-cps-serve-ptph.json
+            application/vnd.stagingprosecutors.command.submit-cps-serve-cotr+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-cps-serve-cotr.json
+                example: !include json/example/stagingprosecutors.command.submit-cps-serve-cotr.json
+            application/vnd.stagingprosecutors.command.submit-cps-update-cotr+json:
+                schema: !include json/schema/stagingprosecutors.command.submit-cps-update-cotr.json
+                example: !include json/example/stagingprosecutors.command.submit-cps-update-cotr.json
+            application/vnd.stagingprosecutors.command.update-submission-status+json:
+                schema: !include json/schema/stagingprosecutors.command.update-submission-status.json
+                example: !include json/example/stagingprosecutors.command.update-submission-status.json
+            application/vnd.stagingprosecutors.command.receive-poca-email+json:
+                schema: !include json/schema/stagingprosecutors.command.receive-poca-email.json
+                example: !include json/example/stagingprosecutors.command.receive-poca-email.json
+            application/vnd.stagingprosecutors.command.record-unbundled-document-results+json:
+                schema: !include json/schema/stagingprosecutors.command.record-unbundle-document-results.json
+                example: !include json/example/stagingprosecutors.command.record-unbundle-document-results.json
+

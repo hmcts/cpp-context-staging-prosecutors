@@ -1,0 +1,16 @@
+{
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "The OU Code of the prosecuting authority"
+  },
+  "defendantSubject": [
+    {
+      "prosecutorDefendantId": "defendant Id"
+    }
+  ],
+  "furtherProsecutionInformationProvidedAfterCertification": "Further Prosecution Information Provided After Certification",
+  "trialDate": "1980-01-24",
+  "certifyThatTheProsecutionIsTrialReady": "Y",
+  "formCompletedOnBehalfOfProsecutionBy": "Form Completed On Behalf Of Prosecution By",
+  "date": "2022-03-03"
+}

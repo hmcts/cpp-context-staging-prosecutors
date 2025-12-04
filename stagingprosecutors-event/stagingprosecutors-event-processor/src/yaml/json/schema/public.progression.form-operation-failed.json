@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://moj.gov.uk/cps/progression/domain/event/public.progression.form-operation-failed.json",
+  "type": "object",
+  "properties": {
+    "submissionId": {
+      "description": "Form Reference Id",
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "courtFormId": {
+      "description": "Form Reference Id",
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "caseId": {
+      "description": "Case Id",
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "formType": {
+      "description": "Form Type",
+      "$ref": "http://justice.gov.uk/core/courts/formType.json"
+    },
+    "operation": {
+      "description": "Form Operation",
+      "type": "string"
+    },
+    "message": {
+      "description": "Failure Message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "caseId",
+    "courtFormId",
+    "operation",
+    "message"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 sp1 (http://www.altova.com) by Altova XMLSpy 2016 Enterprise Edition, Installed for 10 users (CGI IT UK Limited) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+           xmlns:tt="http://schemas.cps.gov.uk/TWIFTypes/2009-08"
+           xmlns:ds="http://schemas.cjse.gov.uk/datastandards/2006-10"
+           elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+    <xs:import namespace="http://schemas.cps.gov.uk/TWIFTypes/2009-08"
+               schemaLocation="TWIFTypes-v1-0.xsd"/>
+    <xs:import namespace="http://schemas.cjse.gov.uk/datastandards/2006-10"
+               schemaLocation="CJSDataStandards-v4-3.xsd"/>
+    <xs:element name="CP10">
+        <xs:annotation>
+            <xs:documentation>Comment describing your root element</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="EventId" type="xs:long"/>
+                <xs:element name="URN" type="tt:PTIURNStructure">
+                    <xs:annotation>
+                        <xs:documentation>The URN of the case being split or the URN of the merged
+                            case
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SplitMergeInformation">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="URNToMerge" type="tt:PTIURNStructure"
+                                        maxOccurs="unbounded"/>
+                            <xs:element name="Split" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="SplitCaseURN" type="tt:PTIURNStructure"/>
+                                        <xs:element name="DefChargeInformation" minOccurs="0"
+                                                    maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="DefendantId"
+                                                                type="tt:UniqueIdType"
+                                                                minOccurs="0"/>
+                                                    <xs:choice>
+                                                        <xs:element name="PersonName"
+                                                                    type="ds:PersonNameStructure"/>
+                                                        <xs:element name="OrganisationName"
+                                                                    type="ds:OrganisationNameType"/>
+                                                    </xs:choice>
+                                                    <xs:element name="ASN" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="tt:UniqueIdType">
+                                                                <xs:maxLength value="21"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="PNCId" minOccurs="0"/>
+                                                    <xs:element name="DOB" type="xs:date"
+                                                                minOccurs="0"/>
+                                                    <xs:element name="CMSDefendantId"
+                                                                type="xs:long"/>
+                                                    <xs:element name="Charges"
+                                                                maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="CMSChargeId"
+                                                                            type="xs:long"/>
+                                                                <xs:element name="OffenceId"
+                                                                            type="tt:UniqueIdType"
+                                                                            minOccurs="0"/>
+                                                                <xs:element name="ChargeSeqn"
+                                                                            type="xs:integer"/>
+                                                                <xs:element name="CJSCode"/>
+                                                                <xs:element name="OffenceStartDate"
+                                                                            type="xs:dateTime"/>
+                                                                <xs:element name="OffenceEndDate"
+                                                                            type="xs:dateTime"
+                                                                            minOccurs="0"/>
+                                                                <xs:element
+                                                                        name="OffenceParticulars">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction
+                                                                                base="xs:string">
+                                                                            <xs:maxLength
+                                                                                    value="2000"/>
+                                                                            <xs:minLength
+                                                                                    value="1"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element
+                                                                        name="OffenceStatusCode">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction
+                                                                                base="xs:string">
+                                                                            <xs:minLength
+                                                                                    value="1"/>
+                                                                            <xs:maxLength
+                                                                                    value="3"/>
+                                                                            <xs:enumeration
+                                                                                    value="H41"/>
+                                                                            <xs:enumeration
+                                                                                    value="HCC"/>
+                                                                            <xs:enumeration
+                                                                                    value="HD"/>
+                                                                            <xs:enumeration
+                                                                                    value="HDP"/>
+                                                                            <xs:enumeration
+                                                                                    value="HF"/>
+                                                                            <xs:enumeration
+                                                                                    value="HFS"/>
+                                                                            <xs:enumeration
+                                                                                    value="HP"/>
+                                                                            <xs:enumeration
+                                                                                    value="HPA"/>
+                                                                            <xs:enumeration
+                                                                                    value="HW"/>
+                                                                            <xs:enumeration
+                                                                                    value="HWP"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="Counts" minOccurs="0"
+                                                                maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="CMSCountId"
+                                                                            type="xs:integer"/>
+                                                                <xs:element name="IndictmentSeqN"
+                                                                            type="xs:integer"/>
+                                                                <xs:element name="CountSeqN"
+                                                                            type="xs:integer"/>
+                                                                <xs:element name="PartySeqn"
+                                                                            type="xs:integer"/>
+                                                                <xs:element name="CountIPPCode">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction
+                                                                                base="xs:string">
+                                                                            <xs:minLength
+                                                                                    value="1"/>
+                                                                            <xs:maxLength
+                                                                                    value="30"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element
+                                                                        name="StatementOfOffence">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction
+                                                                                base="xs:string">
+                                                                            <xs:maxLength
+                                                                                    value="600"/>
+                                                                            <xs:minLength
+                                                                                    value="1"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element name="OffenceStartDate"
+                                                                            type="xs:dateTime"/>
+                                                                <xs:element name="OffenceEndDate"
+                                                                            type="xs:dateTime"
+                                                                            minOccurs="0"/>
+                                                                <xs:element
+                                                                        name="OffenceParticulars">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction
+                                                                                base="xs:string">
+                                                                            <xs:maxLength
+                                                                                    value="2000"/>
+                                                                            <xs:minLength
+                                                                                    value="1"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element name="OffenceStatus">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction
+                                                                                base="xs:string">
+                                                                            <xs:minLength
+                                                                                    value="1"/>
+                                                                            <xs:maxLength
+                                                                                    value="3"/>
+                                                                            <xs:enumeration
+                                                                                    value="OA"/>
+                                                                            <xs:enumeration
+                                                                                    value="OAC"/>
+                                                                            <xs:enumeration
+                                                                                    value="OD"/>
+                                                                            <xs:enumeration
+                                                                                    value="ODP"/>
+                                                                            <xs:enumeration
+                                                                                    value="OL"/>
+                                                                            <xs:enumeration
+                                                                                    value="OLC"/>
+                                                                            <xs:enumeration
+                                                                                    value="OF"/>
+                                                                            <xs:enumeration
+                                                                                    value="OFS"/>
+                                                                            <xs:enumeration
+                                                                                    value="OPA"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

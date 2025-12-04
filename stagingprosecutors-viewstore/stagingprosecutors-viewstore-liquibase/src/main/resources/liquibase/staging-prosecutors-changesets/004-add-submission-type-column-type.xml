@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+    <!--
+     Postgres specific changeset for production.
+     Adds a column 'type' of type TEXT to the table 'submission'
+    -->
+    <changeSet id="staging.prosecutors-004" author="Staging-Prosecutors"
+               logicalFilePath="004-add-submission-type-column-type.xml"
+               dbms="postgresql">
+        <addColumn tableName="submission">
+            <column name="type" type="text"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

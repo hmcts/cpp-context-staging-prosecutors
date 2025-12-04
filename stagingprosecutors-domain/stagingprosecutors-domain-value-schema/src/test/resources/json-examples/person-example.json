@@ -1,0 +1,27 @@
+{
+  "title": "Mr",
+  "forename": "Jethro",
+  "surname": "Tull",
+  "address": {
+    "addressLine1": "Line 1",
+    "addressLine2": "Line 2",
+    "addressLine3": "Line 3",
+    "addressLine4": "Line 4",
+    "addressLine5": "Line 5",
+    "postcode": "CR0 1XG"
+  },
+  "selfDefinedInformation":{
+    "gender": 0,
+    "ethnicity": "W1",
+    "nationality": "IND",
+    "additionalNationality": "IND"
+  },
+  "contactDetails":{
+    "workTelephoneNumber": "02012345678",
+    "homeTelephoneNumber": "02087654321",
+    "mobileTelephoneNumber": "0789123456",
+    "primaryEmail": "aer@af.com",
+    "secondaryEmail": "aer@af.com"
+  },
+  "nationalInsuranceNumber": "AA123456C"
+}

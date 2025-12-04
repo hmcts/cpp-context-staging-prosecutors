@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://moj.gov.uk/cps/stagingprosecutors/domain/event/public.prosecutioncasefile.document-bundle-arrived-for-unbundling",
+  "type": "object",
+  "properties": {
+    "caseId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "prosecutingAuthority": {
+      "type": "string"
+    },
+    "defendantName": {
+      "type": "string"
+    },
+    "prosecutorDefendantId": {
+      "type": "string",
+      "maxLength": 36
+    },
+    "material": {
+      "type": "object",
+      "properties": {
+        "fileStoreId": {
+          "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+        },
+        "documentType": {
+          "type": "string"
+        },
+        "fileType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fileStoreId",
+        "documentType",
+        "fileType"
+      ],
+      "additionalProperties": false
+    },
+    "cmsDocumentIdentifier": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cms-document-identifier.json"
+    },
+    "receivedDateTime": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date-time"
+    }
+  },
+  "required": [
+    "caseId",
+    "prosecutorDefendantId",
+    "prosecutingAuthority",
+    "material",
+    "cmsDocumentIdentifier",
+    "receivedDateTime"
+  ],
+  "additionalProperties": false
+}

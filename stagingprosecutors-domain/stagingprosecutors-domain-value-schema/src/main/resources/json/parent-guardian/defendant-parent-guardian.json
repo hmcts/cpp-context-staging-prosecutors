@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-parent-guardian.json",
+  "type": "object",
+  "description": "Defendant’s parent or guardian",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title by which a person is addressed",
+      "pattern": "^(Mr|Mrs|Ms|Dr|Rev|Sir|Lady|Lord|Dame)$",
+      "maxLength": 35
+    },
+    "forename": {
+      "type": "string",
+      "description": "Given Name",
+      "minLength": 1,
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "forename2": {
+      "type": "string",
+      "description": "The second given name of a person, e.g. Ian",
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "forename3": {
+      "type": "string",
+      "description": "The third given name of a person, e.g. Barry",
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "surname": {
+      "type": "string",
+      "description": "Surname or Family name, e.g. Brown (CJS DSC v5 3.39 Family Name)",
+      "minLength": 1,
+      "maxLength": 35,
+      "pattern": "^(?!.*  ).+",
+      "comments": "Alphanumeric no consecutive spaces (i.e. a space can not appear adjacent to another space)."
+    },
+    "phone": {
+      "pattern": "^[0-9+\\ \\-]{10,}$",
+      "description": "A home telephone number, including any exchange of location code, at which a person or organisation can be contacted in the UK by telephonic means.",
+      "maxLength": 35
+    },
+    "relationshipToDefendant": {
+      "type": "string",
+      "description": "The nature of the relationship to the defendant.",
+      "minLength": 1,
+      "maxLength": 6000
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 255,
+      "format": "email"
+    },
+    "address1": {
+      "type": "string",
+      "description": "Address Line 1 for the defendant",
+      "minLength" : 1,
+      "maxLength": 35
+    },
+    "address2": {
+      "type": "string",
+      "description": "Address Line 2 for the defendant",
+      "maxLength": 35
+    },
+    "address3": {
+      "type": "string",
+      "description": "Address Line 3 for the defendant",
+      "maxLength": 35
+    },
+    "address4": {
+      "type": "string",
+      "description": "Address Line 4 for the defendant",
+      "maxLength": 35
+    },
+    "address5": {
+      "type": "string",
+      "description": "Address Line 5 for the defendant",
+      "maxLength": 35
+    },
+    "postcode": {
+      "type": "string",
+      "maxLength": 8
+    }
+  },
+  "required": [
+    "forename",
+    "surname",
+    "relationshipToDefendant",
+    "address1"
+  ],
+  "additionalProperties": false
+}

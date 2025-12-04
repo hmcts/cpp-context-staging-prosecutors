@@ -1,0 +1,23 @@
+subscriptions_descriptor:
+  spec_version: 1.0.0
+  service: stagingprosecutors
+  service_component: EVENT_PROCESSOR
+  subscriptions:
+    - name: public event processor publications
+      events:
+        - name: public.stagingprosecutors.cps-serve-pet-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/public.stagingprosecutors.cps-serve-pet-received.json
+
+        - name: public.stagingprosecutors.cps-serve-bcm-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/public.stagingprosecutors.cps-serve-bcm-received.json
+
+        - name: public.stagingprosecutors.cps-serve-ptph-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/public.stagingprosecutors.cps-serve-ptph-received.json
+
+        - name: public.stagingprosecutors.cps-serve-cotr-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/public.stagingprosecutors.cps-serve-cotr-received.json
+
+        - name: public.stagingprosecutors.cps-update-cotr-received
+          schema_uri: http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/public.stagingprosecutors.cps-update-cotr-received.json
+
+      event_source_name: public

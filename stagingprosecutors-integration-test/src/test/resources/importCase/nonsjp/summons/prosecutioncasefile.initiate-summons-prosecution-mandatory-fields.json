@@ -1,0 +1,84 @@
+{
+  "caseDetails":{
+    "caseId":"5876c538-3b6f-42fd-84c4-6eba5660465d",
+    "caseMarkers":[
+
+    ],
+    "initiationCode":"S",
+    "dateReceived": "generated dynamically",
+    "originatingOrganisation":"B01BH00",
+    "prosecutor":{
+      "informant":"Adam",
+      "prosecutingAuthority":"B01BH00"
+    },
+    "prosecutorCaseReference":"TVL54321",
+    "summonsCode":"A"
+  },
+  "channel":"CPPI",
+  "externalId": "generated dynamically",
+  "defendants":[
+    {
+      "address":{
+        "address1":"Address Line 1"
+      },
+      "documentationLanguage":"E",
+      "hearingLanguage":"E",
+      "id":"82e2d83e-7d91-46b5-9089-35054e5e9f22",
+      "individual":{
+        "personalInformation":{
+          "address":{
+            "address1":"Address Line 1"
+          },
+          "firstName":"John",
+          "lastName":"SMITH"
+        },
+        "selfDefinedInformation":{
+          "dateOfBirth":"1970-02-03",
+          "gender":"MALE"
+        }
+      },
+      "initialHearing":{
+        "courtHearingLocation":"B01BH00",
+        "dateOfHearing":"2019-08-11",
+        "timeOfHearing":"09:01:01.001"
+      },
+      "offences":[
+        {
+          "offenceCode":"CA03014",
+          "offenceCommittedDate":"2019-06-11",
+          "offenceDateCode":4,
+          "offenceId":"01891f11-bfe3-4a05-bb68-21eb76cdcbf1",
+          "offenceSequenceNumber":1,
+          "offenceWording":"Test Prosecution charge wording"
+        }
+      ],
+      "prosecutorDefendantReference":"TFLDEF001"
+    },
+    {
+      "address":{
+        "address1":"Address Line 1"
+      },
+      "documentationLanguage":"E",
+      "hearingLanguage":"E",
+      "id":"eb2517f6-d2d6-48f2-8659-a7cd5003f84c",
+      "initialHearing":{
+        "courtHearingLocation":"B01BH00",
+        "dateOfHearing":"2019-08-11",
+        "timeOfHearing":"09:01:01.001"
+      },
+      "offences":[
+        {
+          "offenceCode":"CA03014",
+          "offenceCommittedDate":"2019-06-11",
+          "offenceDateCode":4,
+          "offenceId":"fbfda303-f72e-490e-9772-157dc030e68b",
+          "offenceSequenceNumber":2,
+          "offenceWording":"Test Prosecution charge wording"
+        }
+      ],
+      "organisationName":"HMCTS",
+      "prosecutorDefendantReference":"TFLDEF002"
+    }
+  ],
+  "_metadata": {}
+}

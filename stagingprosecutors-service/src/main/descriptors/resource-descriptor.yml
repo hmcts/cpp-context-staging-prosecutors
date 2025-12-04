@@ -1,0 +1,58 @@
+--
+resource_descriptor:
+  spec_version: '1.0.0'
+  version: '${project.version}'
+
+  resources:
+    - name: java:/app/stagingprosecutors-service/DS.eventstore
+      type: xa-datasource
+      setup:
+        - type: liquibase
+          maven:
+            groupId: uk.gov.justice.services
+            artifactId: event-repository-liquibase
+            type: jar
+            version: '${cpp.framework.version}'
+        - type: liquibase
+          maven:
+            groupId: uk.gov.justice.services
+            artifactId: aggregate-snapshot-repository-liquibase
+            type: jar
+            version: '${project.version}'
+
+    - name: java:/DS.stagingprosecutors
+      type: xa-datasource
+      setup:
+        - type: liquibase
+          maven:
+            groupId: uk.gov.justice.services
+            artifactId: event-buffer-liquibase
+            type: jar
+            version: '${cpp.framework.version}'
+        - type: liquibase
+          maven:
+            groupId: uk.gov.moj.cpp.staging.prosecutors
+            artifactId: stagingprosecutors-viewstore-liquibase
+            type: jar
+            version: '${project.version}'
+
+
+    - name: stagingprosecutors.handler.command
+      type: queue
+    - name: stagingprosecutors.event
+      type: topic
+    - name: public.event
+      type: topic
+
+  services:
+    # Stagingprosecutors provides these service mappings
+    - name: 'stagingprosecutors-service'
+      id: 'stagingprosecutors_service'
+      target: '/stagingprosecutors-service'
+      map:
+        - '/stagingprosecutors-command-api'
+        - '/stagingprosecutors-command-handler'
+        - '/stagingprosecutors-event-listener'
+        - '/stagingprosecutors-event-processor'
+        - '/stagingprosecutors-query-view'
+      matcher: '/stagingprosecutors-[^/]+'

@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/cps-serve-bcm.json",
+  "type": "object",
+  "properties": {
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+      "description": "Identifies the case to which the form is associated to"
+    },
+    "defendantOffencesSubject": {
+      "description": "Identifies the defendant and offences to which the form is associated to",
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-offences-subjects.json"
+      }
+    },
+    "tag": {
+      "type": "string",
+      "maxLength": 36
+    },
+    "evidencePrePTPH": {
+      "type": "string",
+      "maxLength": 2500
+    },
+    "evidencePostPTPH": {
+      "type": "string",
+      "maxLength": 2500
+    },
+    "otherInformation": {
+      "type": "string",
+      "maxLength": 2500
+    }
+  },
+  "required": [
+    "prosecutionCaseSubject",
+    "defendantOffencesSubject"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "evidencePrePTPH"
+      ]
+    },
+    {
+      "required": [
+        "evidencePostPTPH"
+      ]
+    },
+    {
+      "required": [
+        "otherInformation"
+      ]
+    }
+  ],
+  "additionalProperties": true
+}

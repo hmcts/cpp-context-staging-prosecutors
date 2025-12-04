@@ -1,0 +1,140 @@
+{
+  "boxHearingRequest": {
+    "applicationDueDate": "2022-08-02",
+    "courtCentre": {
+      "name": "court-name-value"
+    },
+    "jurisdictionType": "CROWN"
+  },
+  "courtApplication": {
+    "applicant": {
+      "isSubject": false,
+      "organisation": {
+        "name": "applicant-organisation-name-value"
+      },
+      "organisationPersons": [
+        {
+          "person": {
+            "address": {
+              "address1": "applicant-address-line1-value",
+              "address2": "applicant-address-line2-value",
+              "address3": "applicant-address-line3-value",
+              "address4": "applicant-address-line4-value",
+              "address5": "applicant-address-line5-value",
+              "postcode": "applicant-address-postcode-value"
+            },
+            "contact": {
+              "primaryEmail": "applicant-email-address-value",
+              "work": "applicant-contact-number-value"
+            },
+            "firstName": "applicant-first-name-value",
+            "lastName": "applicant-last-name-value"
+          }
+        }
+      ]
+    },
+    "courtApplicationCases": [
+      {
+        "caseURN": "related-case-urn-value",
+        "prosecutorOuCode": "related-case-prosecutor-ou-code-value"
+      }
+    ],
+    "courtApplicationType": {},
+    "id": "3a44738c-0a41-4211-9d67-0dc974e706ac",
+    "respondents": [
+      {
+        "asn": "respondent-asn-value",
+        "cpsDefendantId": "respondent-cps-defendant-id-value",
+        "organisation": {
+          "name": "respondent-organisation-name-value"
+        },
+        "organisationPersons": [
+          {
+            "person": {
+              "address": {
+                "address1": "respondent-address-line1-value",
+                "address2": "respondent-address-line2-value",
+                "address3": "respondent-address-line3-value",
+                "address4": "respondent-address-line4-value",
+                "address5": "respondent-address-line5-value",
+                "postcode": "respondent-address-postcode-value"
+              },
+              "firstName": "respondent-first-name-value",
+              "lastName": "respondent-last-name-value"
+            }
+          }
+        ]
+      },
+      {
+        "asn": "respondent2-asn-value",
+        "cpsDefendantId": "respondent2-cps-defendant-id-value",
+        "organisation": {
+          "name": "respondent2-organisation-name-value"
+        },
+        "organisationPersons": [
+          {
+            "person": {
+              "address": {
+                "address1": "respondent2-address-line1-value",
+                "address2": "respondent2-address-line2-value",
+                "address3": "respondent2-address-line3-value",
+                "address4": "respondent2-address-line4-value",
+                "address5": "respondent2-address-line5-value",
+                "postcode": "respondent2-address-postcode-value"
+              },
+              "firstName": "respondent2-first-name-value",
+              "lastName": "respondent2-last-name-value"
+            }
+          }
+        ]
+      },
+      {
+        "asn": "respondent3-asn-value",
+        "cpsDefendantId": "respondent3-cps-defendant-id-value",
+        "organisation": {
+          "name": "respondent3-organisation-name-value"
+        },
+        "organisationPersons": [
+          {
+            "person": {
+              "address": {
+                "address1": "respondent3-address-line1-value",
+                "address2": "respondent3-address-line2-value",
+                "address3": "respondent3-address-line3-value",
+                "address4": "respondent3-address-line4-value",
+                "address5": "respondent3-address-line5-value",
+                "postcode": "respondent3-address-postcode-value"
+              },
+              "firstName": "respondent3-first-name-value",
+              "lastName": "respondent3-last-name-value"
+            }
+          }
+        ]
+      },
+      {
+        "asn": "respondent4-asn-value",
+        "cpsDefendantId": "respondent4-cps-defendant-id-value",
+        "organisation": {
+          "name": "respondent4-organisation-name-value"
+        },
+        "organisationPersons": [
+          {
+            "person": {
+              "address": {
+                "address1": "respondent4-address-line1-value",
+                "address2": "respondent4-address-line2-value",
+                "address3": "respondent4-address-line3-value",
+                "address4": "respondent4-address-line4-value",
+                "address5": "respondent4-address-line5-value",
+                "postcode": "respondent4-address-postcode-value"
+              },
+              "firstName": "respondent4-first-name-value",
+              "lastName": "respondent4-last-name-value"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "senderEmail": "eamail@email.com"
+}

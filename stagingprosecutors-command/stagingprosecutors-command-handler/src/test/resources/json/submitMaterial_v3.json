@@ -1,0 +1,21 @@
+{
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "material": "2191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "materialContentType": "text/plain",
+  "materialName": "defendant document",
+  "materialType": "SJPN",
+  "prosecutionCaseSubject": {
+    "caseUrn" : "CASETFL001",
+    "prosecutingAuthority":"00TFL1A",
+    "defendantSubject":{
+      "prosecutorDefendantId": "2b9c0dac-deeb-4634-ba69-be5115bdc585",
+      "prosecutorPersonDefendantDetails":{
+        "forename":"David",
+        "surname": "Miller",
+        "prosecutorDefendantId": "2b9c0dac-deeb-4634-ba69-be5115bdc585",
+        "dateOfBirth": "1990-10-23"
+      }
+     }
+  }
+}
+

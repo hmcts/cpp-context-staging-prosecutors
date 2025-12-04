@@ -1,0 +1,23 @@
+{
+  "prosecutingAuthority": "GAEAA01",
+  "initiationCode": "J",
+  "urn": "URN500",
+  "defendants": [
+    {
+      "documentationLanguage": "E",
+      "hearingLanguage": "E",
+      "numPreviousConvictions": 22,
+      "prosecutorCosts": 200,
+      "offences": [
+        {
+          "offenceCode": "OFCODE12",
+          "offenceSequenceNo": 1,
+          "offenceCommittedDate": "2015-04-04",
+          "offenceDateCode": 1,
+          "offenceWording": "",
+          "prosecutorCompensation": 1
+        }
+      ]
+    }
+  ]
+}

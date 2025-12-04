@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+  "type": "object",
+  "properties": {
+    "urn": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36
+    },
+    "prosecutingAuthority": {
+      "type": "string",
+      "description": "The OU Code of the prosecuting authority",
+      "minLength": 1,
+      "maxLength": 7
+    }
+  },
+  "required": [
+    "urn",
+    "prosecutingAuthority"
+  ],
+  "additionalProperties": false
+}

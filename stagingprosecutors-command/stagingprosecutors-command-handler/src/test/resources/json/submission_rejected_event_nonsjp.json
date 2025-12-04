@@ -1,0 +1,20 @@
+{
+  "caseErrors": [{
+    "code": "PROSECUTOR_OUCODE_NOT_RECOGNISED",
+    "values": [{
+      "key": "originatingOrganisation",
+      "value": "123"
+    }]
+  }],
+  "defendantErrors": [{
+    "problems": [{
+      "code": "DEFENDANT_DOB_IN_FUTURE",
+      "values": [{
+        "key": "dateOfBirth",
+        "value": "2050-01-01"
+      }]
+    }],
+    "prosecutorDefendantReference": "e191c165-e9e4-4fd7-ac6d-5bfd04690f78"
+  }],
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77"
+}

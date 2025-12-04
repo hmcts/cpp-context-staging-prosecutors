@@ -1,0 +1,14 @@
+{
+  "caseId": "7e2f843e-d639-40b3-8611-8015f3a18958",
+  "warnings": [
+    {
+      "code": "DEFENDANT_UNDER_18_YEARS_AT_CHARGE_DATE",
+      "values": [
+        {
+          "key": "dateOfBirth",
+          "value": "2001-01-01"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>stagingprosecutors-domain</artifactId>
+        <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+        <version>17.103.56-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <skip.schema.pojo.generation>false</skip.schema.pojo.generation>
+    </properties>
+
+    <artifactId>stagingprosecutors-domain-values</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.gov.justice.framework-api</groupId>
+            <artifactId>framework-api-domain</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+            <artifactId>stagingprosecutors-domain-value-schema</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+                <plugin>
+                    <groupId>uk.gov.justice.generators</groupId>
+                    <artifactId>pojo-generation-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>pojo-generation</id>
+                            <configuration>
+                                <generatorName>
+                                    uk.gov.justice.generation.SchemaPojoGeneratorFactory
+                                </generatorName>
+                                <parserName>
+                                    uk.gov.justice.generation.io.files.parser.SchemaDefinitionParserFactory
+                                </parserName>
+                                <outputDirectory>${project.build.directory}/generated-sources
+                                </outputDirectory>
+                                <includes>
+                                    <include>**/*.json</include>
+                                </includes>
+                                <generatorProperties implementation="uk.gov.justice.generation.pojo.core.PojoGeneratorProperties">
+                                    <plugins>
+                                        <plugin>
+                                            uk.gov.justice.generation.pojo.plugin.classmodifying.AddHashcodeAndEqualsPlugin
+                                        </plugin>
+                                        <plugin>
+                                            uk.gov.justice.generation.pojo.plugin.classmodifying.AddToStringMethodToClassPlugin
+                                        </plugin>
+                                        <plugin>
+                                            uk.gov.justice.generation.pojo.plugin.classmodifying.AddAdditionalPropertiesToClassPlugin
+                                        </plugin>
+                                        <plugin>
+                                            uk.gov.justice.generation.pojo.plugin.typemodifying.ReferenceCustomReturnTypePlugin
+                                        </plugin>
+                                        <plugin>
+                                            uk.gov.justice.generation.pojo.plugin.typemodifying.FormatCustomReturnTypePlugin
+                                        </plugin>
+                                    </plugins>
+                                    <typeMappings>
+                                        <typeMapping>
+                                            <name>uuid</name>
+                                            <type>reference</type>
+                                            <implementation>java.util.UUID</implementation>
+                                        </typeMapping>
+                                        <typeMapping>
+                                            <name>date</name>
+                                            <type>reference</type>
+                                            <implementation>java.time.LocalDate</implementation>
+                                        </typeMapping>
+                                    </typeMappings>
+                                </generatorProperties>
+                            </configuration>
+                            <phase>generate-sources</phase>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+                            <artifactId>stagingprosecutors-domain-value-schema</artifactId>
+                            <version>${project.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+        </plugins>
+    </build>
+</project>
+
+

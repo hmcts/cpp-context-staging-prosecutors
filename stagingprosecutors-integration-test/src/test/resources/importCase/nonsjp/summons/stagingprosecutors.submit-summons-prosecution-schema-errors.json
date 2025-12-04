@@ -1,0 +1,142 @@
+{
+  "prosecutionSubmissionDetails": {
+    "summonsCode": "A",
+    "urn": "TVL54321",
+    "prosecutingAuthority": "PROSECUTING_AUTHORITY",
+    "informant": "Adam",
+    "hearingDetails": {
+      "courtHearingLocation": "B01BH00",
+      "dateOfHearing": "2019-08-11",
+      "timeOfHearing": "09:01:01.001"
+    }
+  },
+  "defendants": [
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1",
+          "postcode": "PG0 1XXXX"
+        },
+        "pncIdentifier": "2099A1234567",
+        "croNumber": "123456A20L"
+      },
+      "individual": {
+        "nameDetails": {
+          "title": "Mr",
+          "forename": "John",
+          "surname": "SMITH"
+        },
+        "parentGuardian": {
+          "organisation": {
+            "organisationName": "Parent guardian organisation",
+            "companyTelephoneNumber": "12312312302345a23"
+          },
+          "address": {
+            "address1": "ParentGuardian Address Line 1",
+            "postcode": "abcdef"
+          }
+        },
+        "contactDetails": {
+          "workTelephoneNumber": "12312312302345a23",
+          "homeTelephoneNumber": "abcdef",
+          "mobileTelephoneNumber": "hekf@fgg.com",
+          "primaryEmail": "notgoodprimaryemail",
+          "secondaryEmail": "notgoodsecondaryemail"
+        },
+        "dateOfBirth": "1970-02-03",
+        "gender": 6,
+        "nationalInsuranceNumber": "SN123456123"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03014",
+            "offenceSequenceNo": 0,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 7,
+            "offenceWording": "Test Prosecution charge wording"
+          }
+        }
+      ]
+    },
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1"
+        },
+        "pncIdentifier": "2020/1234567L",
+        "croNumber": "SF20/123456M"
+      },
+      "individual": {
+        "nameDetails": {
+          "title": "Mr",
+          "forename": "John",
+          "surname": "SMITH"
+        },
+        "parentGuardian": {
+          "individual": {
+            "nameDetails": {
+              "surname": "parentGuardianReaper"
+            },
+            "contactDetails": {
+              "workTelephoneNumber": "12312312302345a23",
+              "homeTelephoneNumber": "abcdef",
+              "mobileTelephoneNumber": "hekf@fgg.com",
+              "primaryEmail": "notgoodprimaryemail",
+              "secondaryEmail": "notgoodsecondaryemail"
+            },
+            "gender": 8
+          },
+          "address": {
+            "address1": "ParentGuardian Address Line 1"
+          }
+        },
+        "dateOfBirth": "1970-02-03",
+        "gender": 1,
+        "nationalInsuranceNumber": "SN12345C"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03014",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 0,
+            "offenceWording": "Test Prosecution charge wording"
+          }
+        }
+      ]
+    },
+    {
+      "defendantDetails": {
+        "prosecutorDefendantId": "TFLDEF001",
+        "documentationLanguage": "E",
+        "hearingLanguage": "E",
+        "address": {
+          "address1": "Address Line 1"
+        }
+      },
+      "organisation": {
+        "organisationName": "Organisation Defendant",
+        "companyTelephoneNumber": "abcdef"
+      },
+      "offences": [
+        {
+          "offenceDetails": {
+            "cjsOffenceCode": "CA03014",
+            "offenceSequenceNo": 1,
+            "offenceCommittedDate": "2019-06-11",
+            "offenceDateCode": 4,
+            "offenceWording": "Test Prosecution charge wording"
+          }
+        }
+      ]
+    }
+  ]
+}

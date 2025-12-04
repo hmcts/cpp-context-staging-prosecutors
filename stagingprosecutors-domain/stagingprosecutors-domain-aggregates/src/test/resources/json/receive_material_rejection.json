@@ -1,0 +1,24 @@
+{
+  "errors": [
+    {
+      "code": "INVALID_DOCUMENT_TYPE",
+      "values": [
+        {
+          "key": "documentType",
+          "value": "PLEA"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "INVALID_DOCUMENT_TYPE",
+      "values": [
+        {
+          "key": "documentType",
+          "value": "PLEA"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "prosecutorDefendantId": "123",
+  "documentationLanguage": "W",
+  "hearingLanguage": "W",
+  "pncIdentifier": "2099/1234567L",
+  "croNumber": "SF20/123456M",
+  "address": {
+    "address1":"200 Street",
+    "postcode" : "CR0 1XG"
+  }
+}

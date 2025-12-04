@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-offences-subjects-ptph.json",
+  "description": "Identifies the defendant and offences to which the form is associated to",
+  "properties": {
+    "defendant": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-subject.json"
+    },
+    "principalCharges": {
+      "type": "string",
+      "maxLength": 8100
+    }
+  },
+  "required": [
+    "defendant",
+    "principalCharges"
+  ],
+  "additionalProperties": false
+}

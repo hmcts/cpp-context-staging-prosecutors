@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/contact.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 175
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 35
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 255
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false
+}

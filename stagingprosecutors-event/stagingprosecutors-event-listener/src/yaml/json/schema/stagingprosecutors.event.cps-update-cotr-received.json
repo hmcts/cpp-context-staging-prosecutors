@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-update-cotr-received.json",
+  "type": "object",
+  "properties": {
+    "submissionId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    },
+    "submissionStatus": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/definitions.json#/definitions/submissionStatus"
+    },
+    "prosecutionCaseSubject": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-prosecution-case-subject.json",
+      "description": "Identifies the case to which the form is associated to"
+    },
+    "defendantSubject": {
+      "type": "array",
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/defendant-subject.json"
+      },
+      "minItems": 1
+    },
+    "tag": {
+      "type": "string"
+    },
+    "trialDate": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The date of the trial"
+    },
+    "furtherProsecutionInformationProvidedAfterCertification": {
+      "type": "string"
+    },
+    "certifyThatTheProsecutionIsTrialReady": {
+      "type": "string"
+    },
+    "formCompletedOnBehalfOfProsecutionBy": {
+      "type": "string"
+    },
+    "date": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/date",
+      "description": "The certification date"
+    },
+    "cotrId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid"
+    }
+  },
+  "required": [
+    "submissionId",
+    "submissionStatus",
+    "prosecutionCaseSubject",
+    "defendantSubject",
+    "trialDate",
+    "furtherProsecutionInformationProvidedAfterCertification",
+    "certifyThatTheProsecutionIsTrialReady",
+    "formCompletedOnBehalfOfProsecutionBy",
+    "date",
+    "cotrId"
+  ],
+  "additionalProperties": false
+}

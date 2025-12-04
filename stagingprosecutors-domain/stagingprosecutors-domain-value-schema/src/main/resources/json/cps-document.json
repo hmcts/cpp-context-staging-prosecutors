@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-document.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 13,
+      "description": "e.g. B12345 upto 13 characters in length"
+    },
+    "materialType": {
+      "type": "integer",
+      "description": "Numeric code that indicates the bundle type or that it is a document"
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Upto 255 characters in length includes extension"
+    },
+    "fileStoreId": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/uuid",
+      "description": "id from file storage system"
+    },
+    "documentContent": {
+      "type": "string",
+      "description": "Base64 Encoded documents content probable max 200MB (original document size)"
+    }
+  },
+  "required": [
+    "documentId",
+    "fileStoreId"
+  ],
+  "additionalProperties" : false
+}

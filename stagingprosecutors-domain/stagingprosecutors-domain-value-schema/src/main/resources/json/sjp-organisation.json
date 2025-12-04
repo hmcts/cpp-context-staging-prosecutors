@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/sjp-organisation.json",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "organisationName": {
+      "type": "string",
+      "description": "Name of an organisation, e.g., Marks and Spencer.",
+      "maxLength": 255
+    },
+    "contactDetails": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/contact-details.json"
+    },
+    "address": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/address.json"
+    }
+  },
+  "required": [
+    "organisationName",
+    "address"
+  ],
+  "additionalProperties" : false
+}

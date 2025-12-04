@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/cps-case-contact.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 175
+    },
+    "phone": {
+      "pattern": "^[0-9+\\ \\-]{10,}$",
+      "maxLength": 35,
+      "description": "A home telephone number, including any exchange of location code, at which a person or organisation can be contacted in the UK by telephonic means."
+    },
+    "email": {
+      "$ref": "http://justice.gov.uk/domain/core/common/definitions.json#/definitions/email",
+      "description": "The email address of the contact.",
+      "maxLength": 255
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false
+}

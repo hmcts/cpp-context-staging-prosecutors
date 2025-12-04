@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/json/schemas/prosecution-will-rely-on.json",
+  "type": "string",
+  "enum": [
+    "Defendant admissions in interview",
+    "Defendant failure to mention facts in interviews",
+    "A summary of the defendant interview",
+    "A record of the defendants interview",
+    "Expert evidence",
+    "Hearsay evidence",
+    "Bad character evidence",
+    "CCTV evidence",
+    "Electronically recorded evidence",
+    "Diagram",
+    "Sketch map",
+    "Photos"
+  ]
+}

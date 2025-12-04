@@ -1,0 +1,57 @@
+{
+  "prosecutionCaseSubject": {
+    "prosecutingAuthority": "TheOUC",
+    "urn": "caseURN"
+  },
+  "submissionId": "{SUBMISSION_ID}",
+  "submissionStatus": "PENDING",
+  "cpsDefendant": [
+    {
+      "cpsDefendantId": "cps-defendant-id",
+      "matchingId": "d5ed8708-2b68-4f57-b492-de3df693047a",
+      "prosecutorDefendantId": "prosecutorDefendantId",
+      "principalCharges": "principal-charges"
+    }
+  ],
+  "tag": "tag",
+  "ptphAdvocate": {
+    "name": "name"
+  },
+  "reviewingLawyer": {
+    "name": "name"
+  },
+  "prosecutionCaseProgressionOfficer": {
+    "name": "name"
+  },
+  "officerInTheCase": {
+    "name": "name"
+  },
+  "cpsOffice": "CpsOff1",
+  "draftIndictment": "Y",
+  "summaryOfCircumstances": "Y",
+  "statementsForPAndICm": "Y",
+  "exhibitsForPAndICm": "Y",
+  "cctv": "Y",
+  "streamlinedForensicReport": "Y",
+  "medicalEvidence": "Y",
+  "expertEvidence": "Y",
+  "badCharacter": "Y",
+  "hearsay": "Y",
+  "specialMeasures": "Y",
+  "criminalRecord": "Y",
+  "victimPersonalStatement": "Y",
+  "disclosureManagementDoc": "Y",
+  "thirdParty": "Y",
+  "reviewDisclosableMaterial": "Y",
+  "witnesses": [
+    {
+      "intermediaryForWitness": "Y",
+      "policeOfficerSubject": {
+        "officerInCharge": true,
+        "officerRank": "Rank1"
+      },
+      "witnessFirstName": "forename",
+      "witnessLastName": "abc"
+    }
+  ]
+}

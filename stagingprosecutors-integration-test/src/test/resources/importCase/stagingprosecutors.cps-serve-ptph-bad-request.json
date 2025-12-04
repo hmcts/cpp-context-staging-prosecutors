@@ -1,0 +1,86 @@
+{
+  "prosecutionCaseSubject": {
+    "urn": "caseURN",
+    "prosecutingAuthority": "The OU Code of the prosecuting authority"
+  },
+  "defendantOffencesSubjects": [
+    {
+      "defendant": {
+        "prosecutorDefendantId": "defendant Id"
+      },
+      "principalCharges": "test"
+    }
+  ],
+  "tag": "tag",
+  "trialAdvocate": {
+    "email": "Email",
+    "name": "name",
+    "phone": "phone number"
+  },
+  "reviewingLawyer": {
+    "email": "Email",
+    "name": "name",
+    "phone": "phone number"
+  },
+  "prosecutionCaseProgressionOfficer": {
+    "email": "Email",
+    "name": "name",
+    "phone": "phone number"
+  },
+  "officerInTheCase": {
+    "email": "Email",
+    "name": "name",
+    "phone": "phone number"
+  },
+  "cpsOffice": "Cps Office",
+  "draftIndictment": "Draft Indictment",
+  "draftIndictmentNotes": "Draft Indictment Notes",
+  "summaryOfCircumstances": "Summary Of Circumstances",
+  "summaryOfCircumstancesNotes": "Summary Of Circumstances Notes",
+  "statementsForPAndICm": "Statements For P And ICm",
+  "statementsForPAndICmNotes": "Statements For P And ICm Notes",
+  "exhibitsForPAndICm": "Exhibits For P And ICm",
+  "exhibitsForPAndICmNotes": "Exhibits For P And ICm Notes",
+  "cctv": "Cctv",
+  "cctvNotes": "Cctv Notes",
+  "streamlinedForensicReport": "Streamlined Forensic Report",
+  "streamlinedForensicReportNotes": "Streamlined Forensic Report Notes",
+  "medicalEvidence": "Medical Evidence",
+  "medicalEvidenceNotes": "Medical Evidence Notes",
+  "expertEvidence": "Expert Evidence",
+  "badCharacter": "Bad Character",
+  "badCharacterNotes": "Bad Character Notes",
+  "hearsay": "Hear say",
+  "hearsayNotes": "Hear say Notes",
+  "specialMeasures": "Special Measures",
+  "specialMeasuresNotes": "Special Measures Notes",
+  "criminalRecord": "Criminal Record",
+  "criminalRecordNotes": "Criminal Record Notes",
+  "victimPersonalStatement": "Victim Personal Statement",
+  "victimPersonalStatementNotes": "Victim Personal Statement Notes",
+  "disclosureManagementDoc": "Disclosure Management Doc",
+  "disclosureManagementDocNotes": "Disclosure Management Doc Notes",
+  "thirdParty": "Third Party",
+  "thirdPartyNotes": "Third Party Notes",
+  "reviewDisclosableMaterial": "Review Disclosable Material",
+  "reviewDisclosableMaterialNotes": "Review Disclosable Material Notes",
+  "particularsOfAnyRelatedCriminalProceedings": "Particulars Of Any Related Criminal Proceedings",
+  "particularsOfAnyFamily": "Particulars Of Any Family",
+  "witnesses": [
+    {
+      "title": "Mr",
+      "forename": "forename",
+      "forename2": "xyz",
+      "forename3": "abc",
+      "surname": "abc",
+      "ageIfUnder18": 14,
+      "dateOfBirth": "1980-01-24",
+      "interpreterRequired": true,
+      "interpreterLanguageDialect": "welsh",
+      "welshLanguage": false,
+      "prosecutionWitnessRequiringAssistanceSpecialMeasures": "Y",
+      "prosecutionWitnessRequiringAssistanceSpecialMeasuresDetails": "details",
+      "prosecutionRequireAttendance": true
+    }
+  ]
+}

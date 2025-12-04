@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/submit-requisition-prosecution-http-with-oucode.json",
+  "type": "object",
+  "properties": {
+    "prosecutionSubmissionDetails": {
+      "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/requisition-prosecution-submission-details.json"
+    },
+    "defendants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "http://cpp.moj.gov.uk/staging/prosecutors/command/api/requisition-defendant.json"
+      }
+    },
+    "oucode": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "prosecutionSubmissionDetails",
+    "defendants",
+    "oucode"
+  ],
+  "additionalProperties": false
+}

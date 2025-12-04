@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<CP20 xmlns="http://www.cgi.com/CP/CP20/2020-03"
+>
+    <TransactionID>230189</TransactionID>
+    <CompassCaseId>46001</CompassCaseId>
+    <ResponseEmail>gvcpsdirect.cms@cps.gov.uk</ResponseEmail>
+    <Documents>
+        <Document>
+            <DocumentId>B33622</DocumentId>
+            <MaterialType>12</MaterialType>
+            <FileName>FISH, JONES and PACKET 45MD0000220 Temp Bundle for Dispatch test.pdf</FileName>
+            <DocumentContent>UjBsR09EbGhjZ0dTQUxNQUFBUUNBRU1tQ1p0dU1GUXhEUzhi</DocumentContent>
+        </Document>
+    </Documents>
+    <Defendants>
+        <Defendant>
+            <CMSDefendantID>10016016</CMSDefendantID>
+            <Surname>PACKET</Surname>
+            <Forenames>Chris</Forenames>
+            <DOB>1990-03-15</DOB>
+            <OUCode>B45GC00</OUCode>
+            <ASN>1900NP0004361000203N</ASN>
+        </Defendant>
+    </Defendants>
+</CP20>

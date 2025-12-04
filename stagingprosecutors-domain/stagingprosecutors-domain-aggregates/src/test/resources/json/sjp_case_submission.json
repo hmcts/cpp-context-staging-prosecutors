@@ -1,0 +1,43 @@
+{
+  "submissionId": "8191c165-e9e4-4fd7-ac6d-5bfd04690f77",
+  "prosecutionSubmissionDetails": {
+    "prosecutingAuthority": "GAEAA01",
+    "urn": "URN500",
+    "informant": "Fred",
+    "writtenChargePostingDate": "2015-04-04",
+    "additionalProperties": {}
+  },
+  "defendant": {
+    "prosecutorDefendantId": "123",
+    "defendantPerson": {
+      "title": "Mr",
+      "forename": "Joe",
+      "surname": "Bloggs",
+      "selfDefinedInformation": {
+        "gender": 1,
+        "ethnicity": "W1",
+        "nationality": "IND",
+        "additionalNationality": "IND",
+        "additionalProperties": {}
+      },
+      "additionalProperties": {}
+    },
+    "prosecutorCosts": "100.00",
+    "documentationLanguage": "E",
+    "hearingLanguage": "E",
+    "numPreviousConvictions": 22,
+    "offences": [
+      {
+        "cjsOffenceCode": "OFCODE12",
+        "offenceSequenceNo": 1,
+        "offenceCommittedDate": "2015-04-04",
+        "offenceDateCode": 1,
+        "offenceWording": "Offence committed",
+        "prosecutorCompensation": "1.50",
+        "backDuty": "+2000.00",
+        "additionalProperties": {}
+      }
+    ],
+    "additionalProperties": {}
+  }
+}
