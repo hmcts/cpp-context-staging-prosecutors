@@ -1,6 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutors;
 
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
 import static uk.gov.justice.services.core.enveloper.Enveloper.envelop;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
@@ -53,7 +53,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
@@ -349,7 +349,7 @@ public class StagingProsecutorsCommandAPIV2 {
         final String ptiUrn = requestPayload.getString("ptiUrn");
         final UUID submissionId = uuidProducer.generateUUID();
 
-        final JsonObjectBuilder payloadBuilder = Json.createObjectBuilder()
+        final JsonObjectBuilder payloadBuilder = JsonObjects.createObjectBuilder()
                 .add(SUBMISSION_ID, submissionId.toString())
                 .add("materialId", requestPayload.getString("material"))
                 .add(CASE_URN, ptiUrn)
@@ -392,7 +392,7 @@ public class StagingProsecutorsCommandAPIV2 {
 
         final UUID submissionId = uuidProducer.generateUUID();
 
-        final JsonObjectBuilder payloadBuilder = Json.createObjectBuilder()
+        final JsonObjectBuilder payloadBuilder = JsonObjects.createObjectBuilder()
                 .add(SUBMISSION_ID, submissionId.toString())
                 .add("materialId", requestPayload.getString("material"))
                 .add(CASE_URN, requestPayload.getString(CASE_URN))

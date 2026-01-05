@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -79,7 +79,7 @@ public class DefaultCommandApiV1ProsecutionsCpsXmlMaterialsResource implements C
         final List<TDocument> tDocumentList = cp20.getDocuments().getDocument();
         final String fileStoreIds = storeDocumentsInFileStore(tDocumentList);
         final String payloadWithoutFileContent  = new Cp20ObjectUnMarshaller().getMarshalContent(cp20);
-        final JsonObject modifiedJsonPayload = Json.createObjectBuilder().add("payload", payloadWithoutFileContent).add("fileStoreIds",fileStoreIds).build();
+        final JsonObject modifiedJsonPayload = JsonObjects.createObjectBuilder().add("payload", payloadWithoutFileContent).add("fileStoreIds",fileStoreIds).build();
 
         traceLogger.trace(LOGGER, () -> String.format("Received REST request with headers: %s", httpTraceLoggerHelper.toHttpHeaderTrace(headers)));
         return restProcessor.process("AcceptedStatusEnvelopeEntityResponseStrategy", interceptorChainProcessor::process, actionMapper.actionOf("postHmctsCjsCpsSubmitMaterialV1ProsecutionsCpsXmlMaterials", "POST", headers), Optional.of(modifiedJsonPayload), headers, validParameterCollectionBuilder.parameters());
@@ -94,7 +94,7 @@ public class DefaultCommandApiV1ProsecutionsCpsXmlMaterialsResource implements C
     }
 
     private String uploadSingleDocument(final TDocument tDocument) {
-        final JsonObject metadata = Json.createObjectBuilder()
+        final JsonObject metadata = JsonObjects.createObjectBuilder()
                 .add("fileName", tDocument.getFileName())
                 .add("createdAt", ZonedDateTimes.toString(new UtcClock().now()))
                 .add("mediaType", mediaTypeResolver.resolveMediaType(tDocument.getFileName()))

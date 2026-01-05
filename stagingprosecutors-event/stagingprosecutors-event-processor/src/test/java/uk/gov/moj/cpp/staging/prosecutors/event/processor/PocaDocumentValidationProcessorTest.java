@@ -1,7 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.processor;
 
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
@@ -18,7 +18,7 @@ import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.justice.services.messaging.Metadata;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.util.ApplicationParameters;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 
 import org.junit.jupiter.api.Test;
@@ -87,7 +87,7 @@ public class PocaDocumentValidationProcessorTest {
 
         final JsonObject eventPayload = createObjectBuilder()
                 .add("emailSubject", "emailSubject")
-                .add("errors", Json.createArrayBuilder().add(createObjectBuilder().add("errorCode", "errorCode1")))
+                .add("errors", JsonObjects.createArrayBuilder().add(createObjectBuilder().add("errorCode", "errorCode1")))
                 .add("senderEmail", "senderEmail@hmcts.net")
                 .build();
 

@@ -1,7 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors.unbundling.service;
 
 import static java.util.Objects.nonNull;
-import static javax.json.Json.createReader;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

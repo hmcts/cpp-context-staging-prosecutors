@@ -2,7 +2,7 @@ package service;
 
 import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 import uk.gov.justice.core.courts.Address;
 import uk.gov.justice.core.courts.AssociatedPerson;
@@ -29,7 +29,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -131,10 +131,10 @@ public class CpsPayloadTransformService {
         final Optional<String> applicationDecisionSoughtByDate = ofNullable(courtApplication.getApplicationDecisionSoughtByDate());
 
         final Optional<String> code = ofNullable(courtApplication.getType().getCode());
-        final JsonObjectBuilder courtApplicationBuilder = Json.createObjectBuilder();
-        final JsonObjectBuilder applicationTypeBuilder = Json.createObjectBuilder();
+        final JsonObjectBuilder courtApplicationBuilder = JsonObjects.createObjectBuilder();
+        final JsonObjectBuilder applicationTypeBuilder = JsonObjects.createObjectBuilder();
         buildCourtApplicationAndType(courtApplication, code, courtApplicationBuilder, applicationTypeBuilder);
-        final JsonObjectBuilder courtApplicationPaymentBuilder = Json.createObjectBuilder();
+        final JsonObjectBuilder courtApplicationPaymentBuilder = JsonObjects.createObjectBuilder();
 
         applicationParticulars.ifPresent(appParticulars -> courtApplicationBuilder.add(APPLICATION_PARTICULARS, appParticulars));
 
@@ -142,7 +142,7 @@ public class CpsPayloadTransformService {
         applicationDecisionSoughtByDate.ifPresent(s -> courtApplicationBuilder.add(APPLICATION_DECISION_SOUGHT_BY_DATE, applicationDecisionSoughtByDate.get()));
 
 
-        final JsonObjectBuilder applicantBuilder = Json.createObjectBuilder();
+        final JsonObjectBuilder applicantBuilder = JsonObjects.createObjectBuilder();
         final CourtApplicationParty applicant = courtApplication.getApplicant();
         buildApplicantWhenApplicantIsADefendant(cpsProsecutorsList, courtApplication, prosecutionCases, applicantBuilder, applicant);
 
@@ -173,16 +173,16 @@ public class CpsPayloadTransformService {
         courtApplicationBuilder.add(RESPONDENTS, getRespondents(courtApplicationWithCaseDto, cpsProsecutorsList).build());
         final List<CourtApplicationParty> thirdParties = courtApplicationWithCaseDto.getCourtApplication().getThirdParties();
         if (nonNull(thirdParties) && !thirdParties.isEmpty()) {
-            final JsonArrayBuilder thirdPartyArrayBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder thirdPartyArrayBuilder = JsonObjects.createArrayBuilder();
             thirdParties.forEach(courtApplicationParty -> {
-                final JsonObjectBuilder thirdPartyBuilder = Json.createObjectBuilder();
+                final JsonObjectBuilder thirdPartyBuilder = JsonObjects.createObjectBuilder();
                 ofNullable(courtApplicationParty.getPersonDetails()).ifPresent(person -> {
                     buildPThirdPartyPersonDetails(thirdPartyBuilder, person);
                     thirdPartyArrayBuilder.add(thirdPartyBuilder);
                 });
                 if (nonNull(courtApplicationParty.getOrganisationPersons())) {
                     courtApplicationParty.getOrganisationPersons().forEach(associatedPerson -> {
-                        final JsonObjectBuilder associatedPersonBuilder = Json.createObjectBuilder();
+                        final JsonObjectBuilder associatedPersonBuilder = JsonObjects.createObjectBuilder();
                         ofNullable(associatedPerson.getRole()).ifPresent(role -> associatedPersonBuilder.add(ROLE, role));
                         associatedPersonBuilder.add("name", associatedPerson.getPerson().getLastName());
                         thirdPartyBuilder.add(ORGANISATION, associatedPersonBuilder.build());
@@ -191,7 +191,7 @@ public class CpsPayloadTransformService {
                 }
 
                 ofNullable(courtApplicationParty.getOrganisation()).ifPresent(organisation -> {
-                    final JsonObjectBuilder associatedPersonBuilder = Json.createObjectBuilder();
+                    final JsonObjectBuilder associatedPersonBuilder = JsonObjects.createObjectBuilder();
                     associatedPersonBuilder.add(NAME, organisation.getName());
                     thirdPartyBuilder.add(ORGANISATION, associatedPersonBuilder.build());
                     thirdPartyArrayBuilder.add(thirdPartyBuilder);
@@ -208,7 +208,7 @@ public class CpsPayloadTransformService {
         notificationBuilder.add(COURT_APPLICATION, courtApplicationBuilder.build());
         if (nonNull(boxHearing)) {
             final CourtCentre courtCentre = boxHearing.getCourtCentre();
-            final JsonObjectBuilder courtHearingCentreBuilder = Json.createObjectBuilder();
+            final JsonObjectBuilder courtHearingCentreBuilder = JsonObjects.createObjectBuilder();
             courtHearingCentreBuilder.add(NAME, courtCentre.getName());
             ofNullable(courtCentre.getCode()).ifPresent(name -> courtHearingCentreBuilder.add(NAME, name));
             final JsonObjectBuilder boxHearingRequestBuilder = createObjectBuilder();
@@ -226,13 +226,13 @@ public class CpsPayloadTransformService {
     private void buildApplicantIfApplicantIsOrganisation(final JsonObjectBuilder applicantBuilder, final CourtApplicationParty applicant) {
         final Optional<Organisation> organisation = ofNullable(applicant.getOrganisation());
         organisation.ifPresent(org -> {
-            final JsonObjectBuilder nameBuilder = Json.createObjectBuilder();
+            final JsonObjectBuilder nameBuilder = JsonObjects.createObjectBuilder();
             nameBuilder.add(NAME, org.getName());
             applicantBuilder.add(ORGANISATION, nameBuilder.build());
         });
 
         ofNullable(applicant.getProsecutingAuthority()).map(ProsecutingAuthority::getName).ifPresent(name -> {
-            final JsonObjectBuilder nameBuilder = Json.createObjectBuilder();
+            final JsonObjectBuilder nameBuilder = JsonObjects.createObjectBuilder();
             nameBuilder.add(NAME, name);
             applicantBuilder.add(ORGANISATION, nameBuilder.build());
         });
@@ -240,7 +240,7 @@ public class CpsPayloadTransformService {
         final List<AssociatedPerson> organisationPersons = applicant.getOrganisationPersons();
         if (nonNull(organisationPersons)) {
             organisationPersons.forEach(associatedPerson -> {
-                final JsonObjectBuilder nameBuilder = Json.createObjectBuilder();
+                final JsonObjectBuilder nameBuilder = JsonObjects.createObjectBuilder();
                 ofNullable(associatedPerson.getRole()).ifPresent(role -> nameBuilder.add(ROLE, role));
                 final Person person = associatedPerson.getPerson();
                 if (nonNull(person)) {
@@ -262,19 +262,19 @@ public class CpsPayloadTransformService {
             defendant.ifPresent(defnDant -> {
                 ofNullable(courtApplication.getDefendantASN()).ifPresent(asn -> applicantBuilder.add(ASN, asn));
                 ofNullable(applicant.getOrganisation()).ifPresent(organisation -> {
-                    final JsonObjectBuilder organisationBuilder = Json.createObjectBuilder();
+                    final JsonObjectBuilder organisationBuilder = JsonObjects.createObjectBuilder();
                     organisationBuilder.add(NAME, organisation.getName());
                     applicantBuilder.add(ORGANISATION, organisationBuilder.build());
                 });
-                final JsonArrayBuilder orgPersonArray = Json.createArrayBuilder();
-                final JsonObjectBuilder orgPerson = Json.createObjectBuilder();
+                final JsonArrayBuilder orgPersonArray = JsonObjects.createArrayBuilder();
+                final JsonObjectBuilder orgPerson = JsonObjects.createObjectBuilder();
                 final List<AssociatedPerson> organisationPersons = applicant.getOrganisationPersons();
                 buildOrganizationPersonIfExistsToApplicant(applicantBuilder, orgPersonArray, orgPerson, organisationPersons);
                 final PersonDefendant personDefendant = defnDant.getPersonDefendant();
                 if (nonNull(personDefendant)) {
                     buildPersonDetails(applicantBuilder, personDefendant.getPersonDetails());
                 } else if (isPartyCPS(applicant, cpsProsecutorsList)) {
-                    applicantBuilder.add(ORGANISATION, Json.createObjectBuilder().add(NAME, "CPS").build());
+                    applicantBuilder.add(ORGANISATION, JsonObjects.createObjectBuilder().add(NAME, "CPS").build());
                 }
                 buildAssociatedPersonIfExistsToApplicant(applicantBuilder, defnDant);
             });
@@ -287,8 +287,8 @@ public class CpsPayloadTransformService {
     private void buildAssociatedPersonIfExistsToApplicant(final JsonObjectBuilder applicantBuilder, final Defendant defnDant) {
         final List<AssociatedPerson> associatedPersonList = defnDant.getAssociatedPersons();
         if (nonNull(associatedPersonList)) {
-            final JsonObjectBuilder associatedPersonBuilder = Json.createObjectBuilder();
-            final JsonArrayBuilder personArray = Json.createArrayBuilder();
+            final JsonObjectBuilder associatedPersonBuilder = JsonObjects.createObjectBuilder();
+            final JsonArrayBuilder personArray = JsonObjects.createArrayBuilder();
             associatedPersonList.forEach(associatedPerson -> {
                 ofNullable(associatedPerson.getRole()).ifPresent(role -> associatedPersonBuilder.add(ROLE, role));
                 personArray.add(associatedPersonBuilder.build());
@@ -300,7 +300,7 @@ public class CpsPayloadTransformService {
     private void buildOrganizationPersonIfExistsToApplicant(final JsonObjectBuilder applicantBuilder, final JsonArrayBuilder orgPersonArray, final JsonObjectBuilder orgPerson, final List<AssociatedPerson> organisationPersons) {
         if (nonNull(organisationPersons)) {
             organisationPersons.forEach(organisationPerson -> {
-                final JsonObjectBuilder personBuilder = Json.createObjectBuilder();
+                final JsonObjectBuilder personBuilder = JsonObjects.createObjectBuilder();
                 final Person person = organisationPerson.getPerson();
                 if (nonNull(person)) {
                     buildPersonDetails(personBuilder, person);
@@ -331,7 +331,7 @@ public class CpsPayloadTransformService {
 
     private void buildPThirdPartyPersonDetails(final JsonObjectBuilder personBuilder, final Person person) {
         LOGGER.info("Person details to build");
-        final JsonObjectBuilder personObjectBuilder = Json.createObjectBuilder();
+        final JsonObjectBuilder personObjectBuilder = JsonObjects.createObjectBuilder();
         ofNullable(person.getTitle()).ifPresent(title -> personObjectBuilder.add(TITLE, title));
         ofNullable(person.getFirstName()).ifPresent(firstName -> personObjectBuilder.add(FIRST_NAME, firstName));
         ofNullable(person.getMiddleName()).ifPresent(middleName -> personObjectBuilder.add(MIDDLE_NAME, middleName));
@@ -352,13 +352,13 @@ public class CpsPayloadTransformService {
 
 
     private JsonArrayBuilder getRespondents(final CourtApplicationWithCaseDto courtApplicationDto, final List<UUID> cpsProsecutorsList) {
-        final JsonArrayBuilder jsoArrayBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder jsoArrayBuilder = JsonObjects.createArrayBuilder();
 
         final CourtApplication courtApplication = courtApplicationDto.getCourtApplication();
 
         final boolean isSubjectMasterDefendant = ofNullable(courtApplication.getSubject().getMasterDefendant()).isPresent();
 
-        final JsonObjectBuilder respondentBuilder = Json.createObjectBuilder();
+        final JsonObjectBuilder respondentBuilder = JsonObjects.createObjectBuilder();
 
         courtApplication.getRespondents().forEach(respondent -> {
             ofNullable(respondent.getMasterDefendant()).ifPresent(masterDefendant -> {
@@ -368,10 +368,10 @@ public class CpsPayloadTransformService {
                                 ofNullable(masterDefendant.getMasterDefendantId()).isPresent() && defend.getMasterDefendantId().equals(ofNullable(masterDefendant.getMasterDefendantId()).get()))
                         .findFirst();
                 defendant.ifPresent(defnDant -> {
-                    final JsonObjectBuilder associatedPersonBuilder = Json.createObjectBuilder();
+                    final JsonObjectBuilder associatedPersonBuilder = JsonObjects.createObjectBuilder();
                     ofNullable(courtApplication.getDefendantASN()).ifPresent(asn -> respondentBuilder.add(ASN, asn));
                     if (nonNull(defnDant.getAssociatedPersons())) {
-                        final JsonArrayBuilder personArray = Json.createArrayBuilder();
+                        final JsonArrayBuilder personArray = JsonObjects.createArrayBuilder();
                         defnDant.getAssociatedPersons().forEach(associatedPerson -> {
                             ofNullable(associatedPerson.getRole()).ifPresent(role -> associatedPersonBuilder.add(ROLE, role));
                             personArray.add(associatedPersonBuilder.build());
@@ -397,20 +397,20 @@ public class CpsPayloadTransformService {
             final Optional<Organisation> organisation = ofNullable(respondent.getOrganisation());
             final boolean isRespondentHasMasterDefendant = ofNullable(respondent.getMasterDefendant()).isPresent();
 
-            final JsonObjectBuilder orgBuilder = Json.createObjectBuilder();
+            final JsonObjectBuilder orgBuilder = JsonObjects.createObjectBuilder();
 
             organisation.ifPresent(o -> buildOrganisationToRespondentBuilder(respondentBuilder, orgBuilder, o));
 
             ofNullable(respondent.getPersonDetails()).ifPresent(personDetails -> {
-                final JsonObjectBuilder peronDetailsBuilder = Json.createObjectBuilder();
+                final JsonObjectBuilder peronDetailsBuilder = JsonObjects.createObjectBuilder();
                 buildPersonDetails(peronDetailsBuilder, personDetails);
                 respondentBuilder.add(PERSON_DETAILS, peronDetailsBuilder.build());
             });
 
             if (isPartyCPS(respondent, cpsProsecutorsList)) {
-                respondentBuilder.add(ORGANISATION, Json.createObjectBuilder().add(NAME, "CPS").build());
+                respondentBuilder.add(ORGANISATION, JsonObjects.createObjectBuilder().add(NAME, "CPS").build());
             } else {
-                ofNullable(respondent.getProsecutingAuthority()).ifPresent(prosecutingAuthority -> ofNullable(prosecutingAuthority.getName()).ifPresent(name -> respondentBuilder.add(ORGANISATION, Json.createObjectBuilder().add("name", ofNullable(prosecutingAuthority.getName()).get()).build())));
+                ofNullable(respondent.getProsecutingAuthority()).ifPresent(prosecutingAuthority -> ofNullable(prosecutingAuthority.getName()).ifPresent(name -> respondentBuilder.add(ORGANISATION, JsonObjects.createObjectBuilder().add("name", ofNullable(prosecutingAuthority.getName()).get()).build())));
             }
 
             final boolean isSubject = ofNullable(courtApplication.getSubject().getProsecutingAuthority()).isPresent();
@@ -449,7 +449,7 @@ public class CpsPayloadTransformService {
     }
 
     private void buildContact(final JsonObjectBuilder contactObjectBuilder, final ContactNumber contactNumber) {
-        final JsonObjectBuilder contactBuilder = Json.createObjectBuilder();
+        final JsonObjectBuilder contactBuilder = JsonObjects.createObjectBuilder();
         ofNullable(contactNumber.getPrimaryEmail()).ifPresent(primaryEmail -> contactBuilder.add(PRIMARY_EMAIL, primaryEmail));
         ofNullable(contactNumber.getSecondaryEmail()).ifPresent(secondaryEmail -> contactBuilder.add(SECONDARY_EMAIL, secondaryEmail));
         ofNullable(contactNumber.getFax()).ifPresent(fax -> contactBuilder.add(FAX, fax));
@@ -460,7 +460,7 @@ public class CpsPayloadTransformService {
     }
 
     private void buildAddress(final JsonObjectBuilder addressBuilder, final Address address) {
-        final JsonObjectBuilder addressSubBuilder = Json.createObjectBuilder();
+        final JsonObjectBuilder addressSubBuilder = JsonObjects.createObjectBuilder();
         addressSubBuilder.add(ADDRESS_1, address.getAddress1());
         ofNullable(address.getAddress2()).ifPresent(address2 -> addressSubBuilder.add(ADDRESS_2, address2));
         ofNullable(address.getAddress3()).ifPresent(address3 -> addressSubBuilder.add(ADDRESS_3, address3));
@@ -471,8 +471,8 @@ public class CpsPayloadTransformService {
     }
 
     private JsonArrayBuilder buildCourtApplicationCasesArray(final List<CourtApplicationCase> courtApplicationCases) {
-        final JsonArrayBuilder jsoArrayBuilder = Json.createArrayBuilder();
-        final JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        final JsonArrayBuilder jsoArrayBuilder = JsonObjects.createArrayBuilder();
+        final JsonObjectBuilder jsonObjectBuilder = JsonObjects.createObjectBuilder();
         courtApplicationCases.forEach(courtApplicationCase -> {
             final Optional<String> ouCode = ofNullable(courtApplicationCase.getProsecutionCaseIdentifier().getProsecutionAuthorityOUCode());
             jsonObjectBuilder.add(CASE_URN, courtApplicationCase.getProsecutionCaseIdentifier().getCaseURN());

@@ -11,7 +11,7 @@ import static uk.gov.justice.services.test.utils.core.reflection.ReflectionUtil.
 
 import java.io.IOException;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 
 import dto.ResponseDto;
@@ -46,7 +46,7 @@ public class CpsApiServiceTest {
     public void shouldSendApplicationCreatedNotification() throws IOException {
 
         final String httpMethhod = "get";
-        final JsonObject payload = Json.createObjectBuilder().build();
+        final JsonObject payload = JsonObjects.createObjectBuilder().build();
 
         final CloseableHttpClient httpClient = mock(CloseableHttpClient.class);
         final CloseableHttpResponse response = mock(CloseableHttpResponse.class);

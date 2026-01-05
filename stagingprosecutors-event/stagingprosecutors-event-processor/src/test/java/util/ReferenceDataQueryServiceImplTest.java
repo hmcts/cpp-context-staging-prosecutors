@@ -26,7 +26,7 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
@@ -102,12 +102,12 @@ public class ReferenceDataQueryServiceImplTest {
     public void shouldGetCPSProsecutors() {
         final UUID id1 = randomUUID();
         final UUID id2 = randomUUID();
-        final JsonObject responsePayload = Json.createObjectBuilder()
-                .add(PROSECUTORS, Json.createArrayBuilder()
-                        .add(Json.createObjectBuilder()
+        final JsonObject responsePayload = JsonObjects.createObjectBuilder()
+                .add(PROSECUTORS, JsonObjects.createArrayBuilder()
+                        .add(JsonObjects.createObjectBuilder()
                                 .add(ID, id1.toString())
                                 .build())
-                        .add(Json.createObjectBuilder()
+                        .add(JsonObjects.createObjectBuilder()
                                 .add(ID, id2.toString())
                                 .build())
                         .build())

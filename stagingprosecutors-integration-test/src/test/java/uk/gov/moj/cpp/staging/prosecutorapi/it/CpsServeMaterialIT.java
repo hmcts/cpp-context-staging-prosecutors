@@ -1,8 +1,8 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.it;
 
 import static java.util.Collections.singletonList;
-import static javax.json.Json.createArrayBuilder;
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static javax.ws.rs.core.Response.Status.ACCEPTED;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -53,7 +53,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
@@ -730,7 +730,7 @@ public class CpsServeMaterialIT {
 
     private JsonObject stringToJsonObject(String response) {
         try (StringReader reader = new StringReader(response)) {
-            return Json.createReader(reader).readObject();
+            return JsonObjects.createReader(reader).readObject();
         }
     }
 }

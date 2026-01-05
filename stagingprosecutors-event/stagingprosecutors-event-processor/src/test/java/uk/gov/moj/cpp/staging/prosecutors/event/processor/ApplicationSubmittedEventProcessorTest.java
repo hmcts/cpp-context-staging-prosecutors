@@ -1,6 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.processor;
 
-import static javax.json.Json.createReader;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;

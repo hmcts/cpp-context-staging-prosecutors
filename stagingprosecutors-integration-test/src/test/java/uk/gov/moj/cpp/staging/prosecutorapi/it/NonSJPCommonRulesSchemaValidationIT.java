@@ -19,7 +19,7 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 
 import java.io.StringReader;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
@@ -169,7 +169,7 @@ public class NonSJPCommonRulesSchemaValidationIT {
 
     private JsonObject stringToJsonObject(String response) {
         try (StringReader reader = new StringReader(response)) {
-            return Json.createReader(reader).readObject();
+            return JsonObjects.createReader(reader).readObject();
         }
     }
 

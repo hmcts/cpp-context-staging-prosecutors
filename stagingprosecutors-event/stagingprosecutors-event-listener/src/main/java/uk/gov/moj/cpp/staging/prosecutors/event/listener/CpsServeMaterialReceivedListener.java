@@ -27,7 +27,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 
@@ -171,7 +171,7 @@ public class CpsServeMaterialReceivedListener {
             return null;
         }
 
-        final JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder arrayBuilder = JsonObjects.createArrayBuilder();
         errors.stream()
                 .map(objectToJsonObjectConverter::convert)
                 .forEach(arrayBuilder::add);
