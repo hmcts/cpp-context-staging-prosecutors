@@ -3,7 +3,7 @@ package uk.gov.moj.cpp.staging.prosecutors;
 import static java.time.ZonedDateTime.now;
 import static java.util.Collections.singletonList;
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.SubmissionStatus;
@@ -252,7 +252,7 @@ public class StagingProsecutorsCommandApiTest {
         assertThat(sentEnvelope.metadata(), withMetadataEnvelopedFrom(requestEnvelope)
                 .withName("stagingprosecutors.command.submit-material"));
 
-        final JsonObject payloadWithSubmissionId = Json.createObjectBuilder()
+        final JsonObject payloadWithSubmissionId = JsonObjects.createObjectBuilder()
                 .add("submissionId", SUBMISSION_ID.toString())
                 .add("materialId", MATERIAL_ID.toString())
                 .add("caseUrn", "caseUrn01")

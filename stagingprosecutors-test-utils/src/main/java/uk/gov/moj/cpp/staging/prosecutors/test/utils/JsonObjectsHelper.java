@@ -6,7 +6,7 @@ import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collection;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -59,7 +59,7 @@ public class JsonObjectsHelper {
 
 
     public static JsonObject readFromString(final String jsonObjectStr) {
-        try (JsonReader reader = Json.createReader(new StringReader(jsonObjectStr))) {
+        try (JsonReader reader = JsonObjects.createReader(new StringReader(jsonObjectStr))) {
             return reader.readObject();
         }
     }

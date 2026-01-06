@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.is;
 import uk.gov.justice.services.test.utils.persistence.BaseTransactionalTest;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
@@ -21,7 +21,7 @@ public class JsonArrayConverterTest extends BaseTransactionalTest {
 
     @Test
     public void shouldConvertToDatabaseColumn() {
-        final JsonArray array = Json.createArrayBuilder()
+        final JsonArray array = JsonObjects.createArrayBuilder()
                 .add("value1")
                 .add("value2")
                 .build();

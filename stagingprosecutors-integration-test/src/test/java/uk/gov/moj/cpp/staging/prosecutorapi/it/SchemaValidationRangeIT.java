@@ -20,7 +20,7 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 import java.io.StringReader;
 import java.util.Optional;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
@@ -316,7 +316,7 @@ public class SchemaValidationRangeIT {
     }
 
     private JsonObject responseToJsonObject(String response) {
-        return Json.createReader(new StringReader(response)).readObject();
+        return JsonObjects.createReader(new StringReader(response)).readObject();
     }
 
 }

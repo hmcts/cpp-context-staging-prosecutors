@@ -23,7 +23,7 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 import java.io.StringReader;
 import java.util.Optional;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
@@ -183,7 +183,7 @@ public class BusinessRulesValidationMandatoryIT {
 
     private JsonObject stringToJsonObject(String response) {
         try (StringReader reader = new StringReader(response)) {
-            return Json.createReader(reader).readObject();
+            return JsonObjects.createReader(reader).readObject();
         }
     }
 }

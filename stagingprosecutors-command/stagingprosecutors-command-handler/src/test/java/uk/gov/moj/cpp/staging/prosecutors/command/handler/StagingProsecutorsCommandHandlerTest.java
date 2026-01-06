@@ -64,7 +64,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 
@@ -481,7 +481,7 @@ public class StagingProsecutorsCommandHandlerTest {
         final ClassLoader classLoader = getClass().getClassLoader();
         final InputStream docXInputStream = Files.newInputStream(Paths.get(classLoader.getResource("docx/iw018-eng-individual-fields.docx").getFile()));
 
-        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), Json.createObjectBuilder().build(), docXInputStream));
+        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), JsonObjects.createObjectBuilder().build(), docXInputStream));
 
         when(fileRetriever.retrieve(any())).thenReturn(fileReference);
 
@@ -520,7 +520,7 @@ public class StagingProsecutorsCommandHandlerTest {
         final ClassLoader classLoader = getClass().getClassLoader();
         final InputStream docXInputStream = Files.newInputStream(Paths.get(classLoader.getResource("docx/iw018-eng-organisation-fields.docx").getFile()));
 
-        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), Json.createObjectBuilder().build(), docXInputStream));
+        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), JsonObjects.createObjectBuilder().build(), docXInputStream));
 
         when(fileRetriever.retrieve(any())).thenReturn(fileReference);
 
@@ -563,7 +563,7 @@ public class StagingProsecutorsCommandHandlerTest {
         final ClassLoader classLoader = getClass().getClassLoader();
         final InputStream docXInputStream = Files.newInputStream(Paths.get(classLoader.getResource("docx/iw018-eng-mixed-respondents-fields.docx").getFile()));
 
-        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), Json.createObjectBuilder().build(), docXInputStream));
+        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), JsonObjects.createObjectBuilder().build(), docXInputStream));
 
         when(fileRetriever.retrieve(any())).thenReturn(fileReference);
 

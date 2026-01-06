@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 
@@ -222,7 +222,7 @@ public class SubmissionEventListener {
         }
 
 
-        final JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder arrayBuilder = JsonObjects.createArrayBuilder();
 
         errorsOrWarnings.stream()
                 .map(objectToJsonObjectConverter::convert)
@@ -237,7 +237,7 @@ public class SubmissionEventListener {
             return null;
         }
 
-        final JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder arrayBuilder = JsonObjects.createArrayBuilder();
 
         errors.stream()
                 .map(objectToJsonObjectConverter::convert)

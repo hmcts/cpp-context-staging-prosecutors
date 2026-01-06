@@ -7,7 +7,7 @@ import static java.util.UUID.fromString;
 import static java.util.UUID.randomUUID;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 import static javax.ws.rs.core.Response.Status.OK;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -56,7 +56,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -502,10 +502,10 @@ public class StagingProsecutors {
 
     public static void publishPublicMaterialSubmissionRejected(final UUID caseId, final UUID submissionId, final Problem... problems) {
 
-        final JsonArrayBuilder errorBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder errorBuilder = JsonObjects.createArrayBuilder();
 
         Stream.of(problems).forEach(problem -> {
-            final JsonArrayBuilder errorValuesBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder errorValuesBuilder = JsonObjects.createArrayBuilder();
 
             problem.values.forEach(value -> errorValuesBuilder.add(createObjectBuilder()
                     .add("key", value.key)
@@ -726,16 +726,16 @@ public class StagingProsecutors {
         JsonObject tag2 = createObjectBuilder()
                 .add("code", "6")
                 .build();
-        return Json.createArrayBuilder()
+        return JsonObjects.createArrayBuilder()
                 .add(tag1)
                 .add(tag2);
     }
 
     private static JsonObject getMaterialSubmissionRejectedV3Payload(final UUID caseId, final UUID submissionId, final boolean errorFlag, final boolean warningFlag, final Problem... problems) {
 
-        final JsonArrayBuilder errorBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder errorBuilder = JsonObjects.createArrayBuilder();
         Stream.of(problems).forEach(problem -> {
-            final JsonArrayBuilder errorValuesBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder errorValuesBuilder = JsonObjects.createArrayBuilder();
 
             problem.values.forEach(value -> errorValuesBuilder.add(createObjectBuilder()
                     .add("key", value.key)
@@ -784,9 +784,9 @@ public class StagingProsecutors {
     }
 
     private static JsonArrayBuilder createError(final Problem... problems) {
-        final JsonArrayBuilder errorBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder errorBuilder = JsonObjects.createArrayBuilder();
         Stream.of(problems).forEach(problem -> {
-            final JsonArrayBuilder errorValuesBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder errorValuesBuilder = JsonObjects.createArrayBuilder();
 
             problem.values.forEach(value -> errorValuesBuilder.add(createObjectBuilder()
                     .add("key", value.key)

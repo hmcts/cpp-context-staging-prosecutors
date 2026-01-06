@@ -5,12 +5,12 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>17.103.5</version>
+        <version>17.103.9-M1</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
     <artifactId>stagingprosecutors</artifactId>
-    <version>17.103.57-SNAPSHOT</version>
+    <version>17.103.57-PEG-2848-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>stagingprosecutors</name>
 
@@ -18,7 +18,7 @@
         <maven.cucumber.reporting.plugin.version>2.0.0</maven.cucumber.reporting.plugin.version>
         <system.users.library.version>3.1.2</system.users.library.version>
         <prosecutioncasefile.version>17.0.71</prosecutioncasefile.version>
-        <referencedata.version>17.0.119</referencedata.version>
+        <referencedata.version>17.103.122</referencedata.version>
         <coredomain.version>17.103.10</coredomain.version>
         <joda-time.version>2.10.10</joda-time.version>
         <lombok.version>1.18.0</lombok.version>

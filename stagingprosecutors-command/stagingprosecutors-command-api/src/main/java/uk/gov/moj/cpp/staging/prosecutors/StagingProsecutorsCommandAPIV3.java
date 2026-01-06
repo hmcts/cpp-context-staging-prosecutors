@@ -1,7 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors;
 
 import static java.util.Objects.isNull;
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
 import static uk.gov.justice.services.core.enveloper.Enveloper.envelop;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
@@ -33,7 +33,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
+import uk.gov.justice.services.messaging.JsonObjects;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -236,7 +236,7 @@ public class StagingProsecutorsCommandAPIV3 {
     }
 
     private void createTags(final String tag, final JsonObjectBuilder builder) {
-        final JsonReader jsonReader = Json.createReader(new StringReader(tag));
+        final JsonReader jsonReader = JsonObjects.createReader(new StringReader(tag));
         final JsonArray tagArray = jsonReader.readArray();
         jsonReader.close();
         builder.add(TAG, tagArray);

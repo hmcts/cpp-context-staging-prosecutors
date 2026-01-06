@@ -1,5 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.it;
 
+import uk.gov.justice.services.messaging.JsonObjects;
+
 import static java.lang.String.format;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
