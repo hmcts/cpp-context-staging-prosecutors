@@ -3,9 +3,6 @@ package uk.gov.moj.cpp.staging.prosecutors.event.processor;
 import static java.nio.charset.Charset.defaultCharset;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createArrayBuilder;
-import static javax.json.Json.createObjectBuilder;
-import static javax.json.Json.createReader;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +15,9 @@ import static uk.gov.justice.core.courts.FormType.BCM;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_PROCESSOR;
 import static uk.gov.justice.services.messaging.Envelope.metadataFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerMatcher.isHandler;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerMethodMatcher.method;
 import static uk.gov.justice.services.test.utils.core.messaging.MetadataBuilderFactory.metadataWithRandomUUID;
@@ -165,7 +165,7 @@ public class ProgressionPublicEventProcessorTest {
     public void shouldNotifyAPIMWhenApplicationCreatedWithApplicantAsCPS() {
         final JsonObject payload = getPayload("json/progression-court-application-proceeding-initiated.json", randomUUID());
         final Metadata metadataJsonObject = metadataFrom(
-                JsonObjects.createObjectBuilder(metadataWithRandomUUID("public.progression.court-application-created").build().asJsonObject())
+                createObjectBuilder(metadataWithRandomUUID("public.progression.court-application-created").build().asJsonObject())
                         .add("courtApplicationCreated", payload)
                         .build())
                 .build();
@@ -192,7 +192,7 @@ public class ProgressionPublicEventProcessorTest {
     public void shouldNotifyAPIMWhenApplicationCreatedWithRespondentAsCPS() {
         final JsonObject payload = getPayload("json/progression-court-application-proceeding-initiated.json", randomUUID());
         final Metadata metadataJsonObject = metadataFrom(
-                JsonObjects.createObjectBuilder(metadataWithRandomUUID("public.progression.court-application-created").build().asJsonObject())
+                createObjectBuilder(metadataWithRandomUUID("public.progression.court-application-created").build().asJsonObject())
                         .add("courtApplicationCreated", payload)
                         .add("submissionId", SUBMISSION_ID.toString())
                         .build())
@@ -410,7 +410,7 @@ public class ProgressionPublicEventProcessorTest {
 
     private Metadata createMetaData(String eventName) {
         return metadataFrom(
-                JsonObjects.createObjectBuilder(metadataWithRandomUUID(eventName).build().asJsonObject())
+                createObjectBuilder(metadataWithRandomUUID(eventName).build().asJsonObject())
                         .add("submissionId", SUBMISSION_ID.toString())
                         .build())
                 .build();

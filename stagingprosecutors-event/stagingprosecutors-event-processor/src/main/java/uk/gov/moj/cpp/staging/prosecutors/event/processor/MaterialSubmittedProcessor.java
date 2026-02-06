@@ -2,10 +2,10 @@ package uk.gov.moj.cpp.staging.prosecutors.event.processor;
 
 import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
-import static javax.json.Json.createObjectBuilder;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_PROCESSOR;
 import static uk.gov.justice.services.messaging.Envelope.metadataFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.util.ProsecutorCaseReferenceUtil.getProsecutorCaseReference;
 
 import uk.gov.justice.services.common.converter.ObjectToJsonObjectConverter;
@@ -32,7 +32,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
@@ -113,7 +112,7 @@ public class MaterialSubmittedProcessor {
         JsonObject submittedPayload = objectToJsonObjectConverter.convert(materialSubmitted);
 
         submittedPayload = removeProperty(submittedPayload, "submissionStatus");
-        submittedPayload = JsonObjects.createObjectBuilder(submittedPayload)
+        submittedPayload = createObjectBuilder(submittedPayload)
                 .add("receivedDateTime", materialSubmittedEnvelope.metadata().createdAt().orElse(ZonedDateTime.now()).toString())
                 .build();
 
@@ -126,7 +125,7 @@ public class MaterialSubmittedProcessor {
                     prosecutionCaseSubject.get().getCaseUrn());
             final UUID caseId = systemIdMapperService.getCaseIdForMaterialSubmission(prosecutorCaseReference);
 
-            submittedPayload = JsonObjects.createObjectBuilder(submittedPayload).add(CASE_ID, caseId.toString()).build();
+            submittedPayload = createObjectBuilder(submittedPayload).add(CASE_ID, caseId.toString()).build();
 
             final JsonEnvelope jsonEnvelope = envelopeHelper.withMetadataInPayload(envelopeFrom(withSubmissionId(metadataFrom(materialSubmittedEnvelope.metadata())
                     .withName("prosecutioncasefile.add-material-v2").build(), submissionId),submittedPayload));
@@ -137,7 +136,7 @@ public class MaterialSubmittedProcessor {
             final Optional<CourtApplicationSubject> courtApplicationSubject = ofNullable(materialSubmitted.getCourtApplicationSubject());
             if (courtApplicationSubject.isPresent()) {
                 submittedPayload = removeProperty(submittedPayload, "isCpsCase");
-                submittedPayload = JsonObjects.createObjectBuilder(submittedPayload).add(APPLICATION_ID, courtApplicationSubject.get().getCourtApplicationId().toString()).build();
+                submittedPayload = createObjectBuilder(submittedPayload).add(APPLICATION_ID, courtApplicationSubject.get().getCourtApplicationId().toString()).build();
             }
 
             final JsonEnvelope jsonEnvelope = envelopeHelper.withMetadataInPayload(envelopeFrom(withSubmissionId(metadataFrom(materialSubmittedEnvelope.metadata())
@@ -215,12 +214,12 @@ public class MaterialSubmittedProcessor {
     }
 
     private Metadata withSubmissionId(final Metadata metadata, final String submissionId) {
-        return metadataFrom(JsonObjects.createObjectBuilder(metadata.asJsonObject()).add("submissionId", submissionId).build()).build();
+        return metadataFrom(createObjectBuilder(metadata.asJsonObject()).add("submissionId", submissionId).build()).build();
     }
 
 
     public static JsonObject removeProperty(JsonObject origin, String key) {
-        final JsonObjectBuilder builder = Json.createObjectBuilder();
+        final JsonObjectBuilder builder = createObjectBuilder();
 
         for (final Map.Entry<String, JsonValue> entry : origin.entrySet()) {
             if (!entry.getKey().equals(key)) {

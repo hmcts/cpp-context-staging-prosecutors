@@ -1,11 +1,11 @@
 package uk.gov.moj.cpp.staging.prosecutors.helper;
 
-import static javax.json.Json.createArrayBuilder;
-import static javax.json.Json.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -13,7 +13,7 @@ import javax.json.JsonObjectBuilder;
 public class StagingProsecutorsHelper {
 
     public static JsonObject givenPayload(final String filename) {
-        return Json.createReader(ClassLoader.
+        return createReader(ClassLoader.
                 getSystemResourceAsStream(filename)).readObject();
     }
 

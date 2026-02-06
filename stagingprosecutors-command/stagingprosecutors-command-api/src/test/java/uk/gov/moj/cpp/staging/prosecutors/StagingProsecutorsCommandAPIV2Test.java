@@ -3,7 +3,6 @@ package uk.gov.moj.cpp.staging.prosecutors;
 import static java.time.ZonedDateTime.now;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createObjectBuilder;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +13,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.enveloper.EnvelopeFactory.createEnvelope;
 import static uk.gov.justice.services.test.utils.core.matchers.JsonEnvelopeMetadataMatcher.withMetadataEnvelopedFrom;
 import static uk.gov.moj.cpp.staging.prosecutors.command.api.ChargeDefendant.chargeDefendant;
@@ -71,7 +71,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.SubmissionStatus;
@@ -746,7 +745,7 @@ public class StagingProsecutorsCommandAPIV2Test {
         assertThat(sentEnvelope.metadata(), withMetadataEnvelopedFrom(requestEnvelope)
                 .withName("stagingprosecutors.command.submit-material"));
 
-        final JsonObject payloadWithSubmissionId = Json.createObjectBuilder()
+        final JsonObject payloadWithSubmissionId = createObjectBuilder()
                 .add("submissionId", SUBMISSION_ID.toString())
                 .add("materialId", MATERIAL_ID.toString())
                 .add("caseUrn", "caseUrn01")

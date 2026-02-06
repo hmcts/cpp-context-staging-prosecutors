@@ -1,11 +1,11 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.processor.util;
 
 import static java.lang.Boolean.TRUE;
-import static javax.json.Json.createObjectBuilder;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
 import static uk.gov.justice.services.core.enveloper.Enveloper.envelop;
 import static uk.gov.justice.services.messaging.Envelope.metadataFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 import uk.gov.justice.services.common.converter.jackson.ObjectMapperProducer;
 import uk.gov.justice.services.core.annotation.ServiceComponent;
@@ -21,7 +21,6 @@ import java.util.UUID;
 import java.util.function.Function;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
@@ -115,7 +114,7 @@ public class ReferenceDataQueryServiceImpl implements ReferenceDataQueryService 
 
         LOGGER.info(" Calling {} to get prosecutors with cpsFlag true", REFERENCEDATA_QUERY_PROSECUTOR_BY_CPSFLAG);
 
-        final JsonObject payload = Json.createObjectBuilder()
+        final JsonObject payload = createObjectBuilder()
                 .add(CPS_FLAG, TRUE)
                 .build();
 

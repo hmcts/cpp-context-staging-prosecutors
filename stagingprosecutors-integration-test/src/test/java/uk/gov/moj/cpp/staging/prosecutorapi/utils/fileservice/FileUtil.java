@@ -3,6 +3,7 @@ package uk.gov.moj.cpp.staging.prosecutorapi.utils.fileservice;
 import static java.lang.ClassLoader.getSystemResourceAsStream;
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.fail;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +13,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
@@ -61,7 +61,7 @@ public class FileUtil {
     }
 
     public static JsonObject jsonFromString(final String jsonObjectStr) {
-        JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr));
+        JsonReader jsonReader = createReader(new StringReader(jsonObjectStr));
         JsonObject object = jsonReader.readObject();
         jsonReader.close();
 
