@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.103.57-SNAPSHOT</version>
+        <version>17.104.57-CIMD-3357-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>

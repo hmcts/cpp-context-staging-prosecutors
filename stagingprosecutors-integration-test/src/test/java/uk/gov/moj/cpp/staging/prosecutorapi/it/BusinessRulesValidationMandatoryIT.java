@@ -2,6 +2,7 @@ package uk.gov.moj.cpp.staging.prosecutorapi.it;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.BusinessValidationsTextResources.FIELD_HOME_NUMBER;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.BusinessValidationsTextResources.FIELD_MOBILE_NUMBER;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.BusinessValidationsTextResources.FIELD_WORK_NUMBER;
@@ -23,7 +24,6 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 import java.io.StringReader;
 import java.util.Optional;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 
@@ -183,7 +183,7 @@ public class BusinessRulesValidationMandatoryIT {
 
     private JsonObject stringToJsonObject(String response) {
         try (StringReader reader = new StringReader(response)) {
-            return Json.createReader(reader).readObject();
+            return createReader(reader).readObject();
         }
     }
 }

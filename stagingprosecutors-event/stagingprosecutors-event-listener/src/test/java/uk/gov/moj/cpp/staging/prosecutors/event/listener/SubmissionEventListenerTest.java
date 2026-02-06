@@ -3,7 +3,6 @@ package uk.gov.moj.cpp.staging.prosecutors.event.listener;
 import static cpp.moj.gov.uk.staging.prosecutors.json.schemas.MaterialSubmittedV3.materialSubmittedV3;
 import static java.time.ZoneOffset.UTC;
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createArrayBuilder;
 import static org.codehaus.groovy.runtime.InvokerHelper.asList;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -16,6 +15,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_LISTENER;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerMatcher.isHandler;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerMethodMatcher.method;
 import static uk.gov.justice.services.test.utils.core.messaging.MetadataBuilderFactory.metadataWithRandomUUID;
@@ -62,7 +63,6 @@ import uk.gov.moj.cpp.staging.prosecutors.persistence.repository.SubmissionRepos
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 
 import com.google.common.collect.ImmutableList;
@@ -381,14 +381,14 @@ public class SubmissionEventListenerTest {
 
 
     private static JsonObject problemAsJson(final ProblemValue problemValue) {
-        return Json.createObjectBuilder()
+        return createObjectBuilder()
                 .add("key", problemValue.getKey())
                 .add("value", problemValue.getValue())
                 .build();
     }
 
     private static JsonObject errorAsJson(final ProblemValue problemValue) {
-        return Json.createObjectBuilder()
+        return createObjectBuilder()
                 .add("key", problemValue.getKey())
                 .add("value", problemValue.getValue())
                 .build();
@@ -397,13 +397,13 @@ public class SubmissionEventListenerTest {
     private static JsonObject defendantWarningAsJson(final DefendantProblem defendantProblem) {
         final Problem problem = defendantProblem.getProblems().get(0);
         final ProblemValue problemValue = problem.getValues().get(0);
-        return Json.createObjectBuilder()
+        return createObjectBuilder()
                 .add("prosecutorDefendantReference", defendantProblem.getProsecutorDefendantReference())
                 .add("problems",
-                        Json.createArrayBuilder()
-                                .add(Json.createObjectBuilder()
+                        createArrayBuilder()
+                                .add(createObjectBuilder()
                                         .add("code", problem.getCode())
-                                        .add("values", Json.createArrayBuilder()
+                                        .add("values", createArrayBuilder()
                                                 .add(problemAsJson(problemValue))
                                                 .build())
                                         .build())

@@ -1,10 +1,10 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.it;
 
-import static javax.json.Json.createReader;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static uk.gov.justice.services.common.http.HeaderConstants.USER_ID;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.justice.services.test.utils.core.http.BaseUriProvider.getBaseUri;
 
 import uk.gov.justice.services.test.utils.core.rest.RestClient;

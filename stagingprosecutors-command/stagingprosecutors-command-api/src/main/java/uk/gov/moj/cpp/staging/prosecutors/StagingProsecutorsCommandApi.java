@@ -27,10 +27,8 @@ import uk.gov.moj.cpp.staging.prosecutors.pojo.SubmitSjpProsecution;
 import uk.gov.moj.cpp.staging.prosecutors.service.SystemIdMapperService;
 import uk.gov.moj.cpp.staging.prosecutors.uuid.UUIDProducer;
 import uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionHttpValidator;
-import static javax.json.Json.createObjectBuilder;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import java.util.List;
@@ -41,6 +39,7 @@ import java.util.UUID;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
 import static uk.gov.justice.services.core.enveloper.Enveloper.envelop;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 @ServiceComponent(COMMAND_API)
 public class StagingProsecutorsCommandApi {
@@ -129,7 +128,7 @@ public class StagingProsecutorsCommandApi {
 
         final UUID submissionId = uuidProducer.generateUUID();
 
-        final JsonObjectBuilder payloadBuilder = Json.createObjectBuilder()
+        final JsonObjectBuilder payloadBuilder = createObjectBuilder()
                 .add("submissionId", submissionId.toString())
                 .add("materialId", requestPayload.getString("material"))
                 .add("caseUrn", requestPayload.getString("caseUrn"))
