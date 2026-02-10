@@ -18,8 +18,8 @@
         <maven.cucumber.reporting.plugin.version>2.0.0</maven.cucumber.reporting.plugin.version>
         <system.users.library.version>3.1.2</system.users.library.version>
         <prosecutioncasefile.version>17.0.71</prosecutioncasefile.version>
-        <referencedata.version>17.0.119</referencedata.version>
-        <coredomain.version>17.103.10</coredomain.version>
+        <referencedata.version>17.103.122</referencedata.version>
+        <coredomain.version>17.103.11</coredomain.version>
         <joda-time.version>2.10.10</joda-time.version>
         <lombok.version>1.18.0</lombok.version>
         <results.version>17.0.81</results.version>
