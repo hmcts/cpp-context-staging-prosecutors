@@ -1,10 +1,10 @@
 package uk.gov.moj.cpp.staging.prosecutors.command.handler.service;
 
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createObjectBuilder;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_PROCESSOR;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.metadataBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

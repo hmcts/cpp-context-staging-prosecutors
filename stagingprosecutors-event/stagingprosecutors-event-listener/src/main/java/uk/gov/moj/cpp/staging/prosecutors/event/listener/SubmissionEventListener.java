@@ -1,6 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.listener;
 
 import static uk.gov.justice.services.core.annotation.Component.EVENT_LISTENER;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 import static uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmissionStatus.SUCCESS;
 import static uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType.MATERIAL;
 import static uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType.PROSECUTION;
@@ -32,7 +33,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 
@@ -222,7 +222,7 @@ public class SubmissionEventListener {
         }
 
 
-        final JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder arrayBuilder = createArrayBuilder();
 
         errorsOrWarnings.stream()
                 .map(objectToJsonObjectConverter::convert)
@@ -237,7 +237,7 @@ public class SubmissionEventListener {
             return null;
         }
 
-        final JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder arrayBuilder = createArrayBuilder();
 
         errors.stream()
                 .map(objectToJsonObjectConverter::convert)

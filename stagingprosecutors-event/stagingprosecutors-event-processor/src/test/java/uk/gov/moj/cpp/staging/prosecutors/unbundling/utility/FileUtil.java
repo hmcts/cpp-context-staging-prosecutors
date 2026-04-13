@@ -1,10 +1,10 @@
 package uk.gov.moj.cpp.staging.prosecutors.unbundling.utility;
 
 import static java.nio.charset.Charset.defaultCharset;
-import static javax.json.Json.createReader;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 
 import java.io.IOException;
 import java.io.InputStream;

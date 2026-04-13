@@ -2,11 +2,11 @@ package uk.gov.moj.cpp.staging.prosecutors.persistence.converter;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 
 import uk.gov.justice.services.test.utils.persistence.BaseTransactionalTest;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonArray;
 
 import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
@@ -21,7 +21,7 @@ public class JsonArrayConverterTest extends BaseTransactionalTest {
 
     @Test
     public void shouldConvertToDatabaseColumn() {
-        final JsonArray array = Json.createArrayBuilder()
+        final JsonArray array = createArrayBuilder()
                 .add("value1")
                 .add("value2")
                 .build();

@@ -1,7 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutors;
 
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createObjectBuilder;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -10,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.enveloper.EnvelopeFactory.createEnvelope;
 import static uk.gov.justice.services.test.utils.core.matchers.JsonEnvelopeMetadataMatcher.withMetadataEnvelopedFrom;
 import static uk.gov.moj.cpp.staging.prosecutors.helper.StagingProsecutorsHelper.createActualPayload;
@@ -92,7 +92,7 @@ public class StagingProsecutorsCommandAPIV3Test {
 
         final JsonObject expectedPayload = givenPayload("json/expected/stagingprosecutors.submit-material-v3-with-prosecution-case-subject.json");
 
-        final JsonObject expectedPayloadWithSubmissionId = JsonObjects.createObjectBuilder(expectedPayload).add("submissionId", SUBMISSION_ID.toString()).build();
+        final JsonObject expectedPayloadWithSubmissionId = createObjectBuilder(expectedPayload).add("submissionId", SUBMISSION_ID.toString()).build();
 
         assertThat(sentEnvelope.payload(), equalTo(expectedPayloadWithSubmissionId));
     }
@@ -127,7 +127,7 @@ public class StagingProsecutorsCommandAPIV3Test {
                 .withName("stagingprosecutors.command.submit-material-v3"));
 
         final JsonObject payload1 = createExpectedPayloadWithProsecutionCaseSubject(material, defendantId, testString).build();
-        final JsonObject expectedPayload = JsonObjects.createObjectBuilder(payload1).add("submissionId", SUBMISSION_ID.toString()).build();
+        final JsonObject expectedPayload = createObjectBuilder(payload1).add("submissionId", SUBMISSION_ID.toString()).build();
 
         assertThat(sentEnvelope.payload(), equalTo(expectedPayload));
     }
@@ -173,7 +173,7 @@ public class StagingProsecutorsCommandAPIV3Test {
                 .add("witnessStatement", createWitnessStatementExpected())
                 .add("exhibit", createExhibit());
 
-        final JsonObject expectedPayload = JsonObjects.createObjectBuilder(builder1.build()).add("submissionId", SUBMISSION_ID.toString()).build();
+        final JsonObject expectedPayload = createObjectBuilder(builder1.build()).add("submissionId", SUBMISSION_ID.toString()).build();
 
         assertThat(sentEnvelope.payload(), equalTo(expectedPayload));
     }
@@ -255,7 +255,7 @@ public class StagingProsecutorsCommandAPIV3Test {
                 .withName("stagingprosecutors.command.submit-material-v3"));
 
         final JsonObject payload1 = createExpectedPayloadWithCourtApplicationSubject(material, courtApplicationId).build();
-        final JsonObject expectedPayload = JsonObjects.createObjectBuilder(payload1).add("submissionId", SUBMISSION_ID.toString()).build();
+        final JsonObject expectedPayload = createObjectBuilder(payload1).add("submissionId", SUBMISSION_ID.toString()).build();
 
         assertThat(sentEnvelope.payload(), equalTo(expectedPayload));
     }
@@ -279,7 +279,7 @@ public class StagingProsecutorsCommandAPIV3Test {
         assertThat(sentEnvelope.metadata(), withMetadataEnvelopedFrom(requestEnvelope)
                 .withName("stagingprosecutors.command.submit-material-v3"));
 
-        final JsonObject expectedPayload = JsonObjects.createObjectBuilder(payload).add("submissionId", SUBMISSION_ID.toString()).build();
+        final JsonObject expectedPayload = createObjectBuilder(payload).add("submissionId", SUBMISSION_ID.toString()).build();
 
         assertThat(sentEnvelope.payload(), equalTo(expectedPayload));
     }
@@ -322,7 +322,7 @@ public class StagingProsecutorsCommandAPIV3Test {
                 .add("witnessStatement", createWitnessStatementExpected())
                 .add("exhibit", createExhibit());
 
-        final JsonObject expectedPayload = JsonObjects.createObjectBuilder(builder1.build()).add("submissionId", SUBMISSION_ID.toString()).build();
+        final JsonObject expectedPayload = createObjectBuilder(builder1.build()).add("submissionId", SUBMISSION_ID.toString()).build();
 
         assertThat(sentEnvelope.payload(), equalTo(expectedPayload));
     }

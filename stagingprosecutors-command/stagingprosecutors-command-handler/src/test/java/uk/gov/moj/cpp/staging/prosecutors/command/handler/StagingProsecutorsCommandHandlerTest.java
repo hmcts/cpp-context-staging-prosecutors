@@ -9,6 +9,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_HANDLER;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.helper.EventStreamMockHelper.verifyAppendAndGetArgumentFrom;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerMatcher.isHandler;
 import static uk.gov.justice.services.test.utils.core.matchers.HandlerMethodMatcher.method;
@@ -64,7 +65,6 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 
@@ -481,7 +481,7 @@ public class StagingProsecutorsCommandHandlerTest {
         final ClassLoader classLoader = getClass().getClassLoader();
         final InputStream docXInputStream = Files.newInputStream(Paths.get(classLoader.getResource("docx/iw018-eng-individual-fields.docx").getFile()));
 
-        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), Json.createObjectBuilder().build(), docXInputStream));
+        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), createObjectBuilder().build(), docXInputStream));
 
         when(fileRetriever.retrieve(any())).thenReturn(fileReference);
 
@@ -520,7 +520,7 @@ public class StagingProsecutorsCommandHandlerTest {
         final ClassLoader classLoader = getClass().getClassLoader();
         final InputStream docXInputStream = Files.newInputStream(Paths.get(classLoader.getResource("docx/iw018-eng-organisation-fields.docx").getFile()));
 
-        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), Json.createObjectBuilder().build(), docXInputStream));
+        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), createObjectBuilder().build(), docXInputStream));
 
         when(fileRetriever.retrieve(any())).thenReturn(fileReference);
 
@@ -563,7 +563,7 @@ public class StagingProsecutorsCommandHandlerTest {
         final ClassLoader classLoader = getClass().getClassLoader();
         final InputStream docXInputStream = Files.newInputStream(Paths.get(classLoader.getResource("docx/iw018-eng-mixed-respondents-fields.docx").getFile()));
 
-        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), Json.createObjectBuilder().build(), docXInputStream));
+        final Optional<FileReference> fileReference = Optional.of(new FileReference(UUID.randomUUID(), createObjectBuilder().build(), docXInputStream));
 
         when(fileRetriever.retrieve(any())).thenReturn(fileReference);
 

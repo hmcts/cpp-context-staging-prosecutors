@@ -7,7 +7,6 @@ import static java.util.UUID.fromString;
 import static java.util.UUID.randomUUID;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static javax.json.Json.createObjectBuilder;
 import static javax.ws.rs.core.Response.Status.FORBIDDEN;
 import static javax.ws.rs.core.Response.Status.OK;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -25,6 +24,8 @@ import static uk.gov.justice.services.integrationtest.utils.jms.JmsMessageProduc
 import static uk.gov.justice.services.messaging.Envelope.metadataBuilder;
 import static uk.gov.justice.services.messaging.Envelope.metadataFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.http.BaseUriProvider.getBaseUri;
 import static uk.gov.justice.services.test.utils.core.http.RequestParamsBuilder.requestParams;
 import static uk.gov.justice.services.test.utils.core.http.RestPoller.poll;
@@ -53,10 +54,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -71,7 +70,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.HttpClients;
-import org.awaitility.Awaitility;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
@@ -502,10 +500,10 @@ public class StagingProsecutors {
 
     public static void publishPublicMaterialSubmissionRejected(final UUID caseId, final UUID submissionId, final Problem... problems) {
 
-        final JsonArrayBuilder errorBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder errorBuilder = createArrayBuilder();
 
         Stream.of(problems).forEach(problem -> {
-            final JsonArrayBuilder errorValuesBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder errorValuesBuilder = createArrayBuilder();
 
             problem.values.forEach(value -> errorValuesBuilder.add(createObjectBuilder()
                     .add("key", value.key)
@@ -626,7 +624,7 @@ public class StagingProsecutors {
     }
 
     private static Metadata publicProsecutionMetadata(final UUID submissionId, final String name) {
-        return metadataFrom(JsonObjects.createObjectBuilder(
+        return metadataFrom(createObjectBuilder(
                         metadataBuilder()
                                 .withName(name)
                                 .withUserId(randomUUID().toString())
@@ -726,16 +724,16 @@ public class StagingProsecutors {
         JsonObject tag2 = createObjectBuilder()
                 .add("code", "6")
                 .build();
-        return Json.createArrayBuilder()
+        return createArrayBuilder()
                 .add(tag1)
                 .add(tag2);
     }
 
     private static JsonObject getMaterialSubmissionRejectedV3Payload(final UUID caseId, final UUID submissionId, final boolean errorFlag, final boolean warningFlag, final Problem... problems) {
 
-        final JsonArrayBuilder errorBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder errorBuilder = createArrayBuilder();
         Stream.of(problems).forEach(problem -> {
-            final JsonArrayBuilder errorValuesBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder errorValuesBuilder = createArrayBuilder();
 
             problem.values.forEach(value -> errorValuesBuilder.add(createObjectBuilder()
                     .add("key", value.key)
@@ -784,9 +782,9 @@ public class StagingProsecutors {
     }
 
     private static JsonArrayBuilder createError(final Problem... problems) {
-        final JsonArrayBuilder errorBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder errorBuilder = createArrayBuilder();
         Stream.of(problems).forEach(problem -> {
-            final JsonArrayBuilder errorValuesBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder errorValuesBuilder = createArrayBuilder();
 
             problem.values.forEach(value -> errorValuesBuilder.add(createObjectBuilder()
                     .add("key", value.key)
@@ -812,7 +810,7 @@ public class StagingProsecutors {
 
     public static void sendPublicEventToUpdateSubmissionStatus(final String publicEventName, final JsonObject publicEventPayload, final UUID submissionId) {
         final JmsMessageConsumerClient messageConsumerClient = newPrivateJmsMessageConsumerClientProvider(CONTEXT_NAME).withEventNames("stagingprosecutors.event.submission-status-updated").getMessageConsumerClient();
-        Metadata publicEventMetadata = metadataFrom(JsonObjects.createObjectBuilder(
+        Metadata publicEventMetadata = metadataFrom(createObjectBuilder(
                         metadataBuilder()
                                 .withName(publicEventName)
                                 .withUserId(randomUUID().toString())

@@ -19,19 +19,19 @@ import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static java.time.Duration.ofSeconds;
 import static java.util.UUID.randomUUID;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static javax.json.Json.createObjectBuilder;
 import static javax.ws.rs.core.HttpHeaders.CONTENT_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.OK;
 import static org.apache.http.HttpStatus.SC_OK;
 import static uk.gov.justice.services.common.http.HeaderConstants.ID;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.ResourcesUtils.readResource;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.fileservice.FileUtil.resourceToString;
 
 import java.time.Duration;
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 
@@ -310,7 +310,7 @@ public class WiremockUtils {
 
     public WiremockUtils stubAccessControl(final boolean grantAccess, final UUID userId, final String... groupNames) {
 
-        final JsonArrayBuilder groupsArray = Json.createArrayBuilder();
+        final JsonArrayBuilder groupsArray = createArrayBuilder();
 
         if (grantAccess) {
             for (final String groupName : groupNames) {

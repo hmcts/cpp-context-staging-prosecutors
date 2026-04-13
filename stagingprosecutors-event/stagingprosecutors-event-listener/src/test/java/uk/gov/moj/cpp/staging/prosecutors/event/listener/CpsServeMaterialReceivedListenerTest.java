@@ -3,13 +3,14 @@ package uk.gov.moj.cpp.staging.prosecutors.event.listener;
 import static com.google.common.collect.ImmutableList.of;
 import static java.time.ZoneOffset.UTC;
 import static java.util.UUID.randomUUID;
-import static javax.json.Json.createArrayBuilder;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.messaging.MetadataBuilderFactory.metadataWithRandomUUID;
 import static uk.gov.moj.cpp.staging.prosecutors.json.schemas.CpsServeBcmReceived.cpsServeBcmReceived;
 import static uk.gov.moj.cpp.staging.prosecutors.json.schemas.CpsServeCotrReceived.cpsServeCotrReceived;
@@ -50,7 +51,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 
 import com.google.common.collect.ImmutableList;
@@ -307,7 +307,7 @@ public class CpsServeMaterialReceivedListenerTest {
     }
 
     private static JsonObject errorAsJson(final ProblemValue problemValue) {
-        return Json.createObjectBuilder()
+        return createObjectBuilder()
                 .add("key", problemValue.getKey())
                 .add("value", problemValue.getValue())
                 .build();

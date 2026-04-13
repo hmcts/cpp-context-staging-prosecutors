@@ -4,6 +4,7 @@ import static com.jayway.jsonassert.JsonAssert.with;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.StagingProsecutors.OUCODE;
 
 import uk.gov.moj.cpp.staging.prosecutorapi.model.command.SjpProsecutionSubmissionClient;
@@ -20,7 +21,6 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.commandclient.CommandExecutor;
 import java.io.StringReader;
 import java.util.Optional;
 
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 import javax.ws.rs.core.Response;
@@ -309,7 +309,7 @@ public class SchemaValidationMandatoryIT {
     }
 
     private JsonObject responseToJsonObject(String response) {
-        return Json.createReader(new StringReader(response)).readObject();
+        return createReader(new StringReader(response)).readObject();
     }
 
 }

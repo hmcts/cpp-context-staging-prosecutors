@@ -1,8 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.it;
 
 import static java.util.Collections.singletonList;
-import static javax.json.Json.createArrayBuilder;
-import static javax.json.Json.createObjectBuilder;
 import static javax.ws.rs.core.Response.Status.ACCEPTED;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -12,6 +10,9 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static uk.gov.justice.services.integrationtest.utils.jms.JmsMessageConsumerClientProvider.newPublicJmsMessageConsumerClientProvider;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.moj.cpp.staging.prosecutorapi.model.query.Submission.poller;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.StagingProsecutors.CPS_SERVE_BCM;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.StagingProsecutors.CPS_SERVE_COTR;
@@ -53,7 +54,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
@@ -730,7 +730,7 @@ public class CpsServeMaterialIT {
 
     private JsonObject stringToJsonObject(String response) {
         try (StringReader reader = new StringReader(response)) {
-            return Json.createReader(reader).readObject();
+            return createReader(reader).readObject();
         }
     }
 }
