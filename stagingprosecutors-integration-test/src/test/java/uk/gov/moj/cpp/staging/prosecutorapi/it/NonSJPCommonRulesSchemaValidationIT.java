@@ -5,6 +5,7 @@ import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.BusinessValidationsTextResources.DEFENDANT_PROSECUTOR_DEFENDANT_ID_MUST_BE_UNIQUE;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.BusinessValidationsTextResources.FIELD_DEFENDANT_PROSECUTOR_DEFENDANT_ID;
 import static uk.gov.moj.cpp.staging.prosecutorapi.utils.BusinessValidationsTextResources.FIELD_OFFENCE_OFFENCE_SEQUENCE_NO;
@@ -19,7 +20,6 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 
 import java.io.StringReader;
 
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
@@ -169,7 +169,7 @@ public class NonSJPCommonRulesSchemaValidationIT {
 
     private JsonObject stringToJsonObject(String response) {
         try (StringReader reader = new StringReader(response)) {
-            return Json.createReader(reader).readObject();
+            return createReader(reader).readObject();
         }
     }
 

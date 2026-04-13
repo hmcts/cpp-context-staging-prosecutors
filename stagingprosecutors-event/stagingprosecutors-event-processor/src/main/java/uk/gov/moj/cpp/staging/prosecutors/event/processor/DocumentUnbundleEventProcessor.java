@@ -1,12 +1,12 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.processor;
 
 import static java.util.Objects.nonNull;
-import static javax.json.Json.createArrayBuilder;
-import static javax.json.Json.createObjectBuilder;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_PROCESSOR;
 import static uk.gov.justice.services.messaging.Envelope.metadataBuilder;
 import static uk.gov.justice.services.messaging.Envelope.metadataFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.moj.cpp.jobstore.api.task.ExecutionStatus.STARTED;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.jobstore.tasks.TaskNames.CASE_FILE_ADD_MATERIAL_TASK;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.shared.UnbundlingConstants.CASE_ID;
@@ -69,7 +69,6 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -182,7 +181,7 @@ public class DocumentUnbundleEventProcessor {
                 .withName(PROSECUTION_CASE_FILE_ADD_MATERIAL)
                 .build();
 
-        final Metadata jsonObject = metadataFrom(JsonObjects.createObjectBuilder(metadata.asJsonObject()).add("id", UUID.randomUUID().toString()).build()).build();
+        final Metadata jsonObject = metadataFrom(createObjectBuilder(metadata.asJsonObject()).add("id", UUID.randomUUID().toString()).build()).build();
         final JsonEnvelope jsonEnvelope = envelopeHelper.withMetadataInPayload(envelopeFrom(jsonObject, payloadBuilder.build()));
 
         sender.sendAsAdmin(Envelope.envelopeFrom(jsonEnvelope.metadata(), jsonEnvelope.payload()));
@@ -259,7 +258,7 @@ public class DocumentUnbundleEventProcessor {
         try (final PDDocument pdDocument = PDDocument.load(contentStream)) {
             final List<PDDocumentHolder> pdDocumentHolders = fileSplitter.split(pdDocument, materialType);
             final JsonObjectBuilder unBundleDocumentResultsBuilder = documentUnbundleResultBuilder.initializePayload(unbundlingObject);
-            final JsonArrayBuilder materialsArrayBuilder = Json.createArrayBuilder();
+            final JsonArrayBuilder materialsArrayBuilder = createArrayBuilder();
 
             for (final PDDocumentHolder pdDocumentHolder : pdDocumentHolders) {
                 final FileHolder fileHolder = fileUploader.uploadFile(pdDocumentHolder, unbundlingObject.getDefendantName());
@@ -273,7 +272,7 @@ public class DocumentUnbundleEventProcessor {
                     .withName(RECORD_UNBUNDLE_DOCUMENT_RESULTS)
                     .withId(UUID.randomUUID())
                     .build();
-            final Metadata metadataJsonObject = metadataFrom(JsonObjects.createObjectBuilder(metadata.asJsonObject()).build()).build();
+            final Metadata metadataJsonObject = metadataFrom(createObjectBuilder(metadata.asJsonObject()).build()).build();
             sender.sendAsAdmin(Envelope.envelopeFrom(metadataJsonObject, unBundleDocumentResultsCommandPayload));
 
         }

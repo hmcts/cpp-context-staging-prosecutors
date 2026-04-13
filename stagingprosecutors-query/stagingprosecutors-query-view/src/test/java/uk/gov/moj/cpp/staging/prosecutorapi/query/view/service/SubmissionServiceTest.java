@@ -1,12 +1,12 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.query.view.service;
 
 import static java.time.ZonedDateTime.now;
-import static javax.json.Json.createArrayBuilder;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 import static uk.gov.justice.services.test.utils.core.random.RandomGenerator.randomEnum;
 
 import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;

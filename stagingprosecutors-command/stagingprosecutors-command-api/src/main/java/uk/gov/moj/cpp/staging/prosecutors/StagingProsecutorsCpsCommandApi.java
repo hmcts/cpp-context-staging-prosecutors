@@ -3,6 +3,7 @@ package uk.gov.moj.cpp.staging.prosecutors;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
 import static uk.gov.justice.services.core.enveloper.Enveloper.envelop;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 import uk.gov.justice.services.adapter.rest.exception.BadRequestException;
 import uk.gov.justice.services.common.configuration.Value;
@@ -18,7 +19,6 @@ import uk.gov.moj.cpp.staging.prosecutors.uuid.UUIDProducer;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
@@ -57,7 +57,7 @@ public class StagingProsecutorsCpsCommandApi {
 
         final UUID submissionId = uuidProducer.generateUUID();
 
-        final JsonObjectBuilder payloadBuilder = Json.createObjectBuilder()
+        final JsonObjectBuilder payloadBuilder = createObjectBuilder()
                 .add("submissionId", submissionId.toString())
                 .add("materialId", requestPayload.getString("material"))
                 .add("caseUrn", requestPayload.getString("caseUrn"))

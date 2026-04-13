@@ -8,6 +8,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 import uk.gov.justice.services.common.converter.ObjectToJsonObjectConverter;
 import uk.gov.justice.services.common.converter.jackson.ObjectMapperProducer;
@@ -26,7 +28,6 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
@@ -102,12 +103,12 @@ public class ReferenceDataQueryServiceImplTest {
     public void shouldGetCPSProsecutors() {
         final UUID id1 = randomUUID();
         final UUID id2 = randomUUID();
-        final JsonObject responsePayload = Json.createObjectBuilder()
-                .add(PROSECUTORS, Json.createArrayBuilder()
-                        .add(Json.createObjectBuilder()
+        final JsonObject responsePayload = createObjectBuilder()
+                .add(PROSECUTORS, createArrayBuilder()
+                        .add(createObjectBuilder()
                                 .add(ID, id1.toString())
                                 .build())
-                        .add(Json.createObjectBuilder()
+                        .add(createObjectBuilder()
                                 .add(ID, id2.toString())
                                 .build())
                         .build())

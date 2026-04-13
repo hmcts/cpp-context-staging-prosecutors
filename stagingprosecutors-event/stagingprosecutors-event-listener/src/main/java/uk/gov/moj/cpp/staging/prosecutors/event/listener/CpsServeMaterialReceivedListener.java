@@ -1,6 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.listener;
 
 import static uk.gov.justice.services.core.annotation.Component.EVENT_LISTENER;
+import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 import static uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType.BCM;
 import static uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType.COTR;
 import static uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType.PET;
@@ -27,7 +28,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 
@@ -171,7 +171,7 @@ public class CpsServeMaterialReceivedListener {
             return null;
         }
 
-        final JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        final JsonArrayBuilder arrayBuilder = createArrayBuilder();
         errors.stream()
                 .map(objectToJsonObjectConverter::convert)
                 .forEach(arrayBuilder::add);

@@ -1,12 +1,12 @@
 package uk.gov.moj.cpp.staging.prosecutors.unbundling.service;
 
 import static java.util.Objects.nonNull;
-import static javax.json.Json.createReader;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
+import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 import static uk.gov.justice.services.test.utils.core.reflection.ReflectionUtil.setField;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.service.ReferenceDataService.CPS_BUNDLE_CODE;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.service.ReferenceDataService.REFERENCE_DATA_GET_DOCUMENT_BUNDLE;

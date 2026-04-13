@@ -15,10 +15,10 @@ import javax.json.JsonObjectBuilder;
 import java.util.UUID;
 
 import static java.util.Objects.nonNull;
-import static javax.json.Json.createObjectBuilder;
 import static uk.gov.justice.services.messaging.Envelope.metadataBuilder;
 import static uk.gov.justice.services.messaging.Envelope.metadataFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.shared.UnbundlingConstants.APPLICATION_PDF;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.shared.UnbundlingConstants.CASE_ID;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.shared.UnbundlingConstants.DOCUMENT_TYPE;
@@ -62,7 +62,7 @@ public class DocumentUnbundleResultBuilder {
                 .withName(RECORD_DOCUMENT_UNBUNDLE_RESULT)
                 .withId(UUID.randomUUID())
                 .build();
-        final Metadata jsonObject = metadataFrom(JsonObjects.createObjectBuilder(metadata.asJsonObject()).build()).build();
+        final Metadata jsonObject = metadataFrom(createObjectBuilder(metadata.asJsonObject()).build()).build();
         return envelopeHelper.withMetadataInPayload(envelopeFrom(jsonObject, payload));
     }
 
