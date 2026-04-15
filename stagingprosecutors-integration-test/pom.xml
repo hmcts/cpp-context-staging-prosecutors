@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.61-SNAPSHOT</version>
+        <version>17.104.60</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -119,7 +119,7 @@
         <dependency>
             <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
             <artifactId>stagingprosecutors-viewstore-persistence</artifactId>
-            <version>17.104.61-SNAPSHOT</version>
+            <version>17.104.60</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
