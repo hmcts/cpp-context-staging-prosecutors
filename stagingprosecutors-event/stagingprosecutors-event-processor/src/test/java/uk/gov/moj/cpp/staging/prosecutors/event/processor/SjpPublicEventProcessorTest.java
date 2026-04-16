@@ -1,5 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.processor;
 
+import uk.gov.justice.services.messaging.JsonObjects;
+
 import static java.util.UUID.randomUUID;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
