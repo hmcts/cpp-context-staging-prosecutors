@@ -10,7 +10,7 @@
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
     <artifactId>stagingprosecutors</artifactId>
-    <version>17.103.60-PEG-2848-R-SNAPSHOT</version>
+    <version>17.103.61-PEG-2848-R-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>stagingprosecutors</name>
 
