@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"getPayload\\\\|payload\\\\|InformantRegisterEntity\" /Users/erolkureli/repo/cpp-context-results/results-viewstore -type f --include=\"*.java\")"
+    ]
+  }
+}
