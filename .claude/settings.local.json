@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep -r \"getPayload\\\\|payload\\\\|InformantRegisterEntity\" /Users/erolkureli/repo/cpp-context-results/results-viewstore -type f --include=\"*.java\")"
+      "Bash(grep -r \"getPayload\\\\|payload\\\\|InformantRegisterEntity\" /Users/erolkureli/repo/cpp-context-results/results-viewstore -type f --include=\"*.java\")",
+      "Bash(grep -r '$ref' /Users/erolkureli/repo/cpp-context-staging-prosecutors/stagingprosecutors-query/stagingprosecutors-query-api/src/raml/json/schema/)",
+      "Bash(grep *)"
     ]
   }
 }
