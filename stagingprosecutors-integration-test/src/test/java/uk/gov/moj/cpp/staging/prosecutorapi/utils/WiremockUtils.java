@@ -171,6 +171,24 @@ public class WiremockUtils {
         return this;
     }
 
+    public WiremockUtils stubGetProsecutionResultsV2(final String ouCode) {
+        stubFor(get(urlPathMatching(".*query/api/rest/results/prosecutor/" + ouCode + ".*"))
+                .willReturn(aResponse().withStatus(SC_OK)
+                        .withHeader("CPPID", randomUUID().toString())
+                        .withHeader("Content-Type", "application/vnd.results.prosecutor-results+json")
+                        .withBody(readResource("stub-data/hmcts-prosecutor-results-v2.json"))));
+        return this;
+    }
+
+    public WiremockUtils stubGetProsecutionResultsV2ForException(final String ouCode) {
+        stubFor(get(urlPathMatching(".*query/api/rest/results/prosecutor/" + ouCode + ".*"))
+                .willReturn(aResponse().withStatus(400)
+                        .withHeader("CPPID", randomUUID().toString())
+                        .withHeader("Content-Type", "application/vnd.results.prosecutor-results+json")
+                        .withBody("Error calling results service - Internal Server Error")));
+        return this;
+    }
+
     public void verifyMaterialUpload(final String url, final String materialType, final String prosecutionAuthority) {
         verify(postRequestedFor(urlEqualTo(url))
                 .withHeader("Content-Type", equalTo("application/vnd.prosecutioncasefile.add-material+json"))

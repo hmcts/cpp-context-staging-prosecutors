@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://justice.gov.uk/core/courts/courtsDefinitions.json",
+  "id": "http://justice.gov.uk/stagingprosecutors/informantRegisterDocument/courtsDefinitions.json",
   "definitions": {
     "positiveInteger": {
       "type": "integer",

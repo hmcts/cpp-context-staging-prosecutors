@@ -2,7 +2,7 @@
   "registerDate": "2020-01-20",
   "prosecutionAuthorityId": "31af405e-7b60-4dd8-a244-c24c2d3fa595",
   "prosecutionAuthorityCode": "TFL",
-  "prosecutionAuthorityOuCode": "GTL0001",
+  "prosecutionAuthorityOuCode": "GTL0002",
   "majorCreditorCode": "OUCode",
   "prosecutionAuthorityName": "Barnet county court",
   "fileName": "InformantRegister_TFL_2020-01-20.csv",
@@ -41,6 +41,11 @@
                     "orderIndex": 1,
                     "offenceTitle": "Public service vehicle - passenger use altered / defaced   ticket",
                     "pleaValue": "NOT_GUILTY",
+                    "verdict": {
+                      "verdictCode": "N",
+                      "verdictType": "FOUND_NOT_GUILTY",
+                      "verdictDate": "2020-01-20"
+                    },
                     "offenceResults": [
                       {
                         "resultText": "Pay by date /n Reserve Terms Lump sum"

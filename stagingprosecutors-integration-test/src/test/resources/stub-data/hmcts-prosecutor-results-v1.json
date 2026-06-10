@@ -41,6 +41,7 @@
                     "orderIndex": 1,
                     "offenceTitle": "Public service vehicle - passenger use altered / defaced   ticket",
                     "pleaValue": "NOT_GUILTY",
+                    "verdictCode": "N",
                     "offenceResults": [
                       {
                         "resultText": "Pay by date /n Reserve Terms Lump sum"

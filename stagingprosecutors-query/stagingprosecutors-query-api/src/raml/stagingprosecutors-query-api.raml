@@ -113,3 +113,33 @@ protocols: [ HTTP, HTTPS ]
               !include json/example/hmcts.results.v1.json
             schema:
               !include json/schema/hmcts.results.v1.json
+
+/v2/results/{ouCode}:
+  uriParameters:
+    ouCode:
+      description: Organisational Unit Code
+      type: string
+  get:
+    description: |
+      Gets the results for the given date range and organisational unit code.
+      ...
+      (mapping):
+        responseType: application/vnd.hmcts.results.v2+json
+        name: hmcts.results.v2
+      ...
+    queryParameters:
+      startDate:
+        description: Start date of the date range
+        type: string
+        required: true
+      endDate:
+        description: End date of the date range
+        type: string
+    responses:
+      200:
+        body:
+          application/vnd.hmcts.results.v2+json:
+            example:
+              !include json/example/hmcts.results.v2.json
+            schema:
+              !include json/schema/hmcts.results.v2.json

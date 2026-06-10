@@ -26,12 +26,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 /**
- * Integration tests for /stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v1/results/{ouCode}
+ * Integration tests for /stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v2/results/{ouCode}
  */
-public class ResultsIT {
+public class ResultsV2IT {
 
-    private static final String READ_BASE_RESULTS_URI_V1 = getBaseUri() + "/stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v1/results";
-    private static final String MEDIA_TYPE = "application/vnd.hmcts.results.v1+json";
+    private static final String READ_BASE_RESULTS_URI_V2 = getBaseUri() + "/stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v2/results";
+    private static final String MEDIA_TYPE = "application/vnd.hmcts.results.v2+json";
     private static final RestClient restClient = new RestClient();
 
     @Rule
@@ -41,12 +41,12 @@ public class ResultsIT {
 
     @BeforeEach
     public void setUp() {
-        wiremockUtils = new WiremockUtils().stubIdMapperRecordingNewAssociation().stubGetProsecutionResults("007WZ231");
+        wiremockUtils = new WiremockUtils().stubIdMapperRecordingNewAssociation().stubGetProsecutionResultsV2("007WZ231");
     }
 
     @Test
     public void shouldReturnForbiddenAsResponseWhenWrongUserIsPassed() {
-        String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+        String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE)) {
             assertThat(response.getStatus(), is(HttpStatus.SC_FORBIDDEN));
         }
@@ -54,7 +54,7 @@ public class ResultsIT {
 
     @Test
     public void shouldReturnNotFoundAsResponseWhenOUCodeIsNotPassed() {
-        String url = READ_BASE_RESULTS_URI_V1 + "?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+        String url = READ_BASE_RESULTS_URI_V2 + "?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
             assertThat(response.getStatus(), is(HttpStatus.SC_NOT_FOUND));
         }
@@ -62,15 +62,15 @@ public class ResultsIT {
 
     @Test
     public void shouldReturnBadRequestAsResponseWhenStartDateIsNotPassed() {
-        String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?endDate=\"2020-02-15\"";
+        String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
             assertThat(response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
         }
     }
 
     @Test
-    public void shouldReturn200WhenResultsQueryApiIsInvokedWithoutEndDate() {
-        String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?startDate=\"2020-02-10\"";
+    public void shouldReturn200WhenResultsV2QueryApiIsInvokedWithoutEndDate() {
+        String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"";
         try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
             assertThat(response.getStatus(), is(HttpStatus.SC_OK));
             assertThat(response.getMediaType().toString(), is(MEDIA_TYPE));
@@ -79,8 +79,8 @@ public class ResultsIT {
     }
 
     @Test
-    public void shouldReturn200WhenResultsQueryApiIsInvoked() {
-        String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+    public void shouldReturn200WhenResultsV2QueryApiIsInvoked() {
+        String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
             assertThat(response.getStatus(), is(HttpStatus.SC_OK));
             assertThat(response.getMediaType().toString(), is(MEDIA_TYPE));
@@ -89,20 +89,22 @@ public class ResultsIT {
     }
 
     @Test
-    public void shouldReturnFlatVerdictCodeInV1Response() {
-        String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+    public void shouldReturnVerdictObjectInV2Response() {
+        String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
             assertThat(response.getStatus(), is(HttpStatus.SC_OK));
             final String body = response.readEntity(String.class);
+            assertThat(body, containsString("\"verdict\":{"));
             assertThat(body, containsString("\"verdictCode\":\"N\""));
-            assertThat(body, not(containsString("\"verdict\":")));
+            assertThat(body, containsString("\"verdictType\":\"FOUND_NOT_GUILTY\""));
+            assertThat(body, not(containsString("\"verdictCode\":\"N\",\"offenceResults")));
         }
     }
 
     @Test
-    public void shouldCascadeErrorsFromResultsApiWhenThereIsAnException() {
-        wiremockUtils.stubIdMapperRecordingNewAssociation().stubGetProsecutionResultsForException("CODE_420");
-        String url = READ_BASE_RESULTS_URI_V1 + "/CODE_420?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+    public void shouldCascadeErrorsFromResultsV2ApiWhenThereIsAnException() {
+        wiremockUtils.stubIdMapperRecordingNewAssociation().stubGetProsecutionResultsV2ForException("CODE_420");
+        String url = READ_BASE_RESULTS_URI_V2 + "/CODE_420?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
 
         try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
             assertThat(response.getStatus(), is(HttpStatus.SC_BAD_REQUEST));
@@ -115,8 +117,6 @@ public class ResultsIT {
     private MultivaluedMap<String, Object> getHeaders() {
         final MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
         headers.putSingle(USER_ID, UUID.randomUUID());
-
         return headers;
     }
-
 }
