@@ -3,7 +3,12 @@
     "allow": [
       "Bash(grep -r \"getPayload\\\\|payload\\\\|InformantRegisterEntity\" /Users/erolkureli/repo/cpp-context-results/results-viewstore -type f --include=\"*.java\")",
       "Bash(grep -r '$ref' /Users/erolkureli/repo/cpp-context-staging-prosecutors/stagingprosecutors-query/stagingprosecutors-query-api/src/raml/json/schema/)",
-      "Bash(grep *)"
+      "Bash(grep *)",
+      "Bash(mvn -pl stagingprosecutors-query/stagingprosecutors-query-api -am test -Dtest=ResultsQueryApiTest)",
+      "Bash(java -version)",
+      "Bash(/usr/libexec/java_home -V)",
+      "Bash(JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home mvn -pl stagingprosecutors-query/stagingprosecutors-query-api -am test -Dtest=ResultsQueryApiTest)",
+      "Bash(JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home mvn -pl stagingprosecutors-query/stagingprosecutors-query-api test -Dtest=ResultsQueryApiTest -Dsurefire.failIfNoSpecifiedTests=false)"
     ]
   }
 }

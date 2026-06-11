@@ -2,6 +2,8 @@ package uk.gov.moj.cpp.staging.prosecutorapi.query.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
@@ -14,6 +16,8 @@ import uk.gov.justice.services.core.requester.Requester;
 import uk.gov.justice.services.messaging.Envelope;
 import uk.gov.justice.services.messaging.JsonEnvelope;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 import org.junit.jupiter.api.Test;
@@ -87,6 +91,82 @@ public class ResultsQueryApiTest {
 
         final OutOfMemoryError outOfMemoryError = assertThrows(OutOfMemoryError.class, () -> resultsQueryApi.getResults(inputEnvelope));
         assertThat(outOfMemoryError.getMessage(), is("OutOfMemoryException"));
+    }
+
+    @Test
+    public void shouldFlattenVerdictObjectToVerdictCodeInV1Response() {
+        final JsonObject payload = buildPayloadWithOffence(
+                Json.createObjectBuilder()
+                        .add("offenceCode", "PS90010")
+                        .add("pleaValue", "NOT_GUILTY")
+                        .add("verdict", Json.createObjectBuilder()
+                                .add("verdictCode", "N")
+                                .add("verdictType", "FOUND_NOT_GUILTY")
+                                .add("verdictDate", "2020-01-20")
+                                .build())
+                        .build());
+        when(requester.request(any(Envelope.class))).thenReturn(createEnvelope("results.query.api", payload));
+
+        final String response = resultsQueryApi.getResults(getInputEnvelope("ouCode", "2020-02-10", "2020-02-15"))
+                .payload().toString();
+
+        assertThat(response, containsString("\"verdictCode\":\"N\""));
+        assertThat(response, not(containsString("\"verdict\":")));
+        assertThat(response, not(containsString("\"verdictType\":")));
+        assertThat(response, not(containsString("\"verdictDate\":")));
+    }
+
+    @Test
+    public void shouldLeaveOffenceUnchangedWhenNoVerdictObjectPresent() {
+        final JsonObject payload = buildPayloadWithOffence(
+                Json.createObjectBuilder()
+                        .add("offenceCode", "PS90010")
+                        .add("pleaValue", "GUILTY")
+                        .build());
+        when(requester.request(any(Envelope.class))).thenReturn(createEnvelope("results.query.api", payload));
+
+        final String response = resultsQueryApi.getResults(getInputEnvelope("ouCode", "2020-02-10", "2020-02-15"))
+                .payload().toString();
+
+        assertThat(response, not(containsString("\"verdictCode\":")));
+        assertThat(response, not(containsString("\"verdict\":")));
+        assertThat(response, containsString("\"pleaValue\":\"GUILTY\""));
+    }
+
+    @Test
+    public void shouldPassThroughPayloadUnchangedWhenNoHearingVenueStructurePresent() {
+        final JsonObject payload = Json.createObjectBuilder()
+                .add("prosecutionAuthorityOuCode", "GTL0002")
+                .build();
+        when(requester.request(any(Envelope.class))).thenReturn(createEnvelope("results.query.api", payload));
+
+        final String response = resultsQueryApi.getResults(getInputEnvelope("ouCode", "2020-02-10", "2020-02-15"))
+                .payload().toString();
+
+        assertThat(response, containsString("\"prosecutionAuthorityOuCode\":\"GTL0002\""));
+        assertThat(response, not(containsString("\"verdictCode\":")));
+    }
+
+    private JsonObject buildPayloadWithOffence(final JsonObject offence) {
+        return Json.createObjectBuilder()
+                .add("hearingVenue", Json.createObjectBuilder()
+                        .add("courtSessions", Json.createArrayBuilder()
+                                .add(Json.createObjectBuilder()
+                                        .add("defendants", Json.createArrayBuilder()
+                                                .add(Json.createObjectBuilder()
+                                                        .add("prosecutionCasesOrApplications", Json.createArrayBuilder()
+                                                                .add(Json.createObjectBuilder()
+                                                                        .add("offences", Json.createArrayBuilder()
+                                                                                .add(offence)
+                                                                                .build())
+                                                                        .build())
+                                                                .build())
+                                                        .build())
+                                                .build())
+                                        .build())
+                                .build())
+                        .build())
+                .build();
     }
 
     private void assertEnvelope(final JsonEnvelope inputEnvelope, final JsonEnvelope jsonEnvelope) {

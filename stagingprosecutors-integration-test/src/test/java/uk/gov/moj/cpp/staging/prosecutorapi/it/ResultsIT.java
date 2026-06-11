@@ -41,7 +41,7 @@ public class ResultsIT {
 
     @BeforeEach
     public void setUp() {
-        wiremockUtils = new WiremockUtils().stubIdMapperRecordingNewAssociation().stubGetProsecutionResults("007WZ231");
+        wiremockUtils = new WiremockUtils().stubIdMapperRecordingNewAssociation().stubGetProsecutionResultsV2("007WZ231");
     }
 
     @Test
