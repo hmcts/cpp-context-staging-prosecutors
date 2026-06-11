@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 @ServiceComponent(QUERY_API)
 public class ResultsQueryApi {
 
+    public static final String VERDICT = "verdict";
     private static final Logger LOGGER = getLogger(ResultsQueryApi.class);
     private static final String GET_RESULTS_API = "results.prosecutor-results";
     private static final String GET_RESULTS = "hmcts.results.v1";
@@ -55,7 +56,7 @@ public class ResultsQueryApi {
     private static JsonObject deepTransformObject(final JsonObject object) {
         final JsonObjectBuilder builder = createObjectBuilder();
         object.entrySet().stream()
-                .filter(e -> !"verdict".equals(e.getKey()))
+                .filter(e -> !VERDICT.equals(e.getKey()))
                 .forEach(e -> {
                     if (e.getValue().getValueType() == JsonValue.ValueType.OBJECT) {
                         builder.add(e.getKey(), deepTransformObject(e.getValue().asJsonObject()));
@@ -65,8 +66,8 @@ public class ResultsQueryApi {
                         builder.add(e.getKey(), e.getValue());
                     }
                 });
-        if (object.containsKey("verdict")) {
-            builder.add("verdictCode", object.getJsonObject("verdict").getString("verdictCode"));
+        if (object.containsKey(VERDICT)) {
+            builder.add("verdictCode", object.getJsonObject(VERDICT).getString("verdictCode"));
         }
         return builder.build();
     }

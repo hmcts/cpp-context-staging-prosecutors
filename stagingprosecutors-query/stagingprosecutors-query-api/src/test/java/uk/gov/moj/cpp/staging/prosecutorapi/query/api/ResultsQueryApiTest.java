@@ -94,7 +94,7 @@ public class ResultsQueryApiTest {
     }
 
     @Test
-    public void shouldFlattenVerdictObjectToVerdictCodeInV1Response() {
+    void shouldFlattenVerdictObjectToVerdictCodeInV1Response() {
         final JsonObject payload = buildPayloadWithOffence(
                 Json.createObjectBuilder()
                         .add("offenceCode", "PS90010")
@@ -117,7 +117,7 @@ public class ResultsQueryApiTest {
     }
 
     @Test
-    public void shouldLeaveOffenceUnchangedWhenNoVerdictObjectPresent() {
+    void shouldLeaveOffenceUnchangedWhenNoVerdictObjectPresent() {
         final JsonObject payload = buildPayloadWithOffence(
                 Json.createObjectBuilder()
                         .add("offenceCode", "PS90010")
@@ -134,7 +134,7 @@ public class ResultsQueryApiTest {
     }
 
     @Test
-    public void shouldPassThroughPayloadUnchangedWhenNoHearingVenueStructurePresent() {
+    void shouldPassThroughPayloadUnchangedWhenNoHearingVenueStructurePresent() {
         final JsonObject payload = Json.createObjectBuilder()
                 .add("prosecutionAuthorityOuCode", "GTL0002")
                 .build();
