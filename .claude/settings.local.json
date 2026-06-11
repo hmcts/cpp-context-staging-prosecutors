@@ -26,7 +26,8 @@
       "Bash(find /Users/erolkureli/tmp_jars2 -name \"JsonObjects*\")",
       "Bash(CLAUDE_CODE_TMPDIR=/Users/erolkureli/tmp_jars2 jar tf /Users/erolkureli/.m2/repository/uk/gov/justice/services/messaging-core/17.103.2/messaging-core-17.103.2-sources.jar)",
       "Bash(export CLAUDE_CODE_TMPDIR=/Users/erolkureli/tmp_jars2)",
-      "Bash(unzip -l /Users/erolkureli/.m2/repository/uk/gov/justice/services/messaging-core/17.103.2/messaging-core-17.103.2-sources.jar)"
+      "Bash(unzip -l /Users/erolkureli/.m2/repository/uk/gov/justice/services/messaging-core/17.103.2/messaging-core-17.103.2-sources.jar)",
+      "Bash(JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home mvn -pl stagingprosecutors-event/stagingprosecutors-event-processor test -Dtest=PDFExtractorTest -Dsurefire.failIfNoSpecifiedTests=false)"
     ]
   }
 }

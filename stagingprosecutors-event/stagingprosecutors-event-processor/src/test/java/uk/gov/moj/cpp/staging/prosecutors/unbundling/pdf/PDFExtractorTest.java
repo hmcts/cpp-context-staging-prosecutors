@@ -31,6 +31,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,6 +44,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @SuppressWarnings({"squid:S1607"})
 @ExtendWith(MockitoExtension.class)
 public class PDFExtractorTest {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PDFExtractorTest.class);
     private Map<String, List<BundleSection>> bookmarksByFileType = new HashMap<>();
 
     @InjectMocks
@@ -136,34 +141,43 @@ public class PDFExtractorTest {
 
     private void splitPDFAndAssert(final PDDocument pdDocument, final List<BundleSection> expectedParentSections, LinkedHashMap<String, List<String>> expectedParentChildSectionMap) {
         final List<PDDocumentHolder> unbundledPDDocs = pdfExtractor.splitIntoSections(pdDocument, expectedParentSections);
-        List<String> expectedSectionNames = getSectionNames(expectedParentSections);
+        try {
+            List<String> expectedSectionNames = getSectionNames(expectedParentSections);
 
-        final Map<String, Integer> initialChildCountForEachParent = new HashMap<>();
-        expectedParentChildSectionMap.forEach((key, value) -> initialChildCountForEachParent.put(key, value.size()));
+            final Map<String, Integer> initialChildCountForEachParent = new HashMap<>();
+            expectedParentChildSectionMap.forEach((key, value) -> initialChildCountForEachParent.put(key, value.size()));
 
-        unbundledPDDocs.forEach(unbundledDoc -> {
-            final String parentSectionName = unbundledDoc.getSectionName();
-            final String documentName = unbundledDoc.getDocumentName();
-            final List<String> childDocumentNames = expectedParentChildSectionMap.get(parentSectionName);
+            unbundledPDDocs.forEach(unbundledDoc -> {
+                final String parentSectionName = unbundledDoc.getSectionName();
+                final String documentName = unbundledDoc.getDocumentName();
+                final List<String> childDocumentNames = expectedParentChildSectionMap.get(parentSectionName);
 
-            assertThat("Should assert 'section name' or 'folder name' is present in reference data",
-                    expectedSectionNames.contains(parentSectionName), is(true));
+                assertThat("Should assert 'section name' or 'folder name' is present in reference data",
+                        expectedSectionNames.contains(parentSectionName), is(true));
 
-            final String bookmarkTitle = unbundledDoc.getBookmarkTitle();
+                final String bookmarkTitle = unbundledDoc.getBookmarkTitle();
 
-            if (!childDocumentNames.isEmpty() && isSplitEnabled(expectedParentSections, parentSectionName)) {
-                initialChildCountForEachParent.put(parentSectionName, initialChildCountForEachParent.get(parentSectionName) - 1);
-                assertChildDocument(unbundledDoc, parentSectionName, documentName, childDocumentNames, bookmarkTitle);
-            } else {
-                initialChildCountForEachParent.put(parentSectionName, 0);
-                assertParentDocument(expectedParentChildSectionMap, expectedSectionNames, unbundledDoc, documentName, bookmarkTitle);
-            }
-        });
+                if (!childDocumentNames.isEmpty() && isSplitEnabled(expectedParentSections, parentSectionName)) {
+                    initialChildCountForEachParent.put(parentSectionName, initialChildCountForEachParent.get(parentSectionName) - 1);
+                    assertChildDocument(unbundledDoc, parentSectionName, documentName, childDocumentNames, bookmarkTitle);
+                } else {
+                    initialChildCountForEachParent.put(parentSectionName, 0);
+                    assertParentDocument(expectedParentChildSectionMap, expectedSectionNames, unbundledDoc, documentName, bookmarkTitle);
+                }
+            });
 
-        assertThat("Should assert all the child document where extracted so count is expected to be zero",
-                initialChildCountForEachParent.values().stream().mapToInt(Integer::intValue).sum(),
-                is(0));
-
+            assertThat("Should assert all the child document where extracted so count is expected to be zero",
+                    initialChildCountForEachParent.values().stream().mapToInt(Integer::intValue).sum(),
+                    is(0));
+        } finally {
+            unbundledPDDocs.forEach(doc -> {
+                try {
+                    doc.close();
+                } catch (final IOException e) {
+                    LOGGER.warn("Failed to close PDDocumentHolder", e);
+                }
+            });
+        }
     }
 
     private List<String> getSectionNames(final List<BundleSection> expectedParentSections) {
