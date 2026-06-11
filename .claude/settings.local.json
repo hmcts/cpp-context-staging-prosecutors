@@ -8,7 +8,25 @@
       "Bash(java -version)",
       "Bash(/usr/libexec/java_home -V)",
       "Bash(JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home mvn -pl stagingprosecutors-query/stagingprosecutors-query-api -am test -Dtest=ResultsQueryApiTest)",
-      "Bash(JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home mvn -pl stagingprosecutors-query/stagingprosecutors-query-api test -Dtest=ResultsQueryApiTest -Dsurefire.failIfNoSpecifiedTests=false)"
+      "Bash(JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home mvn -pl stagingprosecutors-query/stagingprosecutors-query-api test -Dtest=ResultsQueryApiTest -Dsurefire.failIfNoSpecifiedTests=false)",
+      "Bash(jar tf *)",
+      "Bash(jar xf *)",
+      "Read(//tmp/uk/gov/justice/services/messaging/**)",
+      "Bash(jar -xf ~/.m2/repository/uk/gov/justice/services/messaging-core/8.0.4/messaging-core-8.0.4-sources.jar)",
+      "Bash(CLAUDE_CODE_TMPDIR=/tmp/claude_work mkdir -p /tmp/claude_work)",
+      "Read(//tmp/**)",
+      "Bash(mkdir -p /tmp/claude_work)",
+      "Bash(find /tmp/claude_work -name \"JsonObjects*\")",
+      "Bash(CLAUDE_CODE_TMPDIR=/Users/erolkureli/tmp_claude jar tf /Users/erolkureli/.m2/repository/uk/gov/justice/services/messaging-core/17.5.7/messaging-core-17.5.7.jar)",
+      "Bash(xargs -I{} jar tf {})",
+      "Bash(CLAUDE_CODE_TMPDIR=/Users/erolkureli/tmp_jars mkdir -p /Users/erolkureli/tmp_jars)",
+      "Read(//Users/erolkureli/**)",
+      "Read(//Users/erolkureli/tmp_jars/javax/json/**)",
+      "Bash(mkdir -p /Users/erolkureli/tmp_jars2)",
+      "Bash(find /Users/erolkureli/tmp_jars2 -name \"JsonObjects*\")",
+      "Bash(CLAUDE_CODE_TMPDIR=/Users/erolkureli/tmp_jars2 jar tf /Users/erolkureli/.m2/repository/uk/gov/justice/services/messaging-core/17.103.2/messaging-core-17.103.2-sources.jar)",
+      "Bash(export CLAUDE_CODE_TMPDIR=/Users/erolkureli/tmp_jars2)",
+      "Bash(unzip -l /Users/erolkureli/.m2/repository/uk/gov/justice/services/messaging-core/17.103.2/messaging-core-17.103.2-sources.jar)"
     ]
   }
 }

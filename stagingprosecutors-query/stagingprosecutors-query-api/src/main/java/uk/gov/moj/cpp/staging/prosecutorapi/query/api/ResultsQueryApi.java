@@ -4,16 +4,16 @@ import static org.slf4j.LoggerFactory.getLogger;
 import static uk.gov.justice.services.core.annotation.Component.QUERY_API;
 import static uk.gov.justice.services.messaging.Envelope.metadataFrom;
 import static uk.gov.justice.services.messaging.JsonEnvelope.envelopeFrom;
+import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
 import uk.gov.justice.services.core.annotation.Handles;
 import uk.gov.justice.services.core.annotation.ServiceComponent;
 import uk.gov.justice.services.core.requester.Requester;
 import uk.gov.justice.services.messaging.JsonEnvelope;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -49,79 +49,39 @@ public class ResultsQueryApi {
     }
 
     private JsonObject flattenVerdictCodeInPayload(final JsonObject payload) {
-        if (!(payload.get("hearingVenue") instanceof JsonObject)) {
-            return payload;
-        }
-        final JsonObject hearingVenue = payload.getJsonObject("hearingVenue");
-        if (!hearingVenue.containsKey("courtSessions")) {
-            return payload;
-        }
-        return Json.createObjectBuilder(payload)
-                .add("hearingVenue", transformHearingVenue(hearingVenue))
-                .build();
+        return deepTransformObject(payload);
     }
 
-    private JsonObject transformHearingVenue(final JsonObject hearingVenue) {
-        final JsonArrayBuilder courtSessionsBuilder = Json.createArrayBuilder();
-        for (final JsonValue session : hearingVenue.getJsonArray("courtSessions")) {
-            courtSessionsBuilder.add(transformCourtSession(session.asJsonObject()));
+    private static JsonObject deepTransformObject(final JsonObject object) {
+        final JsonObjectBuilder builder = createObjectBuilder();
+        object.entrySet().stream()
+                .filter(e -> !"verdict".equals(e.getKey()))
+                .forEach(e -> {
+                    if (e.getValue().getValueType() == JsonValue.ValueType.OBJECT) {
+                        builder.add(e.getKey(), deepTransformObject(e.getValue().asJsonObject()));
+                    } else if (e.getValue().getValueType() == JsonValue.ValueType.ARRAY) {
+                        builder.add(e.getKey(), deepTransformArray(e.getValue().asJsonArray()));
+                    } else {
+                        builder.add(e.getKey(), e.getValue());
+                    }
+                });
+        if (object.containsKey("verdict")) {
+            builder.add("verdictCode", object.getJsonObject("verdict").getString("verdictCode"));
         }
-        return Json.createObjectBuilder(hearingVenue)
-                .add("courtSessions", courtSessionsBuilder)
-                .build();
+        return builder.build();
     }
 
-    private JsonObject transformCourtSession(final JsonObject session) {
-        if (!session.containsKey("defendants")) {
-            return session;
-        }
-        final JsonArrayBuilder defendantsBuilder = Json.createArrayBuilder();
-        for (final JsonValue defendant : session.getJsonArray("defendants")) {
-            defendantsBuilder.add(transformDefendant(defendant.asJsonObject()));
-        }
-        return Json.createObjectBuilder(session)
-                .add("defendants", defendantsBuilder)
-                .build();
-    }
-
-    private JsonObject transformDefendant(final JsonObject defendant) {
-        if (!defendant.containsKey("prosecutionCasesOrApplications")) {
-            return defendant;
-        }
-        final JsonArrayBuilder casesBuilder = Json.createArrayBuilder();
-        for (final JsonValue caseOrApp : defendant.getJsonArray("prosecutionCasesOrApplications")) {
-            casesBuilder.add(transformCaseOrApplication(caseOrApp.asJsonObject()));
-        }
-        return Json.createObjectBuilder(defendant)
-                .add("prosecutionCasesOrApplications", casesBuilder)
-                .build();
-    }
-
-    private JsonObject transformCaseOrApplication(final JsonObject caseOrApp) {
-        if (!caseOrApp.containsKey("offences")) {
-            return caseOrApp;
-        }
-        final JsonArrayBuilder offencesBuilder = Json.createArrayBuilder();
-        for (final JsonValue offence : caseOrApp.getJsonArray("offences")) {
-            offencesBuilder.add(transformOffence(offence.asJsonObject()));
-        }
-        return Json.createObjectBuilder(caseOrApp)
-                .add("offences", offencesBuilder)
-                .build();
-    }
-
-    private JsonObject transformOffence(final JsonObject offence) {
-        if (!offence.containsKey("verdict")) {
-            return offence;
-        }
-        final String verdictCode = offence.getJsonObject("verdict").getString("verdictCode");
-        final JsonObjectBuilder builder = Json.createObjectBuilder();
-        for (final Map.Entry<String, JsonValue> entry : offence.entrySet()) {
-            if (!"verdict".equals(entry.getKey())) {
-                builder.add(entry.getKey(), entry.getValue());
+    private static JsonArray deepTransformArray(final JsonArray array) {
+        final JsonArrayBuilder builder = Json.createArrayBuilder();
+        array.forEach(item -> {
+            if (item.getValueType() == JsonValue.ValueType.OBJECT) {
+                builder.add(deepTransformObject(item.asJsonObject()));
+            } else if (item.getValueType() == JsonValue.ValueType.ARRAY) {
+                builder.add(deepTransformArray(item.asJsonArray()));
+            } else {
+                builder.add(item);
             }
-        }
-        builder.add("verdictCode", verdictCode);
+        });
         return builder.build();
     }
 }
