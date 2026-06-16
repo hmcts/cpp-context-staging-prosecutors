@@ -88,6 +88,18 @@ public class ResultsIT {
     }
 
     @Test
+    public void shouldReturnVerdictWithAllThreeFieldsInResponse() {
+        String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+        try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
+            assertThat(response.getStatus(), is(HttpStatus.SC_OK));
+            final String responseBody = response.readEntity(String.class);
+            assertThat(responseBody, containsString("\"verdictCode\":\"G\""));
+            assertThat(responseBody, containsString("\"verdictDate\":\"2020-03-12\""));
+            assertThat(responseBody, containsString("\"verdictType\":\"FOUND_GUILTY\""));
+        }
+    }
+
+    @Test
     public void shouldCascadeErrorsFromResultsApiWhenThereIsAnException() {
         wiremockUtils.stubIdMapperRecordingNewAssociation().stubGetProsecutionResultsForException("CODE_420");
         String url = READ_BASE_RESULTS_URI_V1 + "/CODE_420?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";

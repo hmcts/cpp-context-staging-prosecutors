@@ -14,6 +14,7 @@ import uk.gov.justice.services.core.requester.Requester;
 import uk.gov.justice.services.messaging.Envelope;
 import uk.gov.justice.services.messaging.JsonEnvelope;
 
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 import org.junit.jupiter.api.Test;
@@ -77,6 +78,29 @@ public class ResultsQueryApiTest {
         verify(requester).request(jsonEnvelopeArgumentCaptor.capture());
         final JsonEnvelope jsonEnvelope = jsonEnvelopeArgumentCaptor.getValue();
         assertEnvelope(inputEnvelope, jsonEnvelope);
+    }
+
+    @Test
+    public void shouldPassThroughVerdictObjectWithAllThreeFields() {
+        final JsonEnvelope resultsResponse = createEnvelope("results.query.api",
+                createObjectBuilder()
+                        .add("hearingVenue", createObjectBuilder()
+                                .add("verdict", createObjectBuilder()
+                                        .add("verdictCode", "G")
+                                        .add("verdictDate", "2020-03-12")
+                                        .add("verdictType", "FOUND_GUILTY")))
+                        .build());
+        when(requester.request(any(Envelope.class))).thenReturn(resultsResponse);
+
+        final JsonEnvelope inputEnvelope = getInputEnvelope("ouCode", "2012-02-10", "2012-02-15");
+        final JsonEnvelope response = resultsQueryApi.getResults(inputEnvelope);
+
+        final JsonObject returnedVerdict = response.payloadAsJsonObject()
+                .getJsonObject("hearingVenue")
+                .getJsonObject("verdict");
+        assertThat(returnedVerdict.getString("verdictCode"), is("G"));
+        assertThat(returnedVerdict.getString("verdictDate"), is("2020-03-12"));
+        assertThat(returnedVerdict.getString("verdictType"), is("FOUND_GUILTY"));
     }
 
     @Test
