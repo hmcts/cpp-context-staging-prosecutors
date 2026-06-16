@@ -16,28 +16,30 @@ import javax.json.JsonObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class HmctsResultsV1ExampleTest {
+public class HmctsResultsV2ExampleTest {
 
     private JsonObject root;
 
     @BeforeEach
     public void loadExample() throws IOException {
-        final String exampleJson = Files.readString(Paths.get("src/raml/json/example/hmcts.results.v1.json"));
+        final String exampleJson = Files.readString(Paths.get("src/raml/json/example/hmcts.results.v2.json"));
         root = createReader(new StringReader(exampleJson)).readObject();
     }
 
     @Test
-    public void exampleContainsFlatVerdictCodeOnOffence() {
-        final JsonObject offence = firstOffence();
+    public void exampleContainsVerdictObjectWithAllThreeFields() {
+        final JsonObject verdict = firstOffence().getJsonObject("verdict");
 
-        assertThat(offence.get("verdictCode"), is(notNullValue()));
-        assertThat(offence.getString("verdictCode"), is("G"));
-        assertThat(offence.get("verdict"), is(nullValue()));
+        assertThat(verdict, is(notNullValue()));
+        assertThat(verdict.getString("verdictCode"), is("G"));
+        assertThat(verdict.getString("verdictDate"), is("2020-03-12"));
+        assertThat(verdict.getString("verdictType"), is("FOUND_GUILTY"));
     }
 
     @Test
-    public void exampleDoesNotContainVerdictObjectOnOffenceToConfirmFlatStructure() {
-        assertThat(firstOffence().get("verdict"), is(nullValue()));
+    public void exampleDoesNotContainFlatVerdictCodeOnOffenceToConfirmFullStructure() {
+        assertThat(firstOffence().get("verdictCode"), is(nullValue()));
+        assertThat(firstOffence().getJsonObject("verdict"), is(notNullValue()));
     }
 
     @Test
