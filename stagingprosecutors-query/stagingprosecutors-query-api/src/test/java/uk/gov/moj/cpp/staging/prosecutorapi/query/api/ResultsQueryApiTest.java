@@ -1,7 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.query.api;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -46,7 +45,7 @@ public class ResultsQueryApiTest {
     private ArgumentCaptor<JsonEnvelope> jsonEnvelopeArgumentCaptor;
 
     @BeforeEach
-    public void stubTransformerAsPassthrough() {
+    void stubTransformerAsPassthrough() {
         lenient().when(resultsV1ResponseTransformer.transform(any(JsonObject.class)))
                 .thenAnswer(inv -> inv.getArgument(0));
     }
@@ -94,7 +93,7 @@ public class ResultsQueryApiTest {
     }
 
     @Test
-    public void shouldCallTransformerForV1Endpoint() {
+    void shouldCallTransformerForV1Endpoint() {
         final JsonObject responsePayload = createObjectBuilder()
                 .add("hearingVenue", createObjectBuilder()
                         .add("courtSessions", javax.json.Json.createArrayBuilder()))
@@ -108,7 +107,7 @@ public class ResultsQueryApiTest {
     }
 
     @Test
-    public void shouldReturnTransformedPayloadForV1Endpoint() {
+    void shouldReturnTransformedPayloadForV1Endpoint() {
         final JsonObject responsePayload = createObjectBuilder()
                 .add("hearingVenue", createObjectBuilder()
                         .add("courtSessions", javax.json.Json.createArrayBuilder()))
@@ -124,7 +123,7 @@ public class ResultsQueryApiTest {
     }
 
     @Test
-    public void shouldReturnFullVerdictObjectFromV2Endpoint() {
+    void shouldReturnFullVerdictObjectFromV2Endpoint() {
         final JsonObject verdictPayload = createObjectBuilder()
                 .add("hearingVenue", createObjectBuilder()
                         .add("verdict", createObjectBuilder()
@@ -147,7 +146,7 @@ public class ResultsQueryApiTest {
     }
 
     @Test
-    public void shouldNotCallTransformerForV2Endpoint() {
+    void shouldNotCallTransformerForV2Endpoint() {
         when(requester.request(any(Envelope.class))).thenReturn(
                 createEnvelope("results.query.api", createObjectBuilder().add("hearingVenue", "response").build()));
 

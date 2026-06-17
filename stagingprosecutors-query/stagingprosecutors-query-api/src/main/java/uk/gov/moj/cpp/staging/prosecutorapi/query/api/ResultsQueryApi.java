@@ -26,6 +26,7 @@ public class ResultsQueryApi {
     @Inject
     private Requester requester;
 
+    @SuppressWarnings("java:S6813")
     @Inject
     private ResultsV1ResponseTransformer resultsV1ResponseTransformer;
 

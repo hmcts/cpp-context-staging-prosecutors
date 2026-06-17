@@ -16,18 +16,18 @@ import javax.json.JsonObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class HmctsResultsV2ExampleTest {
+class HmctsResultsV2ExampleTest {
 
     private JsonObject root;
 
     @BeforeEach
-    public void loadExample() throws IOException {
+    void loadExample() throws IOException {
         final String exampleJson = Files.readString(Paths.get("src/raml/json/example/hmcts.results.v2.json"));
         root = createReader(new StringReader(exampleJson)).readObject();
     }
 
     @Test
-    public void exampleContainsVerdictObjectWithAllThreeFields() {
+    void exampleContainsVerdictObjectWithAllThreeFields() {
         final JsonObject verdict = firstOffence().getJsonObject("verdict");
 
         assertThat(verdict, is(notNullValue()));
@@ -37,13 +37,13 @@ public class HmctsResultsV2ExampleTest {
     }
 
     @Test
-    public void exampleDoesNotContainFlatVerdictCodeOnOffenceToConfirmFullStructure() {
+    void exampleDoesNotContainFlatVerdictCodeOnOffenceToConfirmFullStructure() {
         assertThat(firstOffence().get("verdictCode"), is(nullValue()));
         assertThat(firstOffence().getJsonObject("verdict"), is(notNullValue()));
     }
 
     @Test
-    public void exampleContainsOffenceWithNoVerdictToShowOptionalField() {
+    void exampleContainsOffenceWithNoVerdictToShowOptionalField() {
         final JsonObject offenceWithoutVerdict = root
                 .getJsonObject("hearingVenue")
                 .getJsonArray("courtSessions").getJsonObject(0)

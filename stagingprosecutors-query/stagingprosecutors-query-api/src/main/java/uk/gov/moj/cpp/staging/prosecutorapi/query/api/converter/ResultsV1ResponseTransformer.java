@@ -12,6 +12,7 @@ import javax.json.JsonValue;
 public class ResultsV1ResponseTransformer {
 
     private static final String VERDICT = "verdict";
+    private static final String VERDICT_CODE = "verdictCode";
 
     public JsonObject transform(final JsonObject payload) {
         return deepTransformObject(payload);
@@ -32,8 +33,8 @@ public class ResultsV1ResponseTransformer {
                 });
         if (object.containsKey(VERDICT)) {
             final JsonObject verdict = object.getJsonObject(VERDICT);
-            if (verdict.containsKey("verdictCode")) {
-                builder.add("verdictCode", verdict.getString("verdictCode"));
+            if (verdict.containsKey(VERDICT_CODE)) {
+                builder.add(VERDICT_CODE, verdict.getString(VERDICT_CODE));
             }
         }
         return builder.build();

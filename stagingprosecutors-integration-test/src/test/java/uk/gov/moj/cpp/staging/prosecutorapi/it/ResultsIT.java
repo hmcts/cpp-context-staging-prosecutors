@@ -91,7 +91,7 @@ public class ResultsIT {
     }
 
     @Test
-    public void shouldReturnFlatVerdictCodeOnV1Response() {
+    void shouldReturnFlatVerdictCodeOnV1Response() {
         String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
             assertThat(response.getStatus(), is(HttpStatus.SC_OK));
@@ -103,7 +103,7 @@ public class ResultsIT {
     }
 
     @Test
-    public void shouldReturn200WhenResultsV2QueryApiIsInvoked() {
+    void shouldReturn200WhenResultsV2QueryApiIsInvoked() {
         wiremockUtils.stubIdMapperRecordingNewAssociation().stubGetProsecutionResults("007WZ231");
         String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE_V2, getHeaders())) {
@@ -113,7 +113,7 @@ public class ResultsIT {
     }
 
     @Test
-    public void shouldReturnFullVerdictObjectWithAllThreeFieldsFromV2Endpoint() {
+    void shouldReturnFullVerdictObjectWithAllThreeFieldsFromV2Endpoint() {
         wiremockUtils.stubIdMapperRecordingNewAssociation().stubGetProsecutionResults("007WZ231");
         String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
         try (Response response = restClient.query(url, MEDIA_TYPE_V2, getHeaders())) {

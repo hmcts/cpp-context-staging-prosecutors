@@ -16,18 +16,18 @@ import javax.json.JsonObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class HmctsResultsV1ExampleTest {
+class HmctsResultsV1ExampleTest {
 
     private JsonObject root;
 
     @BeforeEach
-    public void loadExample() throws IOException {
+    void loadExample() throws IOException {
         final String exampleJson = Files.readString(Paths.get("src/raml/json/example/hmcts.results.v1.json"));
         root = createReader(new StringReader(exampleJson)).readObject();
     }
 
     @Test
-    public void exampleContainsFlatVerdictCodeOnOffence() {
+    void exampleContainsFlatVerdictCodeOnOffence() {
         final JsonObject offence = firstOffence();
 
         assertThat(offence.get("verdictCode"), is(notNullValue()));
@@ -36,12 +36,12 @@ public class HmctsResultsV1ExampleTest {
     }
 
     @Test
-    public void exampleDoesNotContainVerdictObjectOnOffenceToConfirmFlatStructure() {
+    void exampleDoesNotContainVerdictObjectOnOffenceToConfirmFlatStructure() {
         assertThat(firstOffence().get("verdict"), is(nullValue()));
     }
 
     @Test
-    public void exampleContainsOffenceWithNoVerdictToShowOptionalField() {
+    void exampleContainsOffenceWithNoVerdictToShowOptionalField() {
         final JsonObject offenceWithoutVerdict = root
                 .getJsonObject("hearingVenue")
                 .getJsonArray("courtSessions").getJsonObject(0)

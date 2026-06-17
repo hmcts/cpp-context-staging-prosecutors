@@ -10,17 +10,17 @@ import javax.json.JsonObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ResultsV1ResponseTransformerTest {
+class ResultsV1ResponseTransformerTest {
 
     private ResultsV1ResponseTransformer transformer;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         transformer = new ResultsV1ResponseTransformer();
     }
 
     @Test
-    public void shouldExtractVerdictCodeAsTopLevelFieldOnOffenceAndRemoveVerdictObject() {
+    void shouldExtractVerdictCodeAsTopLevelFieldOnOffenceAndRemoveVerdictObject() {
         final JsonObject response = buildResponse(
                 offenceWith(buildVerdict("G", "2020-03-12", "FOUND_GUILTY")));
 
@@ -32,7 +32,7 @@ public class ResultsV1ResponseTransformerTest {
     }
 
     @Test
-    public void shouldPreserveVerdictCodeWhenVerdictHasAllThreeFields() {
+    void shouldPreserveVerdictCodeWhenVerdictHasAllThreeFields() {
         final JsonObject response = buildResponse(
                 offenceWith(buildVerdict("N", "2021-05-10", "FOUND_NOT_GUILTY")));
 
@@ -42,7 +42,7 @@ public class ResultsV1ResponseTransformerTest {
     }
 
     @Test
-    public void shouldLeaveOffenceUnchangedWhenNoVerdictPresent() {
+    void shouldLeaveOffenceUnchangedWhenNoVerdictPresent() {
         final JsonObject offenceNoVerdict = createObjectBuilder()
                 .add("offenceCode", "PS90010")
                 .add("orderIndex", 1)
@@ -59,7 +59,7 @@ public class ResultsV1ResponseTransformerTest {
     }
 
     @Test
-    public void shouldPreserveAllOtherOffenceFields() {
+    void shouldPreserveAllOtherOffenceFields() {
         final JsonObject response = buildResponse(
                 offenceWith(buildVerdict("G", "2020-03-12", "FOUND_GUILTY")));
 
@@ -72,7 +72,7 @@ public class ResultsV1ResponseTransformerTest {
     }
 
     @Test
-    public void shouldPreserveAllNonOffenceFieldsInResponse() {
+    void shouldPreserveAllNonOffenceFieldsInResponse() {
         final JsonObject response = buildResponse(
                 offenceWith(buildVerdict("G", "2020-03-12", "FOUND_GUILTY")));
 
