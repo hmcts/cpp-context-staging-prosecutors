@@ -1,0 +1,5 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://justice.gov.uk/stagingprosecutors/query/stagingprosecutors.query.results.v2",
+  "ref": "http://justice.gov.uk/stagingprosecutors/courts/informantRegisterDocument/prosecutorResult.json"
+}

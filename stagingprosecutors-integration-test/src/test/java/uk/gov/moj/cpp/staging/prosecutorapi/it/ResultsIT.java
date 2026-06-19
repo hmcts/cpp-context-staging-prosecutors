@@ -26,11 +26,14 @@ import org.junit.rules.ExpectedException;
 
 /**
  * Integration tests for /stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v1/results/{ouCode}
+ * and /stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v2/results/{ouCode}
  */
 public class ResultsIT {
 
     private static final String READ_BASE_RESULTS_URI_V1 = getBaseUri() + "/stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v1/results";
+    private static final String READ_BASE_RESULTS_URI_V2 = getBaseUri() + "/stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v2/results";
     private static final String MEDIA_TYPE = "application/vnd.hmcts.results.v1+json";
+    private static final String MEDIA_TYPE_V2 = "application/vnd.hmcts.results.v2+json";
     private static final RestClient restClient = new RestClient();
 
     @Rule
@@ -84,6 +87,41 @@ public class ResultsIT {
             assertThat(response.getStatus(), is(HttpStatus.SC_OK));
             assertThat(response.getMediaType().toString(), is(MEDIA_TYPE));
             assertThat(response.readEntity(String.class), containsString("\"prosecutionAuthorityOuCode\":\"GTL0002\""));
+        }
+    }
+
+    @Test
+    void shouldReturnFlatVerdictCodeOnV1Response() {
+        String url = READ_BASE_RESULTS_URI_V1 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+        try (Response response = restClient.query(url, MEDIA_TYPE, getHeaders())) {
+            assertThat(response.getStatus(), is(HttpStatus.SC_OK));
+            final String responseBody = response.readEntity(String.class);
+            assertThat(responseBody, containsString("\"verdictCode\":\"G\""));
+            assertThat(responseBody, org.hamcrest.Matchers.not(containsString("\"verdictDate\"")));
+            assertThat(responseBody, org.hamcrest.Matchers.not(containsString("\"verdictType\"")));
+        }
+    }
+
+    @Test
+    void shouldReturn200WhenResultsV2QueryApiIsInvoked() {
+        wiremockUtils.stubIdMapperRecordingNewAssociation().stubGetProsecutionResults("007WZ231");
+        String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+        try (Response response = restClient.query(url, MEDIA_TYPE_V2, getHeaders())) {
+            assertThat(response.getStatus(), is(HttpStatus.SC_OK));
+            assertThat(response.getMediaType().toString(), is(MEDIA_TYPE_V2));
+        }
+    }
+
+    @Test
+    void shouldReturnFullVerdictObjectWithAllThreeFieldsFromV2Endpoint() {
+        wiremockUtils.stubIdMapperRecordingNewAssociation().stubGetProsecutionResults("007WZ231");
+        String url = READ_BASE_RESULTS_URI_V2 + "/007WZ231?startDate=\"2020-02-10\"&endDate=\"2020-02-15\"";
+        try (Response response = restClient.query(url, MEDIA_TYPE_V2, getHeaders())) {
+            assertThat(response.getStatus(), is(HttpStatus.SC_OK));
+            final String responseBody = response.readEntity(String.class);
+            assertThat(responseBody, containsString("\"verdictCode\":\"G\""));
+            assertThat(responseBody, containsString("\"verdictDate\":\"2020-03-12\""));
+            assertThat(responseBody, containsString("\"verdictType\":\"FOUND_GUILTY\""));
         }
     }
 
