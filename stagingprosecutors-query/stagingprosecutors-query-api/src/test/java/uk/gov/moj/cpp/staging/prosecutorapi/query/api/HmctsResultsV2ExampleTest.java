@@ -45,7 +45,7 @@ class HmctsResultsV2ExampleTest {
     @Test
     void exampleContainsOffenceWithNoVerdictToShowOptionalField() {
         final JsonObject offenceWithoutVerdict = root
-                .getJsonObject("hearingVenue")
+                .getJsonArray("hearingVenues").getJsonObject(0)
                 .getJsonArray("courtSessions").getJsonObject(0)
                 .getJsonArray("defendants").getJsonObject(1)
                 .getJsonArray("prosecutionCasesOrApplications").getJsonObject(0)
@@ -57,7 +57,7 @@ class HmctsResultsV2ExampleTest {
 
     private JsonObject firstOffence() {
         return root
-                .getJsonObject("hearingVenue")
+                .getJsonArray("hearingVenues").getJsonObject(0)
                 .getJsonArray("courtSessions").getJsonObject(0)
                 .getJsonArray("defendants").getJsonObject(0)
                 .getJsonArray("prosecutionCasesOrApplications").getJsonObject(0)
