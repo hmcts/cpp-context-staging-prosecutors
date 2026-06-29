@@ -7,6 +7,8 @@ import static uk.gov.moj.cpp.staging.prosecutors.test.util.PDFConstants.SIMPLE_F
 
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.pojo.BundleSection;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 import io.netty.util.internal.StringUtil;
+import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -95,6 +98,16 @@ public class PDFTestHelper {
 
                 documentOutline.addLast(bookmark);
             }
+
+            // Serialise and reload entirely into main memory so the returned document is a parsed
+            // PDF with no Cleaner-managed ScratchFile backing — mirroring production
+            // (PDDocument.load). A freshly-built in-memory document keeps its content streams in a
+            // scratch store whose JDK Cleaner closes them non-deterministically under GC pressure
+            // on JDK 25, making the unbundling tests flaky.
+            final ByteArrayOutputStream out = new ByteArrayOutputStream();
+            pdDocument.save(out);
+            pdDocument.close();
+            return PDDocument.load(new ByteArrayInputStream(out.toByteArray()), MemoryUsageSetting.setupMainMemoryOnly());
 
         } catch (IOException e) {
             LOGGER.error("Exception while trying to create pdf document {} ", e);
