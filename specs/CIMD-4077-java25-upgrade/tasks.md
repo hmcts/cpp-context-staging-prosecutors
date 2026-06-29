@@ -37,7 +37,7 @@ reactor builds. Phases are therefore ordered by *build dependency*; user-story l
 **⚠️ CRITICAL**: nothing compiles until the parent/version chain resolves.
 
 - [X] T003 Bump parent in root `pom.xml`: `uk.gov.moj.cpp.common:service-parent-pom` `17.104.1` → `25.104.0-M1`
-- [X] T004 Bump project `<version>` `17.104.63-SNAPSHOT` → `25.104.0-M1-SNAPSHOT` across all 26 `pom.xml` (root + every module, including nested `<parent><version>`). Verify: `grep -rl 17.104.63-SNAPSHOT --include=pom.xml . | grep -v /target/` returns nothing
+- [X] T004 Bump project `<version>` `17.104.63-SNAPSHOT` → `25.0.0-JAVA_25-SNAPSHOT` across all 26 `pom.xml` (root + every module, including nested `<parent><version>`). Verify: `grep -rl 17.104.63-SNAPSHOT --include=pom.xml . | grep -v /target/` returns nothing
 - [X] T005 [US3] In root `pom.xml`, set `coredomain.version` → `25.104.0-M1`; confirm the cross-context pins `prosecutioncasefile.version`, `results.version`, `referencedata.version`, `notification.notify.version`, `system.users.library.version` are LEFT on their existing `17.x` values
 
 **Checkpoint**: reactor resolves the 25.104.x parent/BOM; compilation can be attempted.

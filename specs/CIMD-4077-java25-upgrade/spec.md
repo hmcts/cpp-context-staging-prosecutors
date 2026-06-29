@@ -110,7 +110,7 @@ changes a contract) breaks the build or drifts the submission→PCF contract.
 ### Functional Requirements
 
 - **FR-001**: The build MUST inherit from `uk.gov.moj.cpp.common:service-parent-pom:25.104.0-M1`,
-  and the project version MUST be `25.104.0-M1-SNAPSHOT` across all 26 `pom.xml` files.
+  and the project version MUST be `25.0.0-JAVA_25-SNAPSHOT` across all 26 `pom.xml` files.
 - **FR-002**: `coredomain.version` MUST be `25.104.0-M1`; the cross-context pins
   `prosecutioncasefile`, `results`, `notification.notify`, and `system.users.library` MUST remain
   on their existing `17.x` versions. `referencedata` MUST be at the latest released `17.x`

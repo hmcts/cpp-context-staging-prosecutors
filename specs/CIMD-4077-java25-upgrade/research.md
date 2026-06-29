@@ -7,9 +7,9 @@ HMCTS pilot (`hmcts/cpp-framework-java-upgrade-pilot`) and the validated referen
 ## D1 — Target framework version
 
 - **Decision**: Parent `uk.gov.moj.cpp.common:service-parent-pom` → `25.104.0-M1`; project version
-  → `25.104.0-M1-SNAPSHOT` (all 26 poms); `coredomain.version` → `25.104.0-M1`.
+  → `25.0.0-JAVA_25-SNAPSHOT` (all 26 poms); `coredomain.version` → `25.104.0-M1`.
 - **Rationale**: The reference context users-groups root pom on the java-25 branch uses exactly
-  `service-parent-pom:25.104.0-M1`, `25.104.0-M1-SNAPSHOT`, `coredomain:25.104.0-M1` — same parent
+  `service-parent-pom:25.104.0-M1`, `25.0.0-JAVA_25-SNAPSHOT`, `coredomain:25.104.0-M1` — same parent
   GAV as this project. The pilot status doc confirms the full chain (super/parent/common-bom/
   framework-parent/framework-libraries/microservice-framework/event-store + platform chain) is in
   Artifactory at the M-levels the parent transitively pins.
