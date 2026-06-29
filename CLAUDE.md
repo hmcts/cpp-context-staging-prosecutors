@@ -61,6 +61,8 @@ Data flows command → aggregate → events → event store → (listener → vi
 - Uses jgitflow; the develop branch is `main`. Release branches are `dev/release-*` (excluded from CI triggers). Parent `service-parent-pom:17.104.1`; module versions managed in the parent `pom.xml`.
 
 <!-- SPECKIT START -->
-For additional context about technologies to be used, project structure,
-shell commands, and other important information, read the current plan
+Active feature: **CIMD-4077 — Upgrade to Java 25 / WildFly 40 / Jakarta EE 11 (Framework E 25.104.x)**.
+For technologies, project structure, version targets, and migration mechanics, read the plan and
+its design docs under `specs/CIMD-4077-java25-upgrade/` (`plan.md`, `research.md`, `data-model.md`,
+`quickstart.md`).
 <!-- SPECKIT END -->
