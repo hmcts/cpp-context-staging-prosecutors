@@ -13,16 +13,14 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 import java.io.StringReader;
 import java.util.UUID;
 
-import javax.json.JsonObject;
-import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
+import jakarta.json.JsonObject;
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.Response;
 
 import org.apache.http.HttpStatus;
-import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 
 /**
  * Integration tests for /stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v1/results/{ouCode}
@@ -32,9 +30,6 @@ public class ResultsIT {
     private static final String READ_BASE_RESULTS_URI_V1 = getBaseUri() + "/stagingprosecutors-query-api/query/api/rest/stagingprosecutors/v1/results";
     private static final String MEDIA_TYPE = "application/vnd.hmcts.results.v1+json";
     private static final RestClient restClient = new RestClient();
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     private WiremockUtils wiremockUtils;
 

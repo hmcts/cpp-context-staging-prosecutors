@@ -31,10 +31,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.inject.Inject;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
+import jakarta.inject.Inject;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonValue;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.CpsMaterialSubmitted;
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.MaterialSubmittedV3;

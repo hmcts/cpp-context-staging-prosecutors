@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors-event</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.63-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,6 @@
     <properties>
         <cpp.service-component>EVENT_PROCESSOR</cpp.service-component>
         <skip.schema.pojo.generation>false</skip.schema.pojo.generation>
-        <pdfbox.version>2.0.19</pdfbox.version>
     </properties>
 
     <dependencies>
@@ -27,8 +26,8 @@
             <artifactId>job-executor</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -123,6 +122,14 @@
                     <groupId>uk.gov.moj.cpp.prosecution.casefile</groupId>
                     <artifactId>prosecutioncasefile-validation-rules</artifactId>
                 </exclusion>
+                <!-- prosecutioncasefile-refdata is an unused transitive that bundles javax-based
+                     CDI beans (InitiationTypesRefDataEnricher etc.); on CDI 4.0 / WildFly 40 they
+                     fail discovery (WELD-001408). Nothing here references the refdata package, so
+                     exclude it to remove the cross-context javax coupling from the WAR. -->
+                <exclusion>
+                    <groupId>uk.gov.moj.cpp.prosecution.casefile</groupId>
+                    <artifactId>prosecutioncasefile-refdata</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -149,8 +156,8 @@
                 <artifactId>messaging-client-generator-plugin</artifactId>
                 <dependencies>
                     <dependency>
-                        <groupId>javax</groupId>
-                        <artifactId>javaee-api</artifactId>
+                        <groupId>jakarta.platform</groupId>
+                        <artifactId>jakarta.jakartaee-api</artifactId>
                         <version>${javaee-api.version}</version>
                     </dependency>
                     <dependency>
@@ -172,8 +179,8 @@
                 <artifactId>rest-client-generator-plugin</artifactId>
                 <dependencies>
                     <dependency>
-                        <groupId>javax</groupId>
-                        <artifactId>javaee-api</artifactId>
+                        <groupId>jakarta.platform</groupId>
+                        <artifactId>jakarta.jakartaee-api</artifactId>
                         <version>${javaee-api.version}</version>
                     </dependency>
                     <dependency>

@@ -8,7 +8,7 @@ import uk.gov.moj.cpp.staging.prosecutors.persistence.repository.SubmissionRepos
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 public class SubmissionService {
     @Inject

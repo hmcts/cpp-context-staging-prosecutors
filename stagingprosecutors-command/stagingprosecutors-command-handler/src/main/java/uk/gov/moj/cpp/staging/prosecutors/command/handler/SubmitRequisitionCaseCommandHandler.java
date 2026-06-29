@@ -17,7 +17,7 @@ import uk.gov.moj.cpp.staging.prosecutors.domain.ProsecutionSubmission;
 
 import java.util.stream.Stream;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @ServiceComponent(COMMAND_HANDLER)
 public class SubmitRequisitionCaseCommandHandler {

@@ -5,12 +5,12 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>17.104.1</version>
+        <version>25.104.0-M1</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
     <artifactId>stagingprosecutors</artifactId>
-    <version>17.104.63-SNAPSHOT</version>
+    <version>25.104.0-M1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>stagingprosecutors</name>
 
@@ -18,10 +18,18 @@
         <maven.cucumber.reporting.plugin.version>2.0.0</maven.cucumber.reporting.plugin.version>
         <system.users.library.version>3.1.2</system.users.library.version>
         <prosecutioncasefile.version>17.0.71</prosecutioncasefile.version>
-        <referencedata.version>17.103.131</referencedata.version>
-        <coredomain.version>17.104.4</coredomain.version>
+        <referencedata.version>17.104.136</referencedata.version>
+        <coredomain.version>25.104.0-M1</coredomain.version>
+        <!-- JAXB 4 (jakarta.xml.bind) toolchain for the CPS CP20 schema module; the parent BOM
+             hard-pins jaxb-runtime at 2.3.1 (javax-era), so the runtime version is set explicitly
+             on the dependency in stagingprosecutors-cps-schema rather than via this property -->
+        <jaxb.runtime.version>4.0.5</jaxb.runtime.version>
+        <jaxb-maven-plugin.version>4.0.8</jaxb-maven-plugin.version>
+        <parsson.version>1.1.7</parsson.version>
         <joda-time.version>2.10.10</joda-time.version>
-        <lombok.version>1.18.0</lombok.version>
+        <!-- JDK 25-compatible Lombok; the parent BOM pins 1.18.26 which cannot run as an
+             annotation processor on JDK 25 (used by the integration-test model classes) -->
+        <lombok.version>1.18.42</lombok.version>
         <results.version>17.0.81</results.version>
         <httpmime.version>4.5.1</httpmime.version>
         <notification.notify.version>17.0.1</notification.notify.version>
@@ -117,11 +125,85 @@
                 <artifactId>criminal-court-public-model</artifactId>
                 <version>${coredomain.version}</version>
             </dependency>
+            <!-- Force JAXB 4 (jakarta.xml.bind impl) reactor-wide. The parent BOM pins
+                 jaxb-runtime at 2.3.1 (javax-era); without this, modules consuming the CPS
+                 CP20 schema transitively (e.g. command-api) resolve 2.3.1 and fail at runtime
+                 with ClassNotFoundException: org.glassfish.jaxb.runtime.v2.ContextFactory -->
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jaxb.runtime.version}</version>
+            </dependency>
+            <!-- Override the parent BOM's Lombok 1.18.26 (no JDK 25 support) -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
+            <!-- Java 25 / Jakarta EE 11 codegen classpath fixes for the framework generator
+                 plugins (merged into each module's plugin execution):
+                 - parsson: org.glassfish:jakarta.json (compile dep of generators-commons) is an
+                   OSGi bundle built with <_donotcopy>.*services.*</> so it registers no
+                   ServiceLoader provider; without parsson, ServiceLoader.load(JsonProvider.class)
+                   fails on a clean repo.
+                 - jakarta.xml.bind-api 2.3.x (javax-namespaced): the generators reference
+                   javax.xml.bind.* (e.g. SchemaOutputResolver) at generation time. -->
+            <plugin>
+                <groupId>uk.gov.justice.framework-generators</groupId>
+                <artifactId>messaging-adapter-generator-plugin</artifactId>
+                <version>${cpp.framework.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.parsson</groupId>
+                        <artifactId>parsson</artifactId>
+                        <version>${parsson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>jakarta.xml.bind</groupId>
+                        <artifactId>jakarta.xml.bind-api</artifactId>
+                        <version>${jakarta.xml.bind-api.raml.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>uk.gov.justice.framework-generators</groupId>
+                <artifactId>messaging-client-generator-plugin</artifactId>
+                <version>${cpp.framework.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.parsson</groupId>
+                        <artifactId>parsson</artifactId>
+                        <version>${parsson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>jakarta.xml.bind</groupId>
+                        <artifactId>jakarta.xml.bind-api</artifactId>
+                        <version>${jakarta.xml.bind-api.raml.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>uk.gov.justice.framework-generators</groupId>
+                <artifactId>rest-client-generator-plugin</artifactId>
+                <version>${cpp.framework.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.parsson</groupId>
+                        <artifactId>parsson</artifactId>
+                        <version>${parsson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>jakarta.xml.bind</groupId>
+                        <artifactId>jakarta.xml.bind-api</artifactId>
+                        <version>${jakarta.xml.bind-api.raml.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>

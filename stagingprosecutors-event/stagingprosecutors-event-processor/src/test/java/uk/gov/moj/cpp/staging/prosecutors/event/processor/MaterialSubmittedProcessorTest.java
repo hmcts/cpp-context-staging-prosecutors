@@ -49,7 +49,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.CpsMaterialSubmitted;

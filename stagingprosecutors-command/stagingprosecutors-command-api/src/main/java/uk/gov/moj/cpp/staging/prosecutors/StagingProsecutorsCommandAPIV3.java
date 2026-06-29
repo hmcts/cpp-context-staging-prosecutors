@@ -12,7 +12,7 @@ import static uk.gov.justice.services.messaging.JsonObjects.getBoolean;
 import static uk.gov.justice.services.messaging.JsonObjects.getJsonObject;
 import static java.lang.String.format;
 import static java.util.Objects.nonNull;
-import static javax.json.JsonValue.ValueType.NUMBER;
+import static jakarta.json.JsonValue.ValueType.NUMBER;
 
 import uk.gov.justice.services.adapter.rest.exception.BadRequestException;
 import uk.gov.justice.services.common.configuration.Value;
@@ -33,11 +33,11 @@ import java.io.StringReader;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.inject.Inject;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.JsonReader;
+import jakarta.inject.Inject;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonReader;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.UrlResponse;
 import org.apache.commons.lang3.EnumUtils;

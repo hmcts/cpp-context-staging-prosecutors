@@ -6,9 +6,9 @@ import static uk.gov.justice.services.messaging.JsonObjects.createReader;
 
 import java.util.UUID;
 
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class StagingProsecutorsHelper {
 

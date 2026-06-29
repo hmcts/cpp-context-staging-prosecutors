@@ -19,8 +19,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.inject.Inject;
-import javax.json.JsonObject;
+import jakarta.inject.Inject;
+import jakarta.json.JsonObject;
 
 import com.cgi.cp.cp20._2020_03.CP20;
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.SubmitCpsMaterialCommand;

@@ -21,7 +21,7 @@ import uk.gov.moj.cpp.staging.prosecutors.json.schemas.CpsServePetReceived;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.CpsServePtphReceived;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.CpsUpdateCotrReceived;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

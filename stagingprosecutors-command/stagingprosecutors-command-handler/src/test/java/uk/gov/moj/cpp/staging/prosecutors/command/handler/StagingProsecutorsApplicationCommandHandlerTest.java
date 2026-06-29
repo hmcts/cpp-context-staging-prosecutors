@@ -24,7 +24,7 @@ import uk.gov.moj.cpp.staging.prosecutors.test.utils.FileResourceObjectMapper;
 import java.io.IOException;
 import java.util.UUID;
 
-import javax.json.JsonValue;
+import jakarta.json.JsonValue;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.command.SubmitApplication;
 import org.junit.jupiter.api.Test;

@@ -20,7 +20,7 @@ import uk.gov.moj.cpp.staging.prosecutors.converter.SubmitCpsMaterialConverter;
 import java.io.File;
 import java.io.IOException;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.SubmitCpsMaterialCommand;
 import org.apache.commons.io.FileUtils;

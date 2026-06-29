@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors-command</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.63-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,12 +16,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
         </dependency>
+        <!-- Explicit JAXB 4 runtime: parent BOM hard-pins jaxb-runtime to 2.3.1 (javax-era);
+             the jakarta.xml.bind 4.x API needs the matching 4.x impl (ContextFactory) -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb.runtime.version}</version>
         </dependency>
         <dependency>
             <groupId>uk.gov.justice.services</groupId>
@@ -32,8 +35,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
+                <groupId>org.jvnet.jaxb</groupId>
+                <artifactId>jaxb-maven-plugin</artifactId>
+                <version>${jaxb-maven-plugin.version}</version>
                 <configuration>
                     <schemaDirectory>src/main/resources/xsd</schemaDirectory>
                     <schemaIncludes>

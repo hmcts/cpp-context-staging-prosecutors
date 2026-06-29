@@ -16,8 +16,8 @@ import uk.gov.moj.cpp.staging.prosecutors.domain.ApplicationSubmission;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import javax.inject.Inject;
-import javax.json.JsonValue;
+import jakarta.inject.Inject;
+import jakarta.json.JsonValue;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.command.SubmitApplication;
 

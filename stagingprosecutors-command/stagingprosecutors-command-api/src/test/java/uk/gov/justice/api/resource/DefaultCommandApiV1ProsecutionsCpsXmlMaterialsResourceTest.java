@@ -25,9 +25,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
-import javax.inject.Named;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Named;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.Response;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;

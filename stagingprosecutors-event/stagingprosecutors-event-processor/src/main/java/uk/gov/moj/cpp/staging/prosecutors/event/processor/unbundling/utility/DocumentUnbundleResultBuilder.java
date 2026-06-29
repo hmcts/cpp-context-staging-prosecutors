@@ -9,9 +9,9 @@ import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.file.FileHo
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.pojo.DocumentBundleArrivedForUnbundling;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.utils.EnvelopeHelper;
 
-import javax.inject.Inject;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.inject.Inject;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 import java.util.UUID;
 
 import static java.util.Objects.nonNull;

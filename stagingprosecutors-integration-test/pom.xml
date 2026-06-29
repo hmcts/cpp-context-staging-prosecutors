@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.63-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -52,11 +52,11 @@
             <artifactId>jsonassert</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!-- Removed legacy com.github.tomakehurst:wiremock 2.35.2 — its standalone fat jar bundles
+             an old, unrelocated jackson-annotations that shadows jackson 2.21 and breaks every IT
+             with NoSuchMethodError JsonProperty.isRequired(). wiremock-test-utils brings the
+             jackson-2.21-aligned org.wiremock:wiremock:3.x (same com.github.tomakehurst.wiremock
+             package), which the ITs compile against. -->
         <dependency>
             <groupId>uk.gov.justice.services</groupId>
             <artifactId>wiremock-test-utils</artifactId>
@@ -96,7 +96,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.activemq</groupId>
+            <groupId>org.apache.artemis</groupId>
             <artifactId>artemis-jms-client</artifactId>
             <scope>test</scope>
         </dependency>
@@ -119,10 +119,30 @@
         <dependency>
             <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
             <artifactId>stagingprosecutors-viewstore-persistence</artifactId>
-            <version>17.104.63-SNAPSHOT</version>
+            <version>25.104.0-M1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- JDK 23+ no longer auto-runs annotation processors found on the classpath; Lombok
+                 (used by the test model classes) must be declared on the processor path explicitly -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>

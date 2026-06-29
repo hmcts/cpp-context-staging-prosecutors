@@ -10,24 +10,32 @@ import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.random.RandomGenerator.STRING;
 import static uk.gov.justice.services.test.utils.core.random.RandomGenerator.randomEnum;
 
-import uk.gov.justice.services.test.utils.persistence.BaseTransactionalJunit4Test;
+import uk.gov.justice.services.test.utils.persistence.HibernateTestEntityManagerProvider;
 import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
 import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType;
 
 import java.util.UUID;
 
-import javax.inject.Inject;
-
-import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 
-@RunWith(CdiTestRunner.class)
-public class SubmissionRepositoryTest extends BaseTransactionalJunit4Test {
+public class SubmissionRepositoryTest {
 
-    @Inject
+    private static final String PERSISTENCE_UNIT = "stagingprosecutors-test";
+
+    @RegisterExtension
+    static final HibernateTestEntityManagerProvider hibernateTestEntityManagerProvider =
+            new HibernateTestEntityManagerProvider(PERSISTENCE_UNIT);
+
     private SubmissionRepository submissionRepository;
+
+    @BeforeEach
+    void createRepositoryWithEntityManager() {
+        submissionRepository = new SubmissionRepository();
+        hibernateTestEntityManagerProvider.injectEntityManagerInto(submissionRepository);
+    }
 
     @Test
     public void shouldSaveSubmission() {
