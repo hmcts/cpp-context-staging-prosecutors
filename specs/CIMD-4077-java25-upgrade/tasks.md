@@ -112,7 +112,7 @@ reactor builds. Phases are therefore ordered by *build dependency*; user-story l
 - [X] T022 Run the `code-reviewer` agent (read-only) over the diff; apply fixes myself until PASS (layering, framework idioms, no `System.out`, no Spring, no stray `javax.*`)
 - [X] T023 Run the `spec-validator` agent; confirm RAML/JSON-schema/descriptor symmetry preserved (only the `baseUri` line changed) until COMPLIANT
 - [X] T024 Run the `qa` agent; confirm TDD discipline (repo test authored before/with the production conversion) and tests pass until PASS
-- [ ] T025 Run quickstart.md verification end-to-end; commit the work as logical Conventional Commits (`build:`/`refactor:` etc.) on `CIMD-4077-java25-upgrade` — **no push, no PR**
+- [X] T025 Run quickstart.md verification end-to-end; commit the work as logical Conventional Commits (`build:`/`refactor:` etc.) on `CIMD-4077-java25-upgrade` — **no push, no PR**
 
 ---
 
