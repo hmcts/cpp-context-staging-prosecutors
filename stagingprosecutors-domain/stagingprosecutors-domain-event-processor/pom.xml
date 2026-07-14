@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors-domain</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.1-CIVIL-T2-SNAPSHOTT</version>
+        <version>17.104.2-CIVIL-T2-SNAPSHOTT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
