@@ -42,6 +42,8 @@ import uk.gov.moj.cpp.staging.prosecutors.event.processor.utils.RestEasyClientSe
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.ReceiveMaterialSubmissionSuccessful;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmissionStatus;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.UpdateSubmissionStatus;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.repository.SubmissionRepository;
 import uk.gov.moj.cps.progression.domain.event.CotrCreated;
 import uk.gov.moj.cps.progression.domain.event.CotrReviewNotesUpdated;
 import uk.gov.moj.cps.progression.domain.event.FormCreated;
@@ -107,7 +109,7 @@ public class ProgressionPublicEventProcessor {
     private FeatureControlGuard featureControlGuard;
 
     @Inject
-    private StagingProsecutorsService stagingProsecutorsService;
+    private SubmissionRepository submissionRepository;
 
     @Handles("public.progression.court-document-added")
     public void caseDocumentUploaded(final JsonEnvelope courtDocumentAdded) {
@@ -118,20 +120,20 @@ public class ProgressionPublicEventProcessor {
                 .map(UUID::fromString);
 
         if (submissionId.isPresent()) {
-            final Optional<JsonObject> jsonObject = stagingProsecutorsService.submissionExistsById(courtDocumentAdded, submissionId.get().toString());
+            final Submission submission = submissionRepository.findBy(submissionId.get());
 
-            if (jsonObject.isEmpty()) {
+            if (nonNull(submission)) {
+                final ReceiveMaterialSubmissionSuccessful command = receiveMaterialSubmissionSuccessful()
+                        .withSubmissionId(submissionId.get())
+                        .build();
+
+                final Metadata metadata = Envelope.metadataFrom(courtDocumentAdded.metadata()).withName("stagingprosecutors.command.receive-material-submission-successful").build();
+                sender.send(envelopeFrom(
+                        metadata,
+                        command));
+            } else {
                 LOGGER.info("No submission found for submissionId: {}, skipping command send", submissionId.get());
-                return;
             }
-            final ReceiveMaterialSubmissionSuccessful command = receiveMaterialSubmissionSuccessful()
-                    .withSubmissionId(submissionId.get())
-                    .build();
-
-            final Metadata metadata = Envelope.metadataFrom(courtDocumentAdded.metadata()).withName("stagingprosecutors.command.receive-material-submission-successful").build();
-            sender.send(envelopeFrom(
-                    metadata,
-                    command));
         } else {
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Received CourtDocumentAdded event with no submissionId[Metadata: {}], [Payload: {}]",

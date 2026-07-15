@@ -43,6 +43,8 @@ import uk.gov.moj.cpp.prosecution.casefile.application.json.schemas.ErrorDetails
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.util.ReferenceDataQueryService;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.ReceiveMaterialSubmissionSuccessful;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.UpdateSubmissionStatus;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.repository.SubmissionRepository;
 import uk.gov.moj.cps.progression.domain.event.CotrCreated;
 import uk.gov.moj.cps.progression.domain.event.CotrReviewNotesUpdated;
 import uk.gov.moj.cps.progression.domain.event.CourtApplicationCreated;
@@ -116,7 +118,7 @@ public class ProgressionPublicEventProcessorTest {
     private ReferenceDataQueryService referenceDataQueryService;
 
     @Mock
-    private StagingProsecutorsService stagingProsecutorsService;
+    private SubmissionRepository submissionRepository;
 
 
     @Spy
@@ -149,7 +151,7 @@ public class ProgressionPublicEventProcessorTest {
 
         final JsonEnvelope caseDocumentUploadedEnvelope = envelopeFrom(metadataJsonObject, JsonValue.NULL);
 
-        when(stagingProsecutorsService.submissionExistsById(caseDocumentUploadedEnvelope, SUBMISSION_ID.toString())).thenReturn(Optional.of(createObjectBuilder().build()));
+        when(submissionRepository.findBy(SUBMISSION_ID)).thenReturn(new Submission());
 
         progressionPublicEventProcessor.caseDocumentUploaded(caseDocumentUploadedEnvelope);
 
