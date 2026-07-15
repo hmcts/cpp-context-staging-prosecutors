@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors-event</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.2-CIVIL-T2-SNAPSHOTT</version>
+        <version>17.104.4-CIVIL-T2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -181,6 +181,18 @@
                         <artifactId>prosecutioncasefile-command-api</artifactId>
                         <version>${prosecutioncasefile.version}</version>
                         <classifier>raml</classifier>
+                    </dependency>
+                    <dependency>
+                        <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+                        <artifactId>stagingprosecutors-query-api</artifactId>
+                        <version>${project.version}</version>
+                        <classifier>raml</classifier>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>*</groupId>
+                                <artifactId>*</artifactId>
+                            </exclusion>
+                        </exclusions>
                     </dependency>
                     <dependency>
                         <groupId>uk.gov.moj.cpp.referencedata</groupId>

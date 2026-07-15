@@ -106,6 +106,9 @@ public class ProgressionPublicEventProcessor {
     @Inject
     private FeatureControlGuard featureControlGuard;
 
+    @Inject
+    private StagingProsecutorsService stagingProsecutorsService;
+
     @Handles("public.progression.court-document-added")
     public void caseDocumentUploaded(final JsonEnvelope courtDocumentAdded) {
         final JsonObject metadataJson = courtDocumentAdded.metadata().asJsonObject();
@@ -115,6 +118,12 @@ public class ProgressionPublicEventProcessor {
                 .map(UUID::fromString);
 
         if (submissionId.isPresent()) {
+            final Optional<JsonObject> jsonObject = stagingProsecutorsService.submissionExistsById(courtDocumentAdded, submissionId.get().toString());
+
+            if (jsonObject.isEmpty()) {
+                LOGGER.info("No submission found for submissionId: {}, skipping command send", submissionId.get());
+                return;
+            }
             final ReceiveMaterialSubmissionSuccessful command = receiveMaterialSubmissionSuccessful()
                     .withSubmissionId(submissionId.get())
                     .build();

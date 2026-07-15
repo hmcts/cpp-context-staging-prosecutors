@@ -115,6 +115,9 @@ public class ProgressionPublicEventProcessorTest {
     @Mock
     private ReferenceDataQueryService referenceDataQueryService;
 
+    @Mock
+    private StagingProsecutorsService stagingProsecutorsService;
+
 
     @Spy
     private final ObjectMapper objectMapper = new ObjectMapperProducer().objectMapper();
@@ -145,6 +148,8 @@ public class ProgressionPublicEventProcessorTest {
         final Metadata metadataJsonObject = createMetaData("public.progression.court-document-added");
 
         final JsonEnvelope caseDocumentUploadedEnvelope = envelopeFrom(metadataJsonObject, JsonValue.NULL);
+
+        when(stagingProsecutorsService.submissionExistsById(caseDocumentUploadedEnvelope, SUBMISSION_ID.toString())).thenReturn(Optional.of(createObjectBuilder().build()));
 
         progressionPublicEventProcessor.caseDocumentUploaded(caseDocumentUploadedEnvelope);
 
