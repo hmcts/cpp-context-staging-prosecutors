@@ -136,6 +136,12 @@
             <artifactId>resteasy-client</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+            <artifactId>stagingprosecutors-viewstore-persistence</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -181,6 +187,18 @@
                         <artifactId>prosecutioncasefile-command-api</artifactId>
                         <version>${prosecutioncasefile.version}</version>
                         <classifier>raml</classifier>
+                    </dependency>
+                    <dependency>
+                        <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
+                        <artifactId>stagingprosecutors-query-api</artifactId>
+                        <version>${project.version}</version>
+                        <classifier>raml</classifier>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>*</groupId>
+                                <artifactId>*</artifactId>
+                            </exclusion>
+                        </exclusions>
                     </dependency>
                     <dependency>
                         <groupId>uk.gov.moj.cpp.referencedata</groupId>
