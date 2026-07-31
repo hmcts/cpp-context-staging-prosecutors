@@ -68,7 +68,7 @@ public class PDFTestHelper {
             for(String bookmarkKey : bookmarkKeys){
 
                 final PDPage page = new PDPage();
-                addContentsToPage(pageNum, page, bookmarkKey);
+                addContentsToPage(pageNum, page, pdDocument, bookmarkKey);
                 pdDocument.addPage(page);
 
                 PDOutlineItem bookmark = new PDOutlineItem();
@@ -81,7 +81,7 @@ public class PDFTestHelper {
                 for(String childBookmarkKey : childBookmarks){
 
                     final PDPage childPage = new PDPage();
-                    addContentsToPage(pageNum, childPage, childBookmarkKey);
+                    addContentsToPage(pageNum, childPage, pdDocument, childBookmarkKey);
                     pdDocument.addPage(childPage);
 
                     PDOutlineItem childBookmark = new PDOutlineItem();
@@ -285,8 +285,8 @@ public class PDFTestHelper {
         return bookmarksByFileType;
     }
 
-    private static void addContentsToPage(final int pageNum, final PDPage page, String content) throws IOException {
-        try (final PDPageContentStream contents = new PDPageContentStream(new PDDocument(), page)) {
+    private static void addContentsToPage(final int pageNum, final PDPage page, final PDDocument document, final String content) throws IOException {
+        try (final PDPageContentStream contents = new PDPageContentStream(document, page)) {
             contents.beginText();
             contents.newLineAtOffset(100, 700);
             contents.setFont(PDType1Font.HELVETICA, 12);

@@ -5,6 +5,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
@@ -13,9 +15,12 @@ import static uk.gov.justice.services.test.utils.core.enveloper.EnvelopeFactory.
 import uk.gov.justice.services.core.requester.Requester;
 import uk.gov.justice.services.messaging.Envelope;
 import uk.gov.justice.services.messaging.JsonEnvelope;
+import uk.gov.moj.cpp.staging.prosecutorapi.query.api.converter.ResultsV1ResponseTransformer;
 
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -33,9 +38,17 @@ public class ResultsQueryApiTest {
     @Mock
     private Requester requester;
 
+    @Mock
+    private ResultsV1ResponseTransformer resultsV1ResponseTransformer;
+
     @Captor
     private ArgumentCaptor<JsonEnvelope> jsonEnvelopeArgumentCaptor;
 
+    @BeforeEach
+    void stubTransformerAsPassthrough() {
+        lenient().when(resultsV1ResponseTransformer.transform(any(JsonObject.class)))
+                .thenAnswer(inv -> inv.getArgument(0));
+    }
 
     @Test
     public void shouldInvokeResultsApiWithCorrectEnvelope() {
@@ -77,6 +90,69 @@ public class ResultsQueryApiTest {
         verify(requester).request(jsonEnvelopeArgumentCaptor.capture());
         final JsonEnvelope jsonEnvelope = jsonEnvelopeArgumentCaptor.getValue();
         assertEnvelope(inputEnvelope, jsonEnvelope);
+    }
+
+    @Test
+    void shouldCallTransformerForV1Endpoint() {
+        final JsonObject responsePayload = createObjectBuilder()
+                .add("hearingVenue", createObjectBuilder()
+                        .add("courtSessions", javax.json.Json.createArrayBuilder()))
+                .build();
+        when(requester.request(any(Envelope.class))).thenReturn(
+                createEnvelope("results.query.api", responsePayload));
+
+        resultsQueryApi.getResults(getInputEnvelope("ouCode", "2012-02-10", "2012-02-15"));
+
+        verify(resultsV1ResponseTransformer).transform(responsePayload);
+    }
+
+    @Test
+    void shouldReturnTransformedPayloadForV1Endpoint() {
+        final JsonObject responsePayload = createObjectBuilder()
+                .add("hearingVenue", createObjectBuilder()
+                        .add("courtSessions", javax.json.Json.createArrayBuilder()))
+                .build();
+        final JsonObject transformedPayload = createObjectBuilder().add("transformed", true).build();
+        when(requester.request(any(Envelope.class))).thenReturn(
+                createEnvelope("results.query.api", responsePayload));
+        when(resultsV1ResponseTransformer.transform(responsePayload)).thenReturn(transformedPayload);
+
+        final JsonEnvelope response = resultsQueryApi.getResults(getInputEnvelope("ouCode", "2012-02-10", "2012-02-15"));
+
+        assertThat(response.payloadAsJsonObject().getBoolean("transformed"), is(true));
+    }
+
+    @Test
+    void shouldReturnFullVerdictObjectFromV2Endpoint() {
+        final JsonObject verdictPayload = createObjectBuilder()
+                .add("hearingVenue", createObjectBuilder()
+                        .add("verdict", createObjectBuilder()
+                                .add("verdictCode", "G")
+                                .add("verdictDate", "2020-03-12")
+                                .add("verdictType", "FOUND_GUILTY")))
+                .build();
+        when(requester.request(any(Envelope.class))).thenReturn(
+                createEnvelope("results.query.api", verdictPayload));
+
+        final JsonEnvelope response = resultsQueryApi.getResultsV2(getInputEnvelope("ouCode", "2012-02-10", "2012-02-15"));
+
+        assertThat(response.metadata().name(), is("hmcts.results.v2"));
+        final JsonObject returnedVerdict = response.payloadAsJsonObject()
+                .getJsonObject("hearingVenue")
+                .getJsonObject("verdict");
+        assertThat(returnedVerdict.getString("verdictCode"), is("G"));
+        assertThat(returnedVerdict.getString("verdictDate"), is("2020-03-12"));
+        assertThat(returnedVerdict.getString("verdictType"), is("FOUND_GUILTY"));
+    }
+
+    @Test
+    void shouldNotCallTransformerForV2Endpoint() {
+        when(requester.request(any(Envelope.class))).thenReturn(
+                createEnvelope("results.query.api", createObjectBuilder().add("hearingVenue", "response").build()));
+
+        resultsQueryApi.getResultsV2(getInputEnvelope("ouCode", "2012-02-10", "2012-02-15"));
+
+        verify(resultsV1ResponseTransformer, never()).transform(any(JsonObject.class));
     }
 
     @Test
