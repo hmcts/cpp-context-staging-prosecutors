@@ -22,7 +22,7 @@
         <coredomain.version>17.104.4</coredomain.version>
         <joda-time.version>2.10.10</joda-time.version>
         <lombok.version>1.18.0</lombok.version>
-        <results.version>17.0.81</results.version>
+        <results.version>17.104.116</results.version>
         <httpmime.version>4.5.1</httpmime.version>
         <notification.notify.version>17.0.1</notification.notify.version>
         <stream-transformation-tool-anonymise>7.0.0</stream-transformation-tool-anonymise>
