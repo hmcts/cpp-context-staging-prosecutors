@@ -7,7 +7,15 @@ import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitChargeProsecutionWithSubmissionId.submitChargeProsecutionWithSubmissionId;
 import static uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitRequisitionProsecutionWithSubmissionId.submitRequisitionProsecutionWithSubmissionId;
 import static uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitSummonsProsecutionWithSubmissionId.submitSummonsProsecutionWithSubmissionId;
+import static uk.gov.moj.cpp.staging.prosecutors.command.api.ChargeProsecutionSubmissionDetails.chargeProsecutionSubmissionDetails;
+import static uk.gov.moj.cpp.staging.prosecutors.command.api.RequisitionProsecutionSubmissionDetails.requisitionProsecutionSubmissionDetails;
+import static uk.gov.moj.cpp.staging.prosecutors.command.api.SummonsProsecutionSubmissionDetails.summonsProsecutionSubmissionDetails;
+import static uk.gov.moj.cpp.staging.prosecutors.json.schemas.SjpProsecutionSubmissionDetails.sjpProsecutionSubmissionDetails;
 import static uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmitSjpProsecutionHttpV2.submitSjpProsecutionHttpV2;
+import static uk.gov.moj.cpp.staging.prosecutors.urn.CaseUrnSanitizer.wasSanitized;
+import static uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionTextResources.FIELD_CASE_URN;
+import static uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionTextResources.FIELD_PTI_URN;
+import static uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionTextResources.FIELD_URN;
 
 import uk.gov.justice.services.adapter.rest.exception.BadRequestException;
 import uk.gov.justice.services.common.configuration.Value;
@@ -23,8 +31,10 @@ import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.moj.cpp.staging.prosecutorapi.query.view.SubmissionQueryView;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.ChargeDefendant;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.ChargeOffence;
+import uk.gov.moj.cpp.staging.prosecutors.command.api.ChargeProsecutionSubmissionDetails;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.RequisitionDefendant;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.RequisitionOffence;
+import uk.gov.moj.cpp.staging.prosecutors.command.api.RequisitionProsecutionSubmissionDetails;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitChargeProsecutionHttpWithOucode;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitChargeProsecutionWithSubmissionId;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitRequisitionProsecutionHttpWithOucode;
@@ -33,17 +43,22 @@ import uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitSummonsProsecutionHt
 import uk.gov.moj.cpp.staging.prosecutors.command.api.SubmitSummonsProsecutionWithSubmissionId;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.SummonsDefendant;
 import uk.gov.moj.cpp.staging.prosecutors.command.api.SummonsOffence;
+import uk.gov.moj.cpp.staging.prosecutors.command.api.SummonsProsecutionSubmissionDetails;
 import uk.gov.moj.cpp.staging.prosecutors.converter.SubmitSjpProsecutionV2Converter;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.DefendantDetails;
+import uk.gov.moj.cpp.staging.prosecutors.json.schemas.SjpProsecutionSubmissionDetails;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmitSjpProsecutionHttpV2;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmitSjpProsecutionHttpWithOucode;
 import uk.gov.moj.cpp.staging.prosecutors.pojo.SubmitSjpProsecution;
 import uk.gov.moj.cpp.staging.prosecutors.service.SystemIdMapperService;
+import uk.gov.moj.cpp.staging.prosecutors.urn.CaseUrnSanitizer;
+import uk.gov.moj.cpp.staging.prosecutors.urn.InvalidCaseUrnException;
 import uk.gov.moj.cpp.staging.prosecutors.uuid.UUIDProducer;
 import uk.gov.moj.cpp.staging.prosecutors.validators.DefendantValidator;
 import uk.gov.moj.cpp.staging.prosecutors.validators.OffenceValidator;
 import uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionHttpV2Validator;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,8 +164,9 @@ public class StagingProsecutorsCommandAPIV2 {
             throwBadRequestException(violations);
         }
 
-        final String urn = payload.getProsecutionSubmissionDetails().getUrn();
-        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(urn);
+        final SummonsProsecutionSubmissionDetails submissionDetails =
+                withSanitizedUrn(payload.getProsecutionSubmissionDetails());
+        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(submissionDetails.getUrn());
 
         final JsonObject submissionPayload = createObjectBuilder()
                 .add(SUBMISSION_ID, submissionIdWithMatchFoundPair.getLeft().toString())
@@ -163,7 +179,7 @@ public class StagingProsecutorsCommandAPIV2 {
             final SubmitSummonsProsecutionWithSubmissionId payloadWithSubmissionId =
                     submitSummonsProsecutionWithSubmissionId()
                             .withDefendants(payload.getDefendants())
-                            .withProsecutionSubmissionDetails(payload.getProsecutionSubmissionDetails())
+                            .withProsecutionSubmissionDetails(submissionDetails)
                             .withSubmissionId( submissionIdWithMatchFoundPair.getLeft())
                             .build();
 
@@ -209,8 +225,9 @@ public class StagingProsecutorsCommandAPIV2 {
             throwBadRequestException(violations);
         }
 
-        final String urn = payload.getProsecutionSubmissionDetails().getUrn();
-        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(urn);
+        final ChargeProsecutionSubmissionDetails submissionDetails =
+                withSanitizedUrn(payload.getProsecutionSubmissionDetails());
+        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(submissionDetails.getUrn());
         final JsonObject submissionPayload = createObjectBuilder()
                 .add(SUBMISSION_ID, submissionIdWithMatchFoundPair.getLeft().toString())
                 .add(OUCODE, envelope.payload().getOucode())
@@ -221,7 +238,7 @@ public class StagingProsecutorsCommandAPIV2 {
             final SubmitChargeProsecutionWithSubmissionId payloadWithSubmissionId =
                     submitChargeProsecutionWithSubmissionId()
                             .withDefendants(payload.getDefendants())
-                            .withProsecutionSubmissionDetails(payload.getProsecutionSubmissionDetails())
+                            .withProsecutionSubmissionDetails(submissionDetails)
                             .withSubmissionId(submissionIdWithMatchFoundPair.getLeft())
                             .build();
 
@@ -267,8 +284,9 @@ public class StagingProsecutorsCommandAPIV2 {
             throwBadRequestException(violations);
         }
 
-        final String urn = payload.getProsecutionSubmissionDetails().getUrn();
-        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(urn);
+        final RequisitionProsecutionSubmissionDetails submissionDetails =
+                withSanitizedUrn(payload.getProsecutionSubmissionDetails());
+        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(submissionDetails.getUrn());
 
         final JsonObject submissionPayload = createObjectBuilder()
                 .add(SUBMISSION_ID, submissionIdWithMatchFoundPair.getLeft().toString())
@@ -281,7 +299,7 @@ public class StagingProsecutorsCommandAPIV2 {
             final SubmitRequisitionProsecutionWithSubmissionId payloadWithSubmissionId =
                     submitRequisitionProsecutionWithSubmissionId()
                             .withDefendants(payload.getDefendants())
-                            .withProsecutionSubmissionDetails(payload.getProsecutionSubmissionDetails())
+                            .withProsecutionSubmissionDetails(submissionDetails)
                             .withSubmissionId(submissionIdWithMatchFoundPair.getLeft())
                             .build();
 
@@ -311,8 +329,9 @@ public class StagingProsecutorsCommandAPIV2 {
             throwBadRequestException(violations);
         }
 
-        final String urn = payload.getProsecutionSubmissionDetails().getUrn();
-        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(urn);
+        final SubmitSjpProsecutionHttpV2 payloadWithSanitizedUrn = withSanitizedUrn(payload);
+        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(
+                payloadWithSanitizedUrn.getProsecutionSubmissionDetails().getUrn());
 
 
         final JsonObject submissionPayload = createObjectBuilder()
@@ -322,7 +341,7 @@ public class StagingProsecutorsCommandAPIV2 {
         final JsonObject submissionResponse = submissionQueryView.querySubmissionV2(submissionPayload);
 
         if (!submissionIdWithMatchFoundPair.getRight() || shouldRaiseSubmission(submissionResponse)) {
-            final Pair<SubmitSjpProsecutionHttpV2, UUID> payloadAnsSubmissionIdPair = new ImmutablePair<>(payload, submissionIdWithMatchFoundPair.getLeft());
+            final Pair<SubmitSjpProsecutionHttpV2, UUID> payloadAnsSubmissionIdPair = new ImmutablePair<>(payloadWithSanitizedUrn, submissionIdWithMatchFoundPair.getLeft());
             final SubmitSjpProsecution payloadWithSubmissionId = submitSjpProsecutionV2Converter.convert(payloadAnsSubmissionIdPair);
 
             sender.send(envelop(payloadWithSubmissionId)
@@ -345,7 +364,7 @@ public class StagingProsecutorsCommandAPIV2 {
             throw new BadRequestException("Error submitting material, request has schema violations", e);
         }
 
-        final String ptiUrn = requestPayload.getString("ptiUrn");
+        final String ptiUrn = sanitizedUrn(requestPayload.getString("ptiUrn"), FIELD_PTI_URN);
         final UUID submissionId = uuidProducer.generateUUID();
 
         final JsonObjectBuilder payloadBuilder = createObjectBuilder()
@@ -394,7 +413,7 @@ public class StagingProsecutorsCommandAPIV2 {
         final JsonObjectBuilder payloadBuilder = createObjectBuilder()
                 .add(SUBMISSION_ID, submissionId.toString())
                 .add("materialId", requestPayload.getString("material"))
-                .add(CASE_URN, requestPayload.getString(CASE_URN))
+                .add(CASE_URN, sanitizedUrn(requestPayload.getString(CASE_URN), FIELD_CASE_URN))
                 .add(PROSECUTING_AUTHORITY_FIELD, requestPayload.getString(PROSECUTING_AUTHORITY_FIELD))
                 .add(MATERIAL_TYPE, requestPayload.getString(MATERIAL_TYPE));
 
@@ -414,6 +433,84 @@ public class StagingProsecutorsCommandAPIV2 {
         return envelopeFrom(
                 envelope.metadata(),
                 new UrlResponse(getBaseResponseURLWithVersion() + submissionId, submissionId));
+    }
+
+    private SubmitSjpProsecutionHttpV2 withSanitizedUrn(final SubmitSjpProsecutionHttpV2 payload) {
+        final SjpProsecutionSubmissionDetails details = payload.getProsecutionSubmissionDetails();
+        final String sanitizedUrn = sanitizedUrn(details.getUrn(), FIELD_URN);
+        if (!wasSanitized(details.getUrn(), sanitizedUrn)) {
+            return payload;
+        }
+        logInvisibleCharactersRemoved();
+        return submitSjpProsecutionHttpV2()
+                .withDefendant(payload.getDefendant())
+                .withProsecutionSubmissionDetails(sjpProsecutionSubmissionDetails()
+                        .withProsecutingAuthority(details.getProsecutingAuthority())
+                        .withInformant(details.getInformant())
+                        .withUrn(sanitizedUrn)
+                        .withWrittenChargePostingDate(details.getWrittenChargePostingDate())
+                        .build())
+                .build();
+    }
+
+    private SummonsProsecutionSubmissionDetails withSanitizedUrn(final SummonsProsecutionSubmissionDetails details) {
+        final String sanitizedUrn = sanitizedUrn(details.getUrn(), FIELD_URN);
+        if (!wasSanitized(details.getUrn(), sanitizedUrn)) {
+            return details;
+        }
+        logInvisibleCharactersRemoved();
+        return summonsProsecutionSubmissionDetails()
+                .withProsecutingAuthority(details.getProsecutingAuthority())
+                .withSummonsCode(details.getSummonsCode())
+                .withInformant(details.getInformant())
+                .withHearingDetails(details.getHearingDetails())
+                .withUrn(sanitizedUrn)
+                .withCaseMarker(details.getCaseMarker())
+                .build();
+    }
+
+    private ChargeProsecutionSubmissionDetails withSanitizedUrn(final ChargeProsecutionSubmissionDetails details) {
+        final String sanitizedUrn = sanitizedUrn(details.getUrn(), FIELD_URN);
+        if (!wasSanitized(details.getUrn(), sanitizedUrn)) {
+            return details;
+        }
+        logInvisibleCharactersRemoved();
+        return chargeProsecutionSubmissionDetails()
+                .withProsecutingAuthority(details.getProsecutingAuthority())
+                .withInformant(details.getInformant())
+                .withHearingDetails(details.getHearingDetails())
+                .withUrn(sanitizedUrn)
+                .withCaseMarker(details.getCaseMarker())
+                .build();
+    }
+
+    private RequisitionProsecutionSubmissionDetails withSanitizedUrn(final RequisitionProsecutionSubmissionDetails details) {
+        final String sanitizedUrn = sanitizedUrn(details.getUrn(), FIELD_URN);
+        if (!wasSanitized(details.getUrn(), sanitizedUrn)) {
+            return details;
+        }
+        logInvisibleCharactersRemoved();
+        return requisitionProsecutionSubmissionDetails()
+                .withProsecutingAuthority(details.getProsecutingAuthority())
+                .withInformant(details.getInformant())
+                .withHearingDetails(details.getHearingDetails())
+                .withUrn(sanitizedUrn)
+                .withCaseMarker(details.getCaseMarker())
+                .withWrittenChargePostingDate(details.getWrittenChargePostingDate())
+                .build();
+    }
+
+    private String sanitizedUrn(final String urn, final String fieldName) {
+        try {
+            return CaseUrnSanitizer.sanitize(urn);
+        } catch (final InvalidCaseUrnException exception) {
+            throwBadRequestException(Collections.singletonMap(fieldName, Collections.singletonList(exception.getMessage())));
+            return null;
+        }
+    }
+
+    private void logInvisibleCharactersRemoved() {
+        LOGGER.info("Removed invisible characters from prosecution URN");
     }
 
     private void throwBadRequestException(final Map<String, List<String>> violations) {
