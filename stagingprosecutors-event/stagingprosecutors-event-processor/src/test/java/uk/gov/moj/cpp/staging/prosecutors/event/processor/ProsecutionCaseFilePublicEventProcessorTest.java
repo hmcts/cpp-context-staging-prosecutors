@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.hamcrest.MockitoHamcrest.argThat;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_PROCESSOR;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
@@ -28,6 +29,8 @@ import uk.gov.justice.services.messaging.Envelope;
 import uk.gov.justice.services.messaging.Metadata;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.RejectMaterial;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.UpdateSubmissionStatus;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.repository.SubmissionRepository;
 import uk.gov.moj.cps.stagingprosecutors.domain.event.CpsServeMaterialStatusUpdatedEvent;
 import uk.gov.moj.cps.stagingprosecutors.domain.event.PublicMaterialPendingWithWarnings;
 import uk.gov.moj.cps.stagingprosecutors.domain.event.PublicMaterialRejected;
@@ -51,6 +54,9 @@ public class ProsecutionCaseFilePublicEventProcessorTest {
     @Mock
     private Sender sender;
 
+    @Mock
+    private SubmissionRepository submissionRepository;
+
     @Captor
     private ArgumentCaptor<Envelope<RejectMaterial>> jsonEnvelopeArgumentCaptor;
 
@@ -73,6 +79,7 @@ public class ProsecutionCaseFilePublicEventProcessorTest {
 
     @Test
     public void shouldSendMaterialRejectedCommandWhenSubmissionIdIsPresent() {
+        when(submissionRepository.findBy(submissionId)).thenReturn(new Submission());
         final Envelope<PublicMaterialRejected> publicMaterialRejectedEvent = givenPublicMaterialRejectedWithSubmissionId();
         whenPublicEventEmitted(publicMaterialRejectedEvent);
         thenRejectMaterialCommandIsSent(publicMaterialRejectedEvent);

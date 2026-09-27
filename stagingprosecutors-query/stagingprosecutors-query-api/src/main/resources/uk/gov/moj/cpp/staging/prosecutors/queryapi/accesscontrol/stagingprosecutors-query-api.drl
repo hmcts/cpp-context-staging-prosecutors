@@ -52,6 +52,15 @@ rule "Query - Rule for for the API: Gets the results for the given date range an
     $outcome.setSuccess(true);
 end
 
+rule "Query - Rule for getting results with full verdict object for the v2 endpoint"
+  when
+    $outcome: Outcome();
+    $action: Action(name == "hmcts.results.v2");
+    eval(userAndGroupProvider.isMemberOfAnyOfTheSuppliedGroups($action, RuleConstants.getQuerySubmissionGroups()));
+  then
+    $outcome.setSuccess(true);
+end
+
 rule "Query - Rule for getting submission for sjp v2 endpoint and v3 response type"
   when
     $outcome: Outcome();

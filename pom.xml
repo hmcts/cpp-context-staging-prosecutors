@@ -5,7 +5,7 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>25.104.0-M1</version>
+        <version>25.104.0-M4</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
@@ -17,20 +17,19 @@
     <properties>
         <maven.cucumber.reporting.plugin.version>2.0.0</maven.cucumber.reporting.plugin.version>
         <system.users.library.version>3.1.2</system.users.library.version>
-        <prosecutioncasefile.version>17.0.71</prosecutioncasefile.version>
-        <referencedata.version>17.104.136</referencedata.version>
-        <coredomain.version>25.104.0-M1</coredomain.version>
+        <prosecutioncasefile.version>17.0.95</prosecutioncasefile.version>
+        <referencedata.version>17.104.137</referencedata.version>
+        <coredomain.version>25.104.2</coredomain.version>
         <!-- JAXB 4 (jakarta.xml.bind) toolchain for the CPS CP20 schema module; the parent BOM
              hard-pins jaxb-runtime at 2.3.1 (javax-era), so the runtime version is set explicitly
              on the dependency in stagingprosecutors-cps-schema rather than via this property -->
         <jaxb.runtime.version>4.0.5</jaxb.runtime.version>
         <jaxb-maven-plugin.version>4.0.8</jaxb-maven-plugin.version>
-        <parsson.version>1.1.7</parsson.version>
         <joda-time.version>2.10.10</joda-time.version>
         <!-- JDK 25-compatible Lombok; the parent BOM pins 1.18.26 which cannot run as an
              annotation processor on JDK 25 (used by the integration-test model classes) -->
         <lombok.version>1.18.42</lombok.version>
-        <results.version>17.0.81</results.version>
+        <results.version>17.104.116</results.version>
         <httpmime.version>4.5.1</httpmime.version>
         <notification.notify.version>17.0.1</notification.notify.version>
         <stream-transformation-tool-anonymise>7.0.0</stream-transformation-tool-anonymise>
