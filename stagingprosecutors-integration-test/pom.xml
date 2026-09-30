@@ -9,10 +9,6 @@
 
     <artifactId>stagingprosecutors-integration-test</artifactId>
 
-    <properties>
-        <rest-assured.version>2.5.0</rest-assured.version>
-    </properties>
-
     <dependencies>
 
         <!--Test dependencies-->
@@ -119,7 +115,7 @@
         <dependency>
             <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
             <artifactId>stagingprosecutors-viewstore-persistence</artifactId>
-            <version>25.104.0-M1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -132,6 +128,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <annotationProcessorPathsUseDepMgmt>true</annotationProcessorPathsUseDepMgmt>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
