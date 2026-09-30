@@ -1,5 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.listener;
 
+import static java.util.Objects.nonNull;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_LISTENER;
 import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 import static uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmissionStatus.SUCCESS;
@@ -191,8 +192,10 @@ public class SubmissionEventListener {
         final MaterialSubmissionSuccessful materialSubmissionSuccessful = envelope.payload();
         final Submission submission = submissionRepository.findBy(materialSubmissionSuccessful.getSubmissionId());
 
-        submission.setCompletedAt(extractCreatedAt(envelope.metadata()));
-        submission.setSubmissionStatus(SUCCESS.toString());
+        if(nonNull(submission)) {
+            submission.setCompletedAt(extractCreatedAt(envelope.metadata()));
+            submission.setSubmissionStatus(SUCCESS.toString());
+        }
     }
 
     @Handles("stagingprosecutors.event.material-submission-rejected")
@@ -206,10 +209,12 @@ public class SubmissionEventListener {
         final JsonArray submissionWarnings = transformErrorsOrWarningsToJsonArray(warnings);
         final Submission submission = submissionRepository.findBy(submissionId);
 
-        submission.setSubmissionStatus(SubmissionStatus.REJECTED.toString());
-        submission.setCompletedAt(timestamp);
-        submission.setErrors(submissionErrors);
-        submission.setWarnings(submissionWarnings);
+        if(nonNull(submission)) {
+            submission.setSubmissionStatus(SubmissionStatus.REJECTED.toString());
+            submission.setCompletedAt(timestamp);
+            submission.setErrors(submissionErrors);
+            submission.setWarnings(submissionWarnings);
+        }
     }
 
     private ZonedDateTime extractCreatedAt(final Metadata metadata) {

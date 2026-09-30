@@ -11,12 +11,12 @@
 | Component         | Value                                                                |
 |-------------------|----------------------------------------------------------------------|
 | Build tool        | Maven (multi-module reactor; root `pom.xml`, `stagingprosecutors`)   |
-| Language          | Java 17 (CI demand `centos8-j17`)                                    |
-| Framework         | Justice Services Framework / CPP `service-parent-pom:17.104.x` (CDI/Deltaspike) |
-| Packaging         | WAR (`stagingprosecutors-service`) → WildFly via Docker              |
+| Language          | Java 25 (CI demand `ubuntu-j25`)                                     |
+| Framework         | Justice Services Framework / CPP `service-parent-pom:25.104.x` (CDI, Jakarta EE 11) |
+| Packaging         | WAR (`stagingprosecutors-service`) → WildFly 40 via Docker           |
 | Annotations       | `@ServiceComponent`, `@Handles`, `@ApplicationScoped`                |
 | Boilerplate       | Lombok (permitted, already in use)                                   |
-| Persistence       | Liquibase changelogs + Deltaspike repositories (event-store, aggregate-snapshot, viewstore, event-buffer) |
+| Persistence       | Liquibase changelogs + JPA repository beans (`@ApplicationScoped` + `@PersistenceContext`) (event-store, aggregate-snapshot, viewstore, event-buffer) |
 | Messaging         | ActiveMQ (Docker for ITs); JMS queue + topics                        |
 | Tests             | JUnit + Mockito (unit, surefire); framework's IT harness (`runIntegrationTests.sh`, failsafe); JSONAssert; Cucumber |
 | CI                | Azure DevOps Pipelines (`azure-pipelines.yaml` + `hmcts/cpp-azure-devops-templates`) |
@@ -26,7 +26,7 @@
 ## Constraints
 
 - Maven is the current build tool. Future migration to Gradle is allowed but requires coordinating constitution + rule files + CI pipeline together (see Constitution Principle V).
-- Java 17 only — prefer explicit types in public APIs
+- Java 25 only; Jakarta namespace (`jakarta.*`) — no `javax.*` EE imports (Java SE `javax.*` is fine) — prefer explicit types in public APIs
 - Use the framework's `@ServiceComponent` + `@Handles` for command/event handling — NOT hand-rolled JMS listeners
 - DI: CDI (`@ApplicationScoped` / `@Inject`); Lombok permitted for boilerplate; never Spring (`@Autowired` / `@Component` / `@Service`)
 - Aggregate state mutation must go through the aggregate's `apply(event)` replay (`ProsecutionSubmission` / `ApplicationSubmission` / `CpsSubmission` / `MaterialSubmission` / `UnbundleSubmission` / `PocaEmailAggregate`)
@@ -67,6 +67,6 @@ mvn -pl stagingprosecutors-integration-test test -Dit.test=ClassNameIT
 
 ## Key version pins (`pom.xml`)
 
-- Parent: `uk.gov.moj.cpp.common:service-parent-pom:17.104.x` (currently 17.104.1); artifact `stagingprosecutors` (currently `17.104.62-SNAPSHOT`), groupId `uk.gov.moj.cpp.staging.prosecutors`
+- Parent: `uk.gov.moj.cpp.common:service-parent-pom:25.104.x` (currently 25.104.3); artifact `stagingprosecutors` (currently `25.104.0-M1-SNAPSHOT`), groupId `uk.gov.moj.cpp.staging.prosecutors`
 - Cross-context / notable pins to keep aligned: `prosecutioncasefile` (the submission→PCF contract), `results`, `notification.notify`, `referencedata`, `coredomain`, `system.users.library`
 - When bumping any of these, also check the matching schema/RAML classifier dep is on the same version
