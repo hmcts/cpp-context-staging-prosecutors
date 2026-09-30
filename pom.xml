@@ -24,6 +24,8 @@
         <notification.notify.version>17.0.1</notification.notify.version>
         <stream-transformation-tool-anonymise>7.0.0</stream-transformation-tool-anonymise>
         <jgitflow.maven.developBranchName>main</jgitflow.maven.developBranchName>
+        <!-- Empty default so @{argLine} below still resolves when JaCoCo's prepare-agent is skipped -->
+        <argLine/>
         <sonar.coverage.exclusions>
             **/gov/justice/**,
             **/schemas/**,
@@ -111,6 +113,25 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Run tests in UTC, as the deployed servers do. @{argLine} keeps the JaCoCo agent -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <argLine>@{argLine} -Duser.timezone=UTC</argLine>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <configuration>
+                        <argLine>-Duser.timezone=UTC</argLine>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>

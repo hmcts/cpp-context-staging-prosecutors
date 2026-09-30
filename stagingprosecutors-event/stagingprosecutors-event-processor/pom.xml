@@ -154,10 +154,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>uk.gov.justice.framework-generators</groupId>
                 <artifactId>messaging-client-generator-plugin</artifactId>
                 <dependencies>
