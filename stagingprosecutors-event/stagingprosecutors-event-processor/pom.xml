@@ -166,9 +166,9 @@
                         <artifactId>jakarta.jakartaee-api</artifactId>
                         <version>${javaee-api.version}</version>
                     </dependency>
-                    <!-- The parent adds jakarta.xml.bind-api 2.3.2 (javax-namespaced) to this plugin's
-                         generate-src-raml execution but not to generate-classpath-message-clients, which
-                         then fails with NoClassDefFoundError: javax/xml/bind/SchemaOutputResolver -->
+                    <!-- The parent's yaml-framework-generation profile doesn't add jakarta.xml.bind-api 2.3.2
+                         (javax-namespaced) to this plugin, so generate-classpath-message-clients fails with
+                         NoClassDefFoundError: javax/xml/bind/SchemaOutputResolver. Still needed on 25.104.3. -->
                     <dependency>
                         <groupId>jakarta.xml.bind</groupId>
                         <artifactId>jakarta.xml.bind-api</artifactId>
