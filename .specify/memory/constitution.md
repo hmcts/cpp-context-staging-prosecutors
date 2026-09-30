@@ -1,6 +1,12 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Amendment 1.0.1 (2026-09-30): PATCH. CIMD-4077 stack refresh — Java 17 → 25,
+  service-parent-pom 17.104.x → 25.104.x, WildFly 40 / Jakarta EE 11; Principle III
+  + Technology Stack persistence wording updated — DeltaSpike removed (no Jakarta
+  EE 11 support); repositories are now CDI @ApplicationScoped JPA beans with
+  @PersistenceContext.
+
 Version change: (uninitialised template) → 1.0.0
 Bump rationale: Initial ratification. All principles and sections are new; no
                 prior principles to remove or redefine, so MAJOR is the correct
@@ -119,7 +125,8 @@ than rolling your own:
 - Event processors: extend the framework's processor bases; map domain events →
   public-event payloads via dedicated converter classes; consume inbound public
   events the same way.
-- Persistence: Liquibase changelogs + Deltaspike repositories only — never
+- Persistence: Liquibase changelogs + CDI `@ApplicationScoped` JPA repository
+  beans (`@PersistenceContext` `EntityManager`) only — never
   manual DDL.
 - Outbound: use the framework's REST/messaging client wiring; publish public
   events via the `public-publications-descriptor.yaml` contract.
@@ -164,12 +171,12 @@ conflicting auto-fixes; preserves auditable, reproducible review output.
   assume the Maven reactor; a future migration to Gradle is allowed but is
   itself a constitution-amendment-scale change and MUST update this section, the
   rule files, the agent docs, and the CI pipeline in lockstep.
-- **Java**: 17.
-- **Parent**: `uk.gov.moj.cpp.common:service-parent-pom:17.104.x` — pin updates
+- **Java**: 25 (Jakarta EE 11, `jakarta.*` namespace).
+- **Parent**: `uk.gov.moj.cpp.common:service-parent-pom:25.104.x` — pin updates
   require a coordinated cross-context check against the upstream pins in the root
   `pom.xml` (`prosecutioncasefile`, `results`, `notification.notify`,
   `referencedata`, `coredomain`, `system.users.library`).
-- **Packaging**: WAR deployed to WildFly via Docker. The `stagingprosecutors-service`
+- **Packaging**: WAR deployed to WildFly 40 via Docker. The `stagingprosecutors-service`
   module is the composite packaging WAR; `src/main/descriptors/resource-descriptor.yml`
   wires datasources / the command queue / topics / service mapping.
 - **Tests**: JUnit + Mockito for unit tests (surefire); integration tests in
@@ -252,14 +259,14 @@ converter silently drops a field or a submission is staged in the wrong state.
 
 ## Technology Stack & Deployment
 
-- **Java**: 17.
+- **Java**: 25 (Jakarta EE 11, `jakarta.*` namespace).
 - **Build**: Maven. Multi-module reactor; modules listed in root `pom.xml`
   (`stagingprosecutors`, groupId `uk.gov.moj.cpp.staging.prosecutors`).
-- **Framework**: Justice Services Framework / CPP `service-parent-pom:17.104.x`.
-  CDI + Deltaspike; `@ServiceComponent` / `@Handles` annotations; Lombok for
+- **Framework**: Justice Services Framework / CPP `service-parent-pom:25.104.x`.
+  CDI + JPA; `@ServiceComponent` / `@Handles` annotations; Lombok for
   boilerplate.
-- **Packaging**: WAR (`stagingprosecutors-service`) → WildFly (Docker).
-- **Persistence**: Liquibase changelogs + Deltaspike repositories (event store,
+- **Packaging**: WAR (`stagingprosecutors-service`) → WildFly 40 (Docker).
+- **Persistence**: Liquibase changelogs + JPA repository beans (event store,
   aggregate snapshot, event buffer, viewstore).
 - **Messaging**: ActiveMQ (Docker for ITs); JMS queue `stagingprosecutors.handler.command`
   and topics `stagingprosecutors.event` + `public.event`.
@@ -334,4 +341,4 @@ are retained as quick-reference material and MUST be kept in sync.
 - Reviewers MUST block merges that silently violate a NON-NEGOTIABLE principle
   without a written waiver.
 
-**Version**: 1.0.0 | **Ratified**: 2026-06-02 | **Last Amended**: 2026-06-02
+**Version**: 1.0.1 | **Ratified**: 2026-06-02 | **Last Amended**: 2026-09-30
