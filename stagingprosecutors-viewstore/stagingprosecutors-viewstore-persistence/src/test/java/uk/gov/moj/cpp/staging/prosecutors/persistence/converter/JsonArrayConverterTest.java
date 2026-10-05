@@ -4,23 +4,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 
-import uk.gov.justice.services.test.utils.persistence.BaseTransactionalTest;
+import jakarta.json.JsonArray;
 
-import javax.inject.Inject;
-import javax.json.JsonArray;
+import org.junit.jupiter.api.Test;
 
-import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+class JsonArrayConverterTest {
 
-@RunWith(CdiTestRunner.class)
-public class JsonArrayConverterTest extends BaseTransactionalTest {
-
-    @Inject
-    private JsonArrayConverter jsonArrayConverter;
+    private final JsonArrayConverter jsonArrayConverter = new JsonArrayConverter();
 
     @Test
-    public void shouldConvertToDatabaseColumn() {
+    void shouldConvertToDatabaseColumn() {
         final JsonArray array = createArrayBuilder()
                 .add("value1")
                 .add("value2")
@@ -30,7 +23,7 @@ public class JsonArrayConverterTest extends BaseTransactionalTest {
     }
 
     @Test
-    public void shouldConvertToEntityAttribute() {
+    void shouldConvertToEntityAttribute() {
         final JsonArray result = jsonArrayConverter.convertToEntityAttribute("[\"value1\",\"value2\"]");
         assertThat(result.getString(0), is("value1"));
         assertThat(result.getString(1), is("value2"));

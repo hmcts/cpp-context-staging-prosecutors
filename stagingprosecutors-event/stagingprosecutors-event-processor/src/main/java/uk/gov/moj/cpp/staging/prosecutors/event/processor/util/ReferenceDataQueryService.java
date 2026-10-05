@@ -6,7 +6,7 @@ import uk.gov.justice.services.messaging.Metadata;
 import uk.gov.moj.cpp.prosecution.casefile.json.schemas.DocumentTypeAccessReferenceData;
 import uk.gov.moj.cpp.prosecution.casefile.json.schemas.ParentBundleSectionReferenceData;
 
-import javax.json.JsonArray;
+import jakarta.json.JsonArray;
 import java.util.Optional;
 
 public interface ReferenceDataQueryService {

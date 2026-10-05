@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.SubmissionStatus;
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.SubmitApplication;

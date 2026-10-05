@@ -15,7 +15,7 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 
 import java.util.UUID;
 
-import javax.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
 import org.junit.jupiter.api.BeforeEach;

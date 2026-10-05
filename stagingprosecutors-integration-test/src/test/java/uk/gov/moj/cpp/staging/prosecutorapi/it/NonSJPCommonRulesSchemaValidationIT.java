@@ -20,8 +20,8 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 
 import java.io.StringReader;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

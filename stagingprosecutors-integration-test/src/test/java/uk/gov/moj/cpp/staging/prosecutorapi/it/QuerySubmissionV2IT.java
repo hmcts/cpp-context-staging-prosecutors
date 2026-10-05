@@ -9,7 +9,7 @@ import uk.gov.justice.services.integrationtest.utils.jms.JmsResourceManagementEx
 import uk.gov.moj.cpp.staging.prosecutorapi.utils.StagingProsecutors;
 import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response;
 
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;

@@ -12,7 +12,7 @@ import static uk.gov.justice.services.test.utils.core.reflection.ReflectionUtil.
 
 import java.io.IOException;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import dto.ResponseDto;
 import org.apache.http.HttpEntity;

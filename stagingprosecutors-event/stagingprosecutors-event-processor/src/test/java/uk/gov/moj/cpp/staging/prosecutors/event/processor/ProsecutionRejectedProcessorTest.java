@@ -23,7 +23,7 @@ import uk.gov.moj.cpp.staging.prosecutors.json.schemas.Problem;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.RejectSubmission;
 import uk.gov.moj.cps.stagingprosecutors.domain.event.PublicProsecutionRejected;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import com.google.common.collect.ImmutableList;
 import org.junit.jupiter.api.Test;

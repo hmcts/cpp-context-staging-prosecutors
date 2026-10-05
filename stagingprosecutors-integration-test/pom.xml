@@ -3,15 +3,11 @@
     <parent>
         <artifactId>stagingprosecutors</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.66-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>stagingprosecutors-integration-test</artifactId>
-
-    <properties>
-        <rest-assured.version>2.5.0</rest-assured.version>
-    </properties>
 
     <dependencies>
 
@@ -56,6 +52,17 @@
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock</artifactId>
             <scope>test</scope>
+            <!-- The standalone/webhooks jars bundle an old Jackson that breaks jackson-databind 2.21 (NoSuchMethodError: JsonProperty.isRequired) -->
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.tomakehurst.wiremock</groupId>
+                    <artifactId>wiremock-jre8-standalone</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.tomakehurst.wiremock</groupId>
+                    <artifactId>wiremock-webhooks-extension</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>uk.gov.justice.services</groupId>
@@ -96,7 +103,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.activemq</groupId>
+            <groupId>org.apache.artemis</groupId>
             <artifactId>artemis-jms-client</artifactId>
             <scope>test</scope>
         </dependency>
@@ -119,10 +126,28 @@
         <dependency>
             <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
             <artifactId>stagingprosecutors-viewstore-persistence</artifactId>
-            <version>17.104.66-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPathsUseDepMgmt>true</annotationProcessorPathsUseDepMgmt>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>

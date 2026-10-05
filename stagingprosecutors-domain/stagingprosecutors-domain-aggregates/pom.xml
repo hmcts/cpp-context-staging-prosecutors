@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors-domain</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.66-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,8 +13,6 @@
         <skip.schema.pojo.generation>true</skip.schema.pojo.generation>
         <skip.schema.event.pojo.generation>false</skip.schema.event.pojo.generation>
         <maven.build.timestamp.format>MMddHHmmss</maven.build.timestamp.format>
-        <maven.cucumber.reporting.plugin.version>2.0.0</maven.cucumber.reporting.plugin.version>
-        <domain.dsl.version>0.3.1</domain.dsl.version>
     </properties>
 
     <dependencies>
@@ -29,8 +27,8 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -217,7 +215,8 @@
                     <plugin>
                         <groupId>net.masterthought</groupId>
                         <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>${maven.cucumber.reporting.plugin.version}</version>
+                        <!-- Not managed by service-parent-pom 25.104.3; remove once the parent manages it -->
+                        <version>2.0.0</version>
                         <executions>
                             <execution>
                                 <id>execution</id>

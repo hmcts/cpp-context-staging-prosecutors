@@ -17,8 +17,8 @@ import uk.gov.justice.services.messaging.Envelope;
 import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.moj.cpp.staging.prosecutorapi.query.api.converter.ResultsV1ResponseTransformer;
 
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -96,7 +96,7 @@ public class ResultsQueryApiTest {
     void shouldCallTransformerForV1Endpoint() {
         final JsonObject responsePayload = createObjectBuilder()
                 .add("hearingVenue", createObjectBuilder()
-                        .add("courtSessions", javax.json.Json.createArrayBuilder()))
+                        .add("courtSessions", jakarta.json.Json.createArrayBuilder()))
                 .build();
         when(requester.request(any(Envelope.class))).thenReturn(
                 createEnvelope("results.query.api", responsePayload));
@@ -110,7 +110,7 @@ public class ResultsQueryApiTest {
     void shouldReturnTransformedPayloadForV1Endpoint() {
         final JsonObject responsePayload = createObjectBuilder()
                 .add("hearingVenue", createObjectBuilder()
-                        .add("courtSessions", javax.json.Json.createArrayBuilder()))
+                        .add("courtSessions", jakarta.json.Json.createArrayBuilder()))
                 .build();
         final JsonObject transformedPayload = createObjectBuilder().add("transformed", true).build();
         when(requester.request(any(Envelope.class))).thenReturn(

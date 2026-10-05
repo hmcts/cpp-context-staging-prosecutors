@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors-event</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>17.104.66-SNAPSHOT</version>
+        <version>25.104.0-M1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,6 @@
     <properties>
         <cpp.service-component>EVENT_PROCESSOR</cpp.service-component>
         <skip.schema.pojo.generation>false</skip.schema.pojo.generation>
-        <pdfbox.version>2.0.19</pdfbox.version>
     </properties>
 
     <dependencies>
@@ -27,8 +26,8 @@
             <artifactId>job-executor</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -147,17 +146,21 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>uk.gov.justice.framework-generators</groupId>
                 <artifactId>messaging-client-generator-plugin</artifactId>
                 <dependencies>
                     <dependency>
-                        <groupId>javax</groupId>
-                        <artifactId>javaee-api</artifactId>
+                        <groupId>jakarta.platform</groupId>
+                        <artifactId>jakarta.jakartaee-api</artifactId>
                         <version>${javaee-api.version}</version>
+                    </dependency>
+                    <!-- The parent's yaml-framework-generation profile doesn't add jakarta.xml.bind-api 2.3.2
+                         (javax-namespaced) to this plugin, so generate-classpath-message-clients fails with
+                         NoClassDefFoundError: javax/xml/bind/SchemaOutputResolver (service-parent-pom 25.104.3) -->
+                    <dependency>
+                        <groupId>jakarta.xml.bind</groupId>
+                        <artifactId>jakarta.xml.bind-api</artifactId>
+                        <version>${jakarta.xml.bind-api.raml.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
@@ -178,8 +181,8 @@
                 <artifactId>rest-client-generator-plugin</artifactId>
                 <dependencies>
                     <dependency>
-                        <groupId>javax</groupId>
-                        <artifactId>javaee-api</artifactId>
+                        <groupId>jakarta.platform</groupId>
+                        <artifactId>jakarta.jakartaee-api</artifactId>
                         <version>${javaee-api.version}</version>
                     </dependency>
                     <dependency>

@@ -6,7 +6,7 @@ import uk.gov.justice.services.core.annotation.ServiceComponent;
 import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.moj.cpp.staging.prosecutorapi.query.view.SubmissionQueryView;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import static java.lang.String.format;
 import static java.util.UUID.fromString;

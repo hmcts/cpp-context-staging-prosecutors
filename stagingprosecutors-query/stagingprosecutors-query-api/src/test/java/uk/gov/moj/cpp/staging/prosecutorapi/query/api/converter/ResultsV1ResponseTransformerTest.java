@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -106,18 +106,18 @@ class ResultsV1ResponseTransformerTest {
                 .add("prosecutionAuthorityOuCode", "GTL0001")
                 .add("hearingVenue", createObjectBuilder()
                         .add("courtHouse", "Test Court")
-                        .add("courtSessions", javax.json.Json.createArrayBuilder()
+                        .add("courtSessions", jakarta.json.Json.createArrayBuilder()
                                 .add(createObjectBuilder()
                                         .add("courtRoom", "Room 1")
                                         .add("hearingStartTime", "2020-03-12")
-                                        .add("defendants", javax.json.Json.createArrayBuilder()
+                                        .add("defendants", jakarta.json.Json.createArrayBuilder()
                                                 .add(createObjectBuilder()
                                                         .add("name", "Fred Smith")
                                                         .add("address1", "Flat 1")
-                                                        .add("prosecutionCasesOrApplications", javax.json.Json.createArrayBuilder()
+                                                        .add("prosecutionCasesOrApplications", jakarta.json.Json.createArrayBuilder()
                                                                 .add(createObjectBuilder()
                                                                         .add("caseOrApplicationReference", "TFL123")
-                                                                        .add("offences", javax.json.Json.createArrayBuilder()
+                                                                        .add("offences", jakarta.json.Json.createArrayBuilder()
                                                                                 .add(offence)))))))))
                 .build();
     }

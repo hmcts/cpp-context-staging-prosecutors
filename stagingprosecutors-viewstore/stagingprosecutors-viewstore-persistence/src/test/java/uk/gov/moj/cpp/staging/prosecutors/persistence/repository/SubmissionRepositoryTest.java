@@ -1,6 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors.persistence.repository;
 
 import static java.time.ZonedDateTime.now;
+import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
@@ -10,27 +11,36 @@ import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.random.RandomGenerator.STRING;
 import static uk.gov.justice.services.test.utils.core.random.RandomGenerator.randomEnum;
 
-import uk.gov.justice.services.test.utils.persistence.BaseTransactionalJunit4Test;
+import uk.gov.justice.services.test.utils.persistence.HibernateTestEntityManagerProvider;
 import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
 import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType;
 
 import java.util.UUID;
 
-import javax.inject.Inject;
+import jakarta.persistence.EntityManager;
 
-import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
+class SubmissionRepositoryTest {
 
-@RunWith(CdiTestRunner.class)
-public class SubmissionRepositoryTest extends BaseTransactionalJunit4Test {
+    private static final String PERSISTENCE_UNIT = "stagingprosecutors-test-persistence-unit";
 
-    @Inject
+    @RegisterExtension
+    static HibernateTestEntityManagerProvider hibernateTestEntityManagerProvider =
+            new HibernateTestEntityManagerProvider(PERSISTENCE_UNIT);
+
     private SubmissionRepository submissionRepository;
 
+    @BeforeEach
+    void createRepository() {
+        submissionRepository = new SubmissionRepository();
+        hibernateTestEntityManagerProvider.injectEntityManagerInto(submissionRepository);
+    }
+
     @Test
-    public void shouldSaveSubmission() {
+    void shouldSaveSubmission() {
 
         final UUID submissionId = UUID.randomUUID();
 
@@ -43,11 +53,11 @@ public class SubmissionRepositoryTest extends BaseTransactionalJunit4Test {
                 createArrayBuilder().build(),
                 createArrayBuilder().build(),
                 type,
-                now(),
+                now().truncatedTo(SECONDS),
                 false,
                 null);
 
-        submission.setCompletedAt(now());
+        submission.setCompletedAt(now().truncatedTo(SECONDS));
         submission.setCaseWarnings(createArrayBuilder().add(
                 createObjectBuilder().add("caseWarnings", "caseWarning").build())
                 .build());
@@ -55,6 +65,7 @@ public class SubmissionRepositoryTest extends BaseTransactionalJunit4Test {
                 createObjectBuilder().add("defendantWarnings", "defendantWarning").build())
                 .build());
         submissionRepository.save(submission);
+        flushAndClear();
 
         final Submission submissionFind = submissionRepository.findBy(submissionId);
 
@@ -67,8 +78,8 @@ public class SubmissionRepositoryTest extends BaseTransactionalJunit4Test {
         assertThat(submissionFind.getErrors(), is(submission.getErrors()));
         assertThat(submissionFind.getWarnings(), is(submission.getWarnings()));
         assertThat(submissionFind.getType(), is(type));
-        assertThat(submissionFind.getReceivedAt(), is(submission.getReceivedAt()));
-        assertThat(submissionFind.getCompletedAt(), is(submission.getCompletedAt()));
+        assertThat(submissionFind.getReceivedAt().toInstant(), is(submission.getReceivedAt().toInstant()));
+        assertThat(submissionFind.getCompletedAt().toInstant(), is(submission.getCompletedAt().toInstant()));
         assertThat(submissionFind.getCaseWarnings(), is(submission.getCaseWarnings()));
         assertThat(submissionFind.getDefendantWarnings(), is(submission.getDefendantWarnings()));
         assertThat(submissionFind.getCpsCase(), is(submission.getCpsCase()));
@@ -81,5 +92,41 @@ public class SubmissionRepositoryTest extends BaseTransactionalJunit4Test {
 
         submission.setCpsCase(null);
         assertThat(submission.isCpsCase(), is(false));
+    }
+
+    @Test
+    void shouldUpdateExistingSubmissionOnSave() {
+        final UUID submissionId = UUID.randomUUID();
+        final Submission submission = new Submission(
+                submissionId,
+                "PENDING",
+                "caseUrn",
+                "AA1234567",
+                createArrayBuilder().build(),
+                createArrayBuilder().build(),
+                randomEnum(SubmissionType.class).next(),
+                now().truncatedTo(SECONDS),
+                false,
+                null);
+        submissionRepository.save(submission);
+        flushAndClear();
+
+        final Submission existing = submissionRepository.findBy(submissionId);
+        existing.setSubmissionStatus("SUCCESS");
+        submissionRepository.save(existing);
+        flushAndClear();
+
+        assertThat(submissionRepository.findBy(submissionId).getSubmissionStatus(), is("SUCCESS"));
+    }
+
+    @Test
+    void shouldReturnNullWhenNoSubmissionExistsForId() {
+        assertThat(submissionRepository.findBy(UUID.randomUUID()), is(nullValue()));
+    }
+
+    private void flushAndClear() {
+        final EntityManager entityManager = hibernateTestEntityManagerProvider.getEntityManager();
+        entityManager.flush();
+        entityManager.clear();
     }
 }

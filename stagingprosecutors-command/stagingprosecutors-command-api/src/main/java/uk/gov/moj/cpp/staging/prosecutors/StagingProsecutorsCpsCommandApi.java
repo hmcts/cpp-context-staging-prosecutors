@@ -18,9 +18,9 @@ import uk.gov.moj.cpp.staging.prosecutors.uuid.UUIDProducer;
 
 import java.util.UUID;
 
-import javax.inject.Inject;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.inject.Inject;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.UrlResponse;
 
