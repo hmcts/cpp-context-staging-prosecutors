@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The **stagingprosecutors** context — an HMCTS CPP digital service that **stages incoming prosecution submissions**. It receives prosecution and material submissions from prosecuting authorities (charge / requisition / SJP / summons prosecutions, applications, material submissions, CPS-served documents — PET/BCM/PTPH/COTR — POCA emails, and document unbundling), validates and stages them as event-sourced aggregates, projects a read-model viewstore, and publishes public events to downstream contexts (Prosecution Case File, results, notification). It also reacts to responses from those contexts (e.g. PCF acceptance/rejection).
 
-It is a CQRS + event-sourced microservice built on the `uk.gov.justice` *Justice Services Framework* (parent `uk.gov.moj.cpp.common:service-parent-pom`). Java 17, packaged as a WildFly WAR (`stagingprosecutors-service`). CDI + Deltaspike; Lombok is used for boilerplate.
+It is a CQRS + event-sourced microservice built on the `uk.gov.justice` *Justice Services Framework* (parent `uk.gov.moj.cpp.common:service-parent-pom`). Java 25, Jakarta EE 11 (`jakarta.*`), packaged as a WildFly 40 WAR (`stagingprosecutors-service`). CDI + JPA (Hibernate); Lombok is used for boilerplate.
 
 ## Build & test
 
@@ -42,7 +42,7 @@ Data flows command → aggregate → events → event store → (listener → vi
 - **stagingprosecutors-event** — `*-event-listener` projects events → viewstore via converters; `*-event-processor` consumes domain events and inbound public events, and publishes public events.
 - **stagingprosecutors-event-sources** — `src/yaml/event-sources.yaml` declares the `stagingprosecutors` stream (topic `stagingprosecutors.event`, `DS.eventstore`) and the `public` stream (`public.event`).
 - **stagingprosecutors-query** — read side. `*-query-api` (RAML), `*-query-view` (read services + response DTOs over the viewstore).
-- **stagingprosecutors-viewstore** — Liquibase changelogs (read-model schema) + Deltaspike persistence for `java:/DS.stagingprosecutors`.
+- **stagingprosecutors-viewstore** — Liquibase changelogs (read-model schema) + JPA persistence (`@ApplicationScoped` repository beans with `@PersistenceContext`) for `java:/DS.stagingprosecutors`.
 - **stagingprosecutors-service** — the deployable composite WAR; `src/main/descriptors/resource-descriptor.yml` wires datasources, the `stagingprosecutors.handler.command` queue, and the `stagingprosecutors.event` / `public.event` topics.
 - **stagingprosecutors-common**, **stagingprosecutors-test-utils**, **stagingprosecutors-healthchecks**, **stagingprosecutors-integration-test**.
 
@@ -57,8 +57,8 @@ Data flows command → aggregate → events → event store → (listener → vi
 
 ## CI / branching
 
-- CI is Azure DevOps (`azure-pipelines.yaml`) using shared `hmcts/cpp-azure-devops-templates`: on PR → `context-verify`, on CI build → `context-validation`. SonarQube project `uk.gov.moj.cpp.staging.prosecutors:stagingprosecutors`; `serviceName=stagingprosecutors`; `itTestFolder=stagingprosecutors-integration-test`; pool `MDV-ADO-AGENT-AKS-01` / `centos8-j17`.
-- Uses jgitflow; the develop branch is `main`. Release branches are `dev/release-*` (excluded from CI triggers). Parent `service-parent-pom:17.104.1`; module versions managed in the parent `pom.xml`.
+- CI is Azure DevOps (`azure-pipelines.yaml`) using shared `hmcts/cpp-azure-devops-templates`: on PR → `context-verify`, on CI build → `context-validation`. SonarQube project `uk.gov.moj.cpp.staging.prosecutors:stagingprosecutors`; `serviceName=stagingprosecutors`; `itTestFolder=stagingprosecutors-integration-test`; pool `MDV-ADO-AGENT-AKS-01` / `ubuntu-j25`; templates ref `wildfly40`.
+- Uses jgitflow; the develop branch is `main`. Release branches are `dev/release-*` (excluded from CI triggers). Parent `service-parent-pom:25.104.3`; module versions managed in the parent `pom.xml`.
 
 <!-- SPECKIT START -->
 Active feature: **CIMD-4077 — Upgrade to Java 25 / WildFly 40 / Jakarta EE 11 (Framework E 25.104.x)**.
