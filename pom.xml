@@ -5,12 +5,12 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>25.104.3</version>
+        <version>25.104.4</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
     <artifactId>stagingprosecutors</artifactId>
-    <version>25.104.0-M1-SNAPSHOT</version>
+    <version>25.104.66-CIMD-4077-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>stagingprosecutors</name>
 
@@ -18,7 +18,7 @@
         <system.users.library.version>3.1.2</system.users.library.version>
         <prosecutioncasefile.version>17.0.95</prosecutioncasefile.version>
         <referencedata.version>17.104.137</referencedata.version>
-        <coredomain.version>25.104.3</coredomain.version>
+        <coredomain.version>25.104.4</coredomain.version>
         <jaxb-maven-plugin.version>4.0.8</jaxb-maven-plugin.version>
         <results.version>17.104.116</results.version>
         <notification.notify.version>17.0.1</notification.notify.version>
