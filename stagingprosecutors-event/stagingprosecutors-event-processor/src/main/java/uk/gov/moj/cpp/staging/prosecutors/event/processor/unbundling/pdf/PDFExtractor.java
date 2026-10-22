@@ -6,8 +6,10 @@ import static java.util.Objects.nonNull;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.shared.UnbundlingConstants.GENERIC_INVALID_PDF_EXCEPTION_MSG;
+import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.shared.UnbundlingConstants.INVALID_PDF_OUTLINE_EXCEPTION_MSG;
 import static uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.shared.UnbundlingConstants.MISSING_BOOKMARKS_MSG;
 
+import uk.gov.moj.cpp.staging.prosecutors.event.processor.exception.InvalidPDFOutlineException;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.exception.UnBundlingTechnicalException;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.pojo.BundleSection;
 
@@ -40,6 +42,10 @@ public class PDFExtractor {
 
     @SuppressWarnings("squid:S2139") // Suppresses warning about rethrowing logged exception
     public List<PDDocumentHolder> splitIntoSections(PDDocument pdDocument, final List<BundleSection> bundleSections) {
+        if (isNull(pdDocument.getDocumentCatalog().getDocumentOutline())) {
+            throw new InvalidPDFOutlineException(INVALID_PDF_OUTLINE_EXCEPTION_MSG + ": []");
+        }
+
         try {
             final Iterable<PDOutlineItem> pdOutlineItems = pdDocument.getDocumentCatalog().getDocumentOutline().children();
             return new ArrayList<>(fetchOutlineRecursively(bundleSections, pdDocument, pdOutlineItems, null, null));
