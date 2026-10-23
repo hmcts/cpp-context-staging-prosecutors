@@ -4,7 +4,7 @@ import static java.util.UUID.randomUUID;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.sameInstance;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 
 import uk.gov.justice.services.test.utils.persistence.HibernateTestEntityManagerProvider;
@@ -30,9 +30,8 @@ import org.junit.jupiter.api.extension.RegisterExtension;
  * container-managed {@code @PersistenceContext}. Every assertion below encodes the J17 result.
  *
  * Harness note: the J25 harness creates the schema with hbm2ddl. On Hibernate 6 that makes submission.received_at a
- * column with time zone, so the received_at tests first change it back to TIMESTAMP, to match
- * Liquibase ("datetime") and the J17 harness. The J17 harness cannot look a UUID-keyed entity up after the
- * persistence context is cleared, so neither copy does that.
+ * column with time zone, so the received_at test first changes it back to TIMESTAMP, to match
+ * Liquibase ("datetime") and the J17 harness.
  */
 public class SubmissionRepositoryParityTest {
 
@@ -67,15 +66,16 @@ public class SubmissionRepositoryParityTest {
         assertThat(submissionRepository.findBy(randomUUID()), is(nullValue()));
     }
 
-    // SP-P02: the framework EntityManagerProducer sets the JVM default time zone to UTC when it creates the
-    // EntityManager the repository uses. J25 repositories no longer go through that producer.
+    // SP-P02: on J17 the framework EntityManagerProducer set the JVM default time zone to UTC when it created the
+    // EntityManager the repository used. J25 repositories no longer go through that producer, so using them leaves
+    // the JVM default time zone unchanged and the server must run in UTC itself.
     @Test
-    public void spP02_shouldSetJvmDefaultTimeZoneToUtcWhenRepositoryIsUsed() {
+    public void spP02_repositoryUseShouldLeaveTheJvmDefaultTimeZoneUnchanged() {
         TimeZone.setDefault(TimeZone.getTimeZone(LONDON));
 
         submissionRepository.save(submission("URN" + randomUUID().toString().substring(0, 8), ZonedDateTime.now(LONDON)));
 
-        assertThat(TimeZone.getDefault().getID(), is("UTC"));
+        assertThat(TimeZone.getDefault().getID(), is("Europe/London"));
     }
 
     // SP-P02: submission.received_at is a column without time zone (Liquibase "datetime"); J17 stores the UTC
@@ -96,34 +96,16 @@ public class SubmissionRepositoryParityTest {
         assertThat(storedReceivedAt, is("2024-06-01 09:00:00"));
     }
 
-    // SP-P03: DeltaSpike save() persists a new entity and returns the same, now managed, instance.
+    // SP-P03: save() of a new entity returns a managed entity with the same field values. DeltaSpike (J17) returned the
+    // same instance; the J25 merge() returns a managed copy. No caller relies on the identity.
     @Test
-    public void spP03_saveOfNewEntityShouldReturnTheSameManagedInstance() {
+    public void spP03_saveOfNewEntityShouldReturnAManagedEntityWithTheSameFields() {
         final Submission submission = submission("URN" + randomUUID().toString().substring(0, 8), ZonedDateTime.now(LONDON));
 
         final Submission saved = submissionRepository.save(submission);
 
-        assertThat(saved, sameInstance(submission));
-        assertThat(entityManager.contains(submission), is(true));
-    }
-
-    // SP-P04 (BC-08): the query view returns receivedAt.toString() of the entity read back from the viewstore, so pin
-    // the zone the read-back ZonedDateTime carries on a UTC server, against the Liquibase column type.
-    @Test
-    public void spP04_receivedAtShouldBeReadBackInTheJ17Zone() {
-        final String caseUrn = "URN" + randomUUID().toString().substring(0, 8);
-        entityManager.createNativeQuery("alter table submission alter column received_at set data type timestamp").executeUpdate();
-        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-
-        submissionRepository.save(submission(caseUrn, ZonedDateTime.of(2024, 6, 1, 10, 0, 0, 0, LONDON)));
-        entityManager.flush();
-        entityManager.clear();
-
-        final Submission reloaded = entityManager
-                .createQuery("select s from Submission s where s.caseUrn = :caseUrn", Submission.class)
-                .setParameter("caseUrn", caseUrn)
-                .getSingleResult();
-        assertThat(reloaded.getReceivedAt().toString(), is("2024-06-01T09:00Z[UTC]"));
+        assertThat(saved, samePropertyValuesAs(submission));
+        assertThat(entityManager.contains(saved), is(true));
     }
 
     private static Submission submission(final String caseUrn, final ZonedDateTime receivedAt) {

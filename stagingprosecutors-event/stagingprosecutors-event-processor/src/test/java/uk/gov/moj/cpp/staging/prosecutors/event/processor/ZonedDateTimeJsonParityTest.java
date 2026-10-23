@@ -46,14 +46,16 @@ class ZonedDateTimeJsonParityTest {
         assertThat(json.getString("receivedDateTime"), is("2024-06-01T09:00:00.000Z"));
     }
 
+    // J17 (Jackson 2.12) read this into the UTC region ("...Z[UTC]"); Jackson 2.21 reads ZoneOffset.UTC. Accepted: the
+    // only output use formats receivedDateTime with a literal 'Z' pattern, which gives the same string for both.
     @Test
-    void spM06_shouldReadReceivedDateTimeWithTheJ17Zone() {
+    void spM06_shouldReadReceivedDateTimeAsZoneOffsetUtc() {
         final JsonObject json = parse("{\"caseId\":\"" + CASE_ID + "\",\"materials\":[],\"prosecutorDefendantId\":\"DEF-1\","
                 + "\"receivedDateTime\":\"2024-06-01T09:00:00.000Z\"}");
 
         final DocumentUnbundledV2 event = new JsonObjectToObjectConverter(objectMapperProducer.objectMapper()).convert(json, DocumentUnbundledV2.class);
 
-        assertThat(event.getReceivedDateTime().toString(), is("2024-06-01T09:00Z[UTC]"));
+        assertThat(event.getReceivedDateTime().toString(), is("2024-06-01T09:00Z"));
     }
 
     @Test

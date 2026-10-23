@@ -14,6 +14,7 @@ import uk.gov.moj.cpp.staging.prosecutorapi.query.view.service.SubmissionService
 import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
 
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,6 +36,7 @@ public class SubmissionQueryView {
     private static final String TYPE = "type";
     private static final String ID = "id";
     private static final String OU_CODE = "oucode";
+    private static final ZoneId UTC = ZoneId.of("UTC");
 
     @Inject
     private Enveloper enveloper;
@@ -60,10 +62,10 @@ public class SubmissionQueryView {
                                     .add(TYPE, submission.getType().toString())
                                     .add(WARNINGS, submission.getWarnings())
                                     .add(ERRORS_FIELD, submission.getErrors())
-                                    .add(RECEIVED_AT, submission.getReceivedAt().toString());
+                                    .add(RECEIVED_AT, inUtcRegion(submission.getReceivedAt()));
 
                             ofNullable(submissionOptional.get().getCompletedAt()).
-                                    ifPresent(completedAt -> result.add(COMPLETED_AT, completedAt.toString()));
+                                    ifPresent(completedAt -> result.add(COMPLETED_AT, inUtcRegion(completedAt)));
                             return result.build();
                         }
                 )
@@ -99,10 +101,10 @@ public class SubmissionQueryView {
                                     .add("defendantErrors", submission.getDefendantErrors())
                                     .add(ERRORS_FIELD, submission.getErrors())
                                     .add(WARNINGS, submission.getWarnings())
-                                    .add(RECEIVED_AT, submission.getReceivedAt().toString());
+                                    .add(RECEIVED_AT, inUtcRegion(submission.getReceivedAt()));
 
                     ofNullable(submissionOptional.get().getCompletedAt()).
-                            ifPresent(completedAt -> result.add(COMPLETED_AT, completedAt.toString()));
+                            ifPresent(completedAt -> result.add(COMPLETED_AT, inUtcRegion(completedAt)));
                             return result.build();
                         }
                 )
@@ -132,10 +134,10 @@ public class SubmissionQueryView {
                                     .add("defendantWarnings", submission.getDefendantWarnings())
                                     .add("defendantErrors", submission.getDefendantErrors())
                                     .add(ERRORS_FIELD, submission.getErrors())
-                                    .add(RECEIVED_AT, submission.getReceivedAt().toString());
+                                    .add(RECEIVED_AT, inUtcRegion(submission.getReceivedAt()));
 
                             ofNullable(submissionOptional.get().getCompletedAt()).
-                                    ifPresent(completedAt -> result.add(COMPLETED_AT, completedAt.toString()));
+                                    ifPresent(completedAt -> result.add(COMPLETED_AT, inUtcRegion(completedAt)));
                             return result.build();
                         }
                 )
@@ -170,10 +172,10 @@ public class SubmissionQueryView {
                                     .add(TYPE, submission.getType().toString())
                                     .add(WARNINGS, submission.getWarnings())
                                     .add(ERRORS_FIELD, submission.getErrors())
-                                    .add(RECEIVED_AT, submission.getReceivedAt().toString());
+                                    .add(RECEIVED_AT, inUtcRegion(submission.getReceivedAt()));
 
                     ofNullable(submissionOptional.get().getCompletedAt()).
-                            ifPresent(completedAt -> result.add(COMPLETED_AT, completedAt.toString()));
+                            ifPresent(completedAt -> result.add(COMPLETED_AT, inUtcRegion(completedAt)));
                             return result.build();
                         }
                 )
@@ -250,6 +252,11 @@ public class SubmissionQueryView {
                         }
                 )
                 .orElse(null);
+    }
+
+    // Hibernate 6 reads the timestamps back as ZoneOffset.UTC ("...Z"); keep the J17 (Hibernate 5) "...Z[UTC]" form.
+    private static String inUtcRegion(final ZonedDateTime dateTime) {
+        return dateTime.withZoneSameInstant(UTC).toString();
     }
 
 }
