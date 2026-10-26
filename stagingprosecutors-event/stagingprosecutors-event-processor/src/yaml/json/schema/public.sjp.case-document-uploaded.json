@@ -11,7 +11,18 @@
     }
   },
   "required": [
-    "documentId",
     "caseId"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "documentId"
+      ]
+    },
+    {
+      "required": [
+        "documentUri"
+      ]
+    }
   ]
 }
