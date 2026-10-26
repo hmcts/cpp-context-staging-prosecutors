@@ -1,6 +1,5 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.query.view;
 
-import static java.time.format.DateTimeFormatter.ISO_ZONED_DATE_TIME;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -730,6 +729,43 @@ public class SubmissionQueryViewTest {
         assertThat(result.getString("completedAt"), is("2026-10-19T12:50:01.033Z[UTC]"));
     }
 
+    // J17 rendered the fraction in 3/6/9-digit groups and dropped zero seconds; the response must not change shape.
+    @Test
+    public void querySubmissionShouldKeepTrailingZeroMillisAsRenderedByJ17() {
+        final ZonedDateTime receivedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 16, 928_000_000, ZoneOffset.UTC);
+        final ZonedDateTime completedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 19, 250_000_000, ZoneOffset.UTC);
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(receivedAt, completedAt)));
+
+        final JsonObject result = view.querySubmission(envelope).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-14T15:21:16.928Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-14T15:21:19.250Z[UTC]"));
+    }
+
+    @Test
+    public void querySubmissionShouldRenderWholeSecondsAndWholeMinutesAsRenderedByJ17() {
+        final ZonedDateTime receivedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 16, 0, ZoneOffset.UTC);
+        final ZonedDateTime completedAt = ZonedDateTime.of(2026, 10, 14, 15, 22, 0, 0, ZoneOffset.UTC);
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(receivedAt, completedAt)));
+
+        final JsonObject result = view.querySubmission(envelope).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-14T15:21:16Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-14T15:22Z[UTC]"));
+    }
+
+    @Test
+    public void querySubmissionShouldRenderMicrosAndNanosInSixAndNineDigitGroupsAsRenderedByJ17() {
+        final ZonedDateTime receivedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 16, 928_400_000, ZoneOffset.UTC);
+        final ZonedDateTime completedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 19, 250_000_100, ZoneOffset.UTC);
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(receivedAt, completedAt)));
+
+        final JsonObject result = view.querySubmission(envelope).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-14T15:21:16.928400Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-14T15:21:19.250000100Z[UTC]"));
+    }
+
     private static Submission withCaseAndDefendantMessages(final Submission submission) {
         submission.setCaseErrors(createArrayBuilder().build());
         submission.setCaseWarnings(createArrayBuilder().build());
@@ -738,8 +774,9 @@ public class SubmissionQueryViewTest {
         return submission;
     }
 
+    // J17 reference rendering (ZonedDateTime in the UTC region), independent of the production formatters.
     private static String inUtcRegion(final ZonedDateTime dateTime) {
-        return ISO_ZONED_DATE_TIME.format(dateTime.withZoneSameInstant(ZoneId.of("UTC")));
+        return dateTime.withZoneSameInstant(ZoneId.of("UTC")).toString();
     }
 
     private Submission createSubmissionForCase(final ZonedDateTime receivedAt, final ZonedDateTime completedAt) {

@@ -1,6 +1,10 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.query.view;
 
-import static java.time.format.DateTimeFormatter.ISO_ZONED_DATE_TIME;
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
+import static java.time.temporal.ChronoField.HOUR_OF_DAY;
+import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
+import static java.time.temporal.ChronoField.NANO_OF_SECOND;
+import static java.time.temporal.ChronoField.SECOND_OF_MINUTE;
 import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static java.util.UUID.fromString;
@@ -17,6 +21,7 @@ import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,7 +43,13 @@ public class SubmissionQueryView {
     private static final String TYPE = "type";
     private static final String ID = "id";
     private static final String OU_CODE = "oucode";
-    private static final DateTimeFormatter UTC_REGION_FORMATTER = ISO_ZONED_DATE_TIME.withZone(ZoneId.of("UTC"));
+    private static final ZoneId UTC = ZoneId.of("UTC");
+    // J17 (Hibernate 5) rendering: seconds omitted when zero, fraction in 3/6/9-digit groups.
+    private static final DateTimeFormatter TO_MINUTES = utcRegionFormatter(false, 0);
+    private static final DateTimeFormatter TO_SECONDS = utcRegionFormatter(true, 0);
+    private static final DateTimeFormatter TO_MILLIS = utcRegionFormatter(true, 3);
+    private static final DateTimeFormatter TO_MICROS = utcRegionFormatter(true, 6);
+    private static final DateTimeFormatter TO_NANOS = utcRegionFormatter(true, 9);
 
     @Inject
     private Enveloper enveloper;
@@ -258,7 +269,38 @@ public class SubmissionQueryView {
 
     // Hibernate 6 reads the timestamps back as ZoneOffset.UTC ("...Z"); keep the J17 (Hibernate 5) "...Z[UTC]" form.
     private static String inUtcRegion(final ZonedDateTime dateTime) {
-        return UTC_REGION_FORMATTER.format(dateTime);
+        final ZonedDateTime utc = dateTime.withZoneSameInstant(UTC);
+        final int nanos = utc.getNano();
+        final DateTimeFormatter formatter;
+        if (nanos == 0) {
+            formatter = utc.getSecond() == 0 ? TO_MINUTES : TO_SECONDS;
+        } else if (nanos % 1_000_000 == 0) {
+            formatter = TO_MILLIS;
+        } else if (nanos % 1_000 == 0) {
+            formatter = TO_MICROS;
+        } else {
+            formatter = TO_NANOS;
+        }
+        return formatter.format(utc);
+    }
+
+    private static DateTimeFormatter utcRegionFormatter(final boolean withSeconds, final int fractionDigits) {
+        final DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder()
+                .append(ISO_LOCAL_DATE)
+                .appendLiteral('T')
+                .appendValue(HOUR_OF_DAY, 2)
+                .appendLiteral(':')
+                .appendValue(MINUTE_OF_HOUR, 2);
+        if (withSeconds) {
+            builder.appendLiteral(':').appendValue(SECOND_OF_MINUTE, 2);
+        }
+        if (fractionDigits > 0) {
+            builder.appendFraction(NANO_OF_SECOND, fractionDigits, fractionDigits, true);
+        }
+        return builder.appendOffsetId()
+                .appendLiteral('[').appendZoneRegionId().appendLiteral(']')
+                .toFormatter()
+                .withZone(UTC);
     }
 
 }
