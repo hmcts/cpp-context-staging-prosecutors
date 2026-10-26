@@ -1,5 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.query.view;
 
+import static java.time.format.DateTimeFormatter.ISO_ZONED_DATE_TIME;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -150,8 +151,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonObject.getJsonArray("caseWarnings"), is(caseWarnings));
         assertThat(jsonObject.getJsonArray("defendantErrors"), is(defendantErrors));
         assertThat(jsonObject.getJsonArray("defendantWarnings"), is(defendantWarnings));
-        assertThat(jsonObject.getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonObject.getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonObject.getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonObject.getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
     @Test
@@ -195,8 +196,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.getJsonArray("caseWarnings"), is(caseWarnings));
         assertThat(jsonEnvelope.getJsonArray("defendantErrors"), is(defendantErrors));
         assertThat(jsonEnvelope.getJsonArray("defendantWarnings"), is(defendantWarnings));
-        assertThat(jsonEnvelope.getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonEnvelope.getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonEnvelope.getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonEnvelope.getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
     @Test
@@ -243,8 +244,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getJsonArray("caseWarnings"), is(caseWarnings));
         assertThat(jsonEnvelope.payloadAsJsonObject().getJsonArray("defendantErrors"), is(defendantErrors));
         assertThat(jsonEnvelope.payloadAsJsonObject().getJsonArray("defendantWarnings"), is(defendantWarnings));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
 
@@ -303,8 +304,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("id"), is(submissionId.toString()));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("status"), is("PENDING"));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("type"), is(submissionType.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
     @Test
@@ -332,7 +333,7 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("id"), is(submissionId.toString()));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("status"), is("PENDING"));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("type"), is(submissionType.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
         assertNull(jsonEnvelope.payloadAsJsonObject().get("completedAt"));
     }
 
@@ -361,7 +362,7 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("id"), is(submissionId.toString()));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("status"), is("PENDING"));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("type"), is(submissionType.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
         assertNull(jsonEnvelope.payloadAsJsonObject().get("completedAt"));
     }
 
@@ -735,6 +736,10 @@ public class SubmissionQueryViewTest {
         submission.setDefendantErrors(createArrayBuilder().build());
         submission.setDefendantWarnings(createArrayBuilder().build());
         return submission;
+    }
+
+    private static String inUtcRegion(final ZonedDateTime dateTime) {
+        return ISO_ZONED_DATE_TIME.format(dateTime.withZoneSameInstant(ZoneId.of("UTC")));
     }
 
     private Submission createSubmissionForCase(final ZonedDateTime receivedAt, final ZonedDateTime completedAt) {

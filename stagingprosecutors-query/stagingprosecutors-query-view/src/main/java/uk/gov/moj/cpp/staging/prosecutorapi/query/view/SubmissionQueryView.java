@@ -1,5 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.query.view;
 
+import static java.time.format.DateTimeFormatter.ISO_ZONED_DATE_TIME;
 import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static java.util.UUID.fromString;
@@ -15,6 +16,7 @@ import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,7 +38,7 @@ public class SubmissionQueryView {
     private static final String TYPE = "type";
     private static final String ID = "id";
     private static final String OU_CODE = "oucode";
-    private static final ZoneId UTC = ZoneId.of("UTC");
+    private static final DateTimeFormatter UTC_REGION_FORMATTER = ISO_ZONED_DATE_TIME.withZone(ZoneId.of("UTC"));
 
     @Inject
     private Enveloper enveloper;
@@ -256,7 +258,7 @@ public class SubmissionQueryView {
 
     // Hibernate 6 reads the timestamps back as ZoneOffset.UTC ("...Z"); keep the J17 (Hibernate 5) "...Z[UTC]" form.
     private static String inUtcRegion(final ZonedDateTime dateTime) {
-        return dateTime.withZoneSameInstant(UTC).toString();
+        return UTC_REGION_FORMATTER.format(dateTime);
     }
 
 }
