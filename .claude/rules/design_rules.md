@@ -62,7 +62,7 @@ Every change touching events MUST be reasoned about across **all three layers**.
 - `stagingprosecutors-event/stagingprosecutors-event-processor` — processors + converters → public events; inbound public-event handling
 - `stagingprosecutors-event-sources` — `event-sources.yaml`
 - `stagingprosecutors-query/stagingprosecutors-query-api`, `-query-view` — query RAML + read services over the viewstore
-- `stagingprosecutors-viewstore` — Liquibase migrations + Deltaspike persistence
+- `stagingprosecutors-viewstore` — Liquibase migrations + JPA persistence (`@ApplicationScoped` repository beans)
 - `stagingprosecutors-service` — composite packaging WAR; `resource-descriptor.yml` wires datasources / queue / topics
 - `stagingprosecutors-healthchecks`, `stagingprosecutors-test-utils`, `stagingprosecutors-integration-test` (`*IT.java` via `runIntegrationTests.sh`)
 
@@ -95,7 +95,7 @@ Every change touching events MUST be reasoned about across **all three layers**.
 ## Out-of-Scope (do not add)
 
 - Hand-rolled JMS listeners — use the framework's `@Handles`
-- Hand-rolled JDBC — use Liquibase changelogs and Deltaspike repositories
+- Hand-rolled JDBC — use Liquibase changelogs and JPA repository beans (`@PersistenceContext`)
 - Ad-hoc `ObjectMapper` instances — use the framework's configured mapper
 - Manual JSON schema validation — the framework validates incoming envelopes against subscription-declared schemas
 - Spring annotations (`@Autowired`, `@Component`, `@Service`) — this service uses CDI (Lombok IS allowed)

@@ -90,4 +90,9 @@ public class SubmissionRepositoryTest {
         submission.setCpsCase(null);
         assertThat(submission.isCpsCase(), is(false));
     }
+
+    @Test
+    public void shouldReturnNullWhenSubmissionNotFound() {
+        assertThat(submissionRepository.findBy(UUID.randomUUID()), is(nullValue()));
+    }
 }

@@ -2,7 +2,7 @@
 
 ## Dependency Injection / Component Wiring
 
-- Use the Justice Services Framework component model — `@ApplicationScoped` for framework-managed singletons, `@Inject` (CDI) for collaborator injection; Deltaspike for persistence
+- Use the Justice Services Framework component model — `@ApplicationScoped` for framework-managed singletons, `@Inject` (CDI) for collaborator injection; JPA (`@PersistenceContext` `EntityManager` in `@ApplicationScoped` repository beans) for persistence
 - For command handlers: `@ServiceComponent(COMMAND_HANDLER)` on the class + `@Handles("<command-name>")` on the method
 - For event listeners: framework listener base + `@Handles("<event-name>")` on listener methods, `@ServiceComponent(EVENT_LISTENER)` on the class
 - For event processors: framework processor base + `@ServiceComponent(EVENT_PROCESSOR)` on the class

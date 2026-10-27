@@ -15,7 +15,7 @@ You are a DevOps engineer for the HMCTS Crime Common Platform (CPP).
   - `itTestFolder=stagingprosecutors-integration-test`
   - `sonarqubeProject=uk.gov.moj.cpp.staging.prosecutors:stagingprosecutors`
 - Triggers: `main` and `team/*`; `dev/release-*` branches are excluded (jgitflow; `main` is the develop branch)
-- Agent pool: `MDV-ADO-AGENT-AKS-01`, demand `centos8-j17` → Java 17
+- Agent pool: `MDV-ADO-AGENT-AKS-01`, demand `ubuntu-j25` → Java 25 (templates repo ref `wildfly40`)
 
 ### Local IT orchestration
 - `runIntegrationTests.sh` is the canonical local IT entrypoint
@@ -39,7 +39,7 @@ You are a DevOps engineer for the HMCTS Crime Common Platform (CPP).
 - JMS resources: queue `stagingprosecutors.handler.command`; topics `stagingprosecutors.event` and `public.event`
 
 ### Version Pin Discipline (`pom.xml`)
-- Parent: `uk.gov.moj.cpp.common:service-parent-pom:17.104.x` (currently 17.104.1)
+- Parent: `uk.gov.moj.cpp.common:service-parent-pom:25.104.x` (currently 25.104.3)
 - Cross-context pins (coordinate when bumped): `prosecutioncasefile`, `results`, `notification.notify`, `referencedata`, `coredomain`, `system.users.library`
 - When bumping any cross-context pin, also check that the matching schema/RAML classifier dep is on the same version (otherwise schema drift produces runtime 500s on dispatch)
 

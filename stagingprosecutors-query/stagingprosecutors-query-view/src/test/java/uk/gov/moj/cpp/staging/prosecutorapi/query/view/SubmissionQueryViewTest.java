@@ -20,6 +20,7 @@ import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
 import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.SubmissionType;
 
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,6 +38,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class SubmissionQueryViewTest {
+    private static final ZonedDateTime RECEIVED_AT_READ_BACK = ZonedDateTime.of(2026, 10, 19, 12, 49, 11, 33_000_000, ZoneOffset.UTC);
+    private static final ZonedDateTime COMPLETED_AT_READ_BACK = RECEIVED_AT_READ_BACK.plusSeconds(50);
+
     @InjectMocks
     private SubmissionQueryView view;
 
@@ -146,8 +150,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonObject.getJsonArray("caseWarnings"), is(caseWarnings));
         assertThat(jsonObject.getJsonArray("defendantErrors"), is(defendantErrors));
         assertThat(jsonObject.getJsonArray("defendantWarnings"), is(defendantWarnings));
-        assertThat(jsonObject.getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonObject.getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonObject.getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonObject.getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
     @Test
@@ -191,8 +195,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.getJsonArray("caseWarnings"), is(caseWarnings));
         assertThat(jsonEnvelope.getJsonArray("defendantErrors"), is(defendantErrors));
         assertThat(jsonEnvelope.getJsonArray("defendantWarnings"), is(defendantWarnings));
-        assertThat(jsonEnvelope.getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonEnvelope.getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonEnvelope.getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonEnvelope.getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
     @Test
@@ -239,8 +243,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getJsonArray("caseWarnings"), is(caseWarnings));
         assertThat(jsonEnvelope.payloadAsJsonObject().getJsonArray("defendantErrors"), is(defendantErrors));
         assertThat(jsonEnvelope.payloadAsJsonObject().getJsonArray("defendantWarnings"), is(defendantWarnings));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
 
@@ -299,8 +303,8 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("id"), is(submissionId.toString()));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("status"), is("PENDING"));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("type"), is(submissionType.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(completedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("completedAt"), is(inUtcRegion(completedAt)));
     }
 
     @Test
@@ -328,7 +332,7 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("id"), is(submissionId.toString()));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("status"), is("PENDING"));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("type"), is(submissionType.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
         assertNull(jsonEnvelope.payloadAsJsonObject().get("completedAt"));
     }
 
@@ -357,7 +361,7 @@ public class SubmissionQueryViewTest {
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("id"), is(submissionId.toString()));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("status"), is("PENDING"));
         assertThat(jsonEnvelope.payloadAsJsonObject().getString("type"), is(submissionType.toString()));
-        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(receivedAt.toString()));
+        assertThat(jsonEnvelope.payloadAsJsonObject().getString("receivedAt"), is(inUtcRegion(receivedAt)));
         assertNull(jsonEnvelope.payloadAsJsonObject().get("completedAt"));
     }
 
@@ -670,6 +674,110 @@ public class SubmissionQueryViewTest {
         view.querySubmissionV3(requestEnvelope);
     }
 
+
+    // Hibernate 6 reads submission.received_at / completed_at back as ZoneOffset.UTC; Hibernate 5 (J17) read them back
+    // in the UTC region. The v1/v2 queries return toString(), so they must keep rendering the J17 "...Z[UTC]" form.
+    @Test
+    public void querySubmissionShouldRenderTimestampsReadBackAsZoneOffsetUtcInTheUtcRegion() {
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(RECEIVED_AT_READ_BACK, COMPLETED_AT_READ_BACK)));
+
+        final JsonObject result = view.querySubmission(envelope).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-19T12:49:11.033Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-19T12:50:01.033Z[UTC]"));
+    }
+
+    @Test
+    public void querySubmissionV2ShouldRenderTimestampsReadBackAsZoneOffsetUtcInTheUtcRegion() {
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(withCaseAndDefendantMessages(
+                createSubmissionForCase(RECEIVED_AT_READ_BACK, COMPLETED_AT_READ_BACK))));
+
+        final JsonObject result = view.querySubmissionV2(createObjectBuilder()
+                .add("submissionId", submissionId.toString())
+                .add("oucode", "TVL")
+                .build());
+
+        assertThat(result.getString("receivedAt"), is("2026-10-19T12:49:11.033Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-19T12:50:01.033Z[UTC]"));
+    }
+
+    @Test
+    public void cpsQuerySubmissionV1ShouldRenderTimestampsReadBackAsZoneOffsetUtcInTheUtcRegion() {
+        final Submission submission = new Submission(submissionId, "PENDING", "caseUrn", "TVL",
+                createArrayBuilder().build(), createArrayBuilder().build(), submissionType, RECEIVED_AT_READ_BACK, true, null);
+        submission.setCompletedAt(COMPLETED_AT_READ_BACK);
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(withCaseAndDefendantMessages(submission)));
+
+        final JsonObject result = view.cpsQuerySubmissionV1(createEnvelope("hmcts.cps.query.submission.v1", createObjectBuilder()
+                .add("submissionId", submissionId.toString())
+                .build())).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-19T12:49:11.033Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-19T12:50:01.033Z[UTC]"));
+    }
+
+    @Test
+    public void querySubmissionSjpV2ShouldRenderTimestampsReadBackAsZoneOffsetUtcInTheUtcRegion() {
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(RECEIVED_AT_READ_BACK, COMPLETED_AT_READ_BACK)));
+
+        final JsonObject result = view.querySubmissionSjpV2(createEnvelope("hmcts.cjs.query.sjp.submission.v2", createObjectBuilder()
+                .add("submissionId", submissionId.toString())
+                .add("oucode", "TVL")
+                .build())).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-19T12:49:11.033Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-19T12:50:01.033Z[UTC]"));
+    }
+
+    // J17 rendered the fraction in 3/6/9-digit groups and dropped zero seconds; the response must not change shape.
+    @Test
+    public void querySubmissionShouldKeepTrailingZeroMillisAsRenderedByJ17() {
+        final ZonedDateTime receivedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 16, 928_000_000, ZoneOffset.UTC);
+        final ZonedDateTime completedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 19, 250_000_000, ZoneOffset.UTC);
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(receivedAt, completedAt)));
+
+        final JsonObject result = view.querySubmission(envelope).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-14T15:21:16.928Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-14T15:21:19.250Z[UTC]"));
+    }
+
+    @Test
+    public void querySubmissionShouldRenderWholeSecondsAndWholeMinutesAsRenderedByJ17() {
+        final ZonedDateTime receivedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 16, 0, ZoneOffset.UTC);
+        final ZonedDateTime completedAt = ZonedDateTime.of(2026, 10, 14, 15, 22, 0, 0, ZoneOffset.UTC);
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(receivedAt, completedAt)));
+
+        final JsonObject result = view.querySubmission(envelope).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-14T15:21:16Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-14T15:22Z[UTC]"));
+    }
+
+    @Test
+    public void querySubmissionShouldRenderMicrosAndNanosInSixAndNineDigitGroupsAsRenderedByJ17() {
+        final ZonedDateTime receivedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 16, 928_400_000, ZoneOffset.UTC);
+        final ZonedDateTime completedAt = ZonedDateTime.of(2026, 10, 14, 15, 21, 19, 250_000_100, ZoneOffset.UTC);
+        when(service.getSubmission(submissionId)).thenReturn(Optional.of(createSubmissionForCase(receivedAt, completedAt)));
+
+        final JsonObject result = view.querySubmission(envelope).payloadAsJsonObject();
+
+        assertThat(result.getString("receivedAt"), is("2026-10-14T15:21:16.928400Z[UTC]"));
+        assertThat(result.getString("completedAt"), is("2026-10-14T15:21:19.250000100Z[UTC]"));
+    }
+
+    private static Submission withCaseAndDefendantMessages(final Submission submission) {
+        submission.setCaseErrors(createArrayBuilder().build());
+        submission.setCaseWarnings(createArrayBuilder().build());
+        submission.setDefendantErrors(createArrayBuilder().build());
+        submission.setDefendantWarnings(createArrayBuilder().build());
+        return submission;
+    }
+
+    // J17 reference rendering (ZonedDateTime in the UTC region), independent of the production formatters.
+    private static String inUtcRegion(final ZonedDateTime dateTime) {
+        return dateTime.withZoneSameInstant(ZoneId.of("UTC")).toString();
+    }
 
     private Submission createSubmissionForCase(final ZonedDateTime receivedAt, final ZonedDateTime completedAt) {
         final String ouCode = "TVL";

@@ -3,7 +3,7 @@
     <parent>
         <artifactId>stagingprosecutors-domain</artifactId>
         <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
-        <version>25.0.0-JAVA_25-SNAPSHOT</version>
+        <version>25.104.66-CIMD-4077-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,6 @@
         <skip.schema.event.pojo.generation>false</skip.schema.event.pojo.generation>
         <maven.build.timestamp.format>MMddHHmmss</maven.build.timestamp.format>
         <maven.cucumber.reporting.plugin.version>2.0.0</maven.cucumber.reporting.plugin.version>
-        <domain.dsl.version>0.3.1</domain.dsl.version>
     </properties>
 
     <dependencies>

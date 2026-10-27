@@ -1,6 +1,7 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.processor;
 
 import static com.google.common.collect.ImmutableList.of;
+import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
 import static uk.gov.justice.services.core.annotation.Component.EVENT_PROCESSOR;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
@@ -16,6 +17,8 @@ import uk.gov.justice.services.messaging.Metadata;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.RejectMaterial;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmissionStatus;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.UpdateSubmissionStatus;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.entity.Submission;
+import uk.gov.moj.cpp.staging.prosecutors.persistence.repository.SubmissionRepository;
 import uk.gov.moj.cps.stagingprosecutors.domain.event.CpsServeMaterialStatusUpdatedEvent;
 import uk.gov.moj.cps.stagingprosecutors.domain.event.PublicMaterialPendingWithWarnings;
 import uk.gov.moj.cps.stagingprosecutors.domain.event.PublicMaterialRejected;
@@ -45,6 +48,9 @@ public class ProsecutionCaseFilePublicEventProcessor {
     @Inject
     private Sender sender;
 
+    @Inject
+    private SubmissionRepository submissionRepository;
+
     @Handles("public.prosecutioncasefile.material-rejected")
     public void caseMaterialRejected(final Envelope<PublicMaterialRejected> materialRejectedEnvelope) {
 
@@ -56,18 +62,23 @@ public class ProsecutionCaseFilePublicEventProcessor {
             return;
         }
 
-        final Metadata rejectMaterialCommandMetadata = metadataFrom(materialRejectedEnvelope.metadata())
-                .withName(STAGING_PROSECUTORS_COMMAND_REJECT_MATERIAL)
-                .build();
+        final Submission submission = submissionRepository.findBy(submissionId.get());
+        if (nonNull(submission)) {
+            final Metadata rejectMaterialCommandMetadata = metadataFrom(materialRejectedEnvelope.metadata())
+                    .withName(STAGING_PROSECUTORS_COMMAND_REJECT_MATERIAL)
+                    .build();
 
-        final RejectMaterial rejectMaterialCommandPayload = rejectMaterial()
-                .withErrors(materialRejectedEnvelope.payload().getErrors())
-                .withSubmissionId(submissionId.get())
-                .build();
+            final RejectMaterial rejectMaterialCommandPayload = rejectMaterial()
+                    .withErrors(materialRejectedEnvelope.payload().getErrors())
+                    .withSubmissionId(submissionId.get())
+                    .build();
 
-        final Envelope<RejectMaterial> envelope = envelopeFrom(rejectMaterialCommandMetadata, rejectMaterialCommandPayload);
+            final Envelope<RejectMaterial> envelope = envelopeFrom(rejectMaterialCommandMetadata, rejectMaterialCommandPayload);
 
-        sender.send(envelope);
+            sender.send(envelope);
+        } else {
+            LOGGER.info(SUBMISSION_ID_NOT_FOUND);
+        }
     }
 
     @Handles("public.prosecutioncasefile.material-rejected-v2")
