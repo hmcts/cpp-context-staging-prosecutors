@@ -3,6 +3,7 @@ package uk.gov.moj.cpp.staging.prosecutors;
 import static java.time.ZonedDateTime.now;
 import static java.util.Collections.singletonList;
 import static java.util.UUID.randomUUID;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -12,7 +13,9 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
+import static uk.gov.moj.cpp.staging.prosecutors.urn.CaseUrnSanitizer.URN_NON_ASCII_MESSAGE;
 import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
 import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
 import static uk.gov.justice.services.test.utils.core.enveloper.EnvelopeFactory.createEnvelope;
@@ -65,6 +68,7 @@ public class StagingProsecutorsCommandApiTest {
 
     private static final UUID SUBMISSION_ID = randomUUID();
     private static final UUID MATERIAL_ID = randomUUID();
+    private static final String VALID_URN = "DVLA12345";
 
     @Mock
     private Sender sender;
@@ -119,7 +123,9 @@ public class StagingProsecutorsCommandApiTest {
         final SubmitSjpProsecutionHttp payload = SubmitSjpProsecutionHttp
                 .submitSjpProsecutionHttp()
                 .withDefendant(SjpDefendant.sjpDefendant().build())
-                .withProsecutionSubmissionDetails(SjpProsecutionSubmissionDetails.sjpProsecutionSubmissionDetails().build())
+                .withProsecutionSubmissionDetails(SjpProsecutionSubmissionDetails.sjpProsecutionSubmissionDetails()
+                        .withUrn(VALID_URN)
+                        .build())
                 .build();
         final SubmitSjpProsecution convertedPayload = SubmitSjpProsecution
                 .submitSjpProsecution()
@@ -153,6 +159,56 @@ public class StagingProsecutorsCommandApiTest {
 
         assertThat(sentEnvelopeMetadata.name(), equalTo("stagingprosecutors.command.sjp-prosecution"));
         assertThat(sentEnvelopePayload, equalTo(convertedPayload));
+    }
+
+    @Test
+    public void shouldSanitizeLeadingZeroWidthSpaceInSjpUrnAndMapCleanedUrn() {
+        stagingProsecutorsCommandApi.baseResponseURL = "test-base-url/";
+        final SubmitSjpProsecutionHttp payload = SubmitSjpProsecutionHttp
+                .submitSjpProsecutionHttp()
+                .withDefendant(SjpDefendant.sjpDefendant().build())
+                .withProsecutionSubmissionDetails(SjpProsecutionSubmissionDetails.sjpProsecutionSubmissionDetails()
+                        .withUrn("\u200b" + VALID_URN)
+                        .build())
+                .build();
+        final SubmitSjpProsecution convertedPayload = SubmitSjpProsecution
+                .submitSjpProsecution()
+                .withDefendant(SjpDefendant.sjpDefendant().build())
+                .withProsecutionSubmissionDetails(sjpProsecutionSubmissionDetails().withUrn(VALID_URN).build())
+                .withSubmissionId(SUBMISSION_ID)
+                .build();
+        final Envelope<SubmitSjpProsecutionHttp> originalEnvelope = createSubmitSjpProsecutionEnvelope(payload);
+        final Map<String, List<String>> noViolations = new HashMap<>();
+        final JsonObject submissionResponseObject = createObjectBuilder().add("status", SubmissionStatus.REJECTED.toString()).build();
+
+        when(systemIdMapperService.getSubmissionIdForUrnWithMatchFound(VALID_URN)).thenReturn(new ImmutablePair<>(SUBMISSION_ID, Boolean.FALSE));
+        when(submissionQueryView.querySubmissionV2(any())).thenReturn(submissionResponseObject);
+        when(submitSjpProsecutionConverter.convert(any())).thenReturn(convertedPayload);
+        when(submitSjpProsecutionHttpValidator.validate(payload)).thenReturn(noViolations);
+
+        stagingProsecutorsCommandApi.submitSJPProsecution(originalEnvelope);
+
+        verify(systemIdMapperService).getSubmissionIdForUrnWithMatchFound(VALID_URN);
+        verify(submitSjpProsecutionConverter).convert(any());
+    }
+
+    @Test
+    public void shouldRejectSjpUrnWithVisibleNonAsciiCharacters() {
+        stagingProsecutorsCommandApi.baseResponseURL = "test-base-url/";
+        final SubmitSjpProsecutionHttp payload = SubmitSjpProsecutionHttp
+                .submitSjpProsecutionHttp()
+                .withDefendant(SjpDefendant.sjpDefendant().build())
+                .withProsecutionSubmissionDetails(SjpProsecutionSubmissionDetails.sjpProsecutionSubmissionDetails()
+                        .withUrn(VALID_URN + "А")
+                        .build())
+                .build();
+        when(submitSjpProsecutionHttpValidator.validate(payload)).thenReturn(new HashMap<>());
+
+        final BadRequestException exception = assertThrows(BadRequestException.class,
+                () -> stagingProsecutorsCommandApi.submitSJPProsecution(createSubmitSjpProsecutionEnvelope(payload)));
+
+        assertThat(exception.getMessage(), containsString(URN_NON_ASCII_MESSAGE));
+        verifyNoInteractions(systemIdMapperService);
     }
 
     @Test
@@ -200,6 +256,25 @@ public class StagingProsecutorsCommandApiTest {
                 .build();
 
         assertThat(sentEnvelope.payload(), equalTo(payloadWithSubmissionId));
+    }
+
+    @Test
+    public void shouldSanitizeZeroWidthSpaceInMaterialCaseUrn() {
+        stagingProsecutorsCommandApi.baseResponseURL = "test-base-url/";
+        when(uuidProducer.generateUUID()).thenReturn(SUBMISSION_ID);
+        final JsonObject payload = createObjectBuilder()
+                .add("material", MATERIAL_ID.toString())
+                .add("caseUrn", "\u200bcaseUrn01")
+                .add("prosecutingAuthority", "prosecutingAuthority")
+                .add("materialType", "SJPN")
+                .build();
+
+        final JsonEnvelope requestEnvelope = createEnvelope("stagingprosecutors.submit-material", payload);
+        stagingProsecutorsCommandApi.submitMaterial(requestEnvelope);
+
+        verify(sender).send(materialEnvelopeCaptor.capture());
+        final JsonObject sentPayload = (JsonObject) materialEnvelopeCaptor.getValue().payload();
+        assertThat(sentPayload.getString("caseUrn"), equalTo("caseUrn01"));
     }
 
     @Test
