@@ -5,7 +5,7 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>25.104.5</version>
+        <version>25.104.7</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
@@ -18,7 +18,7 @@
         <system.users.library.version>3.1.2</system.users.library.version>
         <prosecutioncasefile.version>17.0.95</prosecutioncasefile.version>
         <referencedata.version>17.104.137</referencedata.version>
-        <coredomain.version>25.104.5</coredomain.version>
+        <coredomain.version>25.104.7</coredomain.version>
         <jaxb-maven-plugin.version>4.0.8</jaxb-maven-plugin.version>
         <results.version>17.104.116</results.version>
         <notification.notify.version>17.0.1</notification.notify.version>
