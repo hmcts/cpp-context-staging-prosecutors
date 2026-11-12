@@ -57,7 +57,7 @@ Data flows command → aggregate → events → event store → (listener → vi
 
 ## CI / branching
 
-- CI is Azure DevOps (`azure-pipelines.yaml`) using shared `hmcts/cpp-azure-devops-templates`: on PR → `context-verify`, on CI build → `context-validation`. SonarQube project `uk.gov.moj.cpp.staging.prosecutors:stagingprosecutors`; `serviceName=stagingprosecutors`; `itTestFolder=stagingprosecutors-integration-test`; pool `MDV-ADO-AGENT-AKS-01` / `centos8-j17`.
+- CI is Azure DevOps (`azure-pipelines.yaml`) using shared `hmcts/cpp-azure-devops-templates`: on PR → `context-verify`, on CI build → `context-validation`. SonarQube project `uk.gov.moj.cpp.staging.prosecutors:stagingprosecutors`; `serviceName=stagingprosecutors`; `itTestFolder=stagingprosecutors-integration-test`; pool `MDV-ADO-AGENT-AKS-01` / `ubuntu24-j17`.
 - Uses jgitflow; the develop branch is `main`. Release branches are `dev/release-*` (excluded from CI triggers). Parent `service-parent-pom:17.104.1`; module versions managed in the parent `pom.xml`.
 
 <!-- SPECKIT START -->

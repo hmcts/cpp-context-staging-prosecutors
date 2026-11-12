@@ -21,16 +21,20 @@ import uk.gov.justice.services.core.sender.Sender;
 import uk.gov.justice.services.messaging.Envelope;
 import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.moj.cpp.staging.prosecutorapi.query.view.SubmissionQueryView;
+import uk.gov.moj.cpp.staging.prosecutors.command.api.SjpProsecutionSubmissionDetails;
 import uk.gov.moj.cpp.staging.prosecutors.converter.SubmitSjpProsecutionConverter;
 import uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmitSjpProsecutionHttp;
 import uk.gov.moj.cpp.staging.prosecutors.pojo.SubmitSjpProsecution;
 import uk.gov.moj.cpp.staging.prosecutors.service.SystemIdMapperService;
+import uk.gov.moj.cpp.staging.prosecutors.urn.CaseUrnSanitizer;
+import uk.gov.moj.cpp.staging.prosecutors.urn.InvalidCaseUrnException;
 import uk.gov.moj.cpp.staging.prosecutors.uuid.UUIDProducer;
 import uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionHttpValidator;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -40,6 +44,11 @@ import static uk.gov.justice.services.core.annotation.Component.COMMAND_API;
 import static uk.gov.justice.services.core.enveloper.Enveloper.envelop;
 import static uk.gov.justice.services.messaging.Envelope.envelopeFrom;
 import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
+import static uk.gov.moj.cpp.staging.prosecutors.command.api.SjpProsecutionSubmissionDetails.sjpProsecutionSubmissionDetails;
+import static uk.gov.moj.cpp.staging.prosecutors.json.schemas.SubmitSjpProsecutionHttp.submitSjpProsecutionHttp;
+import static uk.gov.moj.cpp.staging.prosecutors.urn.CaseUrnSanitizer.wasSanitized;
+import static uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionTextResources.FIELD_CASE_URN;
+import static uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionTextResources.FIELD_URN;
 
 @ServiceComponent(COMMAND_API)
 public class StagingProsecutorsCommandApi {
@@ -87,15 +96,16 @@ public class StagingProsecutorsCommandApi {
         if (violations.size() > 0) {
             throwBadRequestException(violations);
         }
-        final String urn = payload.getProsecutionSubmissionDetails().getUrn();
-        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(urn);
+        final SubmitSjpProsecutionHttp payloadWithSanitizedUrn = withSanitizedUrn(payload);
+        final Pair<UUID, Boolean> submissionIdWithMatchFoundPair = systemIdMapperService.getSubmissionIdForUrnWithMatchFound(
+                payloadWithSanitizedUrn.getProsecutionSubmissionDetails().getUrn());
         final JsonObject submissionPayload = createObjectBuilder()
                 .add("submissionId", submissionIdWithMatchFoundPair.getLeft().toString())
                 .build();
         final JsonObject submissionResponse = submissionQueryView.querySubmissionV2(submissionPayload);
 
         if (!submissionIdWithMatchFoundPair.getRight() || shouldRaiseSubmission(submissionResponse)) {
-            final Pair<SubmitSjpProsecutionHttp, UUID> payloadAnsSubmissionIdPair = new ImmutablePair<>(payload, submissionIdWithMatchFoundPair.getLeft());
+            final Pair<SubmitSjpProsecutionHttp, UUID> payloadAnsSubmissionIdPair = new ImmutablePair<>(payloadWithSanitizedUrn, submissionIdWithMatchFoundPair.getLeft());
             final SubmitSjpProsecution payloadWithSubmissionId = submitSjpProsecutionConverter.convert(payloadAnsSubmissionIdPair);
 
             sender.send(envelop(payloadWithSubmissionId)
@@ -131,7 +141,7 @@ public class StagingProsecutorsCommandApi {
         final JsonObjectBuilder payloadBuilder = createObjectBuilder()
                 .add("submissionId", submissionId.toString())
                 .add("materialId", requestPayload.getString("material"))
-                .add("caseUrn", requestPayload.getString("caseUrn"))
+                .add("caseUrn", sanitizedUrn(requestPayload.getString("caseUrn"), FIELD_CASE_URN))
                 .add("prosecutingAuthority", requestPayload.getString("prosecutingAuthority"))
                 .add("materialType", requestPayload.getString("materialType"));
 
@@ -147,6 +157,33 @@ public class StagingProsecutorsCommandApi {
         return envelopeFrom(
                 envelope.metadata(),
                 new UrlResponse(getBaseResponseURLWithVersion() + submissionId, submissionId));
+    }
+
+    private SubmitSjpProsecutionHttp withSanitizedUrn(final SubmitSjpProsecutionHttp payload) {
+        final SjpProsecutionSubmissionDetails details = payload.getProsecutionSubmissionDetails();
+        final String sanitizedUrn = sanitizedUrn(details.getUrn(), FIELD_URN);
+        if (!wasSanitized(details.getUrn(), sanitizedUrn)) {
+            return payload;
+        }
+        LOGGER.info("Removed invisible characters from prosecution URN");
+        return submitSjpProsecutionHttp()
+                .withDefendant(payload.getDefendant())
+                .withProsecutionSubmissionDetails(sjpProsecutionSubmissionDetails()
+                        .withInformant(details.getInformant())
+                        .withUrn(sanitizedUrn)
+                        .withProsecutingAuthority(details.getProsecutingAuthority())
+                        .withWrittenChargePostingDate(details.getWrittenChargePostingDate())
+                        .build())
+                .build();
+    }
+
+    private String sanitizedUrn(final String urn, final String fieldName) {
+        try {
+            return CaseUrnSanitizer.sanitize(urn);
+        } catch (final InvalidCaseUrnException exception) {
+            throwBadRequestException(Collections.singletonMap(fieldName, Collections.singletonList(exception.getMessage())));
+            return null;
+        }
     }
 
     private void throwBadRequestException(final Map<String, List<String>> violations) {
