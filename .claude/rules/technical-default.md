@@ -11,7 +11,7 @@
 | Component         | Value                                                                |
 |-------------------|----------------------------------------------------------------------|
 | Build tool        | Maven (multi-module reactor; root `pom.xml`, `stagingprosecutors`)   |
-| Language          | Java 17 (CI demand `centos8-j17`)                                    |
+| Language          | Java 17 (CI demand `ubuntu24-j17`)                                   |
 | Framework         | Justice Services Framework / CPP `service-parent-pom:17.104.x` (CDI/Deltaspike) |
 | Packaging         | WAR (`stagingprosecutors-service`) → WildFly via Docker              |
 | Annotations       | `@ServiceComponent`, `@Handles`, `@ApplicationScoped`                |

@@ -36,6 +36,12 @@ public abstract class SubmitSjpProsecutionTextResources {
 
     public static final String FIELD_OFFENCE_OFFENCE_SEQUENCE_NO = "defendant.offences.offenceSequenceNo";
 
+    public static final String FIELD_URN = "prosecutionSubmissionDetails.urn";
+
+    public static final String FIELD_CASE_URN = "caseUrn";
+
+    public static final String FIELD_PTI_URN = "ptiUrn";
+
     private SubmitSjpProsecutionTextResources() {
         // prevent initialization
     }
