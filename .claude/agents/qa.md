@@ -19,7 +19,7 @@ Production code without a paired failing-then-passing test is a **FAIL** verdict
 
 ### Unit Tests (JUnit + Mockito)
 - Test each handler / aggregate method / converter in isolation
-- Mock the framework's collaborators (`EventStreamSource`, `Sender`, Deltaspike repositories, REST clients to PCF / results / notification / reference-data)
+- Mock the framework's collaborators (`EventStreamSource`, `Sender`, JPA repository beans, REST clients to PCF / results / notification / reference-data)
 - Cover: happy path, edge cases (null payload fields, empty collections, invalid UUIDs), error cases (`EventStreamException`, schema-validation failures, invalid envelope metadata)
 - Use Mockito (JUnit extension); `@Nested` + `@DisplayName` for grouped scenarios
 

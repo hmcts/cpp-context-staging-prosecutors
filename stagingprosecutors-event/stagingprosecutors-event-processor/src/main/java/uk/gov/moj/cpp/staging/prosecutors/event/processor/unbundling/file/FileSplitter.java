@@ -10,7 +10,7 @@ import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.service.Ref
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 
