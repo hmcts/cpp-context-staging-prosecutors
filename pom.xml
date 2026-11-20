@@ -17,10 +17,13 @@
     <properties>
         <system.users.library.version>3.1.2</system.users.library.version>
         <prosecutioncasefile.version>17.0.95</prosecutioncasefile.version>
-        <referencedata.version>17.104.137</referencedata.version>
+        <referencedata.version>17.104.149</referencedata.version>
         <coredomain.version>25.104.7</coredomain.version>
         <jaxb-maven-plugin.version>4.0.8</jaxb-maven-plugin.version>
         <results.version>17.104.116</results.version>
+        <joda-time.version>2.10.10</joda-time.version>
+        <lombok.version>1.18.0</lombok.version>
+        <httpmime.version>4.5.1</httpmime.version>
         <notification.notify.version>17.0.1</notification.notify.version>
         <stream-transformation-tool-anonymise>7.0.0</stream-transformation-tool-anonymise>
         <jgitflow.maven.developBranchName>main</jgitflow.maven.developBranchName>
