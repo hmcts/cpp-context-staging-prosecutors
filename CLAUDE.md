@@ -57,12 +57,11 @@ Data flows command → aggregate → events → event store → (listener → vi
 
 ## CI / branching
 
-- CI is Azure DevOps (`azure-pipelines.yaml`) using shared `hmcts/cpp-azure-devops-templates`: on PR → `context-verify`, on CI build → `context-validation`. SonarQube project `uk.gov.moj.cpp.staging.prosecutors:stagingprosecutors`; `serviceName=stagingprosecutors`; `itTestFolder=stagingprosecutors-integration-test`; pool `MDV-ADO-AGENT-AKS-01` / `ubuntu-j25`; templates ref `wildfly40`.
-- Uses jgitflow; the develop branch is `main`. Release branches are `dev/release-*` (excluded from CI triggers). Parent `service-parent-pom:25.104.3`; module versions managed in the parent `pom.xml`.
+- CI is Azure DevOps (`azure-pipelines.yaml`) using shared `hmcts/cpp-azure-devops-templates`: on PR → `context-verify`, on CI build → `context-validation`. SonarQube project `uk.gov.moj.cpp.staging.prosecutors:stagingprosecutors`; `serviceName=stagingprosecutors`; `itTestFolder=stagingprosecutors-integration-test`; pool `MDV-ADO-AGENT-AKS-01` / `ubuntu24-j17`.
+- Uses jgitflow; the develop branch is `main`. Release branches are `dev/release-*` (excluded from CI triggers). Parent `service-parent-pom:17.104.1`; module versions managed in the parent `pom.xml`.
 
 <!-- SPECKIT START -->
-Active feature: **CIMD-4077 — Upgrade to Java 25 / WildFly 40 / Jakarta EE 11 (Framework E 25.104.x)**.
-For technologies, project structure, version targets, and migration mechanics, read the plan and
-its design docs under `specs/CIMD-4077-java25-upgrade/` (`plan.md`, `research.md`, `data-model.md`,
-`quickstart.md`).
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+at `specs/001-results-verdict-schema/plan.md`
 <!-- SPECKIT END -->
