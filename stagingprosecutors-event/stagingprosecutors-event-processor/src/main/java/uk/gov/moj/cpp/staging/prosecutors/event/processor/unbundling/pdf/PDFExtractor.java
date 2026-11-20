@@ -1,5 +1,6 @@
 package uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.pdf;
 
+import static java.lang.ref.Reference.reachabilityFence;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -52,6 +53,13 @@ public class PDFExtractor {
 
             LOGGER.error(ExceptionUtils.getStackTrace(e));
             throw new UnBundlingTechnicalException(GENERIC_INVALID_PDF_EXCEPTION_MSG, e);
+        } finally {
+            // Keep the source document — and therefore its PDFBox backing store / COSStreams —
+            // strongly reachable for the entire extraction. On JDK 25 the GC can otherwise reclaim
+            // the parameter mid-operation once the JIT sees no further use, at which point PDFBox's
+            // Cleaner closes the backing store and in-flight page imports fail with
+            // "COSStream has been closed".
+            reachabilityFence(pdDocument);
         }
     }
 

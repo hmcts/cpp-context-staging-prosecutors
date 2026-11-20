@@ -27,8 +27,8 @@ import uk.gov.moj.cps.prosecutioncasefile.command.api.InitiateProsecution;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import javax.inject.Inject;
-import javax.json.JsonObject;
+import jakarta.inject.Inject;
+import jakarta.json.JsonObject;
 
 
 @ServiceComponent(EVENT_PROCESSOR)
