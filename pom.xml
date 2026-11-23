@@ -10,7 +10,7 @@
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
     <artifactId>stagingprosecutors</artifactId>
-    <version>25.104.69-SNAPSHOT</version>
+    <version>25.104.70-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>stagingprosecutors</name>
 
@@ -28,7 +28,7 @@
         <stream-transformation-tool-anonymise>7.0.0</stream-transformation-tool-anonymise>
         <jgitflow.maven.developBranchName>main</jgitflow.maven.developBranchName>
         <!-- Empty default so @{argLine} below still resolves when JaCoCo's prepare-agent is skipped -->
-        <argLine/>
+        <argLine />
         <sonar.coverage.exclusions>
             **/gov/justice/**,
             **/schemas/**,
