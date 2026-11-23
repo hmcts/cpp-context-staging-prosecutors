@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.ws.rs.WebApplicationException;
+import jakarta.ws.rs.WebApplicationException;
 
 import uk.gov.justice.services.core.aggregate.AggregateService;
 import uk.gov.justice.services.core.annotation.Handles;
@@ -54,8 +54,8 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import javax.inject.Inject;
-import javax.json.JsonValue;
+import jakarta.inject.Inject;
+import jakarta.json.JsonValue;
 
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.ReceivePocaEmail;
 

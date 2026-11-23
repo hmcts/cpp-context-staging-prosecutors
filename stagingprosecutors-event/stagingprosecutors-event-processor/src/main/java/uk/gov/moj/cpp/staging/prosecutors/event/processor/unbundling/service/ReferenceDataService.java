@@ -8,8 +8,8 @@ import uk.gov.justice.services.messaging.JsonEnvelope;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.exception.BundleSectionsNotFoundException;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.pojo.PDFBundleDetails;
 
-import javax.inject.Inject;
-import javax.json.JsonObject;
+import jakarta.inject.Inject;
+import jakarta.json.JsonObject;
 
 import static java.util.Objects.isNull;
 import static java.util.UUID.randomUUID;
