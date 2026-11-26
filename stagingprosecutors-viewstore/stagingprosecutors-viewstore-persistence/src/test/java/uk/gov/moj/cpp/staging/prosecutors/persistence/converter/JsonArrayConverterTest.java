@@ -4,13 +4,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
 
-import jakarta.json.JsonArray;
+import uk.gov.justice.services.test.utils.persistence.BaseTransactionalTest;
 
-import org.junit.jupiter.api.Test;
+import javax.inject.Inject;
+import javax.json.JsonArray;
 
-public class JsonArrayConverterTest {
+import org.apache.deltaspike.testcontrol.api.junit.CdiTestRunner;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-    private final JsonArrayConverter jsonArrayConverter = new JsonArrayConverter();
+@RunWith(CdiTestRunner.class)
+public class JsonArrayConverterTest extends BaseTransactionalTest {
+
+    @Inject
+    private JsonArrayConverter jsonArrayConverter;
 
     @Test
     public void shouldConvertToDatabaseColumn() {

@@ -19,8 +19,8 @@ import java.io.InputStream;
 import java.util.Objects;
 import java.util.UUID;
 
-import jakarta.inject.Inject;
-import jakarta.json.JsonObject;
+import javax.inject.Inject;
+import javax.json.JsonObject;
 
 import org.apache.commons.lang3.StringUtils;
 

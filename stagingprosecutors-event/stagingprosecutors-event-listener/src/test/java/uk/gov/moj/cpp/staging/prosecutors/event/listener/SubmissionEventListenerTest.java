@@ -63,7 +63,7 @@ import uk.gov.moj.cpp.staging.prosecutors.persistence.repository.SubmissionRepos
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-import jakarta.json.JsonObject;
+import javax.json.JsonObject;
 
 import com.google.common.collect.ImmutableList;
 import cpp.moj.gov.uk.staging.prosecutors.json.schemas.MaterialSubmittedV3;

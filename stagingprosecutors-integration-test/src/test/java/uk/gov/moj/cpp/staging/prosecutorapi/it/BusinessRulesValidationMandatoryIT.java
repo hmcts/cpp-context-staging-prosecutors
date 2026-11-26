@@ -24,8 +24,8 @@ import uk.gov.moj.cpp.staging.prosecutorapi.utils.WiremockUtils;
 import java.io.StringReader;
 import java.util.Optional;
 
-import jakarta.json.JsonObject;
-import jakarta.ws.rs.core.Response;
+import javax.json.JsonObject;
+import javax.ws.rs.core.Response;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

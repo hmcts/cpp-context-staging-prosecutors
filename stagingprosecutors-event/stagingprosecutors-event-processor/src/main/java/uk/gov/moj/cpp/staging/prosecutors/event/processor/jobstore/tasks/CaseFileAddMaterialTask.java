@@ -15,7 +15,7 @@ import uk.gov.moj.cpp.jobstore.api.annotation.Task;
 import uk.gov.moj.cpp.jobstore.api.task.ExecutableTask;
 import uk.gov.moj.cpp.jobstore.api.task.ExecutionInfo;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 @Task(CASE_FILE_ADD_MATERIAL_TASK)
 public class CaseFileAddMaterialTask implements ExecutableTask

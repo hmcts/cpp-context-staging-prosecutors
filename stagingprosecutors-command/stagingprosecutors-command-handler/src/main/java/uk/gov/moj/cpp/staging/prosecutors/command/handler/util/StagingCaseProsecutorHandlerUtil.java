@@ -9,7 +9,7 @@ import uk.gov.justice.services.messaging.JsonEnvelope;
 
 import java.util.stream.Stream;
 
-import jakarta.json.JsonValue;
+import javax.json.JsonValue;
 
 public class StagingCaseProsecutorHandlerUtil {
 

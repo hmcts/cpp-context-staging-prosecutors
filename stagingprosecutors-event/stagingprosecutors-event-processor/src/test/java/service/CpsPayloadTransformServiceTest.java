@@ -23,8 +23,8 @@ import java.io.StringReader;
 import java.util.Collections;
 import java.util.UUID;
 
-import jakarta.json.JsonObject;
-import jakarta.json.JsonReader;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;

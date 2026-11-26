@@ -15,7 +15,7 @@ import uk.gov.moj.cps.stagingprosecutors.domain.event.ProsecutionSubmissionSucce
 
 import java.util.UUID;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

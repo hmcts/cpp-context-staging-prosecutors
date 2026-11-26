@@ -5,7 +5,7 @@ import uk.gov.justice.services.common.configuration.Value;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 @SuppressWarnings("squid:S1488")
 public class ApplicationParameters {
