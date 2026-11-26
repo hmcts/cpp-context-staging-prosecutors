@@ -1,14 +1,12 @@
 package uk.gov.moj.cpp.staging.prosecutorapi.query.api.converter;
 
-import static uk.gov.justice.services.messaging.JsonObjects.createArrayBuilder;
-import static uk.gov.justice.services.messaging.JsonObjects.createObjectBuilder;
-
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonValue;
+import javax.enterprise.context.ApplicationScoped;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 
 @ApplicationScoped
 public class ResultsV1ResponseTransformer {
@@ -21,7 +19,7 @@ public class ResultsV1ResponseTransformer {
     }
 
     private static JsonObject deepTransformObject(final JsonObject object) {
-        final JsonObjectBuilder builder = createObjectBuilder();
+        final JsonObjectBuilder builder = Json.createObjectBuilder();
         object.entrySet().stream()
                 .filter(e -> !VERDICT.equals(e.getKey()))
                 .forEach(e -> {
@@ -43,7 +41,7 @@ public class ResultsV1ResponseTransformer {
     }
 
     private static JsonArray deepTransformArray(final JsonArray array) {
-        final JsonArrayBuilder builder = createArrayBuilder();
+        final JsonArrayBuilder builder = Json.createArrayBuilder();
         array.forEach(item -> {
             if (item.getValueType() == JsonValue.ValueType.OBJECT) {
                 builder.add(deepTransformObject(item.asJsonObject()));

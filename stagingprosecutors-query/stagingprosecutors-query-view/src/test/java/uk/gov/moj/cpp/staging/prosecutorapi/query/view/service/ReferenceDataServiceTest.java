@@ -14,7 +14,7 @@ import uk.gov.justice.services.messaging.Envelope;
 
 import java.util.Optional;
 
-import jakarta.json.JsonObject;
+import javax.json.JsonObject;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

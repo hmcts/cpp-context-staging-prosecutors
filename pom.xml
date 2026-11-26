@@ -5,30 +5,30 @@
     <parent>
         <groupId>uk.gov.moj.cpp.common</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>25.104.7</version>
+        <version>17.104.1</version>
     </parent>
 
     <groupId>uk.gov.moj.cpp.staging.prosecutors</groupId>
     <artifactId>stagingprosecutors</artifactId>
-    <version>25.104.72-SNAPSHOT</version>
+    <version>17.104.69-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>stagingprosecutors</name>
 
     <properties>
+        <maven.cucumber.reporting.plugin.version>2.0.0</maven.cucumber.reporting.plugin.version>
         <system.users.library.version>3.1.2</system.users.library.version>
         <prosecutioncasefile.version>17.0.95</prosecutioncasefile.version>
         <referencedata.version>17.104.149</referencedata.version>
-        <coredomain.version>25.104.7</coredomain.version>
-        <jaxb-maven-plugin.version>4.0.8</jaxb-maven-plugin.version>
-        <results.version>17.104.116</results.version>
+        <coredomain.version>17.104.6</coredomain.version>
         <joda-time.version>2.10.10</joda-time.version>
         <lombok.version>1.18.0</lombok.version>
+        <results.version>17.104.116</results.version>
         <httpmime.version>4.5.1</httpmime.version>
         <notification.notify.version>17.0.1</notification.notify.version>
         <stream-transformation-tool-anonymise>7.0.0</stream-transformation-tool-anonymise>
+        <jsonassert.version>1.5.0</jsonassert.version>
+        <jgitflow-maven-plugin.version>1.0-m5.1</jgitflow-maven-plugin.version>
         <jgitflow.maven.developBranchName>main</jgitflow.maven.developBranchName>
-        <!-- Empty default so @{argLine} below still resolves when JaCoCo's prepare-agent is skipped -->
-        <argLine />
         <sonar.coverage.exclusions>
             **/gov/justice/**,
             **/schemas/**,
@@ -98,6 +98,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.skyscreamer</groupId>
+                <artifactId>jsonassert</artifactId>
+                <version>${jsonassert.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>uk.gov.justice</groupId>
                 <artifactId>stream-transformation-tool-anonymise</artifactId>
                 <version>${stream-transformation-tool-anonymise}</version>
@@ -116,25 +121,6 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Run tests in UTC, as the deployed servers do. @{argLine} keeps the JaCoCo agent -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <argLine>@{argLine} -Duser.timezone=UTC</argLine>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <configuration>
-                        <argLine>-Duser.timezone=UTC</argLine>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
@@ -144,8 +130,14 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.11.0.3922</version>
+            </plugin>
+            <plugin>
                 <groupId>external.atlassian.jgitflow</groupId>
                 <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>${jgitflow-maven-plugin.version}</version>
                 <configuration>
                     <flowInitContext>
                         <masterBranchName>dev/release</masterBranchName>

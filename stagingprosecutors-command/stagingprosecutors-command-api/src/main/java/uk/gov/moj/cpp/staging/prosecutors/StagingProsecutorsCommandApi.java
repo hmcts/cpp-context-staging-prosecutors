@@ -31,10 +31,9 @@ import uk.gov.moj.cpp.staging.prosecutors.urn.InvalidCaseUrnException;
 import uk.gov.moj.cpp.staging.prosecutors.uuid.UUIDProducer;
 import uk.gov.moj.cpp.staging.prosecutors.validators.SubmitSjpProsecutionHttpValidator;
 
-import jakarta.inject.Inject;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
-
+import javax.inject.Inject;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
