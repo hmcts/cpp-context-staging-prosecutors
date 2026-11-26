@@ -16,6 +16,7 @@ import static uk.gov.moj.cpp.staging.prosecutors.test.util.PDFTestHelper.getIdpc
 import static uk.gov.moj.cpp.staging.prosecutors.test.util.PDFTestHelper.getMagistrateCourtEvidenceTemplate;
 import static uk.gov.moj.cpp.staging.prosecutors.test.util.PDFTestHelper.getSimpleTemplate;
 
+import uk.gov.moj.cpp.staging.prosecutors.event.processor.exception.InvalidPDFOutlineException;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.exception.UnBundlingTechnicalException;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.pdf.PDDocumentHolder;
 import uk.gov.moj.cpp.staging.prosecutors.event.processor.unbundling.pdf.PDFExtractor;
@@ -35,6 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -95,6 +97,16 @@ public class PDFExtractorTest {
                     pdDocument,
                     bookmarksByFileType.get(SIMPLE_FILE_TYPE),
                     getSimpleTemplate()));
+        }
+    }
+
+    @Test
+    public void shouldRejectPDFWithoutAnOutlineAsInvalidInput() throws IOException {
+        try (final PDDocument pdDocument = new PDDocument()) {
+            pdDocument.addPage(new PDPage());
+
+            assertThrows(InvalidPDFOutlineException.class, () ->
+                    pdfExtractor.splitIntoSections(pdDocument, bookmarksByFileType.get(IDPC_FILE_TYPE)));
         }
     }
 
